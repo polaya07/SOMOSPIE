@@ -98,5 +98,4 @@ def validate_knn(knn, x_test, y_test):
 if __name__ == "__main__":	
     parser=get_parser()
     args = parser.parse_args()
-    knn = train_knn(args)
-
+    knn = knn_train(args)

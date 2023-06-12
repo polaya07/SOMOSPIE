@@ -25,9 +25,9 @@ def load_data(args):
     col[2] = 'z'
     training_data.columns = col
     # Create path to where data and scaler are saved
-    print("Creating directory:", args.pathtomodel, os.path.abspath(args.pathtomodel))
+    print("Creating directory:", args.pathtomodel)
     Path(args.pathtomodel).parent.mkdir(parents=True, exist_ok=True)
-    print("Output location", os.listdir(args.pathtomodel))
+    #print("Output location", os.listdir(args.pathtomodel))
     
     x_train, x_test, y_train, y_test = train_test_split(training_data.loc[:,training_data.columns != 'z'], training_data.loc[:,'z'], test_size=0.1)
     #print(x_train,"\n",y_train,"TEST\n",x_test,y_test)
