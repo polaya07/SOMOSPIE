@@ -21,7 +21,7 @@ from sklearn.metrics import mean_squared_error
 #Input arguments to execute the k-Nearest Neighbors Regression 
 def get_parser():
     parser = argparse.ArgumentParser(description='Arguments and data files for executing Nearest Neighbors Regression.')
-    parser.add_argument('-t', "--trainingdata", help='Training data')
+    parser.add_argument('-d', "--data", help='Data')
     parser.add_argument('-m', "--pathtomodel", help='Directory where the knn model will be saved')
     parser.add_argument('-k', "--maxK", help='Mamximum k to try for finding optimal model', default=20)
     parser.add_argument('-seed', "--seed", help='Seed for reproducibility purposed in random research grid', default=3)
@@ -31,7 +31,7 @@ def get_parser():
 def knn_train (args):	
     print("Reading training data from", args.trainingdata)
         # Open and reads file "data"
-    with open(args.pathtomodel+"data.json") as data_file:
+    with open(args.data+"data.json") as data_file:
         data = json.load(data_file)
 
     data = json.loads(data)
@@ -54,7 +54,8 @@ def knn_train (args):
     # Fit the new model to data
     knn.fit(x_train, y_train)
     # Save model
-    pickle.dump(knn, open(pathtomodel+'model.pkl', 'wb'))
+    Path(args.pathtomodel).parent.mkdir(parents=True, exist_ok=True)
+    pickle.dump(knn, open(args.pathtomodel+'model.pkl', 'wb'))
 
     # Validate
     validate_knn(knn, x_test, y_test)
