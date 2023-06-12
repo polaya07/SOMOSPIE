@@ -55,7 +55,7 @@ def knn_train (args):
     knn.fit(x_train, y_train)
     # Save model
     Path(args.pathtomodel).parent.mkdir(parents=True, exist_ok=True)
-    pickle.dump(knn, open(args.pathtomodel+'model.pkl', 'wb'))
+    pickle.dump(knn, open(args.data+'model.pkl', 'wb'))
 
     # Validate
     validate_knn(knn, x_test, y_test)
