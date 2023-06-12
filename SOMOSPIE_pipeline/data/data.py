@@ -17,6 +17,8 @@ def get_parser():
 
 def load_data(args):
     print("Reading training data from", args.trainingdata)
+    print("Current directory:", Path.cwd(), " and full path ", Path(__file__).resolve().parent)
+    print("Files and directory in the bucket", os.listdir(args.trainingdata))
     training_data = pd.read_csv(args.trainingdata+"train.csv")
     col = list(training_data.columns)
     col[2] = 'z'
