@@ -29,7 +29,7 @@ def get_parser():
 
 #Translate from namespaces to Python variables 
 def knn_train (args):	
-    print("Reading training data from", args.trainingdata)
+    print("Reading training data from", args.data)
         # Open and reads file "data"
     with open(args.data+"data.json") as data_file:
         data = json.load(data_file)
