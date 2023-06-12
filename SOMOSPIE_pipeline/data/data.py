@@ -24,9 +24,8 @@ def load_data(args):
     col = list(training_data.columns)
     col[2] = 'z'
     training_data.columns = col
-    pathtomodel = args.trainingdata
     # Create path to where data and scaler is saved
-    Path(pathtomodel).parent.mkdir(parents=True, exist_ok=True)
+    Path(args.pathtomodel).parent.mkdir(parents=True, exist_ok=True)
     
     x_train, x_test, y_train, y_test = train_test_split(training_data.loc[:,training_data.columns != 'z'], training_data.loc[:,'z'], test_size=0.1)
     #print(x_train,"\n",y_train,"TEST\n",x_test,y_test)
@@ -37,7 +36,7 @@ def load_data(args):
     #print(x_train,"\n",y_train,"TEST\n",x_test,y_test)
 
     # Save scaler model so it can be reused for predicting
-    pickle.dump(ss, open(pathtomodel+'scaler.pkl', 'wb'))
+    pickle.dump(ss, open(args.pathtomodel+'scaler.pkl', 'wb'))
 
     # Save data to train with different ml-models
     data = {'x_train' : x_train.tolist(),
@@ -48,7 +47,7 @@ def load_data(args):
     data_json = json.dumps(data)
 
     # Saves the json object into a file
-    with open(pathtomodel+"data.json", 'w') as out_file:
+    with open(args.pathtomodel+"data.json", 'w') as out_file:
         json.dump(data_json, out_file)
 
 if __name__ == "__main__":
