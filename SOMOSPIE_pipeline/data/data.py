@@ -3,11 +3,11 @@
 import numpy as np
 import json
 import argparse
+import pandas as pd
 from pathlib import Path
 import pickle
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.datasets import load_breast_cancer
 
 def get_parser():
     parser = argparse.ArgumentParser(description='Arguments and data files for executing Nearest Neighbors Regression.')
