@@ -48,7 +48,7 @@ def load_data(args):
     data_json = json.dumps(data)
 
     # Saves the json object into a file
-    with open(pathtomodel, 'w') as out_file:
+    with open(pathtomodel+"data.json", 'w') as out_file:
         json.dump(data_json, out_file)
 
 if __name__ == "__main__":
