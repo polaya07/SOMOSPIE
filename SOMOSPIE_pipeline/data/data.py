@@ -8,6 +8,7 @@ from pathlib import Path
 import pickle
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
+import os
 
 def get_parser():
     parser = argparse.ArgumentParser(description='Arguments and data files for executing Nearest Neighbors Regression.')
