@@ -2,7 +2,7 @@ name: Load and Split Data
 description: Load and split data for training different ml models
 
 inputs:
-- {name: TrainDataPath, type: LocalPath, description: 'Path where the train data is located.'}
+- {name: TrainDataPath, type: String, description: 'Path where the train data is located.'}
 outputs:
 - {name: Data, type: LocalPath, description: 'Path where data and datascaler  will be stored.'}
 
@@ -12,7 +12,7 @@ implementation:
     command: [
       python3, data.py,
       -t,
-      {inputPath: TrainDataPath}
+      {inputValue: TrainDataPath},
       -m,
       {outputPath: Data},
     ]

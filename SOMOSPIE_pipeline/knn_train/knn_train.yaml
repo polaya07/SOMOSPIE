@@ -1,10 +1,10 @@
-name: Load and Split Data
-description: Load and split data for training different ml models
+name: kNN train
+description: Train a KNN model
 
 inputs:
-- {name: DataPath, type: LocalPath, description: 'Path where the train data is located.'}
-- {name: k, type: Int, description: 'Maximum k for neighbors.'}
-- {name: seed, type: Int, description: 'Seed for random search.'}
+- {name: DataPath, type: String, description: 'Path where the train data is located.'}
+- {name: k, type: Integer, description: 'Maximum k for neighbors.'}
+- {name: seed, type: Integer, description: 'Seed for random search.'}
 outputs:
 - {name: ModelPath, type: LocalPath, description: 'Path where data and datascaler will be stored.'}
 
@@ -13,7 +13,7 @@ implementation:
     image: olayap/knn_train
     command: [
       python3, knn_train.py,
-      -t,
+      -d,
       {inputValue: DataPath},
       -k,
       {inputValue: k},

@@ -1,2 +1,3 @@
 pandas
 scikit-learn
+python-k8sclient
