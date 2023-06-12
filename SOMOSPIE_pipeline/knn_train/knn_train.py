@@ -24,7 +24,6 @@ def get_parser():
     parser.add_argument('-d', "--data", help='Data')
     parser.add_argument('-m', "--pathtomodel", help='Directory where the knn model will be saved')
     parser.add_argument('-k', "--maxK", help='Mamximum k to try for finding optimal model', default=20)
-    parser.add_argument('-t', "--test", help='Test for input path')
     parser.add_argument('-seed', "--seed", help='Seed for reproducibility purposed in random research grid', default=3)
     return parser 
 
