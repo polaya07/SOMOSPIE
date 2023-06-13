@@ -12,7 +12,7 @@ implementation:
     command: [
       python3, data.py,
       -t,
-      {inputValue: TrainDataPath},
+      {inputPath: TrainDataPath},
       -m,
-      {outputValue: Data},
+      {outputPath: Data},
     ]

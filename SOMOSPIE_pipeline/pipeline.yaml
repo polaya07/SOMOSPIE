@@ -9,15 +9,17 @@ metadata:
       "knn-train-ModelPath", "path": "/tmp/outputs/ModelPath/data"}], "load-and-split-data":
       [{"key": "artifacts/$PIPELINERUN/load-and-split-data/Data.tgz", "name": "load-and-split-data-Data",
       "path": "/tmp/outputs/Data/data"}]}'
-    tekton.dev/input_artifacts: '{"knn-inference": [{"name": "odh-pvc-name", "parent_task":
-      "odh-pvc"}], "knn-train": [{"name": "odh-pvc-name", "parent_task": "odh-pvc"}],
-      "load-and-split-data": [{"name": "odh-pvc-name", "parent_task": "odh-pvc"}]}'
+    tekton.dev/input_artifacts: '{"knn-inference": [{"name": "knn-train-ModelPath",
+      "parent_task": "knn-train"}, {"name": "odh-pvc-name", "parent_task": "odh-pvc"}],
+      "knn-train": [{"name": "load-and-split-data-Data", "parent_task": "load-and-split-data"},
+      {"name": "odh-pvc-name", "parent_task": "odh-pvc"}], "load-and-split-data":
+      [{"name": "odh-pvc-name", "parent_task": "odh-pvc"}]}'
     tekton.dev/artifact_bucket: mlpipeline
     tekton.dev/artifact_endpoint: minio-service.kubeflow:9000
     tekton.dev/artifact_endpoint_scheme: http://
     tekton.dev/artifact_items: '{"knn-inference": [["ModelPath", "$(results.ModelPath.path)"]],
-      "knn-train": [["ModelPath", "$(results.ModelPath.path)"]], "load-and-split-data":
-      [["Data", "$(results.Data.path)"]], "odh-pvc": []}'
+      "knn-train": [["ModelPath", "$(workspaces.knn-train.path)/artifacts/$ORIG_PR_NAME/$(context.taskRun.name)/ModelPath"]],
+      "load-and-split-data": [["Data", "$(results.Data.path)"]], "odh-pvc": []}'
     sidecar.istio.io/inject: "false"
     tekton.dev/template: ''
     pipelines.kubeflow.org/big_data_passing_format: $(workspaces.$TASK_NAME.path)/artifacts/$ORIG_PR_NAME/$TASKRUN_NAME/$TASK_PARAM_NAME
@@ -127,12 +129,20 @@ spec:
         value: $(tasks.odh-pvc.results.name)
       taskSpec:
         steps:
+        - image: busybox
+          name: copy-inputs
+          command:
+          - sh
+          - -ec
+          - |
+            set -exo pipefail
+            echo -n "/cos/" > /tmp/inputs/TrainDataPath/data
         - name: main
           command:
           - python3
           - data.py
           - -t
-          - /cos/
+          - /tmp/inputs/TrainDataPath/data
           - -m
           - $(results.Data.path)
           image: olayap/somospie
@@ -149,16 +159,24 @@ spec:
         - name: odh-pvc
           persistentVolumeClaim:
             claimName: $(inputs.params.odh-pvc-name)
+        - name: traindatapath
+          emptyDir: {}
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Load and Split
               Data", "outputs": [{"description": "Path where data and datascaler  will
-              be stored.", "name": "Data", "type": "LocalPath"}], "version": "Load
-              and Split Data@sha256=49f75eab216fa09ac64a5f5a1ca2aeed15ea436827829c3bc1e0742fc7af65f7"}'
+              be stored.", "name": "Data", "type": "String"}], "version": "Load and
+              Split Data@sha256=2a25457476e0bd577c9296f7b5f237785e104c8c54c985262b572baa2ada986e"}'
+        stepTemplate:
+          volumeMounts:
+          - name: traindatapath
+            mountPath: /tmp/inputs/TrainDataPath
     - name: knn-train
       params:
+      - name: load-and-split-data-Data
+        value: $(tasks.load-and-split-data.results.Data)
       - name: odh-pvc-name
         value: $(tasks.odh-pvc.results.name)
       taskSpec:
@@ -168,23 +186,68 @@ spec:
           - python3
           - knn_train.py
           - -d
-          - /cos/
+          - $(inputs.params.load-and-split-data-Data)
           - -k
           - '20'
           - -seed
           - '3'
           - -m
-          - $(results.ModelPath.path)
+          - $(workspaces.knn-train.path)/artifacts/$ORIG_PR_NAME/$(context.taskRun.name)/ModelPath
           image: olayap/knn_train
           volumeMounts:
           - mountPath: /cos/
             name: odh-pvc
+          env:
+          - name: ORIG_PR_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.labels['custom.tekton.dev/originalPipelineRun']
+        - image: busybox
+          name: output-taskrun-name
+          command:
+          - sh
+          - -ec
+          - echo -n "$(context.taskRun.name)" > "$(results.taskrun-name.path)"
+        - image: busybox
+          name: copy-results-artifacts
+          command:
+          - sh
+          - -ec
+          - |
+            set -exo pipefail
+            TOTAL_SIZE=0
+            copy_artifact() {
+            if [ -d "$1" ]; then
+              tar -czvf "$1".tar.gz "$1"
+              SUFFIX=".tar.gz"
+            fi
+            ARTIFACT_SIZE=`wc -c "$1"${SUFFIX} | awk '{print $1}'`
+            TOTAL_SIZE=$( expr $TOTAL_SIZE + $ARTIFACT_SIZE)
+            touch "$2"
+            if [[ $TOTAL_SIZE -lt 3072 ]]; then
+              if [ -d "$1" ]; then
+                tar -tzf "$1".tar.gz > "$2"
+              elif ! awk "/[^[:print:]]/{f=1} END{exit !f}" "$1"; then
+                cp "$1" "$2"
+              fi
+            fi
+            }
+            copy_artifact $(workspaces.knn-train.path)/artifacts/$ORIG_PR_NAME/$(context.taskRun.name)/ModelPath $(results.ModelPath.path)
+          onError: continue
+          env:
+          - name: ORIG_PR_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.labels['custom.tekton.dev/originalPipelineRun']
         params:
+        - name: load-and-split-data-Data
         - name: odh-pvc-name
         results:
         - name: ModelPath
           type: string
           description: /tmp/outputs/ModelPath/data
+        - name: taskrun-name
+          type: string
         volumes:
         - name: odh-pvc
           persistentVolumeClaim:
@@ -195,29 +258,40 @@ spec:
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "kNN train", "outputs":
               [{"description": "Path where data and datascaler will be stored.", "name":
-              "ModelPath", "type": "LocalPath"}], "version": "kNN train@sha256=628f9a796d51dd59d71204a162e55b2e7883a47e9602f324ba08a6a56d8bbb56"}'
+              "ModelPath", "type": "String"}], "version": "kNN train@sha256=cbb875a4383ad80a561538f273abd4e81633d9ebdd17eee9659c3613928134d7"}'
+        workspaces:
+        - name: knn-train
+      workspaces:
+      - name: knn-train
+        workspace: somospiepipeline
     - name: knn-inference
       params:
       - name: odh-pvc-name
         value: $(tasks.odh-pvc.results.name)
+      - name: knn-train-trname
+        value: $(tasks.knn-train.results.taskrun-name)
       taskSpec:
         steps:
         - name: main
           command:
           - python3
           - knn_test.py
-          - -t
-          - x
           - -e
-          - /cos/
+          - $(workspaces.knn-inference.path)/artifacts/$ORIG_PR_NAME/$(params.knn-train-trname)/ModelPath
           - -o
           - $(results.ModelPath.path)
           image: olayap/knn_test
           volumeMounts:
           - mountPath: /cos/
             name: odh-pvc
+          env:
+          - name: ORIG_PR_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.labels['custom.tekton.dev/originalPipelineRun']
         params:
         - name: odh-pvc-name
+        - name: knn-train-trname
         results:
         - name: ModelPath
           type: string
@@ -232,5 +306,23 @@ spec:
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "kNN Inference",
               "outputs": [{"description": "Path where data and datascaler will be
-              stored.", "name": "ModelPath", "type": "LocalPath"}], "version": "kNN
-              Inference@sha256=33fb6a888f55b9740ca522aad77cf159e90e592e93e043235edabf8fcf681241"}'
+              stored.", "name": "ModelPath", "type": "String"}], "version": "kNN Inference@sha256=4d7644e96b647e01613960c2f42bf37a73bb218b245bfa782226dd8820e692b6"}'
+        workspaces:
+        - name: knn-inference
+      workspaces:
+      - name: knn-inference
+        workspace: somospiepipeline
+      runAfter:
+      - knn-train
+    workspaces:
+    - name: somospiepipeline
+  workspaces:
+  - name: somospiepipeline
+    volumeClaimTemplate:
+      spec:
+        storageClassName: kfp-csi-s3
+        accessModes:
+        - ReadWriteMany
+        resources:
+          requests:
+            storage: 2Gi

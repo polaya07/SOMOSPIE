@@ -14,11 +14,11 @@ implementation:
     command: [
       python3, knn_train.py,
       -d,
-      {inputValue: DataPath},
+      {inputPath: DataPath},
       -k,
       {inputValue: k},
       -seed,
       {inputValue: seed},
       -m,
-      {outputValue: ModelPath},
+      {outputPath: ModelPath},
     ]
