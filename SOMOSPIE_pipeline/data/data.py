@@ -52,6 +52,8 @@ def load_data(args):
     # Saves the json object into a file
     with open(args.trainingdata+"data.json", 'w') as out_file:
         json.dump(data_json, out_file)
+    
+    return args.pathtomodel
 
 if __name__ == "__main__":
     parser=get_parser()

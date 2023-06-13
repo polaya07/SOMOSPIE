@@ -21,7 +21,6 @@ from sklearn.metrics import mean_squared_error
 #Input arguments to execute the k-Nearest Neighbors Regression 
 def get_parser():
     parser = argparse.ArgumentParser(description='Arguments and data files for executing Nearest Neighbors Regression.')
-    parser.add_argument('-t', "--test", help='Passing data')
     parser.add_argument('-e', "--evaluationdata", help='Evaluation data')
     parser.add_argument('-o', "--outputdata", help='Predictions')
     return parser 

@@ -62,6 +62,7 @@ def knn_train (args):
 
     # Validate
     validate_knn(knn, x_test, y_test)
+    return args.pathtomodel
 
 
 def random_parameter_search(knn, x_train, y_train, maxK, seed):

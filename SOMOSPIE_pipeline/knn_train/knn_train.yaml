@@ -6,7 +6,7 @@ inputs:
 - {name: k, type: Integer, description: 'Maximum k for neighbors.'}
 - {name: seed, type: Integer, description: 'Seed for random search.'}
 outputs:
-- {name: ModelPath, type: LocalPath, description: 'Path where data and datascaler will be stored.'}
+- {name: ModelPath, type: String, description: 'Path where data and datascaler will be stored.'}
 
 implementation:
   container:
@@ -20,5 +20,5 @@ implementation:
       -seed,
       {inputValue: seed},
       -m,
-      {outputPath: ModelPath},
+      {outputValue: ModelPath},
     ]
