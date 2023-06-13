@@ -41,7 +41,7 @@ def pipeline():
     # Train and Test after splitting the data
     knn_train_task = knn_train(data_task.output, 20, 3).add_pvolumes({"/cos/": data_op.volume})
     print(knn_train_task.output)
-    knn_inference_task = knn_inference( knn_train_task.output).add_pvolumes({"/cos/": data_op.volume})
+    knn_inference_task = knn_inference(knn_train_task.output).add_pvolumes({"/cos/": data_op.volume})
 
 
 

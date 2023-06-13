@@ -14,7 +14,7 @@ implementation:
     command: [
       python3, knn_train.py,
       -d,
-      {inputPath: DataPath},
+      {inputValue: DataPath},
       -k,
       {inputValue: k},
       -seed,
