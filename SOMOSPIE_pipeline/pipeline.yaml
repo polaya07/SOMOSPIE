@@ -1,0 +1,236 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: somospiepipeline
+  annotations:
+    tekton.dev/output_artifacts: '{"knn-inference": [{"key": "artifacts/$PIPELINERUN/knn-inference/ModelPath.tgz",
+      "name": "knn-inference-ModelPath", "path": "/tmp/outputs/ModelPath/data"}],
+      "knn-train": [{"key": "artifacts/$PIPELINERUN/knn-train/ModelPath.tgz", "name":
+      "knn-train-ModelPath", "path": "/tmp/outputs/ModelPath/data"}], "load-and-split-data":
+      [{"key": "artifacts/$PIPELINERUN/load-and-split-data/Data.tgz", "name": "load-and-split-data-Data",
+      "path": "/tmp/outputs/Data/data"}]}'
+    tekton.dev/input_artifacts: '{"knn-inference": [{"name": "odh-pvc-name", "parent_task":
+      "odh-pvc"}], "knn-train": [{"name": "odh-pvc-name", "parent_task": "odh-pvc"}],
+      "load-and-split-data": [{"name": "odh-pvc-name", "parent_task": "odh-pvc"}]}'
+    tekton.dev/artifact_bucket: mlpipeline
+    tekton.dev/artifact_endpoint: minio-service.kubeflow:9000
+    tekton.dev/artifact_endpoint_scheme: http://
+    tekton.dev/artifact_items: '{"knn-inference": [["ModelPath", "$(results.ModelPath.path)"]],
+      "knn-train": [["ModelPath", "$(results.ModelPath.path)"]], "load-and-split-data":
+      [["Data", "$(results.Data.path)"]], "odh-pvc": []}'
+    sidecar.istio.io/inject: "false"
+    tekton.dev/template: ''
+    pipelines.kubeflow.org/big_data_passing_format: $(workspaces.$TASK_NAME.path)/artifacts/$ORIG_PR_NAME/$TASKRUN_NAME/$TASK_PARAM_NAME
+    pipelines.kubeflow.org/pipeline_spec: '{"description": "Pipeline for somospie",
+      "name": "somospiepipeline"}'
+  labels:
+    pipelines.kubeflow.org/pipelinename: ''
+    pipelines.kubeflow.org/generation: ''
+spec:
+  pipelineSpec:
+    tasks:
+    - name: odh-pvc
+      params:
+      - name: action
+        value: create
+      - name: output
+        value: |
+          - name: manifest
+            valueFrom: '{}'
+          - name: name
+            valueFrom: '{.metadata.name}'
+          - name: size
+            valueFrom: '{.status.capacity.storage}'
+      taskSpec:
+        params:
+        - description: Action on the resource
+          name: action
+          type: string
+        - default: strategic
+          description: Merge strategy when using action patch
+          name: merge-strategy
+          type: string
+        - default: ''
+          description: An express to retrieval data from resource.
+          name: output
+          type: string
+        - default: ''
+          description: A label selector express to decide if the action on resource
+            is success.
+          name: success-condition
+          type: string
+        - default: ''
+          description: A label selector express to decide if the action on resource
+            is failure.
+          name: failure-condition
+          type: string
+        - default: quay.io/aipipeline/kubectl-wrapper:latest
+          description: Kubectl wrapper image
+          name: image
+          type: string
+        - default: "false"
+          description: Enable set owner reference for created resource.
+          name: set-ownerreference
+          type: string
+        steps:
+        - command:
+          - kubeclient
+          args:
+          - --action=$(params.action)
+          - --merge-strategy=$(params.merge-strategy)
+          - |
+            --manifest=apiVersion: v1
+            kind: PersistentVolumeClaim
+            metadata:
+              annotations:
+                ibm.io/auto-create-bucket: 'false'
+                ibm.io/auto-delete-bucket: 'false'
+                ibm.io/bucket: odh-oklahoma1km
+                ibm.io/endpoint: https://s3.us-east.cloud-object-storage.appdomain.cloud
+                ibm.io/secret-name: po-secret
+              name: $(PIPELINERUN)-pvc-odh-oklahoma1km
+            spec:
+              accessModes:
+              - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 10Gi
+              storageClassName: ibmc-s3fs-standard-regional
+          - --output=$(params.output)
+          - --success-condition=$(params.success-condition)
+          - --failure-condition=$(params.failure-condition)
+          - --set-ownerreference=$(params.set-ownerreference)
+          image: $(params.image)
+          name: main
+          resources: {}
+          env:
+          - name: PIPELINERUN
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.labels['tekton.dev/pipelineRun']
+        results:
+        - name: manifest
+          type: string
+          description: '{}'
+        - name: name
+          type: string
+          description: '{.metadata.name}'
+        - name: size
+          type: string
+          description: '{.status.capacity.storage}'
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+    - name: load-and-split-data
+      params:
+      - name: odh-pvc-name
+        value: $(tasks.odh-pvc.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          command:
+          - python3
+          - data.py
+          - -t
+          - /cos/
+          - -m
+          - $(results.Data.path)
+          image: olayap/somospie
+          volumeMounts:
+          - mountPath: /cos/
+            name: odh-pvc
+        params:
+        - name: odh-pvc-name
+        results:
+        - name: Data
+          type: string
+          description: /tmp/outputs/Data/data
+        volumes:
+        - name: odh-pvc
+          persistentVolumeClaim:
+            claimName: $(inputs.params.odh-pvc-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Load and Split
+              Data", "outputs": [{"description": "Path where data and datascaler  will
+              be stored.", "name": "Data", "type": "LocalPath"}], "version": "Load
+              and Split Data@sha256=49f75eab216fa09ac64a5f5a1ca2aeed15ea436827829c3bc1e0742fc7af65f7"}'
+    - name: knn-train
+      params:
+      - name: odh-pvc-name
+        value: $(tasks.odh-pvc.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          command:
+          - python3
+          - knn_train.py
+          - -d
+          - /cos/
+          - -k
+          - '20'
+          - -seed
+          - '3'
+          - -m
+          - $(results.ModelPath.path)
+          image: olayap/knn_train
+          volumeMounts:
+          - mountPath: /cos/
+            name: odh-pvc
+        params:
+        - name: odh-pvc-name
+        results:
+        - name: ModelPath
+          type: string
+          description: /tmp/outputs/ModelPath/data
+        volumes:
+        - name: odh-pvc
+          persistentVolumeClaim:
+            claimName: $(inputs.params.odh-pvc-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "kNN train", "outputs":
+              [{"description": "Path where data and datascaler will be stored.", "name":
+              "ModelPath", "type": "LocalPath"}], "version": "kNN train@sha256=628f9a796d51dd59d71204a162e55b2e7883a47e9602f324ba08a6a56d8bbb56"}'
+    - name: knn-inference
+      params:
+      - name: odh-pvc-name
+        value: $(tasks.odh-pvc.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          command:
+          - python3
+          - knn_test.py
+          - -t
+          - x
+          - -e
+          - /cos/
+          - -o
+          - $(results.ModelPath.path)
+          image: olayap/knn_test
+          volumeMounts:
+          - mountPath: /cos/
+            name: odh-pvc
+        params:
+        - name: odh-pvc-name
+        results:
+        - name: ModelPath
+          type: string
+          description: /tmp/outputs/ModelPath/data
+        volumes:
+        - name: odh-pvc
+          persistentVolumeClaim:
+            claimName: $(inputs.params.odh-pvc-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "kNN Inference",
+              "outputs": [{"description": "Path where data and datascaler will be
+              stored.", "name": "ModelPath", "type": "LocalPath"}], "version": "kNN
+              Inference@sha256=33fb6a888f55b9740ca522aad77cf159e90e592e93e043235edabf8fcf681241"}'

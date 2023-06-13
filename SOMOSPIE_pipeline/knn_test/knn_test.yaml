@@ -2,7 +2,7 @@ name: kNN Inference
 description: Inference of the knn model on a evaluation dataset
 
 inputs:
-- {name: InputPathtest, type: LocalPath, description: 'Path where data and datascaler will be stored.'}
+- {name: InputPathtest, type: String, description: 'Path where data and datascaler will be stored.'}
 - {name: DataPath, type: String, description: 'Path where the train data is located.'}
 
 outputs:
@@ -14,7 +14,7 @@ implementation:
     command: [
       python3, knn_test.py,
       -t,
-      {inputPath: InputPathtest}
+      {inputValue: InputPathtest},
       -e,
       {inputValue: DataPath},
       -o,
