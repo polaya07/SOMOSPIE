@@ -1,13 +1,8 @@
 def knn_train (data_path: str, k: int, seed: int)-> str:
     import numpy as np
-    import pandas as pd
-    import argparse
     import pickle
     import json
-    from pathlib import Path
     from sklearn.neighbors import KNeighborsRegressor
-    from sklearn.model_selection import train_test_split
-    from sklearn.preprocessing import StandardScaler
     from sklearn.model_selection import RandomizedSearchCV
     from sklearn.metrics import mean_squared_error
 
@@ -70,9 +65,7 @@ def knn_train (data_path: str, k: int, seed: int)-> str:
     # Fit the new model to data
     knn.fit(x_train, y_train)
     # Save model
-
-    #Path(args.pathtomodel).parent.mkdir(parents=True, exist_ok=True)
-    pickle.dump(knn, open(data_path+'model.pkl', 'wb'))
+    pickle.dump(knn, open(data_path+'model_knn.pkl', 'wb'))
 
     # Validate
     validate_knn(knn, x_test, y_test)

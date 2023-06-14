@@ -1,17 +1,12 @@
 def load_data(input_path: str)-> str:
     import numpy as np
     import json
-    import argparse
     import pandas as pd
-    from pathlib import Path
     import pickle
     from sklearn.preprocessing import StandardScaler
     from sklearn.model_selection import train_test_split
-    import os
     
     print("Reading training data from", input_path)
-    print("Current directory:", Path.cwd(), " and full path ", Path(__file__).resolve().parent)
-    print("Files and directory in the bucket", os.listdir(Path.cwd()))
     training_data = pd.read_csv(input_path+"train.csv")
     col = list(training_data.columns)
     col[2] = 'z'

@@ -1,4 +1,6 @@
-def knn_inference (eval_path: str):
+
+def predict_rf(eval_path: str):
+    # Libraries
     import numpy as np
     import pandas as pd
     import pickle
@@ -9,11 +11,11 @@ def knn_inference (eval_path: str):
     ss = pickle.load(open(eval_path+'scaler.pkl', 'rb'))
     x_predict = ss.transform(evaluation_data)
     # Load knn regressor
-    knn = pickle.load(open(eval_path+'model_knn.pkl', 'rb'))
+    rf = pickle.load(open(eval_path+'model_rf.pkl', 'rb'))
     # Predict on evaluation data
-    y_predict = knn.predict(x_predict)
+    y_predict = rf.predict(x_predict)
     # Create dataframe with long, lat, soil moisture
     out_df = pd.DataFrame(data={'x':evaluation_data['x'].round(decimals=9), 'y':evaluation_data['y'].round(decimals=9), 'sm':y_predict})
     out_df = out_df.reindex(['x','y','sm'], axis=1)
-    #Print to file predictions 
-    out_df.to_csv(eval_path+"predictions_knn.csv", index=False, header=False)
+    # Print to file predictions 
+    out_df.to_csv(eval_path+'predictions_rf.csv', index=False, header=False)
