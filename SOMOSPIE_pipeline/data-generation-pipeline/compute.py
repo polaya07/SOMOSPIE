@@ -1,6 +1,10 @@
-def compute_geotiled(input_file:str, aspect_file:str, hillshading_file:str, slope_file:str) -> -> NamedTuple('Output', [("aspect", str), 
-                                                                                                                        ('hill', str),
-                                                                                                                        ('slope', str)]):
+from typing import NamedTuple
+#!/usr/bin/python3
+
+
+def compute_geotiled(input_file:str, aspect_file:str, hillshading_file:str, slope_file:str) -> NamedTuple('Output', [("aspect", str), 
+                                                                                                                    ('hill', str),
+                                                                                                                    ('slope', str)]):
     ## Packages
     import os
     from osgeo import gdal

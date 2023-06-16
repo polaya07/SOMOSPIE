@@ -1,6 +1,5 @@
-FROM conda/miniconda3
-COPY environment.yaml . 
-SHELL ["/bin/bash", "--login", "-c"]
-RUN conda env create -f environment.yaml 
-RUN conda init bash
-RUN conda activate somospie
+FROM ghcr.io/osgeo/gdal:ubuntu-small-latest
+RUN apt-get -y update
+RUN apt-get -y install curl
+RUN apt-get -y install python3-pip
+RUN python3 -m pip install pandas scikit-learn

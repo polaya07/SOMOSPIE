@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def reproject(input_file: str, output_file:str, projection: str)->str:
     # Packages
     import os

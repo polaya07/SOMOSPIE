@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def crop_into_tiles(mosaic: str, out_file:str, n_tiles: int, idx_x:int, idx_y:int)->str:
     import os
     import math
