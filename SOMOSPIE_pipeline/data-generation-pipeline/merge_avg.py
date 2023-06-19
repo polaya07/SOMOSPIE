@@ -1,4 +1,4 @@
-def merge_avg(input_files:str, output_file:str)->str:
+def merge_avg(input_files: list, dir: str, output_file:str)->str:
     import os
     import glob
     from osgeo import gdal # Install in a conda env: https://anaconda.org/conda-forge/gdal
@@ -10,10 +10,11 @@ def merge_avg(input_files:str, output_file:str)->str:
         proc = subprocess.Popen(arg_seq)#, shell=True)
         proc.wait() #... unless intentionally asynchronous
 
-    vrt = gdal.BuildVRT('merged.vrt', input_files)
+
+    vrt = gdal.BuildVRT(dir+'merged.vrt', input_files)
     vrt = None  # closes file
 
-    with open('merged.vrt', 'r') as f:
+    with open(dir+'merged.vrt', 'r') as f:
         contents = f.read()
 
     if '<NoDataValue>' in contents:
@@ -38,10 +39,10 @@ def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, 
     sub1, sub2 = contents.split('band="1">', 1)
     contents = sub1 + code + sub2
 
-    with open('merged.vrt', 'w') as f:
+    with open(dir+'merged.vrt', 'w') as f:
         f.write(contents)
 
-    cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', 'merged.vrt', output_file]
+    cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+'merged.vrt', output_file]
     bash(cmd)
-    os.remove('merged.vrt')
+    os.remove(dir+'merged.vrt')
     return output_file

@@ -1,5 +1,6 @@
 import kfp
-from kfp import dsl
+from kfp import dsl 
+#from kfp.v2 import dsl as dsl2
 from kfp.components import func_to_container_op
 from typing import NamedTuple
 import os
@@ -53,11 +54,14 @@ def pipeline(
     aspect_tiles = []
     hillshading_tiles = []
     slope_tiles = []
+    compute_task = []
     tile_count = 0
     n_tiles=2
+    #with dsl.ParallelFor(list(range(n_tiles))) as i:
+    #    with dsl.ParallelFor(list(range(n_tiles))) as j:
     for i in range(n_tiles):
         for j in range(n_tiles):
-            tile = "tile_{0:04d}.tif"
+            tile = "tile_{0:04d}.tif".format(tile_count)
             aspect_tiles.append("aspect_tile_{0:04d}.tif".format(tile_count))
             hillshading_tiles.append("hillshading_tile_{0:04d}.tif".format(tile_count))
             slope_tiles.append("slope_tile_{0:04d}.tif".format(tile_count))
@@ -66,12 +70,13 @@ def pipeline(
             crop_task = crop_op(reproject_task.output, "/cos/"+tile, n_tiles, i, j).add_pvolumes({"/cos/": pvc_op.volume})
 
             # Compute tile
-            compute_task = compute_op(crop_task.output, "/cos/"+aspect_tiles[-1], "/cos/"+hillshading_tiles[-1], "/cos/"+slope_tiles[-1]).add_pvolumes({"/cos/": pvc_op.volume})
-            
+            compute_task.append(compute_op(crop_task.output, "/cos/"+aspect_tiles[-1], "/cos/"+hillshading_tiles[-1], "/cos/"+slope_tiles[-1]).add_pvolumes({"/cos/": pvc_op.volume}))
             tile_count += 1
 
     # Merge all tiles for all terrain parameters
-
+    merge_avg_task = merge_avg_op([compute_task[z].outputs['aspect'] for z in range(tile_count)],"/cos/", "/cos/aspect.tif").add_pvolumes({"/cos/": pvc_op.volume})
+    merge_avg_task = merge_avg_op([compute_task[z].outputs['hill'] for z in range(tile_count)],"/cos/", "/cos/hillshading.tif").add_pvolumes({"/cos/": pvc_op.volume})
+    merge_avg_task = merge_avg_op([compute_task[z].outputs['slope'] for z in range(tile_count)], "/cos/","/cos/slope_tiles.tif").add_pvolumes({"/cos/": pvc_op.volume})
     
 
 if __name__ == '__main__':

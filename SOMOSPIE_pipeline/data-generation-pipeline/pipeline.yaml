@@ -28,10 +28,15 @@ metadata:
       "name": "crop-into-tiles-3-Output", "path": "/tmp/outputs/Output/data"}], "crop-into-tiles-4":
       [{"key": "artifacts/$PIPELINERUN/crop-into-tiles-4/Output.tgz", "name": "crop-into-tiles-4-Output",
       "path": "/tmp/outputs/Output/data"}], "load-data": [{"key": "artifacts/$PIPELINERUN/load-data/Output.tgz",
-      "name": "load-data-Output", "path": "/tmp/outputs/Output/data"}], "merge-tiles":
-      [{"key": "artifacts/$PIPELINERUN/merge-tiles/Output.tgz", "name": "merge-tiles-Output",
-      "path": "/tmp/outputs/Output/data"}], "reproject": [{"key": "artifacts/$PIPELINERUN/reproject/Output.tgz",
-      "name": "reproject-Output", "path": "/tmp/outputs/Output/data"}]}'
+      "name": "load-data-Output", "path": "/tmp/outputs/Output/data"}], "merge-avg":
+      [{"key": "artifacts/$PIPELINERUN/merge-avg/Output.tgz", "name": "merge-avg-Output",
+      "path": "/tmp/outputs/Output/data"}], "merge-avg-2": [{"key": "artifacts/$PIPELINERUN/merge-avg-2/Output.tgz",
+      "name": "merge-avg-2-Output", "path": "/tmp/outputs/Output/data"}], "merge-avg-3":
+      [{"key": "artifacts/$PIPELINERUN/merge-avg-3/Output.tgz", "name": "merge-avg-3-Output",
+      "path": "/tmp/outputs/Output/data"}], "merge-tiles": [{"key": "artifacts/$PIPELINERUN/merge-tiles/Output.tgz",
+      "name": "merge-tiles-Output", "path": "/tmp/outputs/Output/data"}], "reproject":
+      [{"key": "artifacts/$PIPELINERUN/reproject/Output.tgz", "name": "reproject-Output",
+      "path": "/tmp/outputs/Output/data"}]}'
     tekton.dev/input_artifacts: '{"compute-geotiled": [{"name": "crop-into-tiles-Output",
       "parent_task": "crop-into-tiles"}, {"name": "pvc-geotiled-name", "parent_task":
       "pvc-geotiled"}], "compute-geotiled-2": [{"name": "crop-into-tiles-2-Output",
@@ -48,10 +53,23 @@ metadata:
       "parent_task": "reproject"}], "crop-into-tiles-4": [{"name": "pvc-geotiled-name",
       "parent_task": "pvc-geotiled"}, {"name": "reproject-Output", "parent_task":
       "reproject"}], "load-data": [{"name": "pvc-geotiled-name", "parent_task": "pvc-geotiled"}],
-      "merge-tiles": [{"name": "load-data-Output", "parent_task": "load-data"}, {"name":
-      "pvc-geotiled-name", "parent_task": "pvc-geotiled"}], "reproject": [{"name":
-      "merge-tiles-Output", "parent_task": "merge-tiles"}, {"name": "pvc-geotiled-name",
-      "parent_task": "pvc-geotiled"}]}'
+      "merge-avg": [{"name": "compute-geotiled-2-aspect", "parent_task": "compute-geotiled-2"},
+      {"name": "compute-geotiled-3-aspect", "parent_task": "compute-geotiled-3"},
+      {"name": "compute-geotiled-4-aspect", "parent_task": "compute-geotiled-4"},
+      {"name": "compute-geotiled-aspect", "parent_task": "compute-geotiled"}, {"name":
+      "pvc-geotiled-name", "parent_task": "pvc-geotiled"}], "merge-avg-2": [{"name":
+      "compute-geotiled-2-hill", "parent_task": "compute-geotiled-2"}, {"name": "compute-geotiled-3-hill",
+      "parent_task": "compute-geotiled-3"}, {"name": "compute-geotiled-4-hill", "parent_task":
+      "compute-geotiled-4"}, {"name": "compute-geotiled-hill", "parent_task": "compute-geotiled"},
+      {"name": "pvc-geotiled-name", "parent_task": "pvc-geotiled"}], "merge-avg-3":
+      [{"name": "compute-geotiled-2-slope", "parent_task": "compute-geotiled-2"},
+      {"name": "compute-geotiled-3-slope", "parent_task": "compute-geotiled-3"}, {"name":
+      "compute-geotiled-4-slope", "parent_task": "compute-geotiled-4"}, {"name": "compute-geotiled-slope",
+      "parent_task": "compute-geotiled"}, {"name": "pvc-geotiled-name", "parent_task":
+      "pvc-geotiled"}], "merge-tiles": [{"name": "load-data-Output", "parent_task":
+      "load-data"}, {"name": "pvc-geotiled-name", "parent_task": "pvc-geotiled"}],
+      "reproject": [{"name": "merge-tiles-Output", "parent_task": "merge-tiles"},
+      {"name": "pvc-geotiled-name", "parent_task": "pvc-geotiled"}]}'
     tekton.dev/artifact_bucket: mlpipeline
     tekton.dev/artifact_endpoint: minio-service.kubeflow:9000
     tekton.dev/artifact_endpoint_scheme: http://
@@ -64,7 +82,9 @@ metadata:
       "$(results.slope.path)"]], "crop-into-tiles": [["Output", "$(results.Output.path)"]],
       "crop-into-tiles-2": [["Output", "$(results.Output.path)"]], "crop-into-tiles-3":
       [["Output", "$(results.Output.path)"]], "crop-into-tiles-4": [["Output", "$(results.Output.path)"]],
-      "load-data": [["Output", "$(results.Output.path)"]], "merge-tiles": [["Output",
+      "load-data": [["Output", "$(results.Output.path)"]], "merge-avg": [["Output",
+      "$(results.Output.path)"]], "merge-avg-2": [["Output", "$(results.Output.path)"]],
+      "merge-avg-3": [["Output", "$(results.Output.path)"]], "merge-tiles": [["Output",
       "$(results.Output.path)"]], "pvc-geotiled": [], "reproject": [["Output", "$(results.Output.path)"]]}'
     sidecar.istio.io/inject: "false"
     tekton.dev/template: ''
@@ -491,7 +511,7 @@ spec:
           - --mosaic
           - $(inputs.params.reproject-Output)
           - --out-file
-          - /cos/tile_{0:04d}.tif
+          - /cos/tile_0000.tif
           - --n-tiles
           - '2'
           - --idx-x
@@ -745,7 +765,7 @@ spec:
           - --mosaic
           - $(inputs.params.reproject-Output)
           - --out-file
-          - /cos/tile_{0:04d}.tif
+          - /cos/tile_0001.tif
           - --n-tiles
           - '2'
           - --idx-x
@@ -999,7 +1019,7 @@ spec:
           - --mosaic
           - $(inputs.params.reproject-Output)
           - --out-file
-          - /cos/tile_{0:04d}.tif
+          - /cos/tile_0002.tif
           - --n-tiles
           - '2'
           - --idx-x
@@ -1253,7 +1273,7 @@ spec:
           - --mosaic
           - $(inputs.params.reproject-Output)
           - --out-file
-          - /cos/tile_{0:04d}.tif
+          - /cos/tile_0003.tif
           - --n-tiles
           - '2'
           - --idx-x
@@ -1492,3 +1512,426 @@ spec:
               "outputs": [{"name": "aspect", "type": "String"}, {"name": "hill", "type":
               "String"}, {"name": "slope", "type": "String"}], "version": "Compute
               geotiled@sha256=6072520667a042c45dc108b72e50fcfcb33f639e59f833497a089eb6e9c79885"}'
+    - name: merge-avg
+      params:
+      - name: compute-geotiled-2-aspect
+        value: $(tasks.compute-geotiled-2.results.aspect)
+      - name: compute-geotiled-3-aspect
+        value: $(tasks.compute-geotiled-3.results.aspect)
+      - name: compute-geotiled-4-aspect
+        value: $(tasks.compute-geotiled-4.results.aspect)
+      - name: compute-geotiled-aspect
+        value: $(tasks.compute-geotiled.results.aspect)
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-geotiled-name
+        value: $(tasks.pvc-geotiled.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --input-files
+          - '["$(inputs.params.compute-geotiled-aspect)", "$(inputs.params.compute-geotiled-2-aspect)",
+            "$(inputs.params.compute-geotiled-3-aspect)", "$(inputs.params.compute-geotiled-4-aspect)"]'
+          - --dir
+          - /cos/
+          - --output-file
+          - /cos/aspect.tif
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def merge_avg(input_files, dir, output_file):
+                import os
+                import glob
+                from osgeo import gdal # Install in a conda env: https://anaconda.org/conda-forge/gdal
+                import subprocess
+
+                # Import function
+                def bash(argv):
+                    arg_seq = [str(arg) for arg in argv]
+                    proc = subprocess.Popen(arg_seq)#, shell=True)
+                    proc.wait() #... unless intentionally asynchronous
+
+                vrt = gdal.BuildVRT(dir+'merged.vrt', input_files)
+                vrt = None  # closes file
+
+                with open(dir+'merged.vrt', 'r') as f:
+                    contents = f.read()
+
+                if '<NoDataValue>' in contents:
+                    nodata_value = contents[contents.index('<NoDataValue>') + len('<NoDataValue>'): contents.index('</NoDataValue>')]# To add averaging function
+                else:
+                    nodata_value = 0
+
+                code = '''band="1" subClass="VRTDerivedRasterBand">
+              <PixelFunctionType>average</PixelFunctionType>
+              <PixelFunctionLanguage>Python</PixelFunctionLanguage>
+              <PixelFunctionCode><![CDATA[
+            import numpy as np
+
+            def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, buf_radius, gt, **kwargs):
+                data = np.ma.array(in_ar, mask=np.equal(in_ar, {}))
+                np.mean(data, axis=0, out=out_ar, dtype="float32")
+                mask = np.all(data.mask,axis = 0)
+                out_ar[mask] = {}
+            ]]>
+              </PixelFunctionCode>'''.format(nodata_value, nodata_value)
+
+                sub1, sub2 = contents.split('band="1">', 1)
+                contents = sub1 + code + sub2
+
+                with open(dir+'merged.vrt', 'w') as f:
+                    f.write(contents)
+
+                cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+'merged.vrt', output_file]
+                bash(cmd)
+                os.remove(dir+'merged.vrt')
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Merge avg', description='')
+            _parser.add_argument("--input-files", dest="input_files", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = merge_avg(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-geotiled
+        params:
+        - name: compute-geotiled-2-aspect
+        - name: compute-geotiled-3-aspect
+        - name: compute-geotiled-4-aspect
+        - name: compute-geotiled-aspect
+        - name: container_image
+        - name: pvc-geotiled-name
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-geotiled
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-geotiled-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=39b168b7c91e1065406acfef913742ba9d61341bcd10455b37cac121e5ded311"}'
+    - name: merge-avg-2
+      params:
+      - name: compute-geotiled-2-hill
+        value: $(tasks.compute-geotiled-2.results.hill)
+      - name: compute-geotiled-3-hill
+        value: $(tasks.compute-geotiled-3.results.hill)
+      - name: compute-geotiled-4-hill
+        value: $(tasks.compute-geotiled-4.results.hill)
+      - name: compute-geotiled-hill
+        value: $(tasks.compute-geotiled.results.hill)
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-geotiled-name
+        value: $(tasks.pvc-geotiled.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --input-files
+          - '["$(inputs.params.compute-geotiled-hill)", "$(inputs.params.compute-geotiled-2-hill)",
+            "$(inputs.params.compute-geotiled-3-hill)", "$(inputs.params.compute-geotiled-4-hill)"]'
+          - --dir
+          - /cos/
+          - --output-file
+          - /cos/hillshading.tif
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def merge_avg(input_files, dir, output_file):
+                import os
+                import glob
+                from osgeo import gdal # Install in a conda env: https://anaconda.org/conda-forge/gdal
+                import subprocess
+
+                # Import function
+                def bash(argv):
+                    arg_seq = [str(arg) for arg in argv]
+                    proc = subprocess.Popen(arg_seq)#, shell=True)
+                    proc.wait() #... unless intentionally asynchronous
+
+                vrt = gdal.BuildVRT(dir+'merged.vrt', input_files)
+                vrt = None  # closes file
+
+                with open(dir+'merged.vrt', 'r') as f:
+                    contents = f.read()
+
+                if '<NoDataValue>' in contents:
+                    nodata_value = contents[contents.index('<NoDataValue>') + len('<NoDataValue>'): contents.index('</NoDataValue>')]# To add averaging function
+                else:
+                    nodata_value = 0
+
+                code = '''band="1" subClass="VRTDerivedRasterBand">
+              <PixelFunctionType>average</PixelFunctionType>
+              <PixelFunctionLanguage>Python</PixelFunctionLanguage>
+              <PixelFunctionCode><![CDATA[
+            import numpy as np
+
+            def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, buf_radius, gt, **kwargs):
+                data = np.ma.array(in_ar, mask=np.equal(in_ar, {}))
+                np.mean(data, axis=0, out=out_ar, dtype="float32")
+                mask = np.all(data.mask,axis = 0)
+                out_ar[mask] = {}
+            ]]>
+              </PixelFunctionCode>'''.format(nodata_value, nodata_value)
+
+                sub1, sub2 = contents.split('band="1">', 1)
+                contents = sub1 + code + sub2
+
+                with open(dir+'merged.vrt', 'w') as f:
+                    f.write(contents)
+
+                cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+'merged.vrt', output_file]
+                bash(cmd)
+                os.remove(dir+'merged.vrt')
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Merge avg', description='')
+            _parser.add_argument("--input-files", dest="input_files", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = merge_avg(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-geotiled
+        params:
+        - name: compute-geotiled-2-hill
+        - name: compute-geotiled-3-hill
+        - name: compute-geotiled-4-hill
+        - name: compute-geotiled-hill
+        - name: container_image
+        - name: pvc-geotiled-name
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-geotiled
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-geotiled-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=39b168b7c91e1065406acfef913742ba9d61341bcd10455b37cac121e5ded311"}'
+    - name: merge-avg-3
+      params:
+      - name: compute-geotiled-2-slope
+        value: $(tasks.compute-geotiled-2.results.slope)
+      - name: compute-geotiled-3-slope
+        value: $(tasks.compute-geotiled-3.results.slope)
+      - name: compute-geotiled-4-slope
+        value: $(tasks.compute-geotiled-4.results.slope)
+      - name: compute-geotiled-slope
+        value: $(tasks.compute-geotiled.results.slope)
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-geotiled-name
+        value: $(tasks.pvc-geotiled.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --input-files
+          - '["$(inputs.params.compute-geotiled-slope)", "$(inputs.params.compute-geotiled-2-slope)",
+            "$(inputs.params.compute-geotiled-3-slope)", "$(inputs.params.compute-geotiled-4-slope)"]'
+          - --dir
+          - /cos/
+          - --output-file
+          - /cos/slope_tiles.tif
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def merge_avg(input_files, dir, output_file):
+                import os
+                import glob
+                from osgeo import gdal # Install in a conda env: https://anaconda.org/conda-forge/gdal
+                import subprocess
+
+                # Import function
+                def bash(argv):
+                    arg_seq = [str(arg) for arg in argv]
+                    proc = subprocess.Popen(arg_seq)#, shell=True)
+                    proc.wait() #... unless intentionally asynchronous
+
+                vrt = gdal.BuildVRT(dir+'merged.vrt', input_files)
+                vrt = None  # closes file
+
+                with open(dir+'merged.vrt', 'r') as f:
+                    contents = f.read()
+
+                if '<NoDataValue>' in contents:
+                    nodata_value = contents[contents.index('<NoDataValue>') + len('<NoDataValue>'): contents.index('</NoDataValue>')]# To add averaging function
+                else:
+                    nodata_value = 0
+
+                code = '''band="1" subClass="VRTDerivedRasterBand">
+              <PixelFunctionType>average</PixelFunctionType>
+              <PixelFunctionLanguage>Python</PixelFunctionLanguage>
+              <PixelFunctionCode><![CDATA[
+            import numpy as np
+
+            def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, buf_radius, gt, **kwargs):
+                data = np.ma.array(in_ar, mask=np.equal(in_ar, {}))
+                np.mean(data, axis=0, out=out_ar, dtype="float32")
+                mask = np.all(data.mask,axis = 0)
+                out_ar[mask] = {}
+            ]]>
+              </PixelFunctionCode>'''.format(nodata_value, nodata_value)
+
+                sub1, sub2 = contents.split('band="1">', 1)
+                contents = sub1 + code + sub2
+
+                with open(dir+'merged.vrt', 'w') as f:
+                    f.write(contents)
+
+                cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+'merged.vrt', output_file]
+                bash(cmd)
+                os.remove(dir+'merged.vrt')
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Merge avg', description='')
+            _parser.add_argument("--input-files", dest="input_files", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = merge_avg(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-geotiled
+        params:
+        - name: compute-geotiled-2-slope
+        - name: compute-geotiled-3-slope
+        - name: compute-geotiled-4-slope
+        - name: compute-geotiled-slope
+        - name: container_image
+        - name: pvc-geotiled-name
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-geotiled
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-geotiled-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=39b168b7c91e1065406acfef913742ba9d61341bcd10455b37cac121e5ded311"}'
