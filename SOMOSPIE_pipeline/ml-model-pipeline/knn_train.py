@@ -1,4 +1,4 @@
-def knn_train (data_path: str, k: int, seed: int)-> str:
+def knn_train (data_path: str, k: int, seed: int, out_model:str)-> str:
     import numpy as np
     import pickle
     import json
@@ -42,7 +42,7 @@ def knn_train (data_path: str, k: int, seed: int)-> str:
     
     print("Reading training data from", data_path)
         # Open and reads file "data"
-    with open(data_path+"data.json") as data_file:
+    with open(data_path) as data_file:
         data = json.load(data_file)
 
     data = json.loads(data)
@@ -65,8 +65,8 @@ def knn_train (data_path: str, k: int, seed: int)-> str:
     # Fit the new model to data
     knn.fit(x_train, y_train)
     # Save model
-    pickle.dump(knn, open(data_path+'model_knn.pkl', 'wb'))
+    pickle.dump(knn, open(out_model, 'wb'))
 
     # Validate
     validate_knn(knn, x_test, y_test)
-    return data_path
+    return out_model

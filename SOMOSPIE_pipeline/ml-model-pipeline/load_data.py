@@ -1,4 +1,7 @@
-def load_data(input_path: str)-> str:
+from typing import NamedTuple
+
+def load_data(input_path: str,dir: str, out_data:str)-> NamedTuple('Output', [("data", str), 
+                                                                            ('scaler', str)]):
     import numpy as np
     import json
     import pandas as pd
@@ -7,7 +10,7 @@ def load_data(input_path: str)-> str:
     from sklearn.model_selection import train_test_split
     
     print("Reading training data from", input_path)
-    training_data = pd.read_csv(input_path+"train.csv")
+    training_data = pd.read_csv(input_path)
     col = list(training_data.columns)
     col[2] = 'z'
     training_data.columns = col
@@ -22,7 +25,7 @@ def load_data(input_path: str)-> str:
     #print(x_train,"\n",y_train,"TEST\n",x_test,y_test)
 
     # Save scaler model so it can be reused for predicting
-    pickle.dump(ss, open(input_path+'scaler.pkl', 'wb'))
+    pickle.dump(ss, open(dir+'scaler.pkl', 'wb'))
 
     # Save data to train with different ml-models
     data = {'x_train' : x_train.tolist(),
@@ -33,9 +36,9 @@ def load_data(input_path: str)-> str:
     data_json = json.dumps(data)
 
     # Saves the json object into a file
-    with open(input_path+"data.json", 'w') as out_file:
+    with open(out_data, 'w') as out_file:
         json.dump(data_json, out_file)
 
        # Create path to where data and scaler are saved
     
-    return input_path
+    return [out_data,dir+'scaler.pkl']

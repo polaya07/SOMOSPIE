@@ -1,4 +1,4 @@
-def rf_train(data_path: str, maxtree: int, seed: int)-> str:
+def rf_train(data_path: str, maxtree: int, seed: int, out_model:str)-> str:
     # Libraries
     import numpy as np
     import json
@@ -51,7 +51,7 @@ def rf_train(data_path: str, maxtree: int, seed: int)-> str:
     # Start by reading the data
     print("Reading training data from", data_path)
     # Open and reads file "data"
-    with open(data_path+"data.json") as data_file:
+    with open(data_path) as data_file:
         data = json.load(data_file)
 
     data = json.loads(data)
@@ -68,10 +68,10 @@ def rf_train(data_path: str, maxtree: int, seed: int)-> str:
     best_rf = random_parameter_search(rf, x_train, y_train, maxtree, seed)
     best_rf.fit(x_train, y_train)
     #Path(args.pathtomodel).parent.mkdir(parents=True, exist_ok=True)
-    pickle.dump(best_rf, open(data_path+'model_rf.pkl', 'wb'))
+    pickle.dump(best_rf, open(out_model, 'wb'))
     # Validate
     validate_rf(best_rf, x_test, y_test)
-    return data_path
+    return out_model
 
 
 
