@@ -1,0 +1,337 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: somospie-data-generation-pipeline
+  annotations:
+    tekton.dev/output_artifacts: '{"build-stack": [{"key": "artifacts/$PIPELINERUN/build-stack/Output.tgz",
+      "name": "build-stack-Output", "path": "/tmp/outputs/Output/data"}], "tif2df":
+      [{"key": "artifacts/$PIPELINERUN/tif2df/Output.tgz", "name": "tif2df-Output",
+      "path": "/tmp/outputs/Output/data"}]}'
+    tekton.dev/input_artifacts: '{"build-stack": [{"name": "pvc-geotiled-name", "parent_task":
+      "pvc-geotiled"}], "tif2df": [{"name": "build-stack-Output", "parent_task": "build-stack"},
+      {"name": "pvc-geotiled-name", "parent_task": "pvc-geotiled"}]}'
+    tekton.dev/artifact_bucket: mlpipeline
+    tekton.dev/artifact_endpoint: minio-service.kubeflow:9000
+    tekton.dev/artifact_endpoint_scheme: http://
+    tekton.dev/artifact_items: '{"build-stack": [["Output", "$(results.Output.path)"]],
+      "pvc-geotiled": [], "tif2df": [["Output", "$(results.Output.path)"]]}'
+    sidecar.istio.io/inject: "false"
+    tekton.dev/template: ''
+    pipelines.kubeflow.org/big_data_passing_format: $(workspaces.$TASK_NAME.path)/artifacts/$ORIG_PR_NAME/$TASKRUN_NAME/$TASK_PARAM_NAME
+    pipelines.kubeflow.org/pipeline_spec: '{"description": "Pipeline for somospie
+      data generation", "inputs": [{"default": "olayap/somospie-gdal", "name": "container_image",
+      "optional": true, "type": "String"}], "name": "somospie data generation pipeline"}'
+  labels:
+    pipelines.kubeflow.org/pipelinename: ''
+    pipelines.kubeflow.org/generation: ''
+spec:
+  params:
+  - name: container_image
+    value: olayap/somospie-gdal
+  pipelineSpec:
+    params:
+    - name: container_image
+      default: olayap/somospie-gdal
+    tasks:
+    - name: pvc-geotiled
+      params:
+      - name: action
+        value: create
+      - name: output
+        value: |
+          - name: manifest
+            valueFrom: '{}'
+          - name: name
+            valueFrom: '{.metadata.name}'
+          - name: size
+            valueFrom: '{.status.capacity.storage}'
+      taskSpec:
+        params:
+        - description: Action on the resource
+          name: action
+          type: string
+        - default: strategic
+          description: Merge strategy when using action patch
+          name: merge-strategy
+          type: string
+        - default: ''
+          description: An express to retrieval data from resource.
+          name: output
+          type: string
+        - default: ''
+          description: A label selector express to decide if the action on resource
+            is success.
+          name: success-condition
+          type: string
+        - default: ''
+          description: A label selector express to decide if the action on resource
+            is failure.
+          name: failure-condition
+          type: string
+        - default: quay.io/aipipeline/kubectl-wrapper:latest
+          description: Kubectl wrapper image
+          name: image
+          type: string
+        - default: "false"
+          description: Enable set owner reference for created resource.
+          name: set-ownerreference
+          type: string
+        steps:
+        - command:
+          - kubeclient
+          args:
+          - --action=$(params.action)
+          - --merge-strategy=$(params.merge-strategy)
+          - |
+            --manifest=apiVersion: v1
+            kind: PersistentVolumeClaim
+            metadata:
+              annotations:
+                ibm.io/auto-create-bucket: 'false'
+                ibm.io/auto-delete-bucket: 'false'
+                ibm.io/bucket: pvc-goetiled
+                ibm.io/endpoint: https://s3.us-east.cloud-object-storage.appdomain.cloud
+                ibm.io/secret-name: po-secret
+              name: $(PIPELINERUN)-pvc-goetiled
+            spec:
+              accessModes:
+              - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 10Gi
+              storageClassName: ibmc-s3fs-standard-regional
+          - --output=$(params.output)
+          - --success-condition=$(params.success-condition)
+          - --failure-condition=$(params.failure-condition)
+          - --set-ownerreference=$(params.set-ownerreference)
+          image: $(params.image)
+          name: main
+          resources: {}
+          env:
+          - name: PIPELINERUN
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.labels['tekton.dev/pipelineRun']
+        results:
+        - name: manifest
+          type: string
+          description: '{}'
+        - name: name
+          type: string
+          description: '{.metadata.name}'
+        - name: size
+          type: string
+          description: '{.status.capacity.storage}'
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+    - name: build-stack
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-geotiled-name
+        value: $(tasks.pvc-geotiled.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --input-files
+          - '["/cos/dem.tif", "/cos/aspect.tif", "/cos/hillshading.tif", "/cos/slope_tiles.tif"]'
+          - --output-file
+          - /cos/terrain-params.tif
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def build_stack(input_files, output_file):
+
+                from osgeo import gdal, ogr  # Install in a conda env: https://anaconda.org/conda-forge/gdal
+
+                # input_files: list of .tif files to stack
+                vrt_options = gdal.BuildVRTOptions(separate=True)
+                vrt = gdal.BuildVRT("stack.vrt", input_files, options=vrt_options)
+                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
+                                                          callback=gdal.TermProgress_nocb)
+                gdal.Translate(output_file, vrt, options=translate_options)
+                vrt = None  # closes file
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Build stack', description='')
+            _parser.add_argument("--input-files", dest="input_files", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = build_stack(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-geotiled
+        params:
+        - name: container_image
+        - name: pvc-geotiled-name
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-geotiled
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-geotiled-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Build
+              stack@sha256=db7dd508ade32b2f203eec45aff16f24d8c0ad8a3f6ecebe2082c402707519e3"}'
+    - name: tif2df
+      params:
+      - name: build-stack-Output
+        value: $(tasks.build-stack.results.Output)
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-geotiled-name
+        value: $(tasks.pvc-geotiled.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --raster-file
+          - $(inputs.params.build-stack-Output)
+          - --band-names
+          - '["elevation"]'
+          - --output-file
+          - params.csv
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def tif2df(raster_file, band_names=['elevation'],output_file='params.csv'):
+                from osgeo import gdal, ogr  # Install in a conda env: https://anaconda.org/conda-forge/gdal
+                import numpy as np
+                import pandas as pd
+
+                ds = gdal.Open(raster_file, 0)
+                xmin, res, _, ymax, _, _ = ds.GetGeoTransform()
+                xsize = ds.RasterXSize
+                ysize = ds.RasterYSize
+                xstart = xmin + res / 2
+                ystart = ymax - res / 2
+
+                x = np.arange(xstart, xstart + xsize * res, res)
+                y = np.arange(ystart, ystart - ysize * res, -res)
+                x = np.tile(x[:xsize], ysize)
+                y = np.repeat(y[:ysize], xsize)
+
+                n_bands = ds.RasterCount
+                bands = np.zeros((x.shape[0], n_bands))
+                for k in range(1, n_bands + 1):
+                    band = ds.GetRasterBand(k)
+                    data = band.ReadAsArray()
+                    data = np.ma.array(data, mask=np.equal(data, band.GetNoDataValue()))
+                    data = data.filled(np.nan)
+                    bands[:, k-1] = data.flatten()
+
+                column_names = ['x', 'y'] + band_names
+                stack = np.column_stack((x, y, bands))
+                df = pd.DataFrame(stack, columns=column_names)
+                df.dropna(inplace=True)
+                print(df.describe(include='all'))
+                print("5 ENTRIES\n",df.head())
+                print("Size of the df\n",df.size)
+                #df.to_csv(output_file, index=None)
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Tif2df', description='')
+            _parser.add_argument("--raster-file", dest="raster_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--band-names", dest="band_names", type=json.loads, required=False, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=False, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = tif2df(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-geotiled
+        params:
+        - name: build-stack-Output
+        - name: container_image
+        - name: pvc-geotiled-name
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-geotiled
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-geotiled-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Tif2df", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Tif2df@sha256=06acf22890130729d4d901f299c7bc843a16c94ce4b8fb1f25aade46dce4aa89"}'
