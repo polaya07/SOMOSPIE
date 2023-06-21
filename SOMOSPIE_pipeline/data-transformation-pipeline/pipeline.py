@@ -34,6 +34,17 @@ def pipeline(
     build_stack_op = kfp.components.create_component_from_func(build_stack, base_image = str(container_image))
     tif2df_op = kfp.components.create_component_from_func(tif2df, base_image = str(container_image))#packages_to_install=["numpy", "pandas", "scikit-learn"])
 
+    n_tiles=2
+    for i in range(n_tiles):
+        for j in range(n_tiles):
+            tile = "tile_{0:04d}.tif".format(tile_count)
+
+            # Crop tile
+            crop_task = crop_op(reproject_task.output, "/cos/"+tile, n_tiles, i, j).add_pvolumes({"/cos/": pvc_op.volume})
+
+            # Compute tile
+            compute_task.append(compute_op(crop_task.output, "/cos/"+aspect_tiles[-1], "/cos/"+hillshading_tiles[-1], "/cos/"+slope_tiles[-1]).add_pvolumes({"/cos/": pvc_op.volume}))
+            tile_count += 1
     #Build stack
      #input_files:list, output_file:str)->str:
     tifs=['dem.tif','aspect.tif','hillshading.tif','slope_tiles.tif']
