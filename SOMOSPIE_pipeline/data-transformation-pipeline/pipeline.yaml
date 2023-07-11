@@ -3,37 +3,104 @@ kind: PipelineRun
 metadata:
   name: somospie-data-generation-pipeline
   annotations:
-    tekton.dev/output_artifacts: '{"build-stack": [{"key": "artifacts/$PIPELINERUN/build-stack/Output.tgz",
-      "name": "build-stack-Output", "path": "/tmp/outputs/Output/data"}], "tif2df":
-      [{"key": "artifacts/$PIPELINERUN/tif2df/Output.tgz", "name": "tif2df-Output",
-      "path": "/tmp/outputs/Output/data"}]}'
-    tekton.dev/input_artifacts: '{"build-stack": [{"name": "pvc-geotiled-name", "parent_task":
-      "pvc-geotiled"}], "tif2df": [{"name": "build-stack-Output", "parent_task": "build-stack"},
-      {"name": "pvc-geotiled-name", "parent_task": "pvc-geotiled"}]}'
+    tekton.dev/output_artifacts: '{"download": [{"key": "artifacts/$PIPELINERUN/download/Output.tgz",
+      "name": "download-Output", "path": "/tmp/outputs/Output/data"}], "merge-avg":
+      [{"key": "artifacts/$PIPELINERUN/merge-avg/Output.tgz", "name": "merge-avg-Output",
+      "path": "/tmp/outputs/Output/data"}], "merge-avg-10": [{"key": "artifacts/$PIPELINERUN/merge-avg-10/Output.tgz",
+      "name": "merge-avg-10-Output", "path": "/tmp/outputs/Output/data"}], "merge-avg-11":
+      [{"key": "artifacts/$PIPELINERUN/merge-avg-11/Output.tgz", "name": "merge-avg-11-Output",
+      "path": "/tmp/outputs/Output/data"}], "merge-avg-12": [{"key": "artifacts/$PIPELINERUN/merge-avg-12/Output.tgz",
+      "name": "merge-avg-12-Output", "path": "/tmp/outputs/Output/data"}], "merge-avg-2":
+      [{"key": "artifacts/$PIPELINERUN/merge-avg-2/Output.tgz", "name": "merge-avg-2-Output",
+      "path": "/tmp/outputs/Output/data"}], "merge-avg-3": [{"key": "artifacts/$PIPELINERUN/merge-avg-3/Output.tgz",
+      "name": "merge-avg-3-Output", "path": "/tmp/outputs/Output/data"}], "merge-avg-4":
+      [{"key": "artifacts/$PIPELINERUN/merge-avg-4/Output.tgz", "name": "merge-avg-4-Output",
+      "path": "/tmp/outputs/Output/data"}], "merge-avg-5": [{"key": "artifacts/$PIPELINERUN/merge-avg-5/Output.tgz",
+      "name": "merge-avg-5-Output", "path": "/tmp/outputs/Output/data"}], "merge-avg-6":
+      [{"key": "artifacts/$PIPELINERUN/merge-avg-6/Output.tgz", "name": "merge-avg-6-Output",
+      "path": "/tmp/outputs/Output/data"}], "merge-avg-7": [{"key": "artifacts/$PIPELINERUN/merge-avg-7/Output.tgz",
+      "name": "merge-avg-7-Output", "path": "/tmp/outputs/Output/data"}], "merge-avg-8":
+      [{"key": "artifacts/$PIPELINERUN/merge-avg-8/Output.tgz", "name": "merge-avg-8-Output",
+      "path": "/tmp/outputs/Output/data"}], "merge-avg-9": [{"key": "artifacts/$PIPELINERUN/merge-avg-9/Output.tgz",
+      "name": "merge-avg-9-Output", "path": "/tmp/outputs/Output/data"}]}'
+    tekton.dev/input_artifacts: '{"download": [{"name": "pvc-train-name", "parent_task":
+      "pvc-train"}], "merge-avg": [{"name": "download-Output", "parent_task": "download"},
+      {"name": "pvc-train-name", "parent_task": "pvc-train"}], "merge-avg-10": [{"name":
+      "download-Output", "parent_task": "download"}, {"name": "pvc-train-name", "parent_task":
+      "pvc-train"}], "merge-avg-11": [{"name": "download-Output", "parent_task": "download"},
+      {"name": "pvc-train-name", "parent_task": "pvc-train"}], "merge-avg-12": [{"name":
+      "download-Output", "parent_task": "download"}, {"name": "pvc-train-name", "parent_task":
+      "pvc-train"}], "merge-avg-2": [{"name": "download-Output", "parent_task": "download"},
+      {"name": "pvc-train-name", "parent_task": "pvc-train"}], "merge-avg-3": [{"name":
+      "download-Output", "parent_task": "download"}, {"name": "pvc-train-name", "parent_task":
+      "pvc-train"}], "merge-avg-4": [{"name": "download-Output", "parent_task": "download"},
+      {"name": "pvc-train-name", "parent_task": "pvc-train"}], "merge-avg-5": [{"name":
+      "download-Output", "parent_task": "download"}, {"name": "pvc-train-name", "parent_task":
+      "pvc-train"}], "merge-avg-6": [{"name": "download-Output", "parent_task": "download"},
+      {"name": "pvc-train-name", "parent_task": "pvc-train"}], "merge-avg-7": [{"name":
+      "download-Output", "parent_task": "download"}, {"name": "pvc-train-name", "parent_task":
+      "pvc-train"}], "merge-avg-8": [{"name": "download-Output", "parent_task": "download"},
+      {"name": "pvc-train-name", "parent_task": "pvc-train"}], "merge-avg-9": [{"name":
+      "download-Output", "parent_task": "download"}, {"name": "pvc-train-name", "parent_task":
+      "pvc-train"}]}'
     tekton.dev/artifact_bucket: mlpipeline
     tekton.dev/artifact_endpoint: minio-service.kubeflow:9000
     tekton.dev/artifact_endpoint_scheme: http://
-    tekton.dev/artifact_items: '{"build-stack": [["Output", "$(results.Output.path)"]],
-      "pvc-geotiled": [], "tif2df": [["Output", "$(results.Output.path)"]]}'
+    tekton.dev/artifact_items: '{"download": [["Output", "$(results.Output.path)"]],
+      "merge-avg": [["Output", "$(results.Output.path)"]], "merge-avg-10": [["Output",
+      "$(results.Output.path)"]], "merge-avg-11": [["Output", "$(results.Output.path)"]],
+      "merge-avg-12": [["Output", "$(results.Output.path)"]], "merge-avg-2": [["Output",
+      "$(results.Output.path)"]], "merge-avg-3": [["Output", "$(results.Output.path)"]],
+      "merge-avg-4": [["Output", "$(results.Output.path)"]], "merge-avg-5": [["Output",
+      "$(results.Output.path)"]], "merge-avg-6": [["Output", "$(results.Output.path)"]],
+      "merge-avg-7": [["Output", "$(results.Output.path)"]], "merge-avg-8": [["Output",
+      "$(results.Output.path)"]], "merge-avg-9": [["Output", "$(results.Output.path)"]],
+      "pvc-train": []}'
     sidecar.istio.io/inject: "false"
     tekton.dev/template: ''
     pipelines.kubeflow.org/big_data_passing_format: $(workspaces.$TASK_NAME.path)/artifacts/$ORIG_PR_NAME/$TASKRUN_NAME/$TASK_PARAM_NAME
     pipelines.kubeflow.org/pipeline_spec: '{"description": "Pipeline for somospie
-      data generation", "inputs": [{"default": "olayap/somospie-gdal", "name": "container_image",
-      "optional": true, "type": "String"}], "name": "somospie data generation pipeline"}'
+      data generation", "inputs": [{"default": "2010", "name": "year", "optional":
+      true, "type": "Integer"}, {"default": "monthly", "name": "averaging_type", "optional":
+      true, "type": "String"}, {"default": "icr.io/somospie/somospie-gdal-netcdf",
+      "name": "container_image", "optional": true, "type": "String"}, {"default":
+      "po-train", "name": "cos_name", "optional": true, "type": "String"}, {"default":
+      "3", "name": "n_tiles", "optional": true, "type": "Integer"}, {"default": "EPSG:4326",
+      "name": "projection", "optional": true, "type": "String"}], "name": "somospie
+      data generation pipeline"}'
   labels:
     pipelines.kubeflow.org/pipelinename: ''
     pipelines.kubeflow.org/generation: ''
 spec:
   params:
+  - name: averaging_type
+    value: monthly
   - name: container_image
-    value: olayap/somospie-gdal
+    value: icr.io/somospie/somospie-gdal-netcdf
+  - name: cos_name
+    value: po-train
+  - name: n_tiles
+    value: '3'
+  - name: projection
+    value: EPSG:4326
+  - name: year
+    value: '2010'
   pipelineSpec:
     params:
+    - name: averaging_type
+      default: monthly
     - name: container_image
-      default: olayap/somospie-gdal
+      default: icr.io/somospie/somospie-gdal-netcdf
+    - name: cos_name
+      default: po-train
+    - name: n_tiles
+      default: '3'
+    - name: projection
+      default: EPSG:4326
+    - name: year
+      default: '2010'
     tasks:
-    - name: pvc-geotiled
+    - name: pvc-train
       params:
       - name: action
         value: create
@@ -45,6 +112,8 @@ spec:
             valueFrom: '{.metadata.name}'
           - name: size
             valueFrom: '{.status.capacity.storage}'
+      - name: cos_name
+        value: $(params.cos_name)
       taskSpec:
         params:
         - description: Action on the resource
@@ -76,6 +145,7 @@ spec:
           description: Enable set owner reference for created resource.
           name: set-ownerreference
           type: string
+        - name: cos_name
         steps:
         - command:
           - kubeclient
@@ -89,10 +159,10 @@ spec:
               annotations:
                 ibm.io/auto-create-bucket: 'false'
                 ibm.io/auto-delete-bucket: 'false'
-                ibm.io/bucket: pvc-goetiled
+                ibm.io/bucket: $(inputs.params.cos_name)
                 ibm.io/endpoint: https://s3.us-east.cloud-object-storage.appdomain.cloud
                 ibm.io/secret-name: po-secret
-              name: $(PIPELINERUN)-pvc-goetiled
+              name: $(PIPELINERUN)-pvc-train
             spec:
               accessModes:
               - ReadWriteOnce
@@ -125,20 +195,22 @@ spec:
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
-    - name: build-stack
+    - name: download
       params:
       - name: container_image
         value: $(params.container_image)
-      - name: pvc-geotiled-name
-        value: $(tasks.pvc-geotiled.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: year
+        value: $(params.year)
       taskSpec:
         steps:
         - name: main
           args:
-          - --input-files
-          - '["/cos/dem.tif", "/cos/aspect.tif", "/cos/hillshading.tif", "/cos/slope_tiles.tif"]'
-          - --output-file
-          - /cos/terrain-params.tif
+          - --year
+          - $(inputs.params.year)
+          - --dir
+          - /cos/
           - '----output-paths'
           - $(results.Output.path)
           command:
@@ -149,18 +221,27 @@ spec:
             printf "%s" "$0" > "$program_path"
             python3 -u "$program_path" "$@"
           - |
-            def build_stack(input_files, output_file):
+            def download(year, dir):
+                import calendar
+                import subprocess
+                from pathlib import Path
+                import shutil
 
-                from osgeo import gdal, ogr  # Install in a conda env: https://anaconda.org/conda-forge/gdal
+                def bash(argv):
+                    arg_seq = [str(arg) for arg in argv]
+                    proc = subprocess.Popen(arg_seq)#, shell=True)
+                    proc.wait() #... unless intentionally asynchronous
 
-                # input_files: list of .tif files to stack
-                vrt_options = gdal.BuildVRTOptions(separate=True)
-                vrt = gdal.BuildVRT("stack.vrt", input_files, options=vrt_options)
-                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
-                                                          callback=gdal.TermProgress_nocb)
-                gdal.Translate(output_file, vrt, options=translate_options)
-                vrt = None  # closes file
-                return output_file
+                version = 7.1 # ESA CCI version
+                year_folder = './{0:04d}'.format(year)
+                Path(dir+year_folder).mkdir(parents=True, exist_ok=True)
+                for month in range(1, 13):
+                    for day in range(1, calendar.monthrange(year, month)[1] + 1):
+                        download_link = 'ftp://anon-ftp.ceda.ac.uk/neodc/esacci/soil_moisture/data/daily_files/COMBINED/v0{0:.1f}/{1:04d}/ESACCI-SOILMOISTURE-L3S-SSMV-COMBINED-{1:04d}{2:02d}{3:02d}000000-fv0{0:.1f}.nc'.format(version, year, month, day)
+                        # command = ['curl', download_link, '-o', '{0}/{1:02d}_{2:02d}.nc'.format(year_folder, month, day)]
+                        command = ['wget', download_link, '-nc','-O', dir+'{0}/{1:02d}_{2:02d}.nc'.format(year_folder, month, day)]
+                        bash(command)
+                return dir
 
             def _serialize_str(str_value: str) -> str:
                 if not isinstance(str_value, str):
@@ -168,16 +249,15 @@ spec:
                         str(str_value), str(type(str_value))))
                 return str_value
 
-            import json
             import argparse
-            _parser = argparse.ArgumentParser(prog='Build stack', description='')
-            _parser.add_argument("--input-files", dest="input_files", type=json.loads, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser = argparse.ArgumentParser(prog='Download', description='')
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
             _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
             _parsed_args = vars(_parser.parse_args())
             _output_files = _parsed_args.pop("_output_paths", [])
 
-            _outputs = build_stack(**_parsed_args)
+            _outputs = download(**_parsed_args)
 
             _outputs = [_outputs]
 
@@ -197,43 +277,51 @@ spec:
           image: $(inputs.params.container_image)
           volumeMounts:
           - mountPath: /cos/
-            name: pvc-geotiled
+            name: pvc-train
         params:
         - name: container_image
-        - name: pvc-geotiled-name
+        - name: pvc-train-name
+        - name: year
         results:
         - name: Output
           type: string
           description: /tmp/outputs/Output/data
         volumes:
-        - name: pvc-geotiled
+        - name: pvc-train
           persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-geotiled-name)
+            claimName: $(inputs.params.pvc-train-name)
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
-            pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
-              "outputs": [{"name": "Output", "type": "String"}], "version": "Build
-              stack@sha256=db7dd508ade32b2f203eec45aff16f24d8c0ad8a3f6ecebe2082c402707519e3"}'
-    - name: tif2df
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Download", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Download@sha256=681cf5529d00d7710800f10c08525cff79228b20b983ba646a76fa0550289385"}'
+    - name: merge-avg
       params:
-      - name: build-stack-Output
-        value: $(tasks.build-stack.results.Output)
       - name: container_image
         value: $(params.container_image)
-      - name: pvc-geotiled-name
-        value: $(tasks.pvc-geotiled.results.name)
+      - name: download-Output
+        value: $(tasks.download.results.Output)
+      - name: projection
+        value: $(params.projection)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: year
+        value: $(params.year)
       taskSpec:
         steps:
         - name: main
           args:
-          - --raster-file
-          - $(inputs.params.build-stack-Output)
-          - --band-names
-          - '["elevation"]'
+          - --dir
+          - $(inputs.params.download-Output)
+          - --year
+          - $(inputs.params.year)
+          - --month
+          - '1'
           - --output-file
-          - params.csv
+          - /cos/01.tif
+          - --projection
+          - $(inputs.params.projection)
           - '----output-paths'
           - $(results.Output.path)
           command:
@@ -244,40 +332,64 @@ spec:
             printf "%s" "$0" > "$program_path"
             python3 -u "$program_path" "$@"
           - |
-            def tif2df(raster_file, band_names=['elevation'],output_file='params.csv'):
-                from osgeo import gdal, ogr  # Install in a conda env: https://anaconda.org/conda-forge/gdal
+            def merge_avg(dir, year, month, output_file, projection):
+                from osgeo import gdal
+                import glob
                 import numpy as np
-                import pandas as pd
+                import os
+                import calendar
+                import subprocess
 
-                ds = gdal.Open(raster_file, 0)
-                xmin, res, _, ymax, _, _ = ds.GetGeoTransform()
-                xsize = ds.RasterXSize
-                ysize = ds.RasterYSize
-                xstart = xmin + res / 2
-                ystart = ymax - res / 2
+                def bash(argv):
+                    arg_seq = [str(arg) for arg in argv]
+                    proc = subprocess.Popen(arg_seq)#, shell=True)
+                    proc.wait() #... unless intentionally asynchronous
 
-                x = np.arange(xstart, xstart + xsize * res, res)
-                y = np.arange(ystart, ystart - ysize * res, -res)
-                x = np.tile(x[:xsize], ysize)
-                y = np.repeat(y[:ysize], xsize)
+                def reproject(input_file, output_file, projection):
+                    # Projection can be EPSG:4326, .... or the path to a wkt file
+                    warp_options = gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'], dstNodata=np.nan, callback=gdal.TermProgress_nocb)
+                    warp = gdal.Warp(output_file, input_file, options=warp_options)
+                    warp = None  # Closes the files
 
-                n_bands = ds.RasterCount
-                bands = np.zeros((x.shape[0], n_bands))
-                for k in range(1, n_bands + 1):
-                    band = ds.GetRasterBand(k)
-                    data = band.ReadAsArray()
-                    data = np.ma.array(data, mask=np.equal(data, band.GetNoDataValue()))
-                    data = data.filled(np.nan)
-                    bands[:, k-1] = data.flatten()
+                sm_files = ['NETCDF:'+dir+'{0:04d}/{1:02d}_{2:02d}.nc:sm'.format(year, month, day) for day in range(1, calendar.monthrange(year, month)[1])]
 
-                column_names = ['x', 'y'] + band_names
-                stack = np.column_stack((x, y, bands))
-                df = pd.DataFrame(stack, columns=column_names)
-                df.dropna(inplace=True)
-                print(df.describe(include='all'))
-                print("5 ENTRIES\n",df.head())
-                print("Size of the df\n",df.size)
-                #df.to_csv(output_file, index=None)
+                vrt = gdal.BuildVRT(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), sm_files)
+                vrt = None  # closes file
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'r') as f:
+                    contents = f.read()
+
+                if '<NoDataValue>' in contents:
+                    nodata_value = contents[contents.index('<NoDataValue>') + len('<NoDataValue>'): contents.index('</NoDataValue>')]# To add averaging function
+                else:
+                    nodata_value = 0
+
+                code = '''band="1" subClass="VRTDerivedRasterBand">
+              <PixelFunctionType>average</PixelFunctionType>
+              <PixelFunctionLanguage>Python</PixelFunctionLanguage>
+              <PixelFunctionCode><![CDATA[
+            import numpy as np
+
+            def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, buf_radius, gt, **kwargs):
+                data = np.ma.array(in_ar, mask=np.equal(in_ar, {}))
+                np.ma.mean(data, axis=0, out=out_ar, dtype="float32")
+                mask = np.all(data.mask,axis = 0)
+                out_ar[mask] = {}
+            ]]>
+              </PixelFunctionCode>'''.format(nodata_value, nodata_value)
+
+                sub1, sub2 = contents.split('band="1">', 1)
+                contents = sub1 + code + sub2
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'w') as f:
+                    f.write(contents)
+
+                cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), output_file]
+                bash(cmd)
+                os.remove(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month))
+
+                reproject(output_file, output_file, projection)
+
                 return output_file
 
             def _serialize_str(str_value: str) -> str:
@@ -286,17 +398,18 @@ spec:
                         str(str_value), str(type(str_value))))
                 return str_value
 
-            import json
             import argparse
-            _parser = argparse.ArgumentParser(prog='Tif2df', description='')
-            _parser.add_argument("--raster-file", dest="raster_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--band-names", dest="band_names", type=json.loads, required=False, default=argparse.SUPPRESS)
-            _parser.add_argument("--output-file", dest="output_file", type=str, required=False, default=argparse.SUPPRESS)
+            _parser = argparse.ArgumentParser(prog='Merge avg', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--projection", dest="projection", type=str, required=True, default=argparse.SUPPRESS)
             _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
             _parsed_args = vars(_parser.parse_args())
             _output_files = _parsed_args.pop("_output_paths", [])
 
-            _outputs = tif2df(**_parsed_args)
+            _outputs = merge_avg(**_parsed_args)
 
             _outputs = [_outputs]
 
@@ -316,22 +429,1730 @@ spec:
           image: $(inputs.params.container_image)
           volumeMounts:
           - mountPath: /cos/
-            name: pvc-geotiled
+            name: pvc-train
         params:
-        - name: build-stack-Output
         - name: container_image
-        - name: pvc-geotiled-name
+        - name: download-Output
+        - name: projection
+        - name: pvc-train-name
+        - name: year
         results:
         - name: Output
           type: string
           description: /tmp/outputs/Output/data
         volumes:
-        - name: pvc-geotiled
+        - name: pvc-train
           persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-geotiled-name)
+            claimName: $(inputs.params.pvc-train-name)
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
-            pipelines.kubeflow.org/component_spec_digest: '{"name": "Tif2df", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Tif2df@sha256=06acf22890130729d4d901f299c7bc843a16c94ce4b8fb1f25aade46dce4aa89"}'
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=fd92360d8f85c455819c64774b901c18d2b494f5484d0f30411bfaf6e3d5968d"}'
+      retries: 3
+    - name: merge-avg-2
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: download-Output
+        value: $(tasks.download.results.Output)
+      - name: projection
+        value: $(params.projection)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: year
+        value: $(params.year)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - $(inputs.params.download-Output)
+          - --year
+          - $(inputs.params.year)
+          - --month
+          - '2'
+          - --output-file
+          - /cos/02.tif
+          - --projection
+          - $(inputs.params.projection)
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def merge_avg(dir, year, month, output_file, projection):
+                from osgeo import gdal
+                import glob
+                import numpy as np
+                import os
+                import calendar
+                import subprocess
+
+                def bash(argv):
+                    arg_seq = [str(arg) for arg in argv]
+                    proc = subprocess.Popen(arg_seq)#, shell=True)
+                    proc.wait() #... unless intentionally asynchronous
+
+                def reproject(input_file, output_file, projection):
+                    # Projection can be EPSG:4326, .... or the path to a wkt file
+                    warp_options = gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'], dstNodata=np.nan, callback=gdal.TermProgress_nocb)
+                    warp = gdal.Warp(output_file, input_file, options=warp_options)
+                    warp = None  # Closes the files
+
+                sm_files = ['NETCDF:'+dir+'{0:04d}/{1:02d}_{2:02d}.nc:sm'.format(year, month, day) for day in range(1, calendar.monthrange(year, month)[1])]
+
+                vrt = gdal.BuildVRT(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), sm_files)
+                vrt = None  # closes file
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'r') as f:
+                    contents = f.read()
+
+                if '<NoDataValue>' in contents:
+                    nodata_value = contents[contents.index('<NoDataValue>') + len('<NoDataValue>'): contents.index('</NoDataValue>')]# To add averaging function
+                else:
+                    nodata_value = 0
+
+                code = '''band="1" subClass="VRTDerivedRasterBand">
+              <PixelFunctionType>average</PixelFunctionType>
+              <PixelFunctionLanguage>Python</PixelFunctionLanguage>
+              <PixelFunctionCode><![CDATA[
+            import numpy as np
+
+            def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, buf_radius, gt, **kwargs):
+                data = np.ma.array(in_ar, mask=np.equal(in_ar, {}))
+                np.ma.mean(data, axis=0, out=out_ar, dtype="float32")
+                mask = np.all(data.mask,axis = 0)
+                out_ar[mask] = {}
+            ]]>
+              </PixelFunctionCode>'''.format(nodata_value, nodata_value)
+
+                sub1, sub2 = contents.split('band="1">', 1)
+                contents = sub1 + code + sub2
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'w') as f:
+                    f.write(contents)
+
+                cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), output_file]
+                bash(cmd)
+                os.remove(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month))
+
+                reproject(output_file, output_file, projection)
+
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Merge avg', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--projection", dest="projection", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = merge_avg(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: download-Output
+        - name: projection
+        - name: pvc-train-name
+        - name: year
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=fd92360d8f85c455819c64774b901c18d2b494f5484d0f30411bfaf6e3d5968d"}'
+      retries: 3
+    - name: merge-avg-3
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: download-Output
+        value: $(tasks.download.results.Output)
+      - name: projection
+        value: $(params.projection)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: year
+        value: $(params.year)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - $(inputs.params.download-Output)
+          - --year
+          - $(inputs.params.year)
+          - --month
+          - '3'
+          - --output-file
+          - /cos/03.tif
+          - --projection
+          - $(inputs.params.projection)
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def merge_avg(dir, year, month, output_file, projection):
+                from osgeo import gdal
+                import glob
+                import numpy as np
+                import os
+                import calendar
+                import subprocess
+
+                def bash(argv):
+                    arg_seq = [str(arg) for arg in argv]
+                    proc = subprocess.Popen(arg_seq)#, shell=True)
+                    proc.wait() #... unless intentionally asynchronous
+
+                def reproject(input_file, output_file, projection):
+                    # Projection can be EPSG:4326, .... or the path to a wkt file
+                    warp_options = gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'], dstNodata=np.nan, callback=gdal.TermProgress_nocb)
+                    warp = gdal.Warp(output_file, input_file, options=warp_options)
+                    warp = None  # Closes the files
+
+                sm_files = ['NETCDF:'+dir+'{0:04d}/{1:02d}_{2:02d}.nc:sm'.format(year, month, day) for day in range(1, calendar.monthrange(year, month)[1])]
+
+                vrt = gdal.BuildVRT(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), sm_files)
+                vrt = None  # closes file
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'r') as f:
+                    contents = f.read()
+
+                if '<NoDataValue>' in contents:
+                    nodata_value = contents[contents.index('<NoDataValue>') + len('<NoDataValue>'): contents.index('</NoDataValue>')]# To add averaging function
+                else:
+                    nodata_value = 0
+
+                code = '''band="1" subClass="VRTDerivedRasterBand">
+              <PixelFunctionType>average</PixelFunctionType>
+              <PixelFunctionLanguage>Python</PixelFunctionLanguage>
+              <PixelFunctionCode><![CDATA[
+            import numpy as np
+
+            def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, buf_radius, gt, **kwargs):
+                data = np.ma.array(in_ar, mask=np.equal(in_ar, {}))
+                np.ma.mean(data, axis=0, out=out_ar, dtype="float32")
+                mask = np.all(data.mask,axis = 0)
+                out_ar[mask] = {}
+            ]]>
+              </PixelFunctionCode>'''.format(nodata_value, nodata_value)
+
+                sub1, sub2 = contents.split('band="1">', 1)
+                contents = sub1 + code + sub2
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'w') as f:
+                    f.write(contents)
+
+                cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), output_file]
+                bash(cmd)
+                os.remove(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month))
+
+                reproject(output_file, output_file, projection)
+
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Merge avg', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--projection", dest="projection", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = merge_avg(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: download-Output
+        - name: projection
+        - name: pvc-train-name
+        - name: year
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=fd92360d8f85c455819c64774b901c18d2b494f5484d0f30411bfaf6e3d5968d"}'
+      retries: 3
+    - name: merge-avg-4
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: download-Output
+        value: $(tasks.download.results.Output)
+      - name: projection
+        value: $(params.projection)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: year
+        value: $(params.year)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - $(inputs.params.download-Output)
+          - --year
+          - $(inputs.params.year)
+          - --month
+          - '4'
+          - --output-file
+          - /cos/04.tif
+          - --projection
+          - $(inputs.params.projection)
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def merge_avg(dir, year, month, output_file, projection):
+                from osgeo import gdal
+                import glob
+                import numpy as np
+                import os
+                import calendar
+                import subprocess
+
+                def bash(argv):
+                    arg_seq = [str(arg) for arg in argv]
+                    proc = subprocess.Popen(arg_seq)#, shell=True)
+                    proc.wait() #... unless intentionally asynchronous
+
+                def reproject(input_file, output_file, projection):
+                    # Projection can be EPSG:4326, .... or the path to a wkt file
+                    warp_options = gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'], dstNodata=np.nan, callback=gdal.TermProgress_nocb)
+                    warp = gdal.Warp(output_file, input_file, options=warp_options)
+                    warp = None  # Closes the files
+
+                sm_files = ['NETCDF:'+dir+'{0:04d}/{1:02d}_{2:02d}.nc:sm'.format(year, month, day) for day in range(1, calendar.monthrange(year, month)[1])]
+
+                vrt = gdal.BuildVRT(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), sm_files)
+                vrt = None  # closes file
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'r') as f:
+                    contents = f.read()
+
+                if '<NoDataValue>' in contents:
+                    nodata_value = contents[contents.index('<NoDataValue>') + len('<NoDataValue>'): contents.index('</NoDataValue>')]# To add averaging function
+                else:
+                    nodata_value = 0
+
+                code = '''band="1" subClass="VRTDerivedRasterBand">
+              <PixelFunctionType>average</PixelFunctionType>
+              <PixelFunctionLanguage>Python</PixelFunctionLanguage>
+              <PixelFunctionCode><![CDATA[
+            import numpy as np
+
+            def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, buf_radius, gt, **kwargs):
+                data = np.ma.array(in_ar, mask=np.equal(in_ar, {}))
+                np.ma.mean(data, axis=0, out=out_ar, dtype="float32")
+                mask = np.all(data.mask,axis = 0)
+                out_ar[mask] = {}
+            ]]>
+              </PixelFunctionCode>'''.format(nodata_value, nodata_value)
+
+                sub1, sub2 = contents.split('band="1">', 1)
+                contents = sub1 + code + sub2
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'w') as f:
+                    f.write(contents)
+
+                cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), output_file]
+                bash(cmd)
+                os.remove(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month))
+
+                reproject(output_file, output_file, projection)
+
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Merge avg', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--projection", dest="projection", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = merge_avg(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: download-Output
+        - name: projection
+        - name: pvc-train-name
+        - name: year
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=fd92360d8f85c455819c64774b901c18d2b494f5484d0f30411bfaf6e3d5968d"}'
+      retries: 3
+    - name: merge-avg-5
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: download-Output
+        value: $(tasks.download.results.Output)
+      - name: projection
+        value: $(params.projection)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: year
+        value: $(params.year)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - $(inputs.params.download-Output)
+          - --year
+          - $(inputs.params.year)
+          - --month
+          - '5'
+          - --output-file
+          - /cos/05.tif
+          - --projection
+          - $(inputs.params.projection)
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def merge_avg(dir, year, month, output_file, projection):
+                from osgeo import gdal
+                import glob
+                import numpy as np
+                import os
+                import calendar
+                import subprocess
+
+                def bash(argv):
+                    arg_seq = [str(arg) for arg in argv]
+                    proc = subprocess.Popen(arg_seq)#, shell=True)
+                    proc.wait() #... unless intentionally asynchronous
+
+                def reproject(input_file, output_file, projection):
+                    # Projection can be EPSG:4326, .... or the path to a wkt file
+                    warp_options = gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'], dstNodata=np.nan, callback=gdal.TermProgress_nocb)
+                    warp = gdal.Warp(output_file, input_file, options=warp_options)
+                    warp = None  # Closes the files
+
+                sm_files = ['NETCDF:'+dir+'{0:04d}/{1:02d}_{2:02d}.nc:sm'.format(year, month, day) for day in range(1, calendar.monthrange(year, month)[1])]
+
+                vrt = gdal.BuildVRT(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), sm_files)
+                vrt = None  # closes file
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'r') as f:
+                    contents = f.read()
+
+                if '<NoDataValue>' in contents:
+                    nodata_value = contents[contents.index('<NoDataValue>') + len('<NoDataValue>'): contents.index('</NoDataValue>')]# To add averaging function
+                else:
+                    nodata_value = 0
+
+                code = '''band="1" subClass="VRTDerivedRasterBand">
+              <PixelFunctionType>average</PixelFunctionType>
+              <PixelFunctionLanguage>Python</PixelFunctionLanguage>
+              <PixelFunctionCode><![CDATA[
+            import numpy as np
+
+            def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, buf_radius, gt, **kwargs):
+                data = np.ma.array(in_ar, mask=np.equal(in_ar, {}))
+                np.ma.mean(data, axis=0, out=out_ar, dtype="float32")
+                mask = np.all(data.mask,axis = 0)
+                out_ar[mask] = {}
+            ]]>
+              </PixelFunctionCode>'''.format(nodata_value, nodata_value)
+
+                sub1, sub2 = contents.split('band="1">', 1)
+                contents = sub1 + code + sub2
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'w') as f:
+                    f.write(contents)
+
+                cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), output_file]
+                bash(cmd)
+                os.remove(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month))
+
+                reproject(output_file, output_file, projection)
+
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Merge avg', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--projection", dest="projection", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = merge_avg(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: download-Output
+        - name: projection
+        - name: pvc-train-name
+        - name: year
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=fd92360d8f85c455819c64774b901c18d2b494f5484d0f30411bfaf6e3d5968d"}'
+      retries: 3
+    - name: merge-avg-6
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: download-Output
+        value: $(tasks.download.results.Output)
+      - name: projection
+        value: $(params.projection)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: year
+        value: $(params.year)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - $(inputs.params.download-Output)
+          - --year
+          - $(inputs.params.year)
+          - --month
+          - '6'
+          - --output-file
+          - /cos/06.tif
+          - --projection
+          - $(inputs.params.projection)
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def merge_avg(dir, year, month, output_file, projection):
+                from osgeo import gdal
+                import glob
+                import numpy as np
+                import os
+                import calendar
+                import subprocess
+
+                def bash(argv):
+                    arg_seq = [str(arg) for arg in argv]
+                    proc = subprocess.Popen(arg_seq)#, shell=True)
+                    proc.wait() #... unless intentionally asynchronous
+
+                def reproject(input_file, output_file, projection):
+                    # Projection can be EPSG:4326, .... or the path to a wkt file
+                    warp_options = gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'], dstNodata=np.nan, callback=gdal.TermProgress_nocb)
+                    warp = gdal.Warp(output_file, input_file, options=warp_options)
+                    warp = None  # Closes the files
+
+                sm_files = ['NETCDF:'+dir+'{0:04d}/{1:02d}_{2:02d}.nc:sm'.format(year, month, day) for day in range(1, calendar.monthrange(year, month)[1])]
+
+                vrt = gdal.BuildVRT(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), sm_files)
+                vrt = None  # closes file
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'r') as f:
+                    contents = f.read()
+
+                if '<NoDataValue>' in contents:
+                    nodata_value = contents[contents.index('<NoDataValue>') + len('<NoDataValue>'): contents.index('</NoDataValue>')]# To add averaging function
+                else:
+                    nodata_value = 0
+
+                code = '''band="1" subClass="VRTDerivedRasterBand">
+              <PixelFunctionType>average</PixelFunctionType>
+              <PixelFunctionLanguage>Python</PixelFunctionLanguage>
+              <PixelFunctionCode><![CDATA[
+            import numpy as np
+
+            def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, buf_radius, gt, **kwargs):
+                data = np.ma.array(in_ar, mask=np.equal(in_ar, {}))
+                np.ma.mean(data, axis=0, out=out_ar, dtype="float32")
+                mask = np.all(data.mask,axis = 0)
+                out_ar[mask] = {}
+            ]]>
+              </PixelFunctionCode>'''.format(nodata_value, nodata_value)
+
+                sub1, sub2 = contents.split('band="1">', 1)
+                contents = sub1 + code + sub2
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'w') as f:
+                    f.write(contents)
+
+                cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), output_file]
+                bash(cmd)
+                os.remove(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month))
+
+                reproject(output_file, output_file, projection)
+
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Merge avg', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--projection", dest="projection", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = merge_avg(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: download-Output
+        - name: projection
+        - name: pvc-train-name
+        - name: year
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=fd92360d8f85c455819c64774b901c18d2b494f5484d0f30411bfaf6e3d5968d"}'
+      retries: 3
+    - name: merge-avg-7
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: download-Output
+        value: $(tasks.download.results.Output)
+      - name: projection
+        value: $(params.projection)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: year
+        value: $(params.year)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - $(inputs.params.download-Output)
+          - --year
+          - $(inputs.params.year)
+          - --month
+          - '7'
+          - --output-file
+          - /cos/07.tif
+          - --projection
+          - $(inputs.params.projection)
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def merge_avg(dir, year, month, output_file, projection):
+                from osgeo import gdal
+                import glob
+                import numpy as np
+                import os
+                import calendar
+                import subprocess
+
+                def bash(argv):
+                    arg_seq = [str(arg) for arg in argv]
+                    proc = subprocess.Popen(arg_seq)#, shell=True)
+                    proc.wait() #... unless intentionally asynchronous
+
+                def reproject(input_file, output_file, projection):
+                    # Projection can be EPSG:4326, .... or the path to a wkt file
+                    warp_options = gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'], dstNodata=np.nan, callback=gdal.TermProgress_nocb)
+                    warp = gdal.Warp(output_file, input_file, options=warp_options)
+                    warp = None  # Closes the files
+
+                sm_files = ['NETCDF:'+dir+'{0:04d}/{1:02d}_{2:02d}.nc:sm'.format(year, month, day) for day in range(1, calendar.monthrange(year, month)[1])]
+
+                vrt = gdal.BuildVRT(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), sm_files)
+                vrt = None  # closes file
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'r') as f:
+                    contents = f.read()
+
+                if '<NoDataValue>' in contents:
+                    nodata_value = contents[contents.index('<NoDataValue>') + len('<NoDataValue>'): contents.index('</NoDataValue>')]# To add averaging function
+                else:
+                    nodata_value = 0
+
+                code = '''band="1" subClass="VRTDerivedRasterBand">
+              <PixelFunctionType>average</PixelFunctionType>
+              <PixelFunctionLanguage>Python</PixelFunctionLanguage>
+              <PixelFunctionCode><![CDATA[
+            import numpy as np
+
+            def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, buf_radius, gt, **kwargs):
+                data = np.ma.array(in_ar, mask=np.equal(in_ar, {}))
+                np.ma.mean(data, axis=0, out=out_ar, dtype="float32")
+                mask = np.all(data.mask,axis = 0)
+                out_ar[mask] = {}
+            ]]>
+              </PixelFunctionCode>'''.format(nodata_value, nodata_value)
+
+                sub1, sub2 = contents.split('band="1">', 1)
+                contents = sub1 + code + sub2
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'w') as f:
+                    f.write(contents)
+
+                cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), output_file]
+                bash(cmd)
+                os.remove(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month))
+
+                reproject(output_file, output_file, projection)
+
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Merge avg', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--projection", dest="projection", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = merge_avg(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: download-Output
+        - name: projection
+        - name: pvc-train-name
+        - name: year
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=fd92360d8f85c455819c64774b901c18d2b494f5484d0f30411bfaf6e3d5968d"}'
+      retries: 3
+    - name: merge-avg-8
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: download-Output
+        value: $(tasks.download.results.Output)
+      - name: projection
+        value: $(params.projection)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: year
+        value: $(params.year)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - $(inputs.params.download-Output)
+          - --year
+          - $(inputs.params.year)
+          - --month
+          - '8'
+          - --output-file
+          - /cos/08.tif
+          - --projection
+          - $(inputs.params.projection)
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def merge_avg(dir, year, month, output_file, projection):
+                from osgeo import gdal
+                import glob
+                import numpy as np
+                import os
+                import calendar
+                import subprocess
+
+                def bash(argv):
+                    arg_seq = [str(arg) for arg in argv]
+                    proc = subprocess.Popen(arg_seq)#, shell=True)
+                    proc.wait() #... unless intentionally asynchronous
+
+                def reproject(input_file, output_file, projection):
+                    # Projection can be EPSG:4326, .... or the path to a wkt file
+                    warp_options = gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'], dstNodata=np.nan, callback=gdal.TermProgress_nocb)
+                    warp = gdal.Warp(output_file, input_file, options=warp_options)
+                    warp = None  # Closes the files
+
+                sm_files = ['NETCDF:'+dir+'{0:04d}/{1:02d}_{2:02d}.nc:sm'.format(year, month, day) for day in range(1, calendar.monthrange(year, month)[1])]
+
+                vrt = gdal.BuildVRT(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), sm_files)
+                vrt = None  # closes file
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'r') as f:
+                    contents = f.read()
+
+                if '<NoDataValue>' in contents:
+                    nodata_value = contents[contents.index('<NoDataValue>') + len('<NoDataValue>'): contents.index('</NoDataValue>')]# To add averaging function
+                else:
+                    nodata_value = 0
+
+                code = '''band="1" subClass="VRTDerivedRasterBand">
+              <PixelFunctionType>average</PixelFunctionType>
+              <PixelFunctionLanguage>Python</PixelFunctionLanguage>
+              <PixelFunctionCode><![CDATA[
+            import numpy as np
+
+            def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, buf_radius, gt, **kwargs):
+                data = np.ma.array(in_ar, mask=np.equal(in_ar, {}))
+                np.ma.mean(data, axis=0, out=out_ar, dtype="float32")
+                mask = np.all(data.mask,axis = 0)
+                out_ar[mask] = {}
+            ]]>
+              </PixelFunctionCode>'''.format(nodata_value, nodata_value)
+
+                sub1, sub2 = contents.split('band="1">', 1)
+                contents = sub1 + code + sub2
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'w') as f:
+                    f.write(contents)
+
+                cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), output_file]
+                bash(cmd)
+                os.remove(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month))
+
+                reproject(output_file, output_file, projection)
+
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Merge avg', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--projection", dest="projection", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = merge_avg(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: download-Output
+        - name: projection
+        - name: pvc-train-name
+        - name: year
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=fd92360d8f85c455819c64774b901c18d2b494f5484d0f30411bfaf6e3d5968d"}'
+      retries: 3
+    - name: merge-avg-9
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: download-Output
+        value: $(tasks.download.results.Output)
+      - name: projection
+        value: $(params.projection)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: year
+        value: $(params.year)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - $(inputs.params.download-Output)
+          - --year
+          - $(inputs.params.year)
+          - --month
+          - '9'
+          - --output-file
+          - /cos/09.tif
+          - --projection
+          - $(inputs.params.projection)
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def merge_avg(dir, year, month, output_file, projection):
+                from osgeo import gdal
+                import glob
+                import numpy as np
+                import os
+                import calendar
+                import subprocess
+
+                def bash(argv):
+                    arg_seq = [str(arg) for arg in argv]
+                    proc = subprocess.Popen(arg_seq)#, shell=True)
+                    proc.wait() #... unless intentionally asynchronous
+
+                def reproject(input_file, output_file, projection):
+                    # Projection can be EPSG:4326, .... or the path to a wkt file
+                    warp_options = gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'], dstNodata=np.nan, callback=gdal.TermProgress_nocb)
+                    warp = gdal.Warp(output_file, input_file, options=warp_options)
+                    warp = None  # Closes the files
+
+                sm_files = ['NETCDF:'+dir+'{0:04d}/{1:02d}_{2:02d}.nc:sm'.format(year, month, day) for day in range(1, calendar.monthrange(year, month)[1])]
+
+                vrt = gdal.BuildVRT(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), sm_files)
+                vrt = None  # closes file
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'r') as f:
+                    contents = f.read()
+
+                if '<NoDataValue>' in contents:
+                    nodata_value = contents[contents.index('<NoDataValue>') + len('<NoDataValue>'): contents.index('</NoDataValue>')]# To add averaging function
+                else:
+                    nodata_value = 0
+
+                code = '''band="1" subClass="VRTDerivedRasterBand">
+              <PixelFunctionType>average</PixelFunctionType>
+              <PixelFunctionLanguage>Python</PixelFunctionLanguage>
+              <PixelFunctionCode><![CDATA[
+            import numpy as np
+
+            def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, buf_radius, gt, **kwargs):
+                data = np.ma.array(in_ar, mask=np.equal(in_ar, {}))
+                np.ma.mean(data, axis=0, out=out_ar, dtype="float32")
+                mask = np.all(data.mask,axis = 0)
+                out_ar[mask] = {}
+            ]]>
+              </PixelFunctionCode>'''.format(nodata_value, nodata_value)
+
+                sub1, sub2 = contents.split('band="1">', 1)
+                contents = sub1 + code + sub2
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'w') as f:
+                    f.write(contents)
+
+                cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), output_file]
+                bash(cmd)
+                os.remove(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month))
+
+                reproject(output_file, output_file, projection)
+
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Merge avg', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--projection", dest="projection", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = merge_avg(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: download-Output
+        - name: projection
+        - name: pvc-train-name
+        - name: year
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=fd92360d8f85c455819c64774b901c18d2b494f5484d0f30411bfaf6e3d5968d"}'
+      retries: 3
+    - name: merge-avg-10
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: download-Output
+        value: $(tasks.download.results.Output)
+      - name: projection
+        value: $(params.projection)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: year
+        value: $(params.year)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - $(inputs.params.download-Output)
+          - --year
+          - $(inputs.params.year)
+          - --month
+          - '10'
+          - --output-file
+          - /cos/10.tif
+          - --projection
+          - $(inputs.params.projection)
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def merge_avg(dir, year, month, output_file, projection):
+                from osgeo import gdal
+                import glob
+                import numpy as np
+                import os
+                import calendar
+                import subprocess
+
+                def bash(argv):
+                    arg_seq = [str(arg) for arg in argv]
+                    proc = subprocess.Popen(arg_seq)#, shell=True)
+                    proc.wait() #... unless intentionally asynchronous
+
+                def reproject(input_file, output_file, projection):
+                    # Projection can be EPSG:4326, .... or the path to a wkt file
+                    warp_options = gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'], dstNodata=np.nan, callback=gdal.TermProgress_nocb)
+                    warp = gdal.Warp(output_file, input_file, options=warp_options)
+                    warp = None  # Closes the files
+
+                sm_files = ['NETCDF:'+dir+'{0:04d}/{1:02d}_{2:02d}.nc:sm'.format(year, month, day) for day in range(1, calendar.monthrange(year, month)[1])]
+
+                vrt = gdal.BuildVRT(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), sm_files)
+                vrt = None  # closes file
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'r') as f:
+                    contents = f.read()
+
+                if '<NoDataValue>' in contents:
+                    nodata_value = contents[contents.index('<NoDataValue>') + len('<NoDataValue>'): contents.index('</NoDataValue>')]# To add averaging function
+                else:
+                    nodata_value = 0
+
+                code = '''band="1" subClass="VRTDerivedRasterBand">
+              <PixelFunctionType>average</PixelFunctionType>
+              <PixelFunctionLanguage>Python</PixelFunctionLanguage>
+              <PixelFunctionCode><![CDATA[
+            import numpy as np
+
+            def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, buf_radius, gt, **kwargs):
+                data = np.ma.array(in_ar, mask=np.equal(in_ar, {}))
+                np.ma.mean(data, axis=0, out=out_ar, dtype="float32")
+                mask = np.all(data.mask,axis = 0)
+                out_ar[mask] = {}
+            ]]>
+              </PixelFunctionCode>'''.format(nodata_value, nodata_value)
+
+                sub1, sub2 = contents.split('band="1">', 1)
+                contents = sub1 + code + sub2
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'w') as f:
+                    f.write(contents)
+
+                cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), output_file]
+                bash(cmd)
+                os.remove(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month))
+
+                reproject(output_file, output_file, projection)
+
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Merge avg', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--projection", dest="projection", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = merge_avg(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: download-Output
+        - name: projection
+        - name: pvc-train-name
+        - name: year
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=fd92360d8f85c455819c64774b901c18d2b494f5484d0f30411bfaf6e3d5968d"}'
+      retries: 3
+    - name: merge-avg-11
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: download-Output
+        value: $(tasks.download.results.Output)
+      - name: projection
+        value: $(params.projection)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: year
+        value: $(params.year)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - $(inputs.params.download-Output)
+          - --year
+          - $(inputs.params.year)
+          - --month
+          - '11'
+          - --output-file
+          - /cos/11.tif
+          - --projection
+          - $(inputs.params.projection)
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def merge_avg(dir, year, month, output_file, projection):
+                from osgeo import gdal
+                import glob
+                import numpy as np
+                import os
+                import calendar
+                import subprocess
+
+                def bash(argv):
+                    arg_seq = [str(arg) for arg in argv]
+                    proc = subprocess.Popen(arg_seq)#, shell=True)
+                    proc.wait() #... unless intentionally asynchronous
+
+                def reproject(input_file, output_file, projection):
+                    # Projection can be EPSG:4326, .... or the path to a wkt file
+                    warp_options = gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'], dstNodata=np.nan, callback=gdal.TermProgress_nocb)
+                    warp = gdal.Warp(output_file, input_file, options=warp_options)
+                    warp = None  # Closes the files
+
+                sm_files = ['NETCDF:'+dir+'{0:04d}/{1:02d}_{2:02d}.nc:sm'.format(year, month, day) for day in range(1, calendar.monthrange(year, month)[1])]
+
+                vrt = gdal.BuildVRT(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), sm_files)
+                vrt = None  # closes file
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'r') as f:
+                    contents = f.read()
+
+                if '<NoDataValue>' in contents:
+                    nodata_value = contents[contents.index('<NoDataValue>') + len('<NoDataValue>'): contents.index('</NoDataValue>')]# To add averaging function
+                else:
+                    nodata_value = 0
+
+                code = '''band="1" subClass="VRTDerivedRasterBand">
+              <PixelFunctionType>average</PixelFunctionType>
+              <PixelFunctionLanguage>Python</PixelFunctionLanguage>
+              <PixelFunctionCode><![CDATA[
+            import numpy as np
+
+            def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, buf_radius, gt, **kwargs):
+                data = np.ma.array(in_ar, mask=np.equal(in_ar, {}))
+                np.ma.mean(data, axis=0, out=out_ar, dtype="float32")
+                mask = np.all(data.mask,axis = 0)
+                out_ar[mask] = {}
+            ]]>
+              </PixelFunctionCode>'''.format(nodata_value, nodata_value)
+
+                sub1, sub2 = contents.split('band="1">', 1)
+                contents = sub1 + code + sub2
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'w') as f:
+                    f.write(contents)
+
+                cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), output_file]
+                bash(cmd)
+                os.remove(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month))
+
+                reproject(output_file, output_file, projection)
+
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Merge avg', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--projection", dest="projection", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = merge_avg(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: download-Output
+        - name: projection
+        - name: pvc-train-name
+        - name: year
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=fd92360d8f85c455819c64774b901c18d2b494f5484d0f30411bfaf6e3d5968d"}'
+      retries: 3
+    - name: merge-avg-12
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: download-Output
+        value: $(tasks.download.results.Output)
+      - name: projection
+        value: $(params.projection)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: year
+        value: $(params.year)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - $(inputs.params.download-Output)
+          - --year
+          - $(inputs.params.year)
+          - --month
+          - '12'
+          - --output-file
+          - /cos/12.tif
+          - --projection
+          - $(inputs.params.projection)
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def merge_avg(dir, year, month, output_file, projection):
+                from osgeo import gdal
+                import glob
+                import numpy as np
+                import os
+                import calendar
+                import subprocess
+
+                def bash(argv):
+                    arg_seq = [str(arg) for arg in argv]
+                    proc = subprocess.Popen(arg_seq)#, shell=True)
+                    proc.wait() #... unless intentionally asynchronous
+
+                def reproject(input_file, output_file, projection):
+                    # Projection can be EPSG:4326, .... or the path to a wkt file
+                    warp_options = gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'], dstNodata=np.nan, callback=gdal.TermProgress_nocb)
+                    warp = gdal.Warp(output_file, input_file, options=warp_options)
+                    warp = None  # Closes the files
+
+                sm_files = ['NETCDF:'+dir+'{0:04d}/{1:02d}_{2:02d}.nc:sm'.format(year, month, day) for day in range(1, calendar.monthrange(year, month)[1])]
+
+                vrt = gdal.BuildVRT(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), sm_files)
+                vrt = None  # closes file
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'r') as f:
+                    contents = f.read()
+
+                if '<NoDataValue>' in contents:
+                    nodata_value = contents[contents.index('<NoDataValue>') + len('<NoDataValue>'): contents.index('</NoDataValue>')]# To add averaging function
+                else:
+                    nodata_value = 0
+
+                code = '''band="1" subClass="VRTDerivedRasterBand">
+              <PixelFunctionType>average</PixelFunctionType>
+              <PixelFunctionLanguage>Python</PixelFunctionLanguage>
+              <PixelFunctionCode><![CDATA[
+            import numpy as np
+
+            def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, buf_radius, gt, **kwargs):
+                data = np.ma.array(in_ar, mask=np.equal(in_ar, {}))
+                np.ma.mean(data, axis=0, out=out_ar, dtype="float32")
+                mask = np.all(data.mask,axis = 0)
+                out_ar[mask] = {}
+            ]]>
+              </PixelFunctionCode>'''.format(nodata_value, nodata_value)
+
+                sub1, sub2 = contents.split('band="1">', 1)
+                contents = sub1 + code + sub2
+
+                with open(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), 'w') as f:
+                    f.write(contents)
+
+                cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month), output_file]
+                bash(cmd)
+                os.remove(dir+'{0:04d}_{1:02d}_merged.vrt'.format(year, month))
+
+                reproject(output_file, output_file, projection)
+
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Merge avg', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--projection", dest="projection", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = merge_avg(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: download-Output
+        - name: projection
+        - name: pvc-train-name
+        - name: year
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=fd92360d8f85c455819c64774b901c18d2b494f5484d0f30411bfaf6e3d5968d"}'
+      retries: 3
