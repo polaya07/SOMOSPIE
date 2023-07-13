@@ -5,6 +5,7 @@ def download(year: int, dir:str)->str:
     import subprocess
     from pathlib import Path
     import shutil
+    import concurrent.futures
 
 
     def bash(argv):
@@ -15,12 +16,20 @@ def download(year: int, dir:str)->str:
     version = 7.1 # ESA CCI version
     year_folder = './{0:04d}'.format(year)
     Path(dir+year_folder).mkdir(parents=True, exist_ok=True)
+
+    commands=[]
     for month in range(1, 13):
         for day in range(1, calendar.monthrange(year, month)[1] + 1):
             download_link = 'ftp://anon-ftp.ceda.ac.uk/neodc/esacci/soil_moisture/data/daily_files/COMBINED/v0{0:.1f}/{1:04d}/ESACCI-SOILMOISTURE-L3S-SSMV-COMBINED-{1:04d}{2:02d}{3:02d}000000-fv0{0:.1f}.nc'.format(version, year, month, day)
             # command = ['curl', download_link, '-o', '{0}/{1:02d}_{2:02d}.nc'.format(year_folder, month, day)]
-            command = ['wget', download_link, '-nc','-O', dir+'{0}/{1:02d}_{2:02d}.nc'.format(year_folder, month, day)]
-            bash(command)
+            #command = ['wget', download_link, '-nc','-O', dir+'{0}/{1:02d}_{2:02d}.nc'.format(year_folder, month, day)]
+            # bash(command)
+            commands.append(['curl', '-C','-s', download_link, '-o', dir+'{0}/{1:02d}_{2:02d}.nc'.format(year_folder, month, day)])
+
+    with concurrent.futures.ProcessPoolExecutor(max_workers=20) as executor:
+        for command in commands:
+            executor.submit(bash, command)
+
     return dir
 
 
@@ -31,6 +40,7 @@ def merge_avg(dir: str, year: int, month: int, output_file:str, projection: str)
     import os
     import calendar
     import subprocess
+    
 
     def bash(argv):
         arg_seq = [str(arg) for arg in argv]

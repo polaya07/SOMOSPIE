@@ -3,7 +3,25 @@ kind: PipelineRun
 metadata:
   name: somospie-data-generation-pipeline
   annotations:
-    tekton.dev/output_artifacts: '{"download": [{"key": "artifacts/$PIPELINERUN/download/Output.tgz",
+    tekton.dev/output_artifacts: '{"build-stack": [{"key": "artifacts/$PIPELINERUN/build-stack/Output.tgz",
+      "name": "build-stack-Output", "path": "/tmp/outputs/Output/data"}], "build-stack-10":
+      [{"key": "artifacts/$PIPELINERUN/build-stack-10/Output.tgz", "name": "build-stack-10-Output",
+      "path": "/tmp/outputs/Output/data"}], "build-stack-11": [{"key": "artifacts/$PIPELINERUN/build-stack-11/Output.tgz",
+      "name": "build-stack-11-Output", "path": "/tmp/outputs/Output/data"}], "build-stack-12":
+      [{"key": "artifacts/$PIPELINERUN/build-stack-12/Output.tgz", "name": "build-stack-12-Output",
+      "path": "/tmp/outputs/Output/data"}], "build-stack-2": [{"key": "artifacts/$PIPELINERUN/build-stack-2/Output.tgz",
+      "name": "build-stack-2-Output", "path": "/tmp/outputs/Output/data"}], "build-stack-3":
+      [{"key": "artifacts/$PIPELINERUN/build-stack-3/Output.tgz", "name": "build-stack-3-Output",
+      "path": "/tmp/outputs/Output/data"}], "build-stack-4": [{"key": "artifacts/$PIPELINERUN/build-stack-4/Output.tgz",
+      "name": "build-stack-4-Output", "path": "/tmp/outputs/Output/data"}], "build-stack-5":
+      [{"key": "artifacts/$PIPELINERUN/build-stack-5/Output.tgz", "name": "build-stack-5-Output",
+      "path": "/tmp/outputs/Output/data"}], "build-stack-6": [{"key": "artifacts/$PIPELINERUN/build-stack-6/Output.tgz",
+      "name": "build-stack-6-Output", "path": "/tmp/outputs/Output/data"}], "build-stack-7":
+      [{"key": "artifacts/$PIPELINERUN/build-stack-7/Output.tgz", "name": "build-stack-7-Output",
+      "path": "/tmp/outputs/Output/data"}], "build-stack-8": [{"key": "artifacts/$PIPELINERUN/build-stack-8/Output.tgz",
+      "name": "build-stack-8-Output", "path": "/tmp/outputs/Output/data"}], "build-stack-9":
+      [{"key": "artifacts/$PIPELINERUN/build-stack-9/Output.tgz", "name": "build-stack-9-Output",
+      "path": "/tmp/outputs/Output/data"}], "download": [{"key": "artifacts/$PIPELINERUN/download/Output.tgz",
       "name": "download-Output", "path": "/tmp/outputs/Output/data"}], "merge-avg":
       [{"key": "artifacts/$PIPELINERUN/merge-avg/Output.tgz", "name": "merge-avg-Output",
       "path": "/tmp/outputs/Output/data"}], "merge-avg-10": [{"key": "artifacts/$PIPELINERUN/merge-avg-10/Output.tgz",
@@ -23,30 +41,104 @@ metadata:
       [{"key": "artifacts/$PIPELINERUN/merge-avg-8/Output.tgz", "name": "merge-avg-8-Output",
       "path": "/tmp/outputs/Output/data"}], "merge-avg-9": [{"key": "artifacts/$PIPELINERUN/merge-avg-9/Output.tgz",
       "name": "merge-avg-9-Output", "path": "/tmp/outputs/Output/data"}]}'
-    tekton.dev/input_artifacts: '{"download": [{"name": "pvc-train-name", "parent_task":
-      "pvc-train"}], "merge-avg": [{"name": "download-Output", "parent_task": "download"},
-      {"name": "pvc-train-name", "parent_task": "pvc-train"}], "merge-avg-10": [{"name":
-      "download-Output", "parent_task": "download"}, {"name": "pvc-train-name", "parent_task":
-      "pvc-train"}], "merge-avg-11": [{"name": "download-Output", "parent_task": "download"},
-      {"name": "pvc-train-name", "parent_task": "pvc-train"}], "merge-avg-12": [{"name":
-      "download-Output", "parent_task": "download"}, {"name": "pvc-train-name", "parent_task":
-      "pvc-train"}], "merge-avg-2": [{"name": "download-Output", "parent_task": "download"},
-      {"name": "pvc-train-name", "parent_task": "pvc-train"}], "merge-avg-3": [{"name":
-      "download-Output", "parent_task": "download"}, {"name": "pvc-train-name", "parent_task":
-      "pvc-train"}], "merge-avg-4": [{"name": "download-Output", "parent_task": "download"},
-      {"name": "pvc-train-name", "parent_task": "pvc-train"}], "merge-avg-5": [{"name":
-      "download-Output", "parent_task": "download"}, {"name": "pvc-train-name", "parent_task":
-      "pvc-train"}], "merge-avg-6": [{"name": "download-Output", "parent_task": "download"},
-      {"name": "pvc-train-name", "parent_task": "pvc-train"}], "merge-avg-7": [{"name":
-      "download-Output", "parent_task": "download"}, {"name": "pvc-train-name", "parent_task":
-      "pvc-train"}], "merge-avg-8": [{"name": "download-Output", "parent_task": "download"},
-      {"name": "pvc-train-name", "parent_task": "pvc-train"}], "merge-avg-9": [{"name":
-      "download-Output", "parent_task": "download"}, {"name": "pvc-train-name", "parent_task":
-      "pvc-train"}]}'
+    tekton.dev/input_artifacts: '{"build-stack": [{"name": "merge-avg-Output", "parent_task":
+      "merge-avg"}, {"name": "pvc-sm-name", "parent_task": "pvc-sm"}, {"name": "pvc-terrain-name",
+      "parent_task": "pvc-terrain"}, {"name": "pvc-train-name", "parent_task": "pvc-train"}],
+      "build-stack-10": [{"name": "merge-avg-10-Output", "parent_task": "merge-avg-10"},
+      {"name": "pvc-sm-name", "parent_task": "pvc-sm"}, {"name": "pvc-terrain-name",
+      "parent_task": "pvc-terrain"}, {"name": "pvc-train-name", "parent_task": "pvc-train"}],
+      "build-stack-11": [{"name": "merge-avg-11-Output", "parent_task": "merge-avg-11"},
+      {"name": "pvc-sm-name", "parent_task": "pvc-sm"}, {"name": "pvc-terrain-name",
+      "parent_task": "pvc-terrain"}, {"name": "pvc-train-name", "parent_task": "pvc-train"}],
+      "build-stack-12": [{"name": "merge-avg-12-Output", "parent_task": "merge-avg-12"},
+      {"name": "pvc-sm-name", "parent_task": "pvc-sm"}, {"name": "pvc-terrain-name",
+      "parent_task": "pvc-terrain"}, {"name": "pvc-train-name", "parent_task": "pvc-train"}],
+      "build-stack-2": [{"name": "merge-avg-2-Output", "parent_task": "merge-avg-2"},
+      {"name": "pvc-sm-name", "parent_task": "pvc-sm"}, {"name": "pvc-terrain-name",
+      "parent_task": "pvc-terrain"}, {"name": "pvc-train-name", "parent_task": "pvc-train"}],
+      "build-stack-3": [{"name": "merge-avg-3-Output", "parent_task": "merge-avg-3"},
+      {"name": "pvc-sm-name", "parent_task": "pvc-sm"}, {"name": "pvc-terrain-name",
+      "parent_task": "pvc-terrain"}, {"name": "pvc-train-name", "parent_task": "pvc-train"}],
+      "build-stack-4": [{"name": "merge-avg-4-Output", "parent_task": "merge-avg-4"},
+      {"name": "pvc-sm-name", "parent_task": "pvc-sm"}, {"name": "pvc-terrain-name",
+      "parent_task": "pvc-terrain"}, {"name": "pvc-train-name", "parent_task": "pvc-train"}],
+      "build-stack-5": [{"name": "merge-avg-5-Output", "parent_task": "merge-avg-5"},
+      {"name": "pvc-sm-name", "parent_task": "pvc-sm"}, {"name": "pvc-terrain-name",
+      "parent_task": "pvc-terrain"}, {"name": "pvc-train-name", "parent_task": "pvc-train"}],
+      "build-stack-6": [{"name": "merge-avg-6-Output", "parent_task": "merge-avg-6"},
+      {"name": "pvc-sm-name", "parent_task": "pvc-sm"}, {"name": "pvc-terrain-name",
+      "parent_task": "pvc-terrain"}, {"name": "pvc-train-name", "parent_task": "pvc-train"}],
+      "build-stack-7": [{"name": "merge-avg-7-Output", "parent_task": "merge-avg-7"},
+      {"name": "pvc-sm-name", "parent_task": "pvc-sm"}, {"name": "pvc-terrain-name",
+      "parent_task": "pvc-terrain"}, {"name": "pvc-train-name", "parent_task": "pvc-train"}],
+      "build-stack-8": [{"name": "merge-avg-8-Output", "parent_task": "merge-avg-8"},
+      {"name": "pvc-sm-name", "parent_task": "pvc-sm"}, {"name": "pvc-terrain-name",
+      "parent_task": "pvc-terrain"}, {"name": "pvc-train-name", "parent_task": "pvc-train"}],
+      "build-stack-9": [{"name": "merge-avg-9-Output", "parent_task": "merge-avg-9"},
+      {"name": "pvc-sm-name", "parent_task": "pvc-sm"}, {"name": "pvc-terrain-name",
+      "parent_task": "pvc-terrain"}, {"name": "pvc-train-name", "parent_task": "pvc-train"}],
+      "crop-region": [{"name": "build-stack-Output", "parent_task": "build-stack"},
+      {"name": "pvc-shape-name", "parent_task": "pvc-shape"}, {"name": "pvc-train-name",
+      "parent_task": "pvc-train"}], "crop-region-10": [{"name": "build-stack-10-Output",
+      "parent_task": "build-stack-10"}, {"name": "pvc-shape-name", "parent_task":
+      "pvc-shape"}, {"name": "pvc-train-name", "parent_task": "pvc-train"}], "crop-region-11":
+      [{"name": "build-stack-11-Output", "parent_task": "build-stack-11"}, {"name":
+      "pvc-shape-name", "parent_task": "pvc-shape"}, {"name": "pvc-train-name", "parent_task":
+      "pvc-train"}], "crop-region-12": [{"name": "build-stack-12-Output", "parent_task":
+      "build-stack-12"}, {"name": "pvc-shape-name", "parent_task": "pvc-shape"}, {"name":
+      "pvc-train-name", "parent_task": "pvc-train"}], "crop-region-2": [{"name": "build-stack-2-Output",
+      "parent_task": "build-stack-2"}, {"name": "pvc-shape-name", "parent_task": "pvc-shape"},
+      {"name": "pvc-train-name", "parent_task": "pvc-train"}], "crop-region-3": [{"name":
+      "build-stack-3-Output", "parent_task": "build-stack-3"}, {"name": "pvc-shape-name",
+      "parent_task": "pvc-shape"}, {"name": "pvc-train-name", "parent_task": "pvc-train"}],
+      "crop-region-4": [{"name": "build-stack-4-Output", "parent_task": "build-stack-4"},
+      {"name": "pvc-shape-name", "parent_task": "pvc-shape"}, {"name": "pvc-train-name",
+      "parent_task": "pvc-train"}], "crop-region-5": [{"name": "build-stack-5-Output",
+      "parent_task": "build-stack-5"}, {"name": "pvc-shape-name", "parent_task": "pvc-shape"},
+      {"name": "pvc-train-name", "parent_task": "pvc-train"}], "crop-region-6": [{"name":
+      "build-stack-6-Output", "parent_task": "build-stack-6"}, {"name": "pvc-shape-name",
+      "parent_task": "pvc-shape"}, {"name": "pvc-train-name", "parent_task": "pvc-train"}],
+      "crop-region-7": [{"name": "build-stack-7-Output", "parent_task": "build-stack-7"},
+      {"name": "pvc-shape-name", "parent_task": "pvc-shape"}, {"name": "pvc-train-name",
+      "parent_task": "pvc-train"}], "crop-region-8": [{"name": "build-stack-8-Output",
+      "parent_task": "build-stack-8"}, {"name": "pvc-shape-name", "parent_task": "pvc-shape"},
+      {"name": "pvc-train-name", "parent_task": "pvc-train"}], "crop-region-9": [{"name":
+      "build-stack-9-Output", "parent_task": "build-stack-9"}, {"name": "pvc-shape-name",
+      "parent_task": "pvc-shape"}, {"name": "pvc-train-name", "parent_task": "pvc-train"}],
+      "download": [{"name": "pvc-sm-name", "parent_task": "pvc-sm"}], "merge-avg":
+      [{"name": "download-Output", "parent_task": "download"}, {"name": "pvc-sm-name",
+      "parent_task": "pvc-sm"}], "merge-avg-10": [{"name": "download-Output", "parent_task":
+      "download"}, {"name": "pvc-sm-name", "parent_task": "pvc-sm"}], "merge-avg-11":
+      [{"name": "download-Output", "parent_task": "download"}, {"name": "pvc-sm-name",
+      "parent_task": "pvc-sm"}], "merge-avg-12": [{"name": "download-Output", "parent_task":
+      "download"}, {"name": "pvc-sm-name", "parent_task": "pvc-sm"}], "merge-avg-2":
+      [{"name": "download-Output", "parent_task": "download"}, {"name": "pvc-sm-name",
+      "parent_task": "pvc-sm"}], "merge-avg-3": [{"name": "download-Output", "parent_task":
+      "download"}, {"name": "pvc-sm-name", "parent_task": "pvc-sm"}], "merge-avg-4":
+      [{"name": "download-Output", "parent_task": "download"}, {"name": "pvc-sm-name",
+      "parent_task": "pvc-sm"}], "merge-avg-5": [{"name": "download-Output", "parent_task":
+      "download"}, {"name": "pvc-sm-name", "parent_task": "pvc-sm"}], "merge-avg-6":
+      [{"name": "download-Output", "parent_task": "download"}, {"name": "pvc-sm-name",
+      "parent_task": "pvc-sm"}], "merge-avg-7": [{"name": "download-Output", "parent_task":
+      "download"}, {"name": "pvc-sm-name", "parent_task": "pvc-sm"}], "merge-avg-8":
+      [{"name": "download-Output", "parent_task": "download"}, {"name": "pvc-sm-name",
+      "parent_task": "pvc-sm"}], "merge-avg-9": [{"name": "download-Output", "parent_task":
+      "download"}, {"name": "pvc-sm-name", "parent_task": "pvc-sm"}]}'
     tekton.dev/artifact_bucket: mlpipeline
     tekton.dev/artifact_endpoint: minio-service.kubeflow:9000
     tekton.dev/artifact_endpoint_scheme: http://
-    tekton.dev/artifact_items: '{"download": [["Output", "$(results.Output.path)"]],
+    tekton.dev/artifact_items: '{"build-stack": [["Output", "$(results.Output.path)"]],
+      "build-stack-10": [["Output", "$(results.Output.path)"]], "build-stack-11":
+      [["Output", "$(results.Output.path)"]], "build-stack-12": [["Output", "$(results.Output.path)"]],
+      "build-stack-2": [["Output", "$(results.Output.path)"]], "build-stack-3": [["Output",
+      "$(results.Output.path)"]], "build-stack-4": [["Output", "$(results.Output.path)"]],
+      "build-stack-5": [["Output", "$(results.Output.path)"]], "build-stack-6": [["Output",
+      "$(results.Output.path)"]], "build-stack-7": [["Output", "$(results.Output.path)"]],
+      "build-stack-8": [["Output", "$(results.Output.path)"]], "build-stack-9": [["Output",
+      "$(results.Output.path)"]], "crop-region": [], "crop-region-10": [], "crop-region-11":
+      [], "crop-region-12": [], "crop-region-2": [], "crop-region-3": [], "crop-region-4":
+      [], "crop-region-5": [], "crop-region-6": [], "crop-region-7": [], "crop-region-8":
+      [], "crop-region-9": [], "download": [["Output", "$(results.Output.path)"]],
       "merge-avg": [["Output", "$(results.Output.path)"]], "merge-avg-10": [["Output",
       "$(results.Output.path)"]], "merge-avg-11": [["Output", "$(results.Output.path)"]],
       "merge-avg-12": [["Output", "$(results.Output.path)"]], "merge-avg-2": [["Output",
@@ -55,7 +147,7 @@ metadata:
       "$(results.Output.path)"]], "merge-avg-6": [["Output", "$(results.Output.path)"]],
       "merge-avg-7": [["Output", "$(results.Output.path)"]], "merge-avg-8": [["Output",
       "$(results.Output.path)"]], "merge-avg-9": [["Output", "$(results.Output.path)"]],
-      "pvc-train": []}'
+      "pvc-shape": [], "pvc-sm": [], "pvc-terrain": [], "pvc-train": []}'
     sidecar.istio.io/inject: "false"
     tekton.dev/template: ''
     pipelines.kubeflow.org/big_data_passing_format: $(workspaces.$TASK_NAME.path)/artifacts/$ORIG_PR_NAME/$TASKRUN_NAME/$TASK_PARAM_NAME
@@ -64,10 +156,13 @@ metadata:
       true, "type": "Integer"}, {"default": "monthly", "name": "averaging_type", "optional":
       true, "type": "String"}, {"default": "icr.io/somospie/somospie-gdal-netcdf",
       "name": "container_image", "optional": true, "type": "String"}, {"default":
-      "po-train", "name": "cos_name", "optional": true, "type": "String"}, {"default":
-      "3", "name": "n_tiles", "optional": true, "type": "Integer"}, {"default": "EPSG:4326",
-      "name": "projection", "optional": true, "type": "String"}], "name": "somospie
-      data generation pipeline"}'
+      "po-train", "name": "sm_name", "optional": true, "type": "String"}, {"default":
+      "oklahoma-30m", "name": "terrain_name", "optional": true, "type": "String"},
+      {"default": "oklahoma-27km", "name": "train_cos", "optional": true, "type":
+      "String"}, {"default": "po-shapes", "name": "shape_cos", "optional": true, "type":
+      "String"}, {"default": "3", "name": "n_tiles", "optional": true, "type": "Integer"},
+      {"default": "EPSG:4326", "name": "projection", "optional": true, "type": "String"}],
+      "name": "somospie data generation pipeline"}'
   labels:
     pipelines.kubeflow.org/pipelinename: ''
     pipelines.kubeflow.org/generation: ''
@@ -77,12 +172,18 @@ spec:
     value: monthly
   - name: container_image
     value: icr.io/somospie/somospie-gdal-netcdf
-  - name: cos_name
-    value: po-train
   - name: n_tiles
     value: '3'
   - name: projection
     value: EPSG:4326
+  - name: shape_cos
+    value: po-shapes
+  - name: sm_name
+    value: po-train
+  - name: terrain_name
+    value: oklahoma-30m
+  - name: train_cos
+    value: oklahoma-27km
   - name: year
     value: '2010'
   pipelineSpec:
@@ -91,16 +192,22 @@ spec:
       default: monthly
     - name: container_image
       default: icr.io/somospie/somospie-gdal-netcdf
-    - name: cos_name
-      default: po-train
     - name: n_tiles
       default: '3'
     - name: projection
       default: EPSG:4326
+    - name: shape_cos
+      default: po-shapes
+    - name: sm_name
+      default: po-train
+    - name: terrain_name
+      default: oklahoma-30m
+    - name: train_cos
+      default: oklahoma-27km
     - name: year
       default: '2010'
     tasks:
-    - name: pvc-train
+    - name: pvc-sm
       params:
       - name: action
         value: create
@@ -112,8 +219,8 @@ spec:
             valueFrom: '{.metadata.name}'
           - name: size
             valueFrom: '{.status.capacity.storage}'
-      - name: cos_name
-        value: $(params.cos_name)
+      - name: sm_name
+        value: $(params.sm_name)
       taskSpec:
         params:
         - description: Action on the resource
@@ -145,7 +252,7 @@ spec:
           description: Enable set owner reference for created resource.
           name: set-ownerreference
           type: string
-        - name: cos_name
+        - name: sm_name
         steps:
         - command:
           - kubeclient
@@ -159,7 +266,199 @@ spec:
               annotations:
                 ibm.io/auto-create-bucket: 'false'
                 ibm.io/auto-delete-bucket: 'false'
-                ibm.io/bucket: $(inputs.params.cos_name)
+                ibm.io/bucket: $(inputs.params.sm_name)
+                ibm.io/endpoint: https://s3.us-east.cloud-object-storage.appdomain.cloud
+                ibm.io/secret-name: po-secret
+              name: $(PIPELINERUN)-pvc-sm
+            spec:
+              accessModes:
+              - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 10Gi
+              storageClassName: ibmc-s3fs-standard-regional
+          - --output=$(params.output)
+          - --success-condition=$(params.success-condition)
+          - --failure-condition=$(params.failure-condition)
+          - --set-ownerreference=$(params.set-ownerreference)
+          image: $(params.image)
+          name: main
+          resources: {}
+          env:
+          - name: PIPELINERUN
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.labels['tekton.dev/pipelineRun']
+        results:
+        - name: manifest
+          type: string
+          description: '{}'
+        - name: name
+          type: string
+          description: '{.metadata.name}'
+        - name: size
+          type: string
+          description: '{.status.capacity.storage}'
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+      retries: 3
+    - name: pvc-terrain
+      params:
+      - name: action
+        value: create
+      - name: output
+        value: |
+          - name: manifest
+            valueFrom: '{}'
+          - name: name
+            valueFrom: '{.metadata.name}'
+          - name: size
+            valueFrom: '{.status.capacity.storage}'
+      - name: terrain_name
+        value: $(params.terrain_name)
+      taskSpec:
+        params:
+        - description: Action on the resource
+          name: action
+          type: string
+        - default: strategic
+          description: Merge strategy when using action patch
+          name: merge-strategy
+          type: string
+        - default: ''
+          description: An express to retrieval data from resource.
+          name: output
+          type: string
+        - default: ''
+          description: A label selector express to decide if the action on resource
+            is success.
+          name: success-condition
+          type: string
+        - default: ''
+          description: A label selector express to decide if the action on resource
+            is failure.
+          name: failure-condition
+          type: string
+        - default: quay.io/aipipeline/kubectl-wrapper:latest
+          description: Kubectl wrapper image
+          name: image
+          type: string
+        - default: "false"
+          description: Enable set owner reference for created resource.
+          name: set-ownerreference
+          type: string
+        - name: terrain_name
+        steps:
+        - command:
+          - kubeclient
+          args:
+          - --action=$(params.action)
+          - --merge-strategy=$(params.merge-strategy)
+          - |
+            --manifest=apiVersion: v1
+            kind: PersistentVolumeClaim
+            metadata:
+              annotations:
+                ibm.io/auto-create-bucket: 'false'
+                ibm.io/auto-delete-bucket: 'false'
+                ibm.io/bucket: $(inputs.params.terrain_name)
+                ibm.io/endpoint: https://s3.us-east.cloud-object-storage.appdomain.cloud
+                ibm.io/secret-name: po-secret
+              name: $(PIPELINERUN)-pvc-terrain
+            spec:
+              accessModes:
+              - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 10Gi
+              storageClassName: ibmc-s3fs-standard-regional
+          - --output=$(params.output)
+          - --success-condition=$(params.success-condition)
+          - --failure-condition=$(params.failure-condition)
+          - --set-ownerreference=$(params.set-ownerreference)
+          image: $(params.image)
+          name: main
+          resources: {}
+          env:
+          - name: PIPELINERUN
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.labels['tekton.dev/pipelineRun']
+        results:
+        - name: manifest
+          type: string
+          description: '{}'
+        - name: name
+          type: string
+          description: '{.metadata.name}'
+        - name: size
+          type: string
+          description: '{.status.capacity.storage}'
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+      retries: 3
+    - name: pvc-train
+      params:
+      - name: action
+        value: create
+      - name: output
+        value: |
+          - name: manifest
+            valueFrom: '{}'
+          - name: name
+            valueFrom: '{.metadata.name}'
+          - name: size
+            valueFrom: '{.status.capacity.storage}'
+      - name: train_cos
+        value: $(params.train_cos)
+      taskSpec:
+        params:
+        - description: Action on the resource
+          name: action
+          type: string
+        - default: strategic
+          description: Merge strategy when using action patch
+          name: merge-strategy
+          type: string
+        - default: ''
+          description: An express to retrieval data from resource.
+          name: output
+          type: string
+        - default: ''
+          description: A label selector express to decide if the action on resource
+            is success.
+          name: success-condition
+          type: string
+        - default: ''
+          description: A label selector express to decide if the action on resource
+            is failure.
+          name: failure-condition
+          type: string
+        - default: quay.io/aipipeline/kubectl-wrapper:latest
+          description: Kubectl wrapper image
+          name: image
+          type: string
+        - default: "false"
+          description: Enable set owner reference for created resource.
+          name: set-ownerreference
+          type: string
+        - name: train_cos
+        steps:
+        - command:
+          - kubeclient
+          args:
+          - --action=$(params.action)
+          - --merge-strategy=$(params.merge-strategy)
+          - |
+            --manifest=apiVersion: v1
+            kind: PersistentVolumeClaim
+            metadata:
+              annotations:
+                ibm.io/auto-create-bucket: 'false'
+                ibm.io/auto-delete-bucket: 'false'
+                ibm.io/bucket: $(inputs.params.train_cos)
                 ibm.io/endpoint: https://s3.us-east.cloud-object-storage.appdomain.cloud
                 ibm.io/secret-name: po-secret
               name: $(PIPELINERUN)-pvc-train
@@ -195,12 +494,109 @@ spec:
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
+      retries: 3
+    - name: pvc-shape
+      params:
+      - name: action
+        value: create
+      - name: output
+        value: |
+          - name: manifest
+            valueFrom: '{}'
+          - name: name
+            valueFrom: '{.metadata.name}'
+          - name: size
+            valueFrom: '{.status.capacity.storage}'
+      - name: shape_cos
+        value: $(params.shape_cos)
+      taskSpec:
+        params:
+        - description: Action on the resource
+          name: action
+          type: string
+        - default: strategic
+          description: Merge strategy when using action patch
+          name: merge-strategy
+          type: string
+        - default: ''
+          description: An express to retrieval data from resource.
+          name: output
+          type: string
+        - default: ''
+          description: A label selector express to decide if the action on resource
+            is success.
+          name: success-condition
+          type: string
+        - default: ''
+          description: A label selector express to decide if the action on resource
+            is failure.
+          name: failure-condition
+          type: string
+        - default: quay.io/aipipeline/kubectl-wrapper:latest
+          description: Kubectl wrapper image
+          name: image
+          type: string
+        - default: "false"
+          description: Enable set owner reference for created resource.
+          name: set-ownerreference
+          type: string
+        - name: shape_cos
+        steps:
+        - command:
+          - kubeclient
+          args:
+          - --action=$(params.action)
+          - --merge-strategy=$(params.merge-strategy)
+          - |
+            --manifest=apiVersion: v1
+            kind: PersistentVolumeClaim
+            metadata:
+              annotations:
+                ibm.io/auto-create-bucket: 'false'
+                ibm.io/auto-delete-bucket: 'false'
+                ibm.io/bucket: $(inputs.params.shape_cos)
+                ibm.io/endpoint: https://s3.us-east.cloud-object-storage.appdomain.cloud
+                ibm.io/secret-name: po-secret
+              name: $(PIPELINERUN)-pvc-shape
+            spec:
+              accessModes:
+              - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 10Gi
+              storageClassName: ibmc-s3fs-standard-regional
+          - --output=$(params.output)
+          - --success-condition=$(params.success-condition)
+          - --failure-condition=$(params.failure-condition)
+          - --set-ownerreference=$(params.set-ownerreference)
+          image: $(params.image)
+          name: main
+          resources: {}
+          env:
+          - name: PIPELINERUN
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.labels['tekton.dev/pipelineRun']
+        results:
+        - name: manifest
+          type: string
+          description: '{}'
+        - name: name
+          type: string
+          description: '{.metadata.name}'
+        - name: size
+          type: string
+          description: '{.status.capacity.storage}'
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+      retries: 3
     - name: download
       params:
       - name: container_image
         value: $(params.container_image)
-      - name: pvc-train-name
-        value: $(tasks.pvc-train.results.name)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
       - name: year
         value: $(params.year)
       taskSpec:
@@ -210,7 +606,7 @@ spec:
           - --year
           - $(inputs.params.year)
           - --dir
-          - /cos/
+          - /sm/
           - '----output-paths'
           - $(results.Output.path)
           command:
@@ -226,6 +622,7 @@ spec:
                 import subprocess
                 from pathlib import Path
                 import shutil
+                import concurrent.futures
 
                 def bash(argv):
                     arg_seq = [str(arg) for arg in argv]
@@ -235,12 +632,20 @@ spec:
                 version = 7.1 # ESA CCI version
                 year_folder = './{0:04d}'.format(year)
                 Path(dir+year_folder).mkdir(parents=True, exist_ok=True)
+
+                commands=[]
                 for month in range(1, 13):
                     for day in range(1, calendar.monthrange(year, month)[1] + 1):
                         download_link = 'ftp://anon-ftp.ceda.ac.uk/neodc/esacci/soil_moisture/data/daily_files/COMBINED/v0{0:.1f}/{1:04d}/ESACCI-SOILMOISTURE-L3S-SSMV-COMBINED-{1:04d}{2:02d}{3:02d}000000-fv0{0:.1f}.nc'.format(version, year, month, day)
                         # command = ['curl', download_link, '-o', '{0}/{1:02d}_{2:02d}.nc'.format(year_folder, month, day)]
-                        command = ['wget', download_link, '-nc','-O', dir+'{0}/{1:02d}_{2:02d}.nc'.format(year_folder, month, day)]
-                        bash(command)
+                        #command = ['wget', download_link, '-nc','-O', dir+'{0}/{1:02d}_{2:02d}.nc'.format(year_folder, month, day)]
+                        # bash(command)
+                        commands.append(['curl', '-C','-s', download_link, '-o', dir+'{0}/{1:02d}_{2:02d}.nc'.format(year_folder, month, day)])
+
+                with concurrent.futures.ProcessPoolExecutor(max_workers=20) as executor:
+                    for command in commands:
+                        executor.submit(bash, command)
+
                 return dir
 
             def _serialize_str(str_value: str) -> str:
@@ -276,26 +681,26 @@ spec:
                     f.write(_output_serializers[idx](_outputs[idx]))
           image: $(inputs.params.container_image)
           volumeMounts:
-          - mountPath: /cos/
-            name: pvc-train
+          - mountPath: /sm/
+            name: pvc-sm
         params:
         - name: container_image
-        - name: pvc-train-name
+        - name: pvc-sm-name
         - name: year
         results:
         - name: Output
           type: string
           description: /tmp/outputs/Output/data
         volumes:
-        - name: pvc-train
+        - name: pvc-sm
           persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-train-name)
+            claimName: $(inputs.params.pvc-sm-name)
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Download", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Download@sha256=681cf5529d00d7710800f10c08525cff79228b20b983ba646a76fa0550289385"}'
+              [{"name": "Output", "type": "String"}], "version": "Download@sha256=f50817b097cb3f8c74069c1ac77357bcbabc67f6a8847d875b7a0d429fb60f1f"}'
     - name: merge-avg
       params:
       - name: container_image
@@ -304,8 +709,8 @@ spec:
         value: $(tasks.download.results.Output)
       - name: projection
         value: $(params.projection)
-      - name: pvc-train-name
-        value: $(tasks.pvc-train.results.name)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
       - name: year
         value: $(params.year)
       taskSpec:
@@ -319,7 +724,7 @@ spec:
           - --month
           - '1'
           - --output-file
-          - /cos/01.tif
+          - /sm/$(inputs.params.year)/01.tif
           - --projection
           - $(inputs.params.projection)
           - '----output-paths'
@@ -428,22 +833,22 @@ spec:
                     f.write(_output_serializers[idx](_outputs[idx]))
           image: $(inputs.params.container_image)
           volumeMounts:
-          - mountPath: /cos/
-            name: pvc-train
+          - mountPath: /sm/
+            name: pvc-sm
         params:
         - name: container_image
         - name: download-Output
         - name: projection
-        - name: pvc-train-name
+        - name: pvc-sm-name
         - name: year
         results:
         - name: Output
           type: string
           description: /tmp/outputs/Output/data
         volumes:
-        - name: pvc-train
+        - name: pvc-sm
           persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-train-name)
+            claimName: $(inputs.params.pvc-sm-name)
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
@@ -459,8 +864,8 @@ spec:
         value: $(tasks.download.results.Output)
       - name: projection
         value: $(params.projection)
-      - name: pvc-train-name
-        value: $(tasks.pvc-train.results.name)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
       - name: year
         value: $(params.year)
       taskSpec:
@@ -474,7 +879,7 @@ spec:
           - --month
           - '2'
           - --output-file
-          - /cos/02.tif
+          - /sm/$(inputs.params.year)/02.tif
           - --projection
           - $(inputs.params.projection)
           - '----output-paths'
@@ -583,22 +988,22 @@ spec:
                     f.write(_output_serializers[idx](_outputs[idx]))
           image: $(inputs.params.container_image)
           volumeMounts:
-          - mountPath: /cos/
-            name: pvc-train
+          - mountPath: /sm/
+            name: pvc-sm
         params:
         - name: container_image
         - name: download-Output
         - name: projection
-        - name: pvc-train-name
+        - name: pvc-sm-name
         - name: year
         results:
         - name: Output
           type: string
           description: /tmp/outputs/Output/data
         volumes:
-        - name: pvc-train
+        - name: pvc-sm
           persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-train-name)
+            claimName: $(inputs.params.pvc-sm-name)
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
@@ -614,8 +1019,8 @@ spec:
         value: $(tasks.download.results.Output)
       - name: projection
         value: $(params.projection)
-      - name: pvc-train-name
-        value: $(tasks.pvc-train.results.name)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
       - name: year
         value: $(params.year)
       taskSpec:
@@ -629,7 +1034,7 @@ spec:
           - --month
           - '3'
           - --output-file
-          - /cos/03.tif
+          - /sm/$(inputs.params.year)/03.tif
           - --projection
           - $(inputs.params.projection)
           - '----output-paths'
@@ -738,22 +1143,22 @@ spec:
                     f.write(_output_serializers[idx](_outputs[idx]))
           image: $(inputs.params.container_image)
           volumeMounts:
-          - mountPath: /cos/
-            name: pvc-train
+          - mountPath: /sm/
+            name: pvc-sm
         params:
         - name: container_image
         - name: download-Output
         - name: projection
-        - name: pvc-train-name
+        - name: pvc-sm-name
         - name: year
         results:
         - name: Output
           type: string
           description: /tmp/outputs/Output/data
         volumes:
-        - name: pvc-train
+        - name: pvc-sm
           persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-train-name)
+            claimName: $(inputs.params.pvc-sm-name)
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
@@ -769,8 +1174,8 @@ spec:
         value: $(tasks.download.results.Output)
       - name: projection
         value: $(params.projection)
-      - name: pvc-train-name
-        value: $(tasks.pvc-train.results.name)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
       - name: year
         value: $(params.year)
       taskSpec:
@@ -784,7 +1189,7 @@ spec:
           - --month
           - '4'
           - --output-file
-          - /cos/04.tif
+          - /sm/$(inputs.params.year)/04.tif
           - --projection
           - $(inputs.params.projection)
           - '----output-paths'
@@ -893,22 +1298,22 @@ spec:
                     f.write(_output_serializers[idx](_outputs[idx]))
           image: $(inputs.params.container_image)
           volumeMounts:
-          - mountPath: /cos/
-            name: pvc-train
+          - mountPath: /sm/
+            name: pvc-sm
         params:
         - name: container_image
         - name: download-Output
         - name: projection
-        - name: pvc-train-name
+        - name: pvc-sm-name
         - name: year
         results:
         - name: Output
           type: string
           description: /tmp/outputs/Output/data
         volumes:
-        - name: pvc-train
+        - name: pvc-sm
           persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-train-name)
+            claimName: $(inputs.params.pvc-sm-name)
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
@@ -924,8 +1329,8 @@ spec:
         value: $(tasks.download.results.Output)
       - name: projection
         value: $(params.projection)
-      - name: pvc-train-name
-        value: $(tasks.pvc-train.results.name)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
       - name: year
         value: $(params.year)
       taskSpec:
@@ -939,7 +1344,7 @@ spec:
           - --month
           - '5'
           - --output-file
-          - /cos/05.tif
+          - /sm/$(inputs.params.year)/05.tif
           - --projection
           - $(inputs.params.projection)
           - '----output-paths'
@@ -1048,22 +1453,22 @@ spec:
                     f.write(_output_serializers[idx](_outputs[idx]))
           image: $(inputs.params.container_image)
           volumeMounts:
-          - mountPath: /cos/
-            name: pvc-train
+          - mountPath: /sm/
+            name: pvc-sm
         params:
         - name: container_image
         - name: download-Output
         - name: projection
-        - name: pvc-train-name
+        - name: pvc-sm-name
         - name: year
         results:
         - name: Output
           type: string
           description: /tmp/outputs/Output/data
         volumes:
-        - name: pvc-train
+        - name: pvc-sm
           persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-train-name)
+            claimName: $(inputs.params.pvc-sm-name)
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
@@ -1079,8 +1484,8 @@ spec:
         value: $(tasks.download.results.Output)
       - name: projection
         value: $(params.projection)
-      - name: pvc-train-name
-        value: $(tasks.pvc-train.results.name)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
       - name: year
         value: $(params.year)
       taskSpec:
@@ -1094,7 +1499,7 @@ spec:
           - --month
           - '6'
           - --output-file
-          - /cos/06.tif
+          - /sm/$(inputs.params.year)/06.tif
           - --projection
           - $(inputs.params.projection)
           - '----output-paths'
@@ -1203,22 +1608,22 @@ spec:
                     f.write(_output_serializers[idx](_outputs[idx]))
           image: $(inputs.params.container_image)
           volumeMounts:
-          - mountPath: /cos/
-            name: pvc-train
+          - mountPath: /sm/
+            name: pvc-sm
         params:
         - name: container_image
         - name: download-Output
         - name: projection
-        - name: pvc-train-name
+        - name: pvc-sm-name
         - name: year
         results:
         - name: Output
           type: string
           description: /tmp/outputs/Output/data
         volumes:
-        - name: pvc-train
+        - name: pvc-sm
           persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-train-name)
+            claimName: $(inputs.params.pvc-sm-name)
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
@@ -1234,8 +1639,8 @@ spec:
         value: $(tasks.download.results.Output)
       - name: projection
         value: $(params.projection)
-      - name: pvc-train-name
-        value: $(tasks.pvc-train.results.name)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
       - name: year
         value: $(params.year)
       taskSpec:
@@ -1249,7 +1654,7 @@ spec:
           - --month
           - '7'
           - --output-file
-          - /cos/07.tif
+          - /sm/$(inputs.params.year)/07.tif
           - --projection
           - $(inputs.params.projection)
           - '----output-paths'
@@ -1358,22 +1763,22 @@ spec:
                     f.write(_output_serializers[idx](_outputs[idx]))
           image: $(inputs.params.container_image)
           volumeMounts:
-          - mountPath: /cos/
-            name: pvc-train
+          - mountPath: /sm/
+            name: pvc-sm
         params:
         - name: container_image
         - name: download-Output
         - name: projection
-        - name: pvc-train-name
+        - name: pvc-sm-name
         - name: year
         results:
         - name: Output
           type: string
           description: /tmp/outputs/Output/data
         volumes:
-        - name: pvc-train
+        - name: pvc-sm
           persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-train-name)
+            claimName: $(inputs.params.pvc-sm-name)
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
@@ -1389,8 +1794,8 @@ spec:
         value: $(tasks.download.results.Output)
       - name: projection
         value: $(params.projection)
-      - name: pvc-train-name
-        value: $(tasks.pvc-train.results.name)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
       - name: year
         value: $(params.year)
       taskSpec:
@@ -1404,7 +1809,7 @@ spec:
           - --month
           - '8'
           - --output-file
-          - /cos/08.tif
+          - /sm/$(inputs.params.year)/08.tif
           - --projection
           - $(inputs.params.projection)
           - '----output-paths'
@@ -1513,22 +1918,22 @@ spec:
                     f.write(_output_serializers[idx](_outputs[idx]))
           image: $(inputs.params.container_image)
           volumeMounts:
-          - mountPath: /cos/
-            name: pvc-train
+          - mountPath: /sm/
+            name: pvc-sm
         params:
         - name: container_image
         - name: download-Output
         - name: projection
-        - name: pvc-train-name
+        - name: pvc-sm-name
         - name: year
         results:
         - name: Output
           type: string
           description: /tmp/outputs/Output/data
         volumes:
-        - name: pvc-train
+        - name: pvc-sm
           persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-train-name)
+            claimName: $(inputs.params.pvc-sm-name)
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
@@ -1544,8 +1949,8 @@ spec:
         value: $(tasks.download.results.Output)
       - name: projection
         value: $(params.projection)
-      - name: pvc-train-name
-        value: $(tasks.pvc-train.results.name)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
       - name: year
         value: $(params.year)
       taskSpec:
@@ -1559,7 +1964,7 @@ spec:
           - --month
           - '9'
           - --output-file
-          - /cos/09.tif
+          - /sm/$(inputs.params.year)/09.tif
           - --projection
           - $(inputs.params.projection)
           - '----output-paths'
@@ -1668,22 +2073,22 @@ spec:
                     f.write(_output_serializers[idx](_outputs[idx]))
           image: $(inputs.params.container_image)
           volumeMounts:
-          - mountPath: /cos/
-            name: pvc-train
+          - mountPath: /sm/
+            name: pvc-sm
         params:
         - name: container_image
         - name: download-Output
         - name: projection
-        - name: pvc-train-name
+        - name: pvc-sm-name
         - name: year
         results:
         - name: Output
           type: string
           description: /tmp/outputs/Output/data
         volumes:
-        - name: pvc-train
+        - name: pvc-sm
           persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-train-name)
+            claimName: $(inputs.params.pvc-sm-name)
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
@@ -1699,8 +2104,8 @@ spec:
         value: $(tasks.download.results.Output)
       - name: projection
         value: $(params.projection)
-      - name: pvc-train-name
-        value: $(tasks.pvc-train.results.name)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
       - name: year
         value: $(params.year)
       taskSpec:
@@ -1714,7 +2119,7 @@ spec:
           - --month
           - '10'
           - --output-file
-          - /cos/10.tif
+          - /sm/$(inputs.params.year)/10.tif
           - --projection
           - $(inputs.params.projection)
           - '----output-paths'
@@ -1823,22 +2228,22 @@ spec:
                     f.write(_output_serializers[idx](_outputs[idx]))
           image: $(inputs.params.container_image)
           volumeMounts:
-          - mountPath: /cos/
-            name: pvc-train
+          - mountPath: /sm/
+            name: pvc-sm
         params:
         - name: container_image
         - name: download-Output
         - name: projection
-        - name: pvc-train-name
+        - name: pvc-sm-name
         - name: year
         results:
         - name: Output
           type: string
           description: /tmp/outputs/Output/data
         volumes:
-        - name: pvc-train
+        - name: pvc-sm
           persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-train-name)
+            claimName: $(inputs.params.pvc-sm-name)
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
@@ -1854,8 +2259,8 @@ spec:
         value: $(tasks.download.results.Output)
       - name: projection
         value: $(params.projection)
-      - name: pvc-train-name
-        value: $(tasks.pvc-train.results.name)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
       - name: year
         value: $(params.year)
       taskSpec:
@@ -1869,7 +2274,7 @@ spec:
           - --month
           - '11'
           - --output-file
-          - /cos/11.tif
+          - /sm/$(inputs.params.year)/11.tif
           - --projection
           - $(inputs.params.projection)
           - '----output-paths'
@@ -1978,22 +2383,22 @@ spec:
                     f.write(_output_serializers[idx](_outputs[idx]))
           image: $(inputs.params.container_image)
           volumeMounts:
-          - mountPath: /cos/
-            name: pvc-train
+          - mountPath: /sm/
+            name: pvc-sm
         params:
         - name: container_image
         - name: download-Output
         - name: projection
-        - name: pvc-train-name
+        - name: pvc-sm-name
         - name: year
         results:
         - name: Output
           type: string
           description: /tmp/outputs/Output/data
         volumes:
-        - name: pvc-train
+        - name: pvc-sm
           persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-train-name)
+            claimName: $(inputs.params.pvc-sm-name)
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
@@ -2009,8 +2414,8 @@ spec:
         value: $(tasks.download.results.Output)
       - name: projection
         value: $(params.projection)
-      - name: pvc-train-name
-        value: $(tasks.pvc-train.results.name)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
       - name: year
         value: $(params.year)
       taskSpec:
@@ -2024,7 +2429,7 @@ spec:
           - --month
           - '12'
           - --output-file
-          - /cos/12.tif
+          - /sm/$(inputs.params.year)/12.tif
           - --projection
           - $(inputs.params.projection)
           - '----output-paths'
@@ -2133,19 +2538,151 @@ spec:
                     f.write(_output_serializers[idx](_outputs[idx]))
           image: $(inputs.params.container_image)
           volumeMounts:
-          - mountPath: /cos/
-            name: pvc-train
+          - mountPath: /sm/
+            name: pvc-sm
         params:
         - name: container_image
         - name: download-Output
         - name: projection
-        - name: pvc-train-name
+        - name: pvc-sm-name
         - name: year
         results:
         - name: Output
           type: string
           description: /tmp/outputs/Output/data
         volumes:
+        - name: pvc-sm
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-sm-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=fd92360d8f85c455819c64774b901c18d2b494f5484d0f30411bfaf6e3d5968d"}'
+      retries: 3
+    - name: build-stack
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: merge-avg-Output
+        value: $(tasks.merge-avg.results.Output)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
+      - name: pvc-terrain-name
+        value: $(tasks.pvc-terrain.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - /train/
+          - --satellite-file
+          - $(inputs.params.merge-avg-Output)
+          - --input-files
+          - '["/terrain/aspect.tif", "/terrain/elevation.tif", "/terrain/hillshading.tif",
+            "/terrain/slope.tif"]'
+          - --output-file
+          - /train/2010_01.tif
+          - --year
+          - '2010'
+          - --month
+          - '1'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def build_stack(dir,satellite_file, input_files, output_file, year, month):
+
+                from osgeo import gdal
+                import os
+
+                # input_files: list of .tif files to stack
+                input_files.insert(0, satellite_file)
+
+                # Get target resolution from satellite file
+                ds = gdal.Open(input_files[0], 0)
+                xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+
+                vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
+                vrt_options = gdal.BuildVRTOptions(separate=True)
+                vrt = gdal.BuildVRT(vrt_file, input_files, options=vrt_options)
+                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'], xRes=xres , yRes=yres,
+                                                          callback=gdal.TermProgress_nocb)
+                gdal.Translate(output_file, vrt, options=translate_options)
+                vrt = None  # closes file
+                os.remove(vrt_file)
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Build stack', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--satellite-file", dest="satellite_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--input-files", dest="input_files", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = build_stack(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /sm/
+            name: pvc-sm
+          - mountPath: /terrain/
+            name: pvc-terrain
+          - mountPath: /train/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: merge-avg-Output
+        - name: pvc-sm-name
+        - name: pvc-terrain-name
+        - name: pvc-train-name
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-sm
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-sm-name)
+        - name: pvc-terrain
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-terrain-name)
         - name: pvc-train
           persistentVolumeClaim:
             claimName: $(inputs.params.pvc-train-name)
@@ -2153,6 +2690,2946 @@ spec:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
-            pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=fd92360d8f85c455819c64774b901c18d2b494f5484d0f30411bfaf6e3d5968d"}'
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Build
+              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+      retries: 3
+    - name: crop-region
+      params:
+      - name: build-stack-Output
+        value: $(tasks.build-stack.results.Output)
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-shape-name
+        value: $(tasks.pvc-shape.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --input-file
+          - $(inputs.params.build-stack-Output)
+          - --zip-file
+          - OK.zip
+          - --dir
+          - /shape/
+          - --output-file
+          - /train/2010_01.tif
+          - --parameter-names
+          - '["aspect", "elevation", "hillshading", "slope"]'
+          - --year
+          - '2010'
+          - --month
+          - '1'
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def crop_region(input_file, zip_file, dir, output_file, parameter_names, year, month):
+                from osgeo import gdal
+                from pathlib import Path
+
+                def get_band_names(raster):
+                    ds = gdal.Open(raster, 0)
+                    names = []
+                    for band in range(ds.RasterCount):
+                        b = ds.GetRasterBand(band + 1)
+                        names.append(b.GetDescription())
+                    ds = None
+                    return names
+
+                def set_band_names(raster, band_names):
+                    ds = gdal.Open(raster, 0)
+                    for i, name in enumerate(band_names):
+                        b = ds.GetRasterBand(i + 1)
+                        b.SetDescription(name)
+                    ds = None
+
+                def get_shp(zip_file, dir):
+                    import zipfile
+                    import os
+
+                    Path(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)).mkdir(parents=True, exist_ok=True)
+                    with zipfile.ZipFile(dir+zip_file, 'r') as zip_ref:
+                        zip_ref.extractall(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month))
+
+                    shp_files=[]
+                    for root, dirs, files in os.walk(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)):
+                        for file in files:
+                            if file.endswith(".shp"):
+                                shp_files.append(os.path.join(root, file))
+                    shp_file=shp_files[0]
+                    print(shp_file)
+                    return shp_file
+
+                parameter_names.insert(0, 'z')
+                print(parameter_names)
+
+                shp_file=get_shp(zip_file, dir)
+                warp_options = gdal.WarpOptions(cutlineDSName=shp_file, cropToCutline=True, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
+                                                callback=gdal.TermProgress_nocb)
+                warp = gdal.Warp(output_file, input_file, options=warp_options)
+                warp = None
+
+                set_band_names(output_file, parameter_names)
+                print(get_band_names(output_file))
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Crop region', description='')
+            _parser.add_argument("--input-file", dest="input_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--zip-file", dest="zip_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--parameter-names", dest="parameter_names", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parsed_args = vars(_parser.parse_args())
+
+            _outputs = crop_region(**_parsed_args)
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /train/
+            name: pvc-train
+          - mountPath: /shape/
+            name: pvc-shape
+        params:
+        - name: build-stack-Output
+        - name: container_image
+        - name: pvc-shape-name
+        - name: pvc-train-name
+        volumes:
+        - name: pvc-shape
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-shape-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Crop region",
+              "outputs": [], "version": "Crop region@sha256=ce49212997a863f838b56a85a0a06b26b3557d889dccbe3760889a2c547ee8d5"}'
+      retries: 3
+    - name: build-stack-2
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: merge-avg-2-Output
+        value: $(tasks.merge-avg-2.results.Output)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
+      - name: pvc-terrain-name
+        value: $(tasks.pvc-terrain.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - /train/
+          - --satellite-file
+          - $(inputs.params.merge-avg-2-Output)
+          - --input-files
+          - '["/terrain/aspect.tif", "/terrain/elevation.tif", "/terrain/hillshading.tif",
+            "/terrain/slope.tif"]'
+          - --output-file
+          - /train/2010_02.tif
+          - --year
+          - '2010'
+          - --month
+          - '2'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def build_stack(dir,satellite_file, input_files, output_file, year, month):
+
+                from osgeo import gdal
+                import os
+
+                # input_files: list of .tif files to stack
+                input_files.insert(0, satellite_file)
+
+                # Get target resolution from satellite file
+                ds = gdal.Open(input_files[0], 0)
+                xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+
+                vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
+                vrt_options = gdal.BuildVRTOptions(separate=True)
+                vrt = gdal.BuildVRT(vrt_file, input_files, options=vrt_options)
+                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'], xRes=xres , yRes=yres,
+                                                          callback=gdal.TermProgress_nocb)
+                gdal.Translate(output_file, vrt, options=translate_options)
+                vrt = None  # closes file
+                os.remove(vrt_file)
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Build stack', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--satellite-file", dest="satellite_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--input-files", dest="input_files", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = build_stack(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /sm/
+            name: pvc-sm
+          - mountPath: /terrain/
+            name: pvc-terrain
+          - mountPath: /train/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: merge-avg-2-Output
+        - name: pvc-sm-name
+        - name: pvc-terrain-name
+        - name: pvc-train-name
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-sm
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-sm-name)
+        - name: pvc-terrain
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-terrain-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Build
+              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+      retries: 3
+    - name: crop-region-2
+      params:
+      - name: build-stack-2-Output
+        value: $(tasks.build-stack-2.results.Output)
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-shape-name
+        value: $(tasks.pvc-shape.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --input-file
+          - $(inputs.params.build-stack-2-Output)
+          - --zip-file
+          - OK.zip
+          - --dir
+          - /shape/
+          - --output-file
+          - /train/2010_02.tif
+          - --parameter-names
+          - '["aspect", "elevation", "hillshading", "slope"]'
+          - --year
+          - '2010'
+          - --month
+          - '2'
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def crop_region(input_file, zip_file, dir, output_file, parameter_names, year, month):
+                from osgeo import gdal
+                from pathlib import Path
+
+                def get_band_names(raster):
+                    ds = gdal.Open(raster, 0)
+                    names = []
+                    for band in range(ds.RasterCount):
+                        b = ds.GetRasterBand(band + 1)
+                        names.append(b.GetDescription())
+                    ds = None
+                    return names
+
+                def set_band_names(raster, band_names):
+                    ds = gdal.Open(raster, 0)
+                    for i, name in enumerate(band_names):
+                        b = ds.GetRasterBand(i + 1)
+                        b.SetDescription(name)
+                    ds = None
+
+                def get_shp(zip_file, dir):
+                    import zipfile
+                    import os
+
+                    Path(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)).mkdir(parents=True, exist_ok=True)
+                    with zipfile.ZipFile(dir+zip_file, 'r') as zip_ref:
+                        zip_ref.extractall(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month))
+
+                    shp_files=[]
+                    for root, dirs, files in os.walk(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)):
+                        for file in files:
+                            if file.endswith(".shp"):
+                                shp_files.append(os.path.join(root, file))
+                    shp_file=shp_files[0]
+                    print(shp_file)
+                    return shp_file
+
+                parameter_names.insert(0, 'z')
+                print(parameter_names)
+
+                shp_file=get_shp(zip_file, dir)
+                warp_options = gdal.WarpOptions(cutlineDSName=shp_file, cropToCutline=True, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
+                                                callback=gdal.TermProgress_nocb)
+                warp = gdal.Warp(output_file, input_file, options=warp_options)
+                warp = None
+
+                set_band_names(output_file, parameter_names)
+                print(get_band_names(output_file))
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Crop region', description='')
+            _parser.add_argument("--input-file", dest="input_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--zip-file", dest="zip_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--parameter-names", dest="parameter_names", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parsed_args = vars(_parser.parse_args())
+
+            _outputs = crop_region(**_parsed_args)
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /train/
+            name: pvc-train
+          - mountPath: /shape/
+            name: pvc-shape
+        params:
+        - name: build-stack-2-Output
+        - name: container_image
+        - name: pvc-shape-name
+        - name: pvc-train-name
+        volumes:
+        - name: pvc-shape
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-shape-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Crop region",
+              "outputs": [], "version": "Crop region@sha256=ce49212997a863f838b56a85a0a06b26b3557d889dccbe3760889a2c547ee8d5"}'
+      retries: 3
+    - name: build-stack-3
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: merge-avg-3-Output
+        value: $(tasks.merge-avg-3.results.Output)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
+      - name: pvc-terrain-name
+        value: $(tasks.pvc-terrain.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - /train/
+          - --satellite-file
+          - $(inputs.params.merge-avg-3-Output)
+          - --input-files
+          - '["/terrain/aspect.tif", "/terrain/elevation.tif", "/terrain/hillshading.tif",
+            "/terrain/slope.tif"]'
+          - --output-file
+          - /train/2010_03.tif
+          - --year
+          - '2010'
+          - --month
+          - '3'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def build_stack(dir,satellite_file, input_files, output_file, year, month):
+
+                from osgeo import gdal
+                import os
+
+                # input_files: list of .tif files to stack
+                input_files.insert(0, satellite_file)
+
+                # Get target resolution from satellite file
+                ds = gdal.Open(input_files[0], 0)
+                xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+
+                vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
+                vrt_options = gdal.BuildVRTOptions(separate=True)
+                vrt = gdal.BuildVRT(vrt_file, input_files, options=vrt_options)
+                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'], xRes=xres , yRes=yres,
+                                                          callback=gdal.TermProgress_nocb)
+                gdal.Translate(output_file, vrt, options=translate_options)
+                vrt = None  # closes file
+                os.remove(vrt_file)
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Build stack', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--satellite-file", dest="satellite_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--input-files", dest="input_files", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = build_stack(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /sm/
+            name: pvc-sm
+          - mountPath: /terrain/
+            name: pvc-terrain
+          - mountPath: /train/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: merge-avg-3-Output
+        - name: pvc-sm-name
+        - name: pvc-terrain-name
+        - name: pvc-train-name
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-sm
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-sm-name)
+        - name: pvc-terrain
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-terrain-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Build
+              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+      retries: 3
+    - name: crop-region-3
+      params:
+      - name: build-stack-3-Output
+        value: $(tasks.build-stack-3.results.Output)
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-shape-name
+        value: $(tasks.pvc-shape.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --input-file
+          - $(inputs.params.build-stack-3-Output)
+          - --zip-file
+          - OK.zip
+          - --dir
+          - /shape/
+          - --output-file
+          - /train/2010_03.tif
+          - --parameter-names
+          - '["aspect", "elevation", "hillshading", "slope"]'
+          - --year
+          - '2010'
+          - --month
+          - '3'
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def crop_region(input_file, zip_file, dir, output_file, parameter_names, year, month):
+                from osgeo import gdal
+                from pathlib import Path
+
+                def get_band_names(raster):
+                    ds = gdal.Open(raster, 0)
+                    names = []
+                    for band in range(ds.RasterCount):
+                        b = ds.GetRasterBand(band + 1)
+                        names.append(b.GetDescription())
+                    ds = None
+                    return names
+
+                def set_band_names(raster, band_names):
+                    ds = gdal.Open(raster, 0)
+                    for i, name in enumerate(band_names):
+                        b = ds.GetRasterBand(i + 1)
+                        b.SetDescription(name)
+                    ds = None
+
+                def get_shp(zip_file, dir):
+                    import zipfile
+                    import os
+
+                    Path(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)).mkdir(parents=True, exist_ok=True)
+                    with zipfile.ZipFile(dir+zip_file, 'r') as zip_ref:
+                        zip_ref.extractall(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month))
+
+                    shp_files=[]
+                    for root, dirs, files in os.walk(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)):
+                        for file in files:
+                            if file.endswith(".shp"):
+                                shp_files.append(os.path.join(root, file))
+                    shp_file=shp_files[0]
+                    print(shp_file)
+                    return shp_file
+
+                parameter_names.insert(0, 'z')
+                print(parameter_names)
+
+                shp_file=get_shp(zip_file, dir)
+                warp_options = gdal.WarpOptions(cutlineDSName=shp_file, cropToCutline=True, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
+                                                callback=gdal.TermProgress_nocb)
+                warp = gdal.Warp(output_file, input_file, options=warp_options)
+                warp = None
+
+                set_band_names(output_file, parameter_names)
+                print(get_band_names(output_file))
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Crop region', description='')
+            _parser.add_argument("--input-file", dest="input_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--zip-file", dest="zip_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--parameter-names", dest="parameter_names", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parsed_args = vars(_parser.parse_args())
+
+            _outputs = crop_region(**_parsed_args)
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /train/
+            name: pvc-train
+          - mountPath: /shape/
+            name: pvc-shape
+        params:
+        - name: build-stack-3-Output
+        - name: container_image
+        - name: pvc-shape-name
+        - name: pvc-train-name
+        volumes:
+        - name: pvc-shape
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-shape-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Crop region",
+              "outputs": [], "version": "Crop region@sha256=ce49212997a863f838b56a85a0a06b26b3557d889dccbe3760889a2c547ee8d5"}'
+      retries: 3
+    - name: build-stack-4
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: merge-avg-4-Output
+        value: $(tasks.merge-avg-4.results.Output)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
+      - name: pvc-terrain-name
+        value: $(tasks.pvc-terrain.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - /train/
+          - --satellite-file
+          - $(inputs.params.merge-avg-4-Output)
+          - --input-files
+          - '["/terrain/aspect.tif", "/terrain/elevation.tif", "/terrain/hillshading.tif",
+            "/terrain/slope.tif"]'
+          - --output-file
+          - /train/2010_04.tif
+          - --year
+          - '2010'
+          - --month
+          - '4'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def build_stack(dir,satellite_file, input_files, output_file, year, month):
+
+                from osgeo import gdal
+                import os
+
+                # input_files: list of .tif files to stack
+                input_files.insert(0, satellite_file)
+
+                # Get target resolution from satellite file
+                ds = gdal.Open(input_files[0], 0)
+                xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+
+                vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
+                vrt_options = gdal.BuildVRTOptions(separate=True)
+                vrt = gdal.BuildVRT(vrt_file, input_files, options=vrt_options)
+                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'], xRes=xres , yRes=yres,
+                                                          callback=gdal.TermProgress_nocb)
+                gdal.Translate(output_file, vrt, options=translate_options)
+                vrt = None  # closes file
+                os.remove(vrt_file)
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Build stack', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--satellite-file", dest="satellite_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--input-files", dest="input_files", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = build_stack(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /sm/
+            name: pvc-sm
+          - mountPath: /terrain/
+            name: pvc-terrain
+          - mountPath: /train/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: merge-avg-4-Output
+        - name: pvc-sm-name
+        - name: pvc-terrain-name
+        - name: pvc-train-name
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-sm
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-sm-name)
+        - name: pvc-terrain
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-terrain-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Build
+              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+      retries: 3
+    - name: crop-region-4
+      params:
+      - name: build-stack-4-Output
+        value: $(tasks.build-stack-4.results.Output)
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-shape-name
+        value: $(tasks.pvc-shape.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --input-file
+          - $(inputs.params.build-stack-4-Output)
+          - --zip-file
+          - OK.zip
+          - --dir
+          - /shape/
+          - --output-file
+          - /train/2010_04.tif
+          - --parameter-names
+          - '["aspect", "elevation", "hillshading", "slope"]'
+          - --year
+          - '2010'
+          - --month
+          - '4'
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def crop_region(input_file, zip_file, dir, output_file, parameter_names, year, month):
+                from osgeo import gdal
+                from pathlib import Path
+
+                def get_band_names(raster):
+                    ds = gdal.Open(raster, 0)
+                    names = []
+                    for band in range(ds.RasterCount):
+                        b = ds.GetRasterBand(band + 1)
+                        names.append(b.GetDescription())
+                    ds = None
+                    return names
+
+                def set_band_names(raster, band_names):
+                    ds = gdal.Open(raster, 0)
+                    for i, name in enumerate(band_names):
+                        b = ds.GetRasterBand(i + 1)
+                        b.SetDescription(name)
+                    ds = None
+
+                def get_shp(zip_file, dir):
+                    import zipfile
+                    import os
+
+                    Path(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)).mkdir(parents=True, exist_ok=True)
+                    with zipfile.ZipFile(dir+zip_file, 'r') as zip_ref:
+                        zip_ref.extractall(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month))
+
+                    shp_files=[]
+                    for root, dirs, files in os.walk(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)):
+                        for file in files:
+                            if file.endswith(".shp"):
+                                shp_files.append(os.path.join(root, file))
+                    shp_file=shp_files[0]
+                    print(shp_file)
+                    return shp_file
+
+                parameter_names.insert(0, 'z')
+                print(parameter_names)
+
+                shp_file=get_shp(zip_file, dir)
+                warp_options = gdal.WarpOptions(cutlineDSName=shp_file, cropToCutline=True, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
+                                                callback=gdal.TermProgress_nocb)
+                warp = gdal.Warp(output_file, input_file, options=warp_options)
+                warp = None
+
+                set_band_names(output_file, parameter_names)
+                print(get_band_names(output_file))
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Crop region', description='')
+            _parser.add_argument("--input-file", dest="input_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--zip-file", dest="zip_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--parameter-names", dest="parameter_names", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parsed_args = vars(_parser.parse_args())
+
+            _outputs = crop_region(**_parsed_args)
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /train/
+            name: pvc-train
+          - mountPath: /shape/
+            name: pvc-shape
+        params:
+        - name: build-stack-4-Output
+        - name: container_image
+        - name: pvc-shape-name
+        - name: pvc-train-name
+        volumes:
+        - name: pvc-shape
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-shape-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Crop region",
+              "outputs": [], "version": "Crop region@sha256=ce49212997a863f838b56a85a0a06b26b3557d889dccbe3760889a2c547ee8d5"}'
+      retries: 3
+    - name: build-stack-5
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: merge-avg-5-Output
+        value: $(tasks.merge-avg-5.results.Output)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
+      - name: pvc-terrain-name
+        value: $(tasks.pvc-terrain.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - /train/
+          - --satellite-file
+          - $(inputs.params.merge-avg-5-Output)
+          - --input-files
+          - '["/terrain/aspect.tif", "/terrain/elevation.tif", "/terrain/hillshading.tif",
+            "/terrain/slope.tif"]'
+          - --output-file
+          - /train/2010_05.tif
+          - --year
+          - '2010'
+          - --month
+          - '5'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def build_stack(dir,satellite_file, input_files, output_file, year, month):
+
+                from osgeo import gdal
+                import os
+
+                # input_files: list of .tif files to stack
+                input_files.insert(0, satellite_file)
+
+                # Get target resolution from satellite file
+                ds = gdal.Open(input_files[0], 0)
+                xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+
+                vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
+                vrt_options = gdal.BuildVRTOptions(separate=True)
+                vrt = gdal.BuildVRT(vrt_file, input_files, options=vrt_options)
+                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'], xRes=xres , yRes=yres,
+                                                          callback=gdal.TermProgress_nocb)
+                gdal.Translate(output_file, vrt, options=translate_options)
+                vrt = None  # closes file
+                os.remove(vrt_file)
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Build stack', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--satellite-file", dest="satellite_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--input-files", dest="input_files", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = build_stack(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /sm/
+            name: pvc-sm
+          - mountPath: /terrain/
+            name: pvc-terrain
+          - mountPath: /train/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: merge-avg-5-Output
+        - name: pvc-sm-name
+        - name: pvc-terrain-name
+        - name: pvc-train-name
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-sm
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-sm-name)
+        - name: pvc-terrain
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-terrain-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Build
+              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+      retries: 3
+    - name: crop-region-5
+      params:
+      - name: build-stack-5-Output
+        value: $(tasks.build-stack-5.results.Output)
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-shape-name
+        value: $(tasks.pvc-shape.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --input-file
+          - $(inputs.params.build-stack-5-Output)
+          - --zip-file
+          - OK.zip
+          - --dir
+          - /shape/
+          - --output-file
+          - /train/2010_05.tif
+          - --parameter-names
+          - '["aspect", "elevation", "hillshading", "slope"]'
+          - --year
+          - '2010'
+          - --month
+          - '5'
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def crop_region(input_file, zip_file, dir, output_file, parameter_names, year, month):
+                from osgeo import gdal
+                from pathlib import Path
+
+                def get_band_names(raster):
+                    ds = gdal.Open(raster, 0)
+                    names = []
+                    for band in range(ds.RasterCount):
+                        b = ds.GetRasterBand(band + 1)
+                        names.append(b.GetDescription())
+                    ds = None
+                    return names
+
+                def set_band_names(raster, band_names):
+                    ds = gdal.Open(raster, 0)
+                    for i, name in enumerate(band_names):
+                        b = ds.GetRasterBand(i + 1)
+                        b.SetDescription(name)
+                    ds = None
+
+                def get_shp(zip_file, dir):
+                    import zipfile
+                    import os
+
+                    Path(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)).mkdir(parents=True, exist_ok=True)
+                    with zipfile.ZipFile(dir+zip_file, 'r') as zip_ref:
+                        zip_ref.extractall(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month))
+
+                    shp_files=[]
+                    for root, dirs, files in os.walk(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)):
+                        for file in files:
+                            if file.endswith(".shp"):
+                                shp_files.append(os.path.join(root, file))
+                    shp_file=shp_files[0]
+                    print(shp_file)
+                    return shp_file
+
+                parameter_names.insert(0, 'z')
+                print(parameter_names)
+
+                shp_file=get_shp(zip_file, dir)
+                warp_options = gdal.WarpOptions(cutlineDSName=shp_file, cropToCutline=True, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
+                                                callback=gdal.TermProgress_nocb)
+                warp = gdal.Warp(output_file, input_file, options=warp_options)
+                warp = None
+
+                set_band_names(output_file, parameter_names)
+                print(get_band_names(output_file))
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Crop region', description='')
+            _parser.add_argument("--input-file", dest="input_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--zip-file", dest="zip_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--parameter-names", dest="parameter_names", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parsed_args = vars(_parser.parse_args())
+
+            _outputs = crop_region(**_parsed_args)
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /train/
+            name: pvc-train
+          - mountPath: /shape/
+            name: pvc-shape
+        params:
+        - name: build-stack-5-Output
+        - name: container_image
+        - name: pvc-shape-name
+        - name: pvc-train-name
+        volumes:
+        - name: pvc-shape
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-shape-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Crop region",
+              "outputs": [], "version": "Crop region@sha256=ce49212997a863f838b56a85a0a06b26b3557d889dccbe3760889a2c547ee8d5"}'
+      retries: 3
+    - name: build-stack-6
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: merge-avg-6-Output
+        value: $(tasks.merge-avg-6.results.Output)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
+      - name: pvc-terrain-name
+        value: $(tasks.pvc-terrain.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - /train/
+          - --satellite-file
+          - $(inputs.params.merge-avg-6-Output)
+          - --input-files
+          - '["/terrain/aspect.tif", "/terrain/elevation.tif", "/terrain/hillshading.tif",
+            "/terrain/slope.tif"]'
+          - --output-file
+          - /train/2010_06.tif
+          - --year
+          - '2010'
+          - --month
+          - '6'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def build_stack(dir,satellite_file, input_files, output_file, year, month):
+
+                from osgeo import gdal
+                import os
+
+                # input_files: list of .tif files to stack
+                input_files.insert(0, satellite_file)
+
+                # Get target resolution from satellite file
+                ds = gdal.Open(input_files[0], 0)
+                xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+
+                vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
+                vrt_options = gdal.BuildVRTOptions(separate=True)
+                vrt = gdal.BuildVRT(vrt_file, input_files, options=vrt_options)
+                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'], xRes=xres , yRes=yres,
+                                                          callback=gdal.TermProgress_nocb)
+                gdal.Translate(output_file, vrt, options=translate_options)
+                vrt = None  # closes file
+                os.remove(vrt_file)
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Build stack', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--satellite-file", dest="satellite_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--input-files", dest="input_files", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = build_stack(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /sm/
+            name: pvc-sm
+          - mountPath: /terrain/
+            name: pvc-terrain
+          - mountPath: /train/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: merge-avg-6-Output
+        - name: pvc-sm-name
+        - name: pvc-terrain-name
+        - name: pvc-train-name
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-sm
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-sm-name)
+        - name: pvc-terrain
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-terrain-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Build
+              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+      retries: 3
+    - name: crop-region-6
+      params:
+      - name: build-stack-6-Output
+        value: $(tasks.build-stack-6.results.Output)
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-shape-name
+        value: $(tasks.pvc-shape.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --input-file
+          - $(inputs.params.build-stack-6-Output)
+          - --zip-file
+          - OK.zip
+          - --dir
+          - /shape/
+          - --output-file
+          - /train/2010_06.tif
+          - --parameter-names
+          - '["aspect", "elevation", "hillshading", "slope"]'
+          - --year
+          - '2010'
+          - --month
+          - '6'
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def crop_region(input_file, zip_file, dir, output_file, parameter_names, year, month):
+                from osgeo import gdal
+                from pathlib import Path
+
+                def get_band_names(raster):
+                    ds = gdal.Open(raster, 0)
+                    names = []
+                    for band in range(ds.RasterCount):
+                        b = ds.GetRasterBand(band + 1)
+                        names.append(b.GetDescription())
+                    ds = None
+                    return names
+
+                def set_band_names(raster, band_names):
+                    ds = gdal.Open(raster, 0)
+                    for i, name in enumerate(band_names):
+                        b = ds.GetRasterBand(i + 1)
+                        b.SetDescription(name)
+                    ds = None
+
+                def get_shp(zip_file, dir):
+                    import zipfile
+                    import os
+
+                    Path(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)).mkdir(parents=True, exist_ok=True)
+                    with zipfile.ZipFile(dir+zip_file, 'r') as zip_ref:
+                        zip_ref.extractall(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month))
+
+                    shp_files=[]
+                    for root, dirs, files in os.walk(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)):
+                        for file in files:
+                            if file.endswith(".shp"):
+                                shp_files.append(os.path.join(root, file))
+                    shp_file=shp_files[0]
+                    print(shp_file)
+                    return shp_file
+
+                parameter_names.insert(0, 'z')
+                print(parameter_names)
+
+                shp_file=get_shp(zip_file, dir)
+                warp_options = gdal.WarpOptions(cutlineDSName=shp_file, cropToCutline=True, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
+                                                callback=gdal.TermProgress_nocb)
+                warp = gdal.Warp(output_file, input_file, options=warp_options)
+                warp = None
+
+                set_band_names(output_file, parameter_names)
+                print(get_band_names(output_file))
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Crop region', description='')
+            _parser.add_argument("--input-file", dest="input_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--zip-file", dest="zip_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--parameter-names", dest="parameter_names", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parsed_args = vars(_parser.parse_args())
+
+            _outputs = crop_region(**_parsed_args)
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /train/
+            name: pvc-train
+          - mountPath: /shape/
+            name: pvc-shape
+        params:
+        - name: build-stack-6-Output
+        - name: container_image
+        - name: pvc-shape-name
+        - name: pvc-train-name
+        volumes:
+        - name: pvc-shape
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-shape-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Crop region",
+              "outputs": [], "version": "Crop region@sha256=ce49212997a863f838b56a85a0a06b26b3557d889dccbe3760889a2c547ee8d5"}'
+      retries: 3
+    - name: build-stack-7
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: merge-avg-7-Output
+        value: $(tasks.merge-avg-7.results.Output)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
+      - name: pvc-terrain-name
+        value: $(tasks.pvc-terrain.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - /train/
+          - --satellite-file
+          - $(inputs.params.merge-avg-7-Output)
+          - --input-files
+          - '["/terrain/aspect.tif", "/terrain/elevation.tif", "/terrain/hillshading.tif",
+            "/terrain/slope.tif"]'
+          - --output-file
+          - /train/2010_07.tif
+          - --year
+          - '2010'
+          - --month
+          - '7'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def build_stack(dir,satellite_file, input_files, output_file, year, month):
+
+                from osgeo import gdal
+                import os
+
+                # input_files: list of .tif files to stack
+                input_files.insert(0, satellite_file)
+
+                # Get target resolution from satellite file
+                ds = gdal.Open(input_files[0], 0)
+                xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+
+                vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
+                vrt_options = gdal.BuildVRTOptions(separate=True)
+                vrt = gdal.BuildVRT(vrt_file, input_files, options=vrt_options)
+                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'], xRes=xres , yRes=yres,
+                                                          callback=gdal.TermProgress_nocb)
+                gdal.Translate(output_file, vrt, options=translate_options)
+                vrt = None  # closes file
+                os.remove(vrt_file)
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Build stack', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--satellite-file", dest="satellite_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--input-files", dest="input_files", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = build_stack(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /sm/
+            name: pvc-sm
+          - mountPath: /terrain/
+            name: pvc-terrain
+          - mountPath: /train/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: merge-avg-7-Output
+        - name: pvc-sm-name
+        - name: pvc-terrain-name
+        - name: pvc-train-name
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-sm
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-sm-name)
+        - name: pvc-terrain
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-terrain-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Build
+              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+      retries: 3
+    - name: crop-region-7
+      params:
+      - name: build-stack-7-Output
+        value: $(tasks.build-stack-7.results.Output)
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-shape-name
+        value: $(tasks.pvc-shape.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --input-file
+          - $(inputs.params.build-stack-7-Output)
+          - --zip-file
+          - OK.zip
+          - --dir
+          - /shape/
+          - --output-file
+          - /train/2010_07.tif
+          - --parameter-names
+          - '["aspect", "elevation", "hillshading", "slope"]'
+          - --year
+          - '2010'
+          - --month
+          - '7'
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def crop_region(input_file, zip_file, dir, output_file, parameter_names, year, month):
+                from osgeo import gdal
+                from pathlib import Path
+
+                def get_band_names(raster):
+                    ds = gdal.Open(raster, 0)
+                    names = []
+                    for band in range(ds.RasterCount):
+                        b = ds.GetRasterBand(band + 1)
+                        names.append(b.GetDescription())
+                    ds = None
+                    return names
+
+                def set_band_names(raster, band_names):
+                    ds = gdal.Open(raster, 0)
+                    for i, name in enumerate(band_names):
+                        b = ds.GetRasterBand(i + 1)
+                        b.SetDescription(name)
+                    ds = None
+
+                def get_shp(zip_file, dir):
+                    import zipfile
+                    import os
+
+                    Path(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)).mkdir(parents=True, exist_ok=True)
+                    with zipfile.ZipFile(dir+zip_file, 'r') as zip_ref:
+                        zip_ref.extractall(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month))
+
+                    shp_files=[]
+                    for root, dirs, files in os.walk(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)):
+                        for file in files:
+                            if file.endswith(".shp"):
+                                shp_files.append(os.path.join(root, file))
+                    shp_file=shp_files[0]
+                    print(shp_file)
+                    return shp_file
+
+                parameter_names.insert(0, 'z')
+                print(parameter_names)
+
+                shp_file=get_shp(zip_file, dir)
+                warp_options = gdal.WarpOptions(cutlineDSName=shp_file, cropToCutline=True, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
+                                                callback=gdal.TermProgress_nocb)
+                warp = gdal.Warp(output_file, input_file, options=warp_options)
+                warp = None
+
+                set_band_names(output_file, parameter_names)
+                print(get_band_names(output_file))
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Crop region', description='')
+            _parser.add_argument("--input-file", dest="input_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--zip-file", dest="zip_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--parameter-names", dest="parameter_names", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parsed_args = vars(_parser.parse_args())
+
+            _outputs = crop_region(**_parsed_args)
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /train/
+            name: pvc-train
+          - mountPath: /shape/
+            name: pvc-shape
+        params:
+        - name: build-stack-7-Output
+        - name: container_image
+        - name: pvc-shape-name
+        - name: pvc-train-name
+        volumes:
+        - name: pvc-shape
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-shape-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Crop region",
+              "outputs": [], "version": "Crop region@sha256=ce49212997a863f838b56a85a0a06b26b3557d889dccbe3760889a2c547ee8d5"}'
+      retries: 3
+    - name: build-stack-8
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: merge-avg-8-Output
+        value: $(tasks.merge-avg-8.results.Output)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
+      - name: pvc-terrain-name
+        value: $(tasks.pvc-terrain.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - /train/
+          - --satellite-file
+          - $(inputs.params.merge-avg-8-Output)
+          - --input-files
+          - '["/terrain/aspect.tif", "/terrain/elevation.tif", "/terrain/hillshading.tif",
+            "/terrain/slope.tif"]'
+          - --output-file
+          - /train/2010_08.tif
+          - --year
+          - '2010'
+          - --month
+          - '8'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def build_stack(dir,satellite_file, input_files, output_file, year, month):
+
+                from osgeo import gdal
+                import os
+
+                # input_files: list of .tif files to stack
+                input_files.insert(0, satellite_file)
+
+                # Get target resolution from satellite file
+                ds = gdal.Open(input_files[0], 0)
+                xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+
+                vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
+                vrt_options = gdal.BuildVRTOptions(separate=True)
+                vrt = gdal.BuildVRT(vrt_file, input_files, options=vrt_options)
+                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'], xRes=xres , yRes=yres,
+                                                          callback=gdal.TermProgress_nocb)
+                gdal.Translate(output_file, vrt, options=translate_options)
+                vrt = None  # closes file
+                os.remove(vrt_file)
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Build stack', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--satellite-file", dest="satellite_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--input-files", dest="input_files", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = build_stack(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /sm/
+            name: pvc-sm
+          - mountPath: /terrain/
+            name: pvc-terrain
+          - mountPath: /train/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: merge-avg-8-Output
+        - name: pvc-sm-name
+        - name: pvc-terrain-name
+        - name: pvc-train-name
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-sm
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-sm-name)
+        - name: pvc-terrain
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-terrain-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Build
+              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+      retries: 3
+    - name: crop-region-8
+      params:
+      - name: build-stack-8-Output
+        value: $(tasks.build-stack-8.results.Output)
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-shape-name
+        value: $(tasks.pvc-shape.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --input-file
+          - $(inputs.params.build-stack-8-Output)
+          - --zip-file
+          - OK.zip
+          - --dir
+          - /shape/
+          - --output-file
+          - /train/2010_08.tif
+          - --parameter-names
+          - '["aspect", "elevation", "hillshading", "slope"]'
+          - --year
+          - '2010'
+          - --month
+          - '8'
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def crop_region(input_file, zip_file, dir, output_file, parameter_names, year, month):
+                from osgeo import gdal
+                from pathlib import Path
+
+                def get_band_names(raster):
+                    ds = gdal.Open(raster, 0)
+                    names = []
+                    for band in range(ds.RasterCount):
+                        b = ds.GetRasterBand(band + 1)
+                        names.append(b.GetDescription())
+                    ds = None
+                    return names
+
+                def set_band_names(raster, band_names):
+                    ds = gdal.Open(raster, 0)
+                    for i, name in enumerate(band_names):
+                        b = ds.GetRasterBand(i + 1)
+                        b.SetDescription(name)
+                    ds = None
+
+                def get_shp(zip_file, dir):
+                    import zipfile
+                    import os
+
+                    Path(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)).mkdir(parents=True, exist_ok=True)
+                    with zipfile.ZipFile(dir+zip_file, 'r') as zip_ref:
+                        zip_ref.extractall(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month))
+
+                    shp_files=[]
+                    for root, dirs, files in os.walk(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)):
+                        for file in files:
+                            if file.endswith(".shp"):
+                                shp_files.append(os.path.join(root, file))
+                    shp_file=shp_files[0]
+                    print(shp_file)
+                    return shp_file
+
+                parameter_names.insert(0, 'z')
+                print(parameter_names)
+
+                shp_file=get_shp(zip_file, dir)
+                warp_options = gdal.WarpOptions(cutlineDSName=shp_file, cropToCutline=True, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
+                                                callback=gdal.TermProgress_nocb)
+                warp = gdal.Warp(output_file, input_file, options=warp_options)
+                warp = None
+
+                set_band_names(output_file, parameter_names)
+                print(get_band_names(output_file))
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Crop region', description='')
+            _parser.add_argument("--input-file", dest="input_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--zip-file", dest="zip_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--parameter-names", dest="parameter_names", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parsed_args = vars(_parser.parse_args())
+
+            _outputs = crop_region(**_parsed_args)
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /train/
+            name: pvc-train
+          - mountPath: /shape/
+            name: pvc-shape
+        params:
+        - name: build-stack-8-Output
+        - name: container_image
+        - name: pvc-shape-name
+        - name: pvc-train-name
+        volumes:
+        - name: pvc-shape
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-shape-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Crop region",
+              "outputs": [], "version": "Crop region@sha256=ce49212997a863f838b56a85a0a06b26b3557d889dccbe3760889a2c547ee8d5"}'
+      retries: 3
+    - name: build-stack-9
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: merge-avg-9-Output
+        value: $(tasks.merge-avg-9.results.Output)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
+      - name: pvc-terrain-name
+        value: $(tasks.pvc-terrain.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - /train/
+          - --satellite-file
+          - $(inputs.params.merge-avg-9-Output)
+          - --input-files
+          - '["/terrain/aspect.tif", "/terrain/elevation.tif", "/terrain/hillshading.tif",
+            "/terrain/slope.tif"]'
+          - --output-file
+          - /train/2010_09.tif
+          - --year
+          - '2010'
+          - --month
+          - '9'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def build_stack(dir,satellite_file, input_files, output_file, year, month):
+
+                from osgeo import gdal
+                import os
+
+                # input_files: list of .tif files to stack
+                input_files.insert(0, satellite_file)
+
+                # Get target resolution from satellite file
+                ds = gdal.Open(input_files[0], 0)
+                xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+
+                vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
+                vrt_options = gdal.BuildVRTOptions(separate=True)
+                vrt = gdal.BuildVRT(vrt_file, input_files, options=vrt_options)
+                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'], xRes=xres , yRes=yres,
+                                                          callback=gdal.TermProgress_nocb)
+                gdal.Translate(output_file, vrt, options=translate_options)
+                vrt = None  # closes file
+                os.remove(vrt_file)
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Build stack', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--satellite-file", dest="satellite_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--input-files", dest="input_files", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = build_stack(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /sm/
+            name: pvc-sm
+          - mountPath: /terrain/
+            name: pvc-terrain
+          - mountPath: /train/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: merge-avg-9-Output
+        - name: pvc-sm-name
+        - name: pvc-terrain-name
+        - name: pvc-train-name
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-sm
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-sm-name)
+        - name: pvc-terrain
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-terrain-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Build
+              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+      retries: 3
+    - name: crop-region-9
+      params:
+      - name: build-stack-9-Output
+        value: $(tasks.build-stack-9.results.Output)
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-shape-name
+        value: $(tasks.pvc-shape.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --input-file
+          - $(inputs.params.build-stack-9-Output)
+          - --zip-file
+          - OK.zip
+          - --dir
+          - /shape/
+          - --output-file
+          - /train/2010_09.tif
+          - --parameter-names
+          - '["aspect", "elevation", "hillshading", "slope"]'
+          - --year
+          - '2010'
+          - --month
+          - '9'
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def crop_region(input_file, zip_file, dir, output_file, parameter_names, year, month):
+                from osgeo import gdal
+                from pathlib import Path
+
+                def get_band_names(raster):
+                    ds = gdal.Open(raster, 0)
+                    names = []
+                    for band in range(ds.RasterCount):
+                        b = ds.GetRasterBand(band + 1)
+                        names.append(b.GetDescription())
+                    ds = None
+                    return names
+
+                def set_band_names(raster, band_names):
+                    ds = gdal.Open(raster, 0)
+                    for i, name in enumerate(band_names):
+                        b = ds.GetRasterBand(i + 1)
+                        b.SetDescription(name)
+                    ds = None
+
+                def get_shp(zip_file, dir):
+                    import zipfile
+                    import os
+
+                    Path(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)).mkdir(parents=True, exist_ok=True)
+                    with zipfile.ZipFile(dir+zip_file, 'r') as zip_ref:
+                        zip_ref.extractall(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month))
+
+                    shp_files=[]
+                    for root, dirs, files in os.walk(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)):
+                        for file in files:
+                            if file.endswith(".shp"):
+                                shp_files.append(os.path.join(root, file))
+                    shp_file=shp_files[0]
+                    print(shp_file)
+                    return shp_file
+
+                parameter_names.insert(0, 'z')
+                print(parameter_names)
+
+                shp_file=get_shp(zip_file, dir)
+                warp_options = gdal.WarpOptions(cutlineDSName=shp_file, cropToCutline=True, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
+                                                callback=gdal.TermProgress_nocb)
+                warp = gdal.Warp(output_file, input_file, options=warp_options)
+                warp = None
+
+                set_band_names(output_file, parameter_names)
+                print(get_band_names(output_file))
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Crop region', description='')
+            _parser.add_argument("--input-file", dest="input_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--zip-file", dest="zip_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--parameter-names", dest="parameter_names", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parsed_args = vars(_parser.parse_args())
+
+            _outputs = crop_region(**_parsed_args)
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /train/
+            name: pvc-train
+          - mountPath: /shape/
+            name: pvc-shape
+        params:
+        - name: build-stack-9-Output
+        - name: container_image
+        - name: pvc-shape-name
+        - name: pvc-train-name
+        volumes:
+        - name: pvc-shape
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-shape-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Crop region",
+              "outputs": [], "version": "Crop region@sha256=ce49212997a863f838b56a85a0a06b26b3557d889dccbe3760889a2c547ee8d5"}'
+      retries: 3
+    - name: build-stack-10
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: merge-avg-10-Output
+        value: $(tasks.merge-avg-10.results.Output)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
+      - name: pvc-terrain-name
+        value: $(tasks.pvc-terrain.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - /train/
+          - --satellite-file
+          - $(inputs.params.merge-avg-10-Output)
+          - --input-files
+          - '["/terrain/aspect.tif", "/terrain/elevation.tif", "/terrain/hillshading.tif",
+            "/terrain/slope.tif"]'
+          - --output-file
+          - /train/2010_10.tif
+          - --year
+          - '2010'
+          - --month
+          - '10'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def build_stack(dir,satellite_file, input_files, output_file, year, month):
+
+                from osgeo import gdal
+                import os
+
+                # input_files: list of .tif files to stack
+                input_files.insert(0, satellite_file)
+
+                # Get target resolution from satellite file
+                ds = gdal.Open(input_files[0], 0)
+                xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+
+                vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
+                vrt_options = gdal.BuildVRTOptions(separate=True)
+                vrt = gdal.BuildVRT(vrt_file, input_files, options=vrt_options)
+                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'], xRes=xres , yRes=yres,
+                                                          callback=gdal.TermProgress_nocb)
+                gdal.Translate(output_file, vrt, options=translate_options)
+                vrt = None  # closes file
+                os.remove(vrt_file)
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Build stack', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--satellite-file", dest="satellite_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--input-files", dest="input_files", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = build_stack(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /sm/
+            name: pvc-sm
+          - mountPath: /terrain/
+            name: pvc-terrain
+          - mountPath: /train/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: merge-avg-10-Output
+        - name: pvc-sm-name
+        - name: pvc-terrain-name
+        - name: pvc-train-name
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-sm
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-sm-name)
+        - name: pvc-terrain
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-terrain-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Build
+              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+      retries: 3
+    - name: crop-region-10
+      params:
+      - name: build-stack-10-Output
+        value: $(tasks.build-stack-10.results.Output)
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-shape-name
+        value: $(tasks.pvc-shape.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --input-file
+          - $(inputs.params.build-stack-10-Output)
+          - --zip-file
+          - OK.zip
+          - --dir
+          - /shape/
+          - --output-file
+          - /train/2010_10.tif
+          - --parameter-names
+          - '["aspect", "elevation", "hillshading", "slope"]'
+          - --year
+          - '2010'
+          - --month
+          - '10'
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def crop_region(input_file, zip_file, dir, output_file, parameter_names, year, month):
+                from osgeo import gdal
+                from pathlib import Path
+
+                def get_band_names(raster):
+                    ds = gdal.Open(raster, 0)
+                    names = []
+                    for band in range(ds.RasterCount):
+                        b = ds.GetRasterBand(band + 1)
+                        names.append(b.GetDescription())
+                    ds = None
+                    return names
+
+                def set_band_names(raster, band_names):
+                    ds = gdal.Open(raster, 0)
+                    for i, name in enumerate(band_names):
+                        b = ds.GetRasterBand(i + 1)
+                        b.SetDescription(name)
+                    ds = None
+
+                def get_shp(zip_file, dir):
+                    import zipfile
+                    import os
+
+                    Path(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)).mkdir(parents=True, exist_ok=True)
+                    with zipfile.ZipFile(dir+zip_file, 'r') as zip_ref:
+                        zip_ref.extractall(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month))
+
+                    shp_files=[]
+                    for root, dirs, files in os.walk(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)):
+                        for file in files:
+                            if file.endswith(".shp"):
+                                shp_files.append(os.path.join(root, file))
+                    shp_file=shp_files[0]
+                    print(shp_file)
+                    return shp_file
+
+                parameter_names.insert(0, 'z')
+                print(parameter_names)
+
+                shp_file=get_shp(zip_file, dir)
+                warp_options = gdal.WarpOptions(cutlineDSName=shp_file, cropToCutline=True, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
+                                                callback=gdal.TermProgress_nocb)
+                warp = gdal.Warp(output_file, input_file, options=warp_options)
+                warp = None
+
+                set_band_names(output_file, parameter_names)
+                print(get_band_names(output_file))
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Crop region', description='')
+            _parser.add_argument("--input-file", dest="input_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--zip-file", dest="zip_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--parameter-names", dest="parameter_names", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parsed_args = vars(_parser.parse_args())
+
+            _outputs = crop_region(**_parsed_args)
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /train/
+            name: pvc-train
+          - mountPath: /shape/
+            name: pvc-shape
+        params:
+        - name: build-stack-10-Output
+        - name: container_image
+        - name: pvc-shape-name
+        - name: pvc-train-name
+        volumes:
+        - name: pvc-shape
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-shape-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Crop region",
+              "outputs": [], "version": "Crop region@sha256=ce49212997a863f838b56a85a0a06b26b3557d889dccbe3760889a2c547ee8d5"}'
+      retries: 3
+    - name: build-stack-11
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: merge-avg-11-Output
+        value: $(tasks.merge-avg-11.results.Output)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
+      - name: pvc-terrain-name
+        value: $(tasks.pvc-terrain.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - /train/
+          - --satellite-file
+          - $(inputs.params.merge-avg-11-Output)
+          - --input-files
+          - '["/terrain/aspect.tif", "/terrain/elevation.tif", "/terrain/hillshading.tif",
+            "/terrain/slope.tif"]'
+          - --output-file
+          - /train/2010_11.tif
+          - --year
+          - '2010'
+          - --month
+          - '11'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def build_stack(dir,satellite_file, input_files, output_file, year, month):
+
+                from osgeo import gdal
+                import os
+
+                # input_files: list of .tif files to stack
+                input_files.insert(0, satellite_file)
+
+                # Get target resolution from satellite file
+                ds = gdal.Open(input_files[0], 0)
+                xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+
+                vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
+                vrt_options = gdal.BuildVRTOptions(separate=True)
+                vrt = gdal.BuildVRT(vrt_file, input_files, options=vrt_options)
+                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'], xRes=xres , yRes=yres,
+                                                          callback=gdal.TermProgress_nocb)
+                gdal.Translate(output_file, vrt, options=translate_options)
+                vrt = None  # closes file
+                os.remove(vrt_file)
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Build stack', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--satellite-file", dest="satellite_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--input-files", dest="input_files", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = build_stack(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /sm/
+            name: pvc-sm
+          - mountPath: /terrain/
+            name: pvc-terrain
+          - mountPath: /train/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: merge-avg-11-Output
+        - name: pvc-sm-name
+        - name: pvc-terrain-name
+        - name: pvc-train-name
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-sm
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-sm-name)
+        - name: pvc-terrain
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-terrain-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Build
+              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+      retries: 3
+    - name: crop-region-11
+      params:
+      - name: build-stack-11-Output
+        value: $(tasks.build-stack-11.results.Output)
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-shape-name
+        value: $(tasks.pvc-shape.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --input-file
+          - $(inputs.params.build-stack-11-Output)
+          - --zip-file
+          - OK.zip
+          - --dir
+          - /shape/
+          - --output-file
+          - /train/2010_11.tif
+          - --parameter-names
+          - '["aspect", "elevation", "hillshading", "slope"]'
+          - --year
+          - '2010'
+          - --month
+          - '11'
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def crop_region(input_file, zip_file, dir, output_file, parameter_names, year, month):
+                from osgeo import gdal
+                from pathlib import Path
+
+                def get_band_names(raster):
+                    ds = gdal.Open(raster, 0)
+                    names = []
+                    for band in range(ds.RasterCount):
+                        b = ds.GetRasterBand(band + 1)
+                        names.append(b.GetDescription())
+                    ds = None
+                    return names
+
+                def set_band_names(raster, band_names):
+                    ds = gdal.Open(raster, 0)
+                    for i, name in enumerate(band_names):
+                        b = ds.GetRasterBand(i + 1)
+                        b.SetDescription(name)
+                    ds = None
+
+                def get_shp(zip_file, dir):
+                    import zipfile
+                    import os
+
+                    Path(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)).mkdir(parents=True, exist_ok=True)
+                    with zipfile.ZipFile(dir+zip_file, 'r') as zip_ref:
+                        zip_ref.extractall(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month))
+
+                    shp_files=[]
+                    for root, dirs, files in os.walk(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)):
+                        for file in files:
+                            if file.endswith(".shp"):
+                                shp_files.append(os.path.join(root, file))
+                    shp_file=shp_files[0]
+                    print(shp_file)
+                    return shp_file
+
+                parameter_names.insert(0, 'z')
+                print(parameter_names)
+
+                shp_file=get_shp(zip_file, dir)
+                warp_options = gdal.WarpOptions(cutlineDSName=shp_file, cropToCutline=True, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
+                                                callback=gdal.TermProgress_nocb)
+                warp = gdal.Warp(output_file, input_file, options=warp_options)
+                warp = None
+
+                set_band_names(output_file, parameter_names)
+                print(get_band_names(output_file))
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Crop region', description='')
+            _parser.add_argument("--input-file", dest="input_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--zip-file", dest="zip_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--parameter-names", dest="parameter_names", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parsed_args = vars(_parser.parse_args())
+
+            _outputs = crop_region(**_parsed_args)
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /train/
+            name: pvc-train
+          - mountPath: /shape/
+            name: pvc-shape
+        params:
+        - name: build-stack-11-Output
+        - name: container_image
+        - name: pvc-shape-name
+        - name: pvc-train-name
+        volumes:
+        - name: pvc-shape
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-shape-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Crop region",
+              "outputs": [], "version": "Crop region@sha256=ce49212997a863f838b56a85a0a06b26b3557d889dccbe3760889a2c547ee8d5"}'
+      retries: 3
+    - name: build-stack-12
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: merge-avg-12-Output
+        value: $(tasks.merge-avg-12.results.Output)
+      - name: pvc-sm-name
+        value: $(tasks.pvc-sm.results.name)
+      - name: pvc-terrain-name
+        value: $(tasks.pvc-terrain.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --dir
+          - /train/
+          - --satellite-file
+          - $(inputs.params.merge-avg-12-Output)
+          - --input-files
+          - '["/terrain/aspect.tif", "/terrain/elevation.tif", "/terrain/hillshading.tif",
+            "/terrain/slope.tif"]'
+          - --output-file
+          - /train/2010_12.tif
+          - --year
+          - '2010'
+          - --month
+          - '12'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def build_stack(dir,satellite_file, input_files, output_file, year, month):
+
+                from osgeo import gdal
+                import os
+
+                # input_files: list of .tif files to stack
+                input_files.insert(0, satellite_file)
+
+                # Get target resolution from satellite file
+                ds = gdal.Open(input_files[0], 0)
+                xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+
+                vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
+                vrt_options = gdal.BuildVRTOptions(separate=True)
+                vrt = gdal.BuildVRT(vrt_file, input_files, options=vrt_options)
+                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'], xRes=xres , yRes=yres,
+                                                          callback=gdal.TermProgress_nocb)
+                gdal.Translate(output_file, vrt, options=translate_options)
+                vrt = None  # closes file
+                os.remove(vrt_file)
+                return output_file
+
+            def _serialize_str(str_value: str) -> str:
+                if not isinstance(str_value, str):
+                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
+                        str(str_value), str(type(str_value))))
+                return str_value
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Build stack', description='')
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--satellite-file", dest="satellite_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--input-files", dest="input_files", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parsed_args = vars(_parser.parse_args())
+            _output_files = _parsed_args.pop("_output_paths", [])
+
+            _outputs = build_stack(**_parsed_args)
+
+            _outputs = [_outputs]
+
+            _output_serializers = [
+                _serialize_str,
+
+            ]
+
+            import os
+            for idx, output_file in enumerate(_output_files):
+                try:
+                    os.makedirs(os.path.dirname(output_file))
+                except OSError:
+                    pass
+                with open(output_file, 'w') as f:
+                    f.write(_output_serializers[idx](_outputs[idx]))
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /sm/
+            name: pvc-sm
+          - mountPath: /terrain/
+            name: pvc-terrain
+          - mountPath: /train/
+            name: pvc-train
+        params:
+        - name: container_image
+        - name: merge-avg-12-Output
+        - name: pvc-sm-name
+        - name: pvc-terrain-name
+        - name: pvc-train-name
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-sm
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-sm-name)
+        - name: pvc-terrain
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-terrain-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Build
+              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+      retries: 3
+    - name: crop-region-12
+      params:
+      - name: build-stack-12-Output
+        value: $(tasks.build-stack-12.results.Output)
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-shape-name
+        value: $(tasks.pvc-shape.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --input-file
+          - $(inputs.params.build-stack-12-Output)
+          - --zip-file
+          - OK.zip
+          - --dir
+          - /shape/
+          - --output-file
+          - /train/2010_12.tif
+          - --parameter-names
+          - '["aspect", "elevation", "hillshading", "slope"]'
+          - --year
+          - '2010'
+          - --month
+          - '12'
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - |
+            def crop_region(input_file, zip_file, dir, output_file, parameter_names, year, month):
+                from osgeo import gdal
+                from pathlib import Path
+
+                def get_band_names(raster):
+                    ds = gdal.Open(raster, 0)
+                    names = []
+                    for band in range(ds.RasterCount):
+                        b = ds.GetRasterBand(band + 1)
+                        names.append(b.GetDescription())
+                    ds = None
+                    return names
+
+                def set_band_names(raster, band_names):
+                    ds = gdal.Open(raster, 0)
+                    for i, name in enumerate(band_names):
+                        b = ds.GetRasterBand(i + 1)
+                        b.SetDescription(name)
+                    ds = None
+
+                def get_shp(zip_file, dir):
+                    import zipfile
+                    import os
+
+                    Path(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)).mkdir(parents=True, exist_ok=True)
+                    with zipfile.ZipFile(dir+zip_file, 'r') as zip_ref:
+                        zip_ref.extractall(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month))
+
+                    shp_files=[]
+                    for root, dirs, files in os.walk(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)):
+                        for file in files:
+                            if file.endswith(".shp"):
+                                shp_files.append(os.path.join(root, file))
+                    shp_file=shp_files[0]
+                    print(shp_file)
+                    return shp_file
+
+                parameter_names.insert(0, 'z')
+                print(parameter_names)
+
+                shp_file=get_shp(zip_file, dir)
+                warp_options = gdal.WarpOptions(cutlineDSName=shp_file, cropToCutline=True, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
+                                                callback=gdal.TermProgress_nocb)
+                warp = gdal.Warp(output_file, input_file, options=warp_options)
+                warp = None
+
+                set_band_names(output_file, parameter_names)
+                print(get_band_names(output_file))
+
+            import json
+            import argparse
+            _parser = argparse.ArgumentParser(prog='Crop region', description='')
+            _parser.add_argument("--input-file", dest="input_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--zip-file", dest="zip_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--parameter-names", dest="parameter_names", type=json.loads, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--year", dest="year", type=int, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--month", dest="month", type=int, required=True, default=argparse.SUPPRESS)
+            _parsed_args = vars(_parser.parse_args())
+
+            _outputs = crop_region(**_parsed_args)
+          image: $(inputs.params.container_image)
+          volumeMounts:
+          - mountPath: /train/
+            name: pvc-train
+          - mountPath: /shape/
+            name: pvc-shape
+        params:
+        - name: build-stack-12-Output
+        - name: container_image
+        - name: pvc-shape-name
+        - name: pvc-train-name
+        volumes:
+        - name: pvc-shape
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-shape-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Crop region",
+              "outputs": [], "version": "Crop region@sha256=ce49212997a863f838b56a85a0a06b26b3557d889dccbe3760889a2c547ee8d5"}'
       retries: 3
