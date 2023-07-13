@@ -3,37 +3,132 @@ kind: PipelineRun
 metadata:
   name: somospiepipeline
   annotations:
-    tekton.dev/output_artifacts: '{"knn-train": [{"key": "artifacts/$PIPELINERUN/knn-train/Output.tgz",
-      "name": "knn-train-Output", "path": "/tmp/outputs/Output/data"}], "load-data":
-      [{"key": "artifacts/$PIPELINERUN/load-data/Output.tgz", "name": "load-data-Output",
+    tekton.dev/output_artifacts: '{"load-data": [{"key": "artifacts/$PIPELINERUN/load-data/data.tgz",
+      "name": "load-data-data", "path": "/tmp/outputs/data/data"}, {"key": "artifacts/$PIPELINERUN/load-data/scaler.tgz",
+      "name": "load-data-scaler", "path": "/tmp/outputs/scaler/data"}], "rf-inference":
+      [{"key": "artifacts/$PIPELINERUN/rf-inference/Output.tgz", "name": "rf-inference-Output",
+      "path": "/tmp/outputs/Output/data"}], "rf-inference-2": [{"key": "artifacts/$PIPELINERUN/rf-inference-2/Output.tgz",
+      "name": "rf-inference-2-Output", "path": "/tmp/outputs/Output/data"}], "rf-inference-3":
+      [{"key": "artifacts/$PIPELINERUN/rf-inference-3/Output.tgz", "name": "rf-inference-3-Output",
+      "path": "/tmp/outputs/Output/data"}], "rf-inference-4": [{"key": "artifacts/$PIPELINERUN/rf-inference-4/Output.tgz",
+      "name": "rf-inference-4-Output", "path": "/tmp/outputs/Output/data"}], "rf-inference-5":
+      [{"key": "artifacts/$PIPELINERUN/rf-inference-5/Output.tgz", "name": "rf-inference-5-Output",
+      "path": "/tmp/outputs/Output/data"}], "rf-inference-6": [{"key": "artifacts/$PIPELINERUN/rf-inference-6/Output.tgz",
+      "name": "rf-inference-6-Output", "path": "/tmp/outputs/Output/data"}], "rf-inference-7":
+      [{"key": "artifacts/$PIPELINERUN/rf-inference-7/Output.tgz", "name": "rf-inference-7-Output",
+      "path": "/tmp/outputs/Output/data"}], "rf-inference-8": [{"key": "artifacts/$PIPELINERUN/rf-inference-8/Output.tgz",
+      "name": "rf-inference-8-Output", "path": "/tmp/outputs/Output/data"}], "rf-inference-9":
+      [{"key": "artifacts/$PIPELINERUN/rf-inference-9/Output.tgz", "name": "rf-inference-9-Output",
       "path": "/tmp/outputs/Output/data"}], "rf-train": [{"key": "artifacts/$PIPELINERUN/rf-train/Output.tgz",
       "name": "rf-train-Output", "path": "/tmp/outputs/Output/data"}]}'
-    tekton.dev/input_artifacts: '{"knn-inference": [{"name": "knn-train-Output", "parent_task":
-      "knn-train"}, {"name": "odh-pvc-name", "parent_task": "odh-pvc"}], "knn-train":
-      [{"name": "load-data-Output", "parent_task": "load-data"}, {"name": "odh-pvc-name",
-      "parent_task": "odh-pvc"}], "load-data": [{"name": "odh-pvc-name", "parent_task":
-      "odh-pvc"}], "rf-inference": [{"name": "odh-pvc-name", "parent_task": "odh-pvc"},
-      {"name": "rf-train-Output", "parent_task": "rf-train"}], "rf-train": [{"name":
-      "load-data-Output", "parent_task": "load-data"}, {"name": "odh-pvc-name", "parent_task":
-      "odh-pvc"}]}'
+    tekton.dev/input_artifacts: '{"load-data": [{"name": "pvc-train-name", "parent_task":
+      "pvc-train"}], "rf-inference": [{"name": "load-data-scaler", "parent_task":
+      "load-data"}, {"name": "pvc-eval-name", "parent_task": "pvc-eval"}, {"name":
+      "pvc-predictions-name", "parent_task": "pvc-predictions"}, {"name": "pvc-train-name",
+      "parent_task": "pvc-train"}, {"name": "rf-train-Output", "parent_task": "rf-train"}],
+      "rf-inference-2": [{"name": "load-data-scaler", "parent_task": "load-data"},
+      {"name": "pvc-eval-name", "parent_task": "pvc-eval"}, {"name": "pvc-predictions-name",
+      "parent_task": "pvc-predictions"}, {"name": "pvc-train-name", "parent_task":
+      "pvc-train"}, {"name": "rf-train-Output", "parent_task": "rf-train"}], "rf-inference-3":
+      [{"name": "load-data-scaler", "parent_task": "load-data"}, {"name": "pvc-eval-name",
+      "parent_task": "pvc-eval"}, {"name": "pvc-predictions-name", "parent_task":
+      "pvc-predictions"}, {"name": "pvc-train-name", "parent_task": "pvc-train"},
+      {"name": "rf-train-Output", "parent_task": "rf-train"}], "rf-inference-4": [{"name":
+      "load-data-scaler", "parent_task": "load-data"}, {"name": "pvc-eval-name", "parent_task":
+      "pvc-eval"}, {"name": "pvc-predictions-name", "parent_task": "pvc-predictions"},
+      {"name": "pvc-train-name", "parent_task": "pvc-train"}, {"name": "rf-train-Output",
+      "parent_task": "rf-train"}], "rf-inference-5": [{"name": "load-data-scaler",
+      "parent_task": "load-data"}, {"name": "pvc-eval-name", "parent_task": "pvc-eval"},
+      {"name": "pvc-predictions-name", "parent_task": "pvc-predictions"}, {"name":
+      "pvc-train-name", "parent_task": "pvc-train"}, {"name": "rf-train-Output", "parent_task":
+      "rf-train"}], "rf-inference-6": [{"name": "load-data-scaler", "parent_task":
+      "load-data"}, {"name": "pvc-eval-name", "parent_task": "pvc-eval"}, {"name":
+      "pvc-predictions-name", "parent_task": "pvc-predictions"}, {"name": "pvc-train-name",
+      "parent_task": "pvc-train"}, {"name": "rf-train-Output", "parent_task": "rf-train"}],
+      "rf-inference-7": [{"name": "load-data-scaler", "parent_task": "load-data"},
+      {"name": "pvc-eval-name", "parent_task": "pvc-eval"}, {"name": "pvc-predictions-name",
+      "parent_task": "pvc-predictions"}, {"name": "pvc-train-name", "parent_task":
+      "pvc-train"}, {"name": "rf-train-Output", "parent_task": "rf-train"}], "rf-inference-8":
+      [{"name": "load-data-scaler", "parent_task": "load-data"}, {"name": "pvc-eval-name",
+      "parent_task": "pvc-eval"}, {"name": "pvc-predictions-name", "parent_task":
+      "pvc-predictions"}, {"name": "pvc-train-name", "parent_task": "pvc-train"},
+      {"name": "rf-train-Output", "parent_task": "rf-train"}], "rf-inference-9": [{"name":
+      "load-data-scaler", "parent_task": "load-data"}, {"name": "pvc-eval-name", "parent_task":
+      "pvc-eval"}, {"name": "pvc-predictions-name", "parent_task": "pvc-predictions"},
+      {"name": "pvc-train-name", "parent_task": "pvc-train"}, {"name": "rf-train-Output",
+      "parent_task": "rf-train"}], "rf-train": [{"name": "load-data-data", "parent_task":
+      "load-data"}, {"name": "pvc-train-name", "parent_task": "pvc-train"}]}'
     tekton.dev/artifact_bucket: mlpipeline
     tekton.dev/artifact_endpoint: minio-service.kubeflow:9000
     tekton.dev/artifact_endpoint_scheme: http://
-    tekton.dev/artifact_items: '{"knn-inference": [], "knn-train": [["Output", "$(results.Output.path)"]],
-      "load-data": [["Output", "$(results.Output.path)"]], "odh-pvc": [], "rf-inference":
-      [], "rf-train": [["Output", "$(results.Output.path)"]]}'
+    tekton.dev/artifact_items: '{"load-data": [["data", "$(results.data.path)"], ["scaler",
+      "$(results.scaler.path)"]], "pvc-eval": [], "pvc-predictions": [], "pvc-train":
+      [], "rf-inference": [["Output", "$(results.Output.path)"]], "rf-inference-2":
+      [["Output", "$(results.Output.path)"]], "rf-inference-3": [["Output", "$(results.Output.path)"]],
+      "rf-inference-4": [["Output", "$(results.Output.path)"]], "rf-inference-5":
+      [["Output", "$(results.Output.path)"]], "rf-inference-6": [["Output", "$(results.Output.path)"]],
+      "rf-inference-7": [["Output", "$(results.Output.path)"]], "rf-inference-8":
+      [["Output", "$(results.Output.path)"]], "rf-inference-9": [["Output", "$(results.Output.path)"]],
+      "rf-train": [["Output", "$(results.Output.path)"]]}'
     sidecar.istio.io/inject: "false"
     tekton.dev/template: ''
     pipelines.kubeflow.org/big_data_passing_format: $(workspaces.$TASK_NAME.path)/artifacts/$ORIG_PR_NAME/$TASKRUN_NAME/$TASK_PARAM_NAME
     pipelines.kubeflow.org/pipeline_spec: '{"description": "Pipeline for somospie",
-      "name": "somospiepipeline"}'
+      "inputs": [{"default": "icr.io/somospie/somospie-gdal", "name": "container_image",
+      "optional": true, "type": "String"}, {"default": "3", "name": "total_tiles",
+      "optional": true, "type": "Integer"}, {"default": "oklahoma-30m", "name": "eval_cos",
+      "optional": true, "type": "String"}, {"default": "oklahoma-27km", "name": "train_cos",
+      "optional": true, "type": "String"}, {"default": "p-oklahoma-30m", "name": "predict_cos",
+      "optional": true, "type": "String"}, {"default": "13", "name": "mem_lim", "optional":
+      true, "type": "Integer"}, {"default": "3", "name": "random_seed", "optional":
+      true, "type": "Integer"}, {"default": "20", "name": "k_neighbors", "optional":
+      true, "type": "Integer"}, {"default": "2000", "name": "trees", "optional": true,
+      "type": "Integer"}], "name": "somospiepipeline"}'
   labels:
     pipelines.kubeflow.org/pipelinename: ''
     pipelines.kubeflow.org/generation: ''
 spec:
+  params:
+  - name: container_image
+    value: icr.io/somospie/somospie-gdal
+  - name: eval_cos
+    value: oklahoma-30m
+  - name: k_neighbors
+    value: '20'
+  - name: mem_lim
+    value: '13'
+  - name: predict_cos
+    value: p-oklahoma-30m
+  - name: random_seed
+    value: '3'
+  - name: total_tiles
+    value: '3'
+  - name: train_cos
+    value: oklahoma-27km
+  - name: trees
+    value: '2000'
   pipelineSpec:
+    params:
+    - name: container_image
+      default: icr.io/somospie/somospie-gdal
+    - name: eval_cos
+      default: oklahoma-30m
+    - name: k_neighbors
+      default: '20'
+    - name: mem_lim
+      default: '13'
+    - name: predict_cos
+      default: p-oklahoma-30m
+    - name: random_seed
+      default: '3'
+    - name: total_tiles
+      default: '3'
+    - name: train_cos
+      default: oklahoma-27km
+    - name: trees
+      default: '2000'
     tasks:
-    - name: odh-pvc
+    - name: pvc-eval
       params:
       - name: action
         value: create
@@ -45,6 +140,8 @@ spec:
             valueFrom: '{.metadata.name}'
           - name: size
             valueFrom: '{.status.capacity.storage}'
+      - name: eval_cos
+        value: $(params.eval_cos)
       taskSpec:
         params:
         - description: Action on the resource
@@ -76,6 +173,7 @@ spec:
           description: Enable set owner reference for created resource.
           name: set-ownerreference
           type: string
+        - name: eval_cos
         steps:
         - command:
           - kubeclient
@@ -89,10 +187,10 @@ spec:
               annotations:
                 ibm.io/auto-create-bucket: 'false'
                 ibm.io/auto-delete-bucket: 'false'
-                ibm.io/bucket: odh-oklahoma1km
+                ibm.io/bucket: $(inputs.params.eval_cos)
                 ibm.io/endpoint: https://s3.us-east.cloud-object-storage.appdomain.cloud
                 ibm.io/secret-name: po-secret
-              name: $(PIPELINERUN)-pvc-odh-oklahoma1km
+              name: $(PIPELINERUN)-pvc-odh-eval
             spec:
               accessModes:
               - ReadWriteOnce
@@ -125,18 +223,218 @@ spec:
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
+      retries: 3
+    - name: pvc-train
+      params:
+      - name: action
+        value: create
+      - name: output
+        value: |
+          - name: manifest
+            valueFrom: '{}'
+          - name: name
+            valueFrom: '{.metadata.name}'
+          - name: size
+            valueFrom: '{.status.capacity.storage}'
+      - name: train_cos
+        value: $(params.train_cos)
+      taskSpec:
+        params:
+        - description: Action on the resource
+          name: action
+          type: string
+        - default: strategic
+          description: Merge strategy when using action patch
+          name: merge-strategy
+          type: string
+        - default: ''
+          description: An express to retrieval data from resource.
+          name: output
+          type: string
+        - default: ''
+          description: A label selector express to decide if the action on resource
+            is success.
+          name: success-condition
+          type: string
+        - default: ''
+          description: A label selector express to decide if the action on resource
+            is failure.
+          name: failure-condition
+          type: string
+        - default: quay.io/aipipeline/kubectl-wrapper:latest
+          description: Kubectl wrapper image
+          name: image
+          type: string
+        - default: "false"
+          description: Enable set owner reference for created resource.
+          name: set-ownerreference
+          type: string
+        - name: train_cos
+        steps:
+        - command:
+          - kubeclient
+          args:
+          - --action=$(params.action)
+          - --merge-strategy=$(params.merge-strategy)
+          - |
+            --manifest=apiVersion: v1
+            kind: PersistentVolumeClaim
+            metadata:
+              annotations:
+                ibm.io/auto-create-bucket: 'false'
+                ibm.io/auto-delete-bucket: 'false'
+                ibm.io/bucket: $(inputs.params.train_cos)
+                ibm.io/endpoint: https://s3.us-east.cloud-object-storage.appdomain.cloud
+                ibm.io/secret-name: po-secret
+              name: $(PIPELINERUN)-pvc-odh-train
+            spec:
+              accessModes:
+              - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 10Gi
+              storageClassName: ibmc-s3fs-standard-regional
+          - --output=$(params.output)
+          - --success-condition=$(params.success-condition)
+          - --failure-condition=$(params.failure-condition)
+          - --set-ownerreference=$(params.set-ownerreference)
+          image: $(params.image)
+          name: main
+          resources: {}
+          env:
+          - name: PIPELINERUN
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.labels['tekton.dev/pipelineRun']
+        results:
+        - name: manifest
+          type: string
+          description: '{}'
+        - name: name
+          type: string
+          description: '{.metadata.name}'
+        - name: size
+          type: string
+          description: '{.status.capacity.storage}'
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+      retries: 3
+    - name: pvc-predictions
+      params:
+      - name: action
+        value: create
+      - name: output
+        value: |
+          - name: manifest
+            valueFrom: '{}'
+          - name: name
+            valueFrom: '{.metadata.name}'
+          - name: size
+            valueFrom: '{.status.capacity.storage}'
+      - name: predict_cos
+        value: $(params.predict_cos)
+      taskSpec:
+        params:
+        - description: Action on the resource
+          name: action
+          type: string
+        - default: strategic
+          description: Merge strategy when using action patch
+          name: merge-strategy
+          type: string
+        - default: ''
+          description: An express to retrieval data from resource.
+          name: output
+          type: string
+        - default: ''
+          description: A label selector express to decide if the action on resource
+            is success.
+          name: success-condition
+          type: string
+        - default: ''
+          description: A label selector express to decide if the action on resource
+            is failure.
+          name: failure-condition
+          type: string
+        - default: quay.io/aipipeline/kubectl-wrapper:latest
+          description: Kubectl wrapper image
+          name: image
+          type: string
+        - default: "false"
+          description: Enable set owner reference for created resource.
+          name: set-ownerreference
+          type: string
+        - name: predict_cos
+        steps:
+        - command:
+          - kubeclient
+          args:
+          - --action=$(params.action)
+          - --merge-strategy=$(params.merge-strategy)
+          - |
+            --manifest=apiVersion: v1
+            kind: PersistentVolumeClaim
+            metadata:
+              annotations:
+                ibm.io/auto-create-bucket: 'false'
+                ibm.io/auto-delete-bucket: 'false'
+                ibm.io/bucket: $(inputs.params.predict_cos)
+                ibm.io/endpoint: https://s3.us-east.cloud-object-storage.appdomain.cloud
+                ibm.io/secret-name: po-secret
+              name: $(PIPELINERUN)-pvc-odh-predictions
+            spec:
+              accessModes:
+              - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 10Gi
+              storageClassName: ibmc-s3fs-standard-regional
+          - --output=$(params.output)
+          - --success-condition=$(params.success-condition)
+          - --failure-condition=$(params.failure-condition)
+          - --set-ownerreference=$(params.set-ownerreference)
+          image: $(params.image)
+          name: main
+          resources: {}
+          env:
+          - name: PIPELINERUN
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.labels['tekton.dev/pipelineRun']
+        results:
+        - name: manifest
+          type: string
+          description: '{}'
+        - name: name
+          type: string
+          description: '{.metadata.name}'
+        - name: size
+          type: string
+          description: '{.status.capacity.storage}'
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+      retries: 3
     - name: load-data
       params:
-      - name: odh-pvc-name
-        value: $(tasks.odh-pvc.results.name)
+      - name: container_image
+        value: $(params.container_image)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
       taskSpec:
         steps:
         - name: main
           args:
           - --input-path
+          - /cos/train.csv
+          - --dir
           - /cos/
+          - --out-data
+          - /cos/data.json
           - '----output-paths'
-          - $(results.Output.path)
+          - $(results.data.path)
+          - $(results.scaler.path)
           command:
           - sh
           - -ec
@@ -145,7 +443,7 @@ spec:
             printf "%s" "$0" > "$program_path"
             python3 -u "$program_path" "$@"
           - |
-            def load_data(input_path):
+            def load_data(input_path,dir, out_data):
                 import numpy as np
                 import json
                 import pandas as pd
@@ -154,7 +452,7 @@ spec:
                 from sklearn.model_selection import train_test_split
 
                 print("Reading training data from", input_path)
-                training_data = pd.read_csv(input_path+"train.csv")
+                training_data = pd.read_csv(input_path)
                 col = list(training_data.columns)
                 col[2] = 'z'
                 training_data.columns = col
@@ -168,7 +466,7 @@ spec:
                 #print(x_train,"\n",y_train,"TEST\n",x_test,y_test)
 
                 # Save scaler model so it can be reused for predicting
-                pickle.dump(ss, open(input_path+'scaler.pkl', 'wb'))
+                pickle.dump(ss, open(dir+'scaler.pkl', 'wb'))
 
                 # Save data to train with different ml-models
                 data = {'x_train' : x_train.tolist(),
@@ -179,12 +477,12 @@ spec:
                 data_json = json.dumps(data)
 
                 # Saves the json object into a file
-                with open(input_path+"data.json", 'w') as out_file:
+                with open(out_data, 'w') as out_file:
                     json.dump(data_json, out_file)
 
                    # Create path to where data and scaler are saved
 
-                return input_path
+                return [out_data,dir+'scaler.pkl']
 
             def _serialize_str(str_value: str) -> str:
                 if not isinstance(str_value, str):
@@ -195,15 +493,16 @@ spec:
             import argparse
             _parser = argparse.ArgumentParser(prog='Load data', description='')
             _parser.add_argument("--input-path", dest="input_path", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
+            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("--out-data", dest="out_data", type=str, required=True, default=argparse.SUPPRESS)
+            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=2)
             _parsed_args = vars(_parser.parse_args())
             _output_files = _parsed_args.pop("_output_paths", [])
 
             _outputs = load_data(**_parsed_args)
 
-            _outputs = [_outputs]
-
             _output_serializers = [
+                _serialize_str,
                 _serialize_str,
 
             ]
@@ -216,195 +515,56 @@ spec:
                     pass
                 with open(output_file, 'w') as f:
                     f.write(_output_serializers[idx](_outputs[idx]))
-          image: olayap/somospie
+          image: $(inputs.params.container_image)
           volumeMounts:
           - mountPath: /cos/
-            name: odh-pvc
+            name: pvc-train
         params:
-        - name: odh-pvc-name
+        - name: container_image
+        - name: pvc-train-name
         results:
-        - name: Output
+        - name: data
           type: string
-          description: /tmp/outputs/Output/data
+          description: /tmp/outputs/data/data
+        - name: scaler
+          type: string
+          description: /tmp/outputs/scaler/data
         volumes:
-        - name: odh-pvc
+        - name: pvc-train
           persistentVolumeClaim:
-            claimName: $(inputs.params.odh-pvc-name)
+            claimName: $(inputs.params.pvc-train-name)
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Load data", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Load data@sha256=33a8ae8d0291fca61c85c1528016c7dd1047fd0d948c8849b105fad091f3f6d3"}'
-    - name: knn-train
-      params:
-      - name: load-data-Output
-        value: $(tasks.load-data.results.Output)
-      - name: odh-pvc-name
-        value: $(tasks.odh-pvc.results.name)
-      taskSpec:
-        steps:
-        - name: main
-          args:
-          - --data-path
-          - $(inputs.params.load-data-Output)
-          - --k
-          - '20'
-          - --seed
-          - '3'
-          - '----output-paths'
-          - $(results.Output.path)
-          command:
-          - sh
-          - -ec
-          - |
-            program_path=$(mktemp)
-            printf "%s" "$0" > "$program_path"
-            python3 -u "$program_path" "$@"
-          - "def knn_train (data_path, k, seed):\n    import numpy as np\n    import\
-            \ pickle\n    import json\n    from sklearn.neighbors import KNeighborsRegressor\n\
-            \    from sklearn.model_selection import RandomizedSearchCV\n    from\
-            \ sklearn.metrics import mean_squared_error\n\n    # Define functions\
-            \ for training\n    def random_parameter_search(knn, x_train, y_train,\
-            \ maxK, seed):\n        # Dictionary with all the hyperparameter options\
-            \ for the knn model: n_neighbors, weights, metric\n        params = {'n_neighbors':\
-            \ list(range(2,maxK)),\n            'weights': ['uniform','distance',\
-            \ gaussian],\n            'metric': ['euclidean','minkowski']\n      \
-            \          }\n        # Random search based on the grid of params and\
-            \ n_iter controls number of random combinations it will try\n        #\
-            \ n_jobs=-1 means using all processors\n        # random_state sets the\
-            \ seed for manner of reproducibility \n        params_search = RandomizedSearchCV(knn,\
-            \ params, verbose=1, cv=10, n_iter=50, random_state=seed, n_jobs=-1)\n\
-            \        params_search.fit(x_train,y_train)\n        # Check the results\
-            \ from the parameter search  \n        print(params_search.best_score_)\n\
-            \        print(params_search.best_params_)\n        print(params_search.best_estimator_)\n\
-            \        return params_search.best_params_\n\n    def gaussian(dist, sigma\
-            \ = 4):\n        # Input a distance and return its weight using the gaussian\
-            \ kernel \n        weight = np.exp(-dist**2/(2*sigma**2))\n        return\
-            \ weight\n\n    def validate_knn(knn, x_test, y_test):\n        # Predict\
-            \ on x_test\n        y_test_predicted = knn.predict(x_test)\n        #\
-            \ Measure the rmse\n        rmse = np.sqrt(mean_squared_error(y_test,\
-            \ y_test_predicted))\n        # Print error\t\n        #print(\"Predictions\
-            \ of soil moisture:\", y_test_predicted)\n        #print(\"Original values\
-            \ of soil moisture:\", y_test)\n        print(\"The rmse for the validation\
-            \ is:\", rmse)\n\n    print(\"Reading training data from\", data_path)\n\
-            \        # Open and reads file \"data\"\n    with open(data_path+\"data.json\"\
-            ) as data_file:\n        data = json.load(data_file)\n\n    data = json.loads(data)\n\
-            \n    x_train = data['x_train']\n    y_train = data['y_train']\n    x_test\
-            \ = data['x_test']\n    y_test = data['y_test']\n    #print(training_data)\n\
-            \    maxK = int(k)\n    seed = int(seed)\n\n        # Define initial model\n\
-            \    knn = KNeighborsRegressor()\n    # Random parameter search of n_neighbors,\
-            \ weigths and metric\n    best_params = random_parameter_search(knn, x_train,\
-            \ y_train, maxK, seed)\n    # Based on selection build the new regressor\n\
-            \    knn = KNeighborsRegressor(n_neighbors=best_params['n_neighbors'],\
-            \ weights=best_params['weights'],\n    \t\t\t\tmetric=best_params['metric'],\
-            \ n_jobs=-1)\n    # Fit the new model to data\n    knn.fit(x_train, y_train)\n\
-            \    # Save model\n    pickle.dump(knn, open(data_path+'model_knn.pkl',\
-            \ 'wb'))\n\n    # Validate\n    validate_knn(knn, x_test, y_test)\n  \
-            \  return data_path\n\ndef _serialize_str(str_value: str) -> str:\n  \
-            \  if not isinstance(str_value, str):\n        raise TypeError('Value\
-            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
-            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
-            \ = argparse.ArgumentParser(prog='Knn train', description='')\n_parser.add_argument(\"\
-            --data-path\", dest=\"data_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--k\", dest=\"k\", type=int, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--seed\", dest=\"seed\", type=int, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
-            , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
-            _output_files = _parsed_args.pop(\"_output_paths\", [])\n\n_outputs =\
-            \ knn_train(**_parsed_args)\n\n_outputs = [_outputs]\n\n_output_serializers\
-            \ = [\n    _serialize_str,\n\n]\n\nimport os\nfor idx, output_file in\
-            \ enumerate(_output_files):\n    try:\n        os.makedirs(os.path.dirname(output_file))\n\
-            \    except OSError:\n        pass\n    with open(output_file, 'w') as\
-            \ f:\n        f.write(_output_serializers[idx](_outputs[idx]))\n"
-          image: olayap/somospie
-          volumeMounts:
-          - mountPath: /cos/
-            name: odh-pvc
-        params:
-        - name: load-data-Output
-        - name: odh-pvc-name
-        results:
-        - name: Output
-          type: string
-          description: /tmp/outputs/Output/data
-        volumes:
-        - name: odh-pvc
-          persistentVolumeClaim:
-            claimName: $(inputs.params.odh-pvc-name)
-        metadata:
-          labels:
-            pipelines.kubeflow.org/cache_enabled: "true"
-          annotations:
-            pipelines.kubeflow.org/component_spec_digest: '{"name": "Knn train", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Knn train@sha256=984a96a84a4ef35c06e0088fe17a4880c95349678c2f6859965df4659c82fd90"}'
-    - name: knn-inference
-      params:
-      - name: knn-train-Output
-        value: $(tasks.knn-train.results.Output)
-      - name: odh-pvc-name
-        value: $(tasks.odh-pvc.results.name)
-      taskSpec:
-        steps:
-        - name: main
-          args:
-          - --eval-path
-          - $(inputs.params.knn-train-Output)
-          command:
-          - sh
-          - -ec
-          - |
-            program_path=$(mktemp)
-            printf "%s" "$0" > "$program_path"
-            python3 -u "$program_path" "$@"
-          - "def knn_inference (eval_path):\n    import numpy as np\n    import pandas\
-            \ as pd\n    import pickle\n\n    print(\"Reading evaluation data from\"\
-            , eval_path)\n    evaluation_data = pd.read_csv(eval_path+'eval.csv')\n\
-            \    # Load ss model\n    ss = pickle.load(open(eval_path+'scaler.pkl',\
-            \ 'rb'))\n    x_predict = ss.transform(evaluation_data)\n    # Load knn\
-            \ regressor\n    knn = pickle.load(open(eval_path+'model_knn.pkl', 'rb'))\n\
-            \    # Predict on evaluation data\n    y_predict = knn.predict(x_predict)\n\
-            \    # Create dataframe with long, lat, soil moisture\n    out_df = pd.DataFrame(data={'x':evaluation_data['x'].round(decimals=9),\
-            \ 'y':evaluation_data['y'].round(decimals=9), 'sm':y_predict})\n    out_df\
-            \ = out_df.reindex(['x','y','sm'], axis=1)\n    #Print to file predictions\
-            \ \n    out_df.to_csv(eval_path+\"predictions_knn.csv\", index=False,\
-            \ header=False)\n\nimport argparse\n_parser = argparse.ArgumentParser(prog='Knn\
-            \ inference', description='')\n_parser.add_argument(\"--eval-path\", dest=\"\
-            eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n_parsed_args\
-            \ = vars(_parser.parse_args())\n\n_outputs = knn_inference(**_parsed_args)\n"
-          image: olayap/somospie
-          volumeMounts:
-          - mountPath: /cos/
-            name: odh-pvc
-        params:
-        - name: knn-train-Output
-        - name: odh-pvc-name
-        volumes:
-        - name: odh-pvc
-          persistentVolumeClaim:
-            claimName: $(inputs.params.odh-pvc-name)
-        metadata:
-          labels:
-            pipelines.kubeflow.org/cache_enabled: "true"
-          annotations:
-            pipelines.kubeflow.org/component_spec_digest: '{"name": "Knn inference",
-              "outputs": [], "version": "Knn inference@sha256=096091400df41ef18f1019e591e98cf298e8e94c80f8da30fcbde0a0722540ca"}'
+              [{"name": "data", "type": "String"}, {"name": "scaler", "type": "String"}],
+              "version": "Load data@sha256=562c2c944871e810bcb557b257d9a4cf4c184620ff22253c4b81f300100408e0"}'
+      retries: 3
     - name: rf-train
       params:
-      - name: load-data-Output
-        value: $(tasks.load-data.results.Output)
-      - name: odh-pvc-name
-        value: $(tasks.odh-pvc.results.name)
+      - name: container_image
+        value: $(params.container_image)
+      - name: load-data-data
+        value: $(tasks.load-data.results.data)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: random_seed
+        value: $(params.random_seed)
+      - name: trees
+        value: $(params.trees)
       taskSpec:
         steps:
         - name: main
           args:
           - --data-path
-          - $(inputs.params.load-data-Output)
+          - $(inputs.params.load-data-data)
           - --maxtree
-          - '2000'
+          - $(inputs.params.trees)
           - --seed
-          - '3'
+          - $(inputs.params.random_seed)
+          - --out-model
+          - /cos/model_rf.pkl
           - '----output-paths'
           - $(results.Output.path)
           command:
@@ -414,16 +574,16 @@ spec:
             program_path=$(mktemp)
             printf "%s" "$0" > "$program_path"
             python3 -u "$program_path" "$@"
-          - "def rf_train(data_path, maxtree, seed):\n    # Libraries\n    import\
-            \ numpy as np\n    import json\n    import pickle\n    from sklearn.ensemble\
-            \ import RandomForestRegressor\n    from sklearn.model_selection import\
-            \ RandomizedSearchCV\n    from sklearn.metrics import mean_squared_error\n\
-            \n    # Functions \n    def random_parameter_search(rf, x_train, y_train,\
-            \ maxtree, seed):\n        # Number of trees in random forest\n      \
-            \  n_estimators = [int(x) for x in np.linspace(start = 300, stop = maxtree,\
-            \ num = 100)]\n        # Number of features to consider at every split\n\
-            \        max_features = ['auto', 'sqrt']\n        # Maximum number of\
-            \ levels in tree\n        max_depth = [int(x) for x in np.linspace(10,\
+          - "def rf_train(data_path, maxtree, seed, out_model):\n    # Libraries\n\
+            \    import numpy as np\n    import json\n    import pickle\n    from\
+            \ sklearn.ensemble import RandomForestRegressor\n    from sklearn.model_selection\
+            \ import RandomizedSearchCV\n    from sklearn.metrics import mean_squared_error\n\
+            \    import os\n\n    # Functions \n    def random_parameter_search(rf,\
+            \ x_train, y_train, maxtree, seed):\n        # Number of trees in random\
+            \ forest\n        n_estimators = [int(x) for x in np.linspace(start =\
+            \ 300, stop = maxtree, num = 100)]\n        # Number of features to consider\
+            \ at every split\n        max_features = ['auto', 'sqrt']\n        # Maximum\
+            \ number of levels in tree\n        max_depth = [int(x) for x in np.linspace(10,\
             \ 110, num = 11)]\n        max_depth.append(None)\n        # Minimum number\
             \ of samples required to split a node\n        min_samples_split = [2,\
             \ 5, 10]\n        # Minimum number of samples required at each leaf node\n\
@@ -446,26 +606,31 @@ spec:
             \ y_test_predicted))\n        # Print error\t\n        #print(\"Predictions\
             \ of soil moisture:\", y_test_predicted)\n        #print(\"Original values\
             \ of soil moisture:\", y_test)\n        print(\"The rmse for the validation\
-            \ is:\", rmse)\n\n    # Start by reading the data\n    print(\"Reading\
-            \ training data from\", data_path)\n    # Open and reads file \"data\"\
-            \n    with open(data_path+\"data.json\") as data_file:\n        data =\
-            \ json.load(data_file)\n\n    data = json.loads(data)\n\n    x_train =\
-            \ data['x_train']\n    y_train = data['y_train']\n    x_test = data['x_test']\n\
-            \    y_test = data['y_test']\n    #print(training_data)\n\n    # Define\
-            \ initial model\n    rf = RandomForestRegressor()\n    # Random parameter\
-            \ search for rf\n    best_rf = random_parameter_search(rf, x_train, y_train,\
-            \ maxtree, seed)\n    best_rf.fit(x_train, y_train)\n    #Path(args.pathtomodel).parent.mkdir(parents=True,\
-            \ exist_ok=True)\n    pickle.dump(best_rf, open(data_path+'model_rf.pkl',\
-            \ 'wb'))\n    # Validate\n    validate_rf(best_rf, x_test, y_test)\n \
-            \   return data_path\n\ndef _serialize_str(str_value: str) -> str:\n \
-            \   if not isinstance(str_value, str):\n        raise TypeError('Value\
-            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
-            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
-            \ = argparse.ArgumentParser(prog='Rf train', description='')\n_parser.add_argument(\"\
-            --data-path\", dest=\"data_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--maxtree\", dest=\"maxtree\", type=int, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--seed\", dest=\"\
-            seed\", type=int, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
+            \ is:\", rmse)\n\n    print(\"Checking if model \", out_model, \" exists\"\
+            )\n    if os.path.isfile(out_model):\n        print(\"The model \", out_model,\
+            \ \" exists\")\n        return out_model\n    else:\n        # Start by\
+            \ reading the data\n        print(\"Reading training data from\", data_path)\n\
+            \        # Open and reads file \"data\"\n        with open(data_path)\
+            \ as data_file:\n            data = json.load(data_file)\n\n        data\
+            \ = json.loads(data)\n\n        x_train = data['x_train']\n        y_train\
+            \ = data['y_train']\n        x_test = data['x_test']\n        y_test =\
+            \ data['y_test']\n        #print(training_data)\n\n        # Define initial\
+            \ model\n        rf = RandomForestRegressor()\n        # Random parameter\
+            \ search for rf\n        best_rf = random_parameter_search(rf, x_train,\
+            \ y_train, maxtree, seed)\n        best_rf.fit(x_train, y_train)\n   \
+            \     #Path(args.pathtomodel).parent.mkdir(parents=True, exist_ok=True)\n\
+            \        pickle.dump(best_rf, open(out_model, 'wb'))\n        # Validate\n\
+            \        validate_rf(best_rf, x_test, y_test)\n        return out_model\n\
+            \ndef _serialize_str(str_value: str) -> str:\n    if not isinstance(str_value,\
+            \ str):\n        raise TypeError('Value \"{}\" has type \"{}\" instead\
+            \ of str.'.format(\n            str(str_value), str(type(str_value))))\n\
+            \    return str_value\n\nimport argparse\n_parser = argparse.ArgumentParser(prog='Rf\
+            \ train', description='')\n_parser.add_argument(\"--data-path\", dest=\"\
+            data_path\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
+            --maxtree\", dest=\"maxtree\", type=int, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--seed\", dest=\"seed\", type=int, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-model\", dest=\"\
+            out_model\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
             ----output-paths\", dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args\
             \ = vars(_parser.parse_args())\n_output_files = _parsed_args.pop(\"_output_paths\"\
             , [])\n\n_outputs = rf_train(**_parsed_args)\n\n_outputs = [_outputs]\n\
@@ -473,39 +638,63 @@ spec:
             \ idx, output_file in enumerate(_output_files):\n    try:\n        os.makedirs(os.path.dirname(output_file))\n\
             \    except OSError:\n        pass\n    with open(output_file, 'w') as\
             \ f:\n        f.write(_output_serializers[idx](_outputs[idx]))\n"
-          image: olayap/somospie
+          image: $(inputs.params.container_image)
           volumeMounts:
           - mountPath: /cos/
-            name: odh-pvc
+            name: pvc-train
         params:
-        - name: load-data-Output
-        - name: odh-pvc-name
+        - name: container_image
+        - name: load-data-data
+        - name: pvc-train-name
+        - name: random_seed
+        - name: trees
         results:
         - name: Output
           type: string
           description: /tmp/outputs/Output/data
         volumes:
-        - name: odh-pvc
+        - name: pvc-train
           persistentVolumeClaim:
-            claimName: $(inputs.params.odh-pvc-name)
+            claimName: $(inputs.params.pvc-train-name)
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Rf train", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Rf train@sha256=150ae76443e3ce6a8fe9ac21cda44d3958667d6be78336372c2da4fb39a3cea5"}'
+              [{"name": "Output", "type": "String"}], "version": "Rf train@sha256=aa9cb499f8476811cab1240a25243f7446e226c2cf204bafdc6b5c240a68589c"}'
+      retries: 3
     - name: rf-inference
       params:
-      - name: odh-pvc-name
-        value: $(tasks.odh-pvc.results.name)
+      - name: container_image
+        value: $(params.container_image)
+      - name: load-data-scaler
+        value: $(tasks.load-data.results.scaler)
+      - name: pvc-eval-name
+        value: $(tasks.pvc-eval.results.name)
+      - name: pvc-predictions-name
+        value: $(tasks.pvc-predictions.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
       - name: rf-train-Output
         value: $(tasks.rf-train.results.Output)
       taskSpec:
         steps:
         - name: main
           args:
-          - --eval-path
+          - --model-path
           - $(inputs.params.rf-train-Output)
+          - --scaler-path
+          - $(inputs.params.load-data-scaler)
+          - --eval-path
+          - /eval/eval_tile_0000.tif
+          - --out-dir
+          - /out_rf/rf/
+          - --predictions
+          - /out_rf/rf/eval_tile_0000.csv
+          - --band-names
+          - '["elevation", "aspect", "slope", "twi"]'
+          - '----output-paths'
+          - $(results.Output.path)
           command:
           - sh
           - -ec
@@ -513,35 +702,1144 @@ spec:
             program_path=$(mktemp)
             printf "%s" "$0" > "$program_path"
             python3 -u "$program_path" "$@"
-          - "def rf_inference(eval_path):\n    # Libraries\n    import numpy as np\n\
-            \    import pandas as pd\n    import pickle\n\n    print(\"Reading evaluation\
-            \ data from\", eval_path)\n    evaluation_data = pd.read_csv(eval_path+'eval.csv')\n\
-            \    # Load ss model\n    ss = pickle.load(open(eval_path+'scaler.pkl',\
+          - "def rf_inference(model_path, scaler_path, eval_path, out_dir, predictions,\
+            \ band_names):\n    # Libraries\n    import numpy as np\n    import pandas\
+            \ as pd\n    import pickle\n    from osgeo import gdal, ogr  \n    import\
+            \ sklearn\n\n    def tif2df(raster_file, band_names) :\n        ds = gdal.Open(raster_file,\
+            \ 0)\n        xmin, res, _, ymax, _, _ = ds.GetGeoTransform()\n      \
+            \  xsize = ds.RasterXSize\n        ysize = ds.RasterYSize\n        xstart\
+            \ = xmin + res / 2\n        ystart = ymax - res / 2\n\n        x = np.arange(xstart,\
+            \ xstart + xsize * res, res)\n        y = np.arange(ystart, ystart - ysize\
+            \ * res, -res)\n        x = np.tile(x[:xsize], ysize)\n        y = np.repeat(y[:ysize],\
+            \ xsize)\n\n        n_bands = ds.RasterCount\n        bands = np.zeros((x.shape[0],\
+            \ n_bands))\n        for k in range(1, n_bands + 1):\n            band\
+            \ = ds.GetRasterBand(k)\n            data = band.ReadAsArray()\n     \
+            \       data = np.ma.array(data, mask=np.equal(data, band.GetNoDataValue()))\n\
+            \            data = data.filled(np.nan)\n            bands[:, k-1] = data.flatten()\n\
+            \n        column_names = ['x', 'y'] + band_names\n        stack = np.column_stack((x,\
+            \ y, bands))\n        df = pd.DataFrame(stack, columns=column_names)\n\
+            \        df.dropna(inplace=True)\n        print(df.info())\n        #df.to_csv(output_file,\
+            \ index=None)\n        return df\n\n    print(\"Reading evaluation data\
+            \ from\", eval_path)\n    evaluation_data = tif2df(eval_path, band_names)\n\
+            \    #evaluation_data = eval_path\n    # Load ss model\n    ss = pickle.load(open(scaler_path,\
             \ 'rb'))\n    x_predict = ss.transform(evaluation_data)\n    # Load knn\
-            \ regressor\n    rf = pickle.load(open(eval_path+'model_rf.pkl', 'rb'))\n\
-            \    # Predict on evaluation data\n    y_predict = rf.predict(x_predict)\n\
-            \    # Create dataframe with long, lat, soil moisture\n    out_df = pd.DataFrame(data={'x':evaluation_data['x'].round(decimals=9),\
+            \ regressor\n    rf = pickle.load(open(model_path, 'rb'))\n    # Predict\
+            \ on evaluation data\n    y_predict = rf.predict(x_predict)\n    # Create\
+            \ dataframe with long, lat, soil moisture\n    out_df = pd.DataFrame(data={'x':evaluation_data['x'].round(decimals=9),\
             \ 'y':evaluation_data['y'].round(decimals=9), 'sm':y_predict})\n    out_df\
             \ = out_df.reindex(['x','y','sm'], axis=1)\n    # Print to file predictions\
-            \ \n    out_df.to_csv(eval_path+'predictions_rf.csv', index=False, header=False)\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Rf inference',\
-            \ description='')\n_parser.add_argument(\"--eval-path\", dest=\"eval_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parsed_args =\
-            \ vars(_parser.parse_args())\n\n_outputs = rf_inference(**_parsed_args)\n"
-          image: olayap/somospie
+            \ \n    import os\n    if not os.path.exists(out_dir):\n        os.makedirs(out_dir)\n\
+            \    out_df.to_csv(predictions, index=False, header=False)\n    return\
+            \ predictions\n\ndef _serialize_str(str_value: str) -> str:\n    if not\
+            \ isinstance(str_value, str):\n        raise TypeError('Value \"{}\" has\
+            \ type \"{}\" instead of str.'.format(\n            str(str_value), str(type(str_value))))\n\
+            \    return str_value\n\nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Rf\
+            \ inference', description='')\n_parser.add_argument(\"--model-path\",\
+            \ dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--band-names\", dest=\"band_names\", type=json.loads,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
+            , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
+            _output_files = _parsed_args.pop(\"_output_paths\", [])\n\n_outputs =\
+            \ rf_inference(**_parsed_args)\n\n_outputs = [_outputs]\n\n_output_serializers\
+            \ = [\n    _serialize_str,\n\n]\n\nimport os\nfor idx, output_file in\
+            \ enumerate(_output_files):\n    try:\n        os.makedirs(os.path.dirname(output_file))\n\
+            \    except OSError:\n        pass\n    with open(output_file, 'w') as\
+            \ f:\n        f.write(_output_serializers[idx](_outputs[idx]))\n"
+          image: $(inputs.params.container_image)
+          resources:
+            requests:
+              memory: 20G
           volumeMounts:
           - mountPath: /cos/
-            name: odh-pvc
+            name: pvc-train
+          - mountPath: /eval/
+            name: pvc-eval
+          - mountPath: /out_rf/
+            name: pvc-predictions
         params:
-        - name: odh-pvc-name
+        - name: container_image
+        - name: load-data-scaler
+        - name: pvc-eval-name
+        - name: pvc-predictions-name
+        - name: pvc-train-name
         - name: rf-train-Output
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
         volumes:
-        - name: odh-pvc
+        - name: pvc-eval
           persistentVolumeClaim:
-            claimName: $(inputs.params.odh-pvc-name)
+            claimName: $(inputs.params.pvc-eval-name)
+        - name: pvc-predictions
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-predictions-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
         metadata:
           labels:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Rf inference",
-              "outputs": [], "version": "Rf inference@sha256=a6a6d5029bde13feeaf44e3310b40fdae95c3fb8d852b62ba7eb24eb6dbaff84"}'
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Rf inference@sha256=8e8a749d86456f34fa15f0a4db4ae0464c5a73d68d9c8a260475425221f3db51"}'
+      retries: 3
+    - name: rf-inference-2
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: load-data-scaler
+        value: $(tasks.load-data.results.scaler)
+      - name: pvc-eval-name
+        value: $(tasks.pvc-eval.results.name)
+      - name: pvc-predictions-name
+        value: $(tasks.pvc-predictions.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: rf-train-Output
+        value: $(tasks.rf-train.results.Output)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --model-path
+          - $(inputs.params.rf-train-Output)
+          - --scaler-path
+          - $(inputs.params.load-data-scaler)
+          - --eval-path
+          - /eval/eval_tile_0001.tif
+          - --out-dir
+          - /out_rf/rf/
+          - --predictions
+          - /out_rf/rf/eval_tile_0001.csv
+          - --band-names
+          - '["elevation", "aspect", "slope", "twi"]'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - "def rf_inference(model_path, scaler_path, eval_path, out_dir, predictions,\
+            \ band_names):\n    # Libraries\n    import numpy as np\n    import pandas\
+            \ as pd\n    import pickle\n    from osgeo import gdal, ogr  \n    import\
+            \ sklearn\n\n    def tif2df(raster_file, band_names) :\n        ds = gdal.Open(raster_file,\
+            \ 0)\n        xmin, res, _, ymax, _, _ = ds.GetGeoTransform()\n      \
+            \  xsize = ds.RasterXSize\n        ysize = ds.RasterYSize\n        xstart\
+            \ = xmin + res / 2\n        ystart = ymax - res / 2\n\n        x = np.arange(xstart,\
+            \ xstart + xsize * res, res)\n        y = np.arange(ystart, ystart - ysize\
+            \ * res, -res)\n        x = np.tile(x[:xsize], ysize)\n        y = np.repeat(y[:ysize],\
+            \ xsize)\n\n        n_bands = ds.RasterCount\n        bands = np.zeros((x.shape[0],\
+            \ n_bands))\n        for k in range(1, n_bands + 1):\n            band\
+            \ = ds.GetRasterBand(k)\n            data = band.ReadAsArray()\n     \
+            \       data = np.ma.array(data, mask=np.equal(data, band.GetNoDataValue()))\n\
+            \            data = data.filled(np.nan)\n            bands[:, k-1] = data.flatten()\n\
+            \n        column_names = ['x', 'y'] + band_names\n        stack = np.column_stack((x,\
+            \ y, bands))\n        df = pd.DataFrame(stack, columns=column_names)\n\
+            \        df.dropna(inplace=True)\n        print(df.info())\n        #df.to_csv(output_file,\
+            \ index=None)\n        return df\n\n    print(\"Reading evaluation data\
+            \ from\", eval_path)\n    evaluation_data = tif2df(eval_path, band_names)\n\
+            \    #evaluation_data = eval_path\n    # Load ss model\n    ss = pickle.load(open(scaler_path,\
+            \ 'rb'))\n    x_predict = ss.transform(evaluation_data)\n    # Load knn\
+            \ regressor\n    rf = pickle.load(open(model_path, 'rb'))\n    # Predict\
+            \ on evaluation data\n    y_predict = rf.predict(x_predict)\n    # Create\
+            \ dataframe with long, lat, soil moisture\n    out_df = pd.DataFrame(data={'x':evaluation_data['x'].round(decimals=9),\
+            \ 'y':evaluation_data['y'].round(decimals=9), 'sm':y_predict})\n    out_df\
+            \ = out_df.reindex(['x','y','sm'], axis=1)\n    # Print to file predictions\
+            \ \n    import os\n    if not os.path.exists(out_dir):\n        os.makedirs(out_dir)\n\
+            \    out_df.to_csv(predictions, index=False, header=False)\n    return\
+            \ predictions\n\ndef _serialize_str(str_value: str) -> str:\n    if not\
+            \ isinstance(str_value, str):\n        raise TypeError('Value \"{}\" has\
+            \ type \"{}\" instead of str.'.format(\n            str(str_value), str(type(str_value))))\n\
+            \    return str_value\n\nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Rf\
+            \ inference', description='')\n_parser.add_argument(\"--model-path\",\
+            \ dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--band-names\", dest=\"band_names\", type=json.loads,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
+            , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
+            _output_files = _parsed_args.pop(\"_output_paths\", [])\n\n_outputs =\
+            \ rf_inference(**_parsed_args)\n\n_outputs = [_outputs]\n\n_output_serializers\
+            \ = [\n    _serialize_str,\n\n]\n\nimport os\nfor idx, output_file in\
+            \ enumerate(_output_files):\n    try:\n        os.makedirs(os.path.dirname(output_file))\n\
+            \    except OSError:\n        pass\n    with open(output_file, 'w') as\
+            \ f:\n        f.write(_output_serializers[idx](_outputs[idx]))\n"
+          image: $(inputs.params.container_image)
+          resources:
+            requests:
+              memory: 20G
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+          - mountPath: /eval/
+            name: pvc-eval
+          - mountPath: /out_rf/
+            name: pvc-predictions
+        params:
+        - name: container_image
+        - name: load-data-scaler
+        - name: pvc-eval-name
+        - name: pvc-predictions-name
+        - name: pvc-train-name
+        - name: rf-train-Output
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-eval
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-eval-name)
+        - name: pvc-predictions
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-predictions-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Rf inference",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Rf inference@sha256=8e8a749d86456f34fa15f0a4db4ae0464c5a73d68d9c8a260475425221f3db51"}'
+      retries: 3
+    - name: rf-inference-3
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: load-data-scaler
+        value: $(tasks.load-data.results.scaler)
+      - name: pvc-eval-name
+        value: $(tasks.pvc-eval.results.name)
+      - name: pvc-predictions-name
+        value: $(tasks.pvc-predictions.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: rf-train-Output
+        value: $(tasks.rf-train.results.Output)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --model-path
+          - $(inputs.params.rf-train-Output)
+          - --scaler-path
+          - $(inputs.params.load-data-scaler)
+          - --eval-path
+          - /eval/eval_tile_0002.tif
+          - --out-dir
+          - /out_rf/rf/
+          - --predictions
+          - /out_rf/rf/eval_tile_0002.csv
+          - --band-names
+          - '["elevation", "aspect", "slope", "twi"]'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - "def rf_inference(model_path, scaler_path, eval_path, out_dir, predictions,\
+            \ band_names):\n    # Libraries\n    import numpy as np\n    import pandas\
+            \ as pd\n    import pickle\n    from osgeo import gdal, ogr  \n    import\
+            \ sklearn\n\n    def tif2df(raster_file, band_names) :\n        ds = gdal.Open(raster_file,\
+            \ 0)\n        xmin, res, _, ymax, _, _ = ds.GetGeoTransform()\n      \
+            \  xsize = ds.RasterXSize\n        ysize = ds.RasterYSize\n        xstart\
+            \ = xmin + res / 2\n        ystart = ymax - res / 2\n\n        x = np.arange(xstart,\
+            \ xstart + xsize * res, res)\n        y = np.arange(ystart, ystart - ysize\
+            \ * res, -res)\n        x = np.tile(x[:xsize], ysize)\n        y = np.repeat(y[:ysize],\
+            \ xsize)\n\n        n_bands = ds.RasterCount\n        bands = np.zeros((x.shape[0],\
+            \ n_bands))\n        for k in range(1, n_bands + 1):\n            band\
+            \ = ds.GetRasterBand(k)\n            data = band.ReadAsArray()\n     \
+            \       data = np.ma.array(data, mask=np.equal(data, band.GetNoDataValue()))\n\
+            \            data = data.filled(np.nan)\n            bands[:, k-1] = data.flatten()\n\
+            \n        column_names = ['x', 'y'] + band_names\n        stack = np.column_stack((x,\
+            \ y, bands))\n        df = pd.DataFrame(stack, columns=column_names)\n\
+            \        df.dropna(inplace=True)\n        print(df.info())\n        #df.to_csv(output_file,\
+            \ index=None)\n        return df\n\n    print(\"Reading evaluation data\
+            \ from\", eval_path)\n    evaluation_data = tif2df(eval_path, band_names)\n\
+            \    #evaluation_data = eval_path\n    # Load ss model\n    ss = pickle.load(open(scaler_path,\
+            \ 'rb'))\n    x_predict = ss.transform(evaluation_data)\n    # Load knn\
+            \ regressor\n    rf = pickle.load(open(model_path, 'rb'))\n    # Predict\
+            \ on evaluation data\n    y_predict = rf.predict(x_predict)\n    # Create\
+            \ dataframe with long, lat, soil moisture\n    out_df = pd.DataFrame(data={'x':evaluation_data['x'].round(decimals=9),\
+            \ 'y':evaluation_data['y'].round(decimals=9), 'sm':y_predict})\n    out_df\
+            \ = out_df.reindex(['x','y','sm'], axis=1)\n    # Print to file predictions\
+            \ \n    import os\n    if not os.path.exists(out_dir):\n        os.makedirs(out_dir)\n\
+            \    out_df.to_csv(predictions, index=False, header=False)\n    return\
+            \ predictions\n\ndef _serialize_str(str_value: str) -> str:\n    if not\
+            \ isinstance(str_value, str):\n        raise TypeError('Value \"{}\" has\
+            \ type \"{}\" instead of str.'.format(\n            str(str_value), str(type(str_value))))\n\
+            \    return str_value\n\nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Rf\
+            \ inference', description='')\n_parser.add_argument(\"--model-path\",\
+            \ dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--band-names\", dest=\"band_names\", type=json.loads,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
+            , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
+            _output_files = _parsed_args.pop(\"_output_paths\", [])\n\n_outputs =\
+            \ rf_inference(**_parsed_args)\n\n_outputs = [_outputs]\n\n_output_serializers\
+            \ = [\n    _serialize_str,\n\n]\n\nimport os\nfor idx, output_file in\
+            \ enumerate(_output_files):\n    try:\n        os.makedirs(os.path.dirname(output_file))\n\
+            \    except OSError:\n        pass\n    with open(output_file, 'w') as\
+            \ f:\n        f.write(_output_serializers[idx](_outputs[idx]))\n"
+          image: $(inputs.params.container_image)
+          resources:
+            requests:
+              memory: 20G
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+          - mountPath: /eval/
+            name: pvc-eval
+          - mountPath: /out_rf/
+            name: pvc-predictions
+        params:
+        - name: container_image
+        - name: load-data-scaler
+        - name: pvc-eval-name
+        - name: pvc-predictions-name
+        - name: pvc-train-name
+        - name: rf-train-Output
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-eval
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-eval-name)
+        - name: pvc-predictions
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-predictions-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Rf inference",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Rf inference@sha256=8e8a749d86456f34fa15f0a4db4ae0464c5a73d68d9c8a260475425221f3db51"}'
+      retries: 3
+    - name: rf-inference-4
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: load-data-scaler
+        value: $(tasks.load-data.results.scaler)
+      - name: pvc-eval-name
+        value: $(tasks.pvc-eval.results.name)
+      - name: pvc-predictions-name
+        value: $(tasks.pvc-predictions.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: rf-train-Output
+        value: $(tasks.rf-train.results.Output)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --model-path
+          - $(inputs.params.rf-train-Output)
+          - --scaler-path
+          - $(inputs.params.load-data-scaler)
+          - --eval-path
+          - /eval/eval_tile_0003.tif
+          - --out-dir
+          - /out_rf/rf/
+          - --predictions
+          - /out_rf/rf/eval_tile_0003.csv
+          - --band-names
+          - '["elevation", "aspect", "slope", "twi"]'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - "def rf_inference(model_path, scaler_path, eval_path, out_dir, predictions,\
+            \ band_names):\n    # Libraries\n    import numpy as np\n    import pandas\
+            \ as pd\n    import pickle\n    from osgeo import gdal, ogr  \n    import\
+            \ sklearn\n\n    def tif2df(raster_file, band_names) :\n        ds = gdal.Open(raster_file,\
+            \ 0)\n        xmin, res, _, ymax, _, _ = ds.GetGeoTransform()\n      \
+            \  xsize = ds.RasterXSize\n        ysize = ds.RasterYSize\n        xstart\
+            \ = xmin + res / 2\n        ystart = ymax - res / 2\n\n        x = np.arange(xstart,\
+            \ xstart + xsize * res, res)\n        y = np.arange(ystart, ystart - ysize\
+            \ * res, -res)\n        x = np.tile(x[:xsize], ysize)\n        y = np.repeat(y[:ysize],\
+            \ xsize)\n\n        n_bands = ds.RasterCount\n        bands = np.zeros((x.shape[0],\
+            \ n_bands))\n        for k in range(1, n_bands + 1):\n            band\
+            \ = ds.GetRasterBand(k)\n            data = band.ReadAsArray()\n     \
+            \       data = np.ma.array(data, mask=np.equal(data, band.GetNoDataValue()))\n\
+            \            data = data.filled(np.nan)\n            bands[:, k-1] = data.flatten()\n\
+            \n        column_names = ['x', 'y'] + band_names\n        stack = np.column_stack((x,\
+            \ y, bands))\n        df = pd.DataFrame(stack, columns=column_names)\n\
+            \        df.dropna(inplace=True)\n        print(df.info())\n        #df.to_csv(output_file,\
+            \ index=None)\n        return df\n\n    print(\"Reading evaluation data\
+            \ from\", eval_path)\n    evaluation_data = tif2df(eval_path, band_names)\n\
+            \    #evaluation_data = eval_path\n    # Load ss model\n    ss = pickle.load(open(scaler_path,\
+            \ 'rb'))\n    x_predict = ss.transform(evaluation_data)\n    # Load knn\
+            \ regressor\n    rf = pickle.load(open(model_path, 'rb'))\n    # Predict\
+            \ on evaluation data\n    y_predict = rf.predict(x_predict)\n    # Create\
+            \ dataframe with long, lat, soil moisture\n    out_df = pd.DataFrame(data={'x':evaluation_data['x'].round(decimals=9),\
+            \ 'y':evaluation_data['y'].round(decimals=9), 'sm':y_predict})\n    out_df\
+            \ = out_df.reindex(['x','y','sm'], axis=1)\n    # Print to file predictions\
+            \ \n    import os\n    if not os.path.exists(out_dir):\n        os.makedirs(out_dir)\n\
+            \    out_df.to_csv(predictions, index=False, header=False)\n    return\
+            \ predictions\n\ndef _serialize_str(str_value: str) -> str:\n    if not\
+            \ isinstance(str_value, str):\n        raise TypeError('Value \"{}\" has\
+            \ type \"{}\" instead of str.'.format(\n            str(str_value), str(type(str_value))))\n\
+            \    return str_value\n\nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Rf\
+            \ inference', description='')\n_parser.add_argument(\"--model-path\",\
+            \ dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--band-names\", dest=\"band_names\", type=json.loads,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
+            , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
+            _output_files = _parsed_args.pop(\"_output_paths\", [])\n\n_outputs =\
+            \ rf_inference(**_parsed_args)\n\n_outputs = [_outputs]\n\n_output_serializers\
+            \ = [\n    _serialize_str,\n\n]\n\nimport os\nfor idx, output_file in\
+            \ enumerate(_output_files):\n    try:\n        os.makedirs(os.path.dirname(output_file))\n\
+            \    except OSError:\n        pass\n    with open(output_file, 'w') as\
+            \ f:\n        f.write(_output_serializers[idx](_outputs[idx]))\n"
+          image: $(inputs.params.container_image)
+          resources:
+            requests:
+              memory: 20G
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+          - mountPath: /eval/
+            name: pvc-eval
+          - mountPath: /out_rf/
+            name: pvc-predictions
+        params:
+        - name: container_image
+        - name: load-data-scaler
+        - name: pvc-eval-name
+        - name: pvc-predictions-name
+        - name: pvc-train-name
+        - name: rf-train-Output
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-eval
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-eval-name)
+        - name: pvc-predictions
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-predictions-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Rf inference",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Rf inference@sha256=8e8a749d86456f34fa15f0a4db4ae0464c5a73d68d9c8a260475425221f3db51"}'
+      retries: 3
+    - name: rf-inference-5
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: load-data-scaler
+        value: $(tasks.load-data.results.scaler)
+      - name: pvc-eval-name
+        value: $(tasks.pvc-eval.results.name)
+      - name: pvc-predictions-name
+        value: $(tasks.pvc-predictions.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: rf-train-Output
+        value: $(tasks.rf-train.results.Output)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --model-path
+          - $(inputs.params.rf-train-Output)
+          - --scaler-path
+          - $(inputs.params.load-data-scaler)
+          - --eval-path
+          - /eval/eval_tile_0004.tif
+          - --out-dir
+          - /out_rf/rf/
+          - --predictions
+          - /out_rf/rf/eval_tile_0004.csv
+          - --band-names
+          - '["elevation", "aspect", "slope", "twi"]'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - "def rf_inference(model_path, scaler_path, eval_path, out_dir, predictions,\
+            \ band_names):\n    # Libraries\n    import numpy as np\n    import pandas\
+            \ as pd\n    import pickle\n    from osgeo import gdal, ogr  \n    import\
+            \ sklearn\n\n    def tif2df(raster_file, band_names) :\n        ds = gdal.Open(raster_file,\
+            \ 0)\n        xmin, res, _, ymax, _, _ = ds.GetGeoTransform()\n      \
+            \  xsize = ds.RasterXSize\n        ysize = ds.RasterYSize\n        xstart\
+            \ = xmin + res / 2\n        ystart = ymax - res / 2\n\n        x = np.arange(xstart,\
+            \ xstart + xsize * res, res)\n        y = np.arange(ystart, ystart - ysize\
+            \ * res, -res)\n        x = np.tile(x[:xsize], ysize)\n        y = np.repeat(y[:ysize],\
+            \ xsize)\n\n        n_bands = ds.RasterCount\n        bands = np.zeros((x.shape[0],\
+            \ n_bands))\n        for k in range(1, n_bands + 1):\n            band\
+            \ = ds.GetRasterBand(k)\n            data = band.ReadAsArray()\n     \
+            \       data = np.ma.array(data, mask=np.equal(data, band.GetNoDataValue()))\n\
+            \            data = data.filled(np.nan)\n            bands[:, k-1] = data.flatten()\n\
+            \n        column_names = ['x', 'y'] + band_names\n        stack = np.column_stack((x,\
+            \ y, bands))\n        df = pd.DataFrame(stack, columns=column_names)\n\
+            \        df.dropna(inplace=True)\n        print(df.info())\n        #df.to_csv(output_file,\
+            \ index=None)\n        return df\n\n    print(\"Reading evaluation data\
+            \ from\", eval_path)\n    evaluation_data = tif2df(eval_path, band_names)\n\
+            \    #evaluation_data = eval_path\n    # Load ss model\n    ss = pickle.load(open(scaler_path,\
+            \ 'rb'))\n    x_predict = ss.transform(evaluation_data)\n    # Load knn\
+            \ regressor\n    rf = pickle.load(open(model_path, 'rb'))\n    # Predict\
+            \ on evaluation data\n    y_predict = rf.predict(x_predict)\n    # Create\
+            \ dataframe with long, lat, soil moisture\n    out_df = pd.DataFrame(data={'x':evaluation_data['x'].round(decimals=9),\
+            \ 'y':evaluation_data['y'].round(decimals=9), 'sm':y_predict})\n    out_df\
+            \ = out_df.reindex(['x','y','sm'], axis=1)\n    # Print to file predictions\
+            \ \n    import os\n    if not os.path.exists(out_dir):\n        os.makedirs(out_dir)\n\
+            \    out_df.to_csv(predictions, index=False, header=False)\n    return\
+            \ predictions\n\ndef _serialize_str(str_value: str) -> str:\n    if not\
+            \ isinstance(str_value, str):\n        raise TypeError('Value \"{}\" has\
+            \ type \"{}\" instead of str.'.format(\n            str(str_value), str(type(str_value))))\n\
+            \    return str_value\n\nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Rf\
+            \ inference', description='')\n_parser.add_argument(\"--model-path\",\
+            \ dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--band-names\", dest=\"band_names\", type=json.loads,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
+            , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
+            _output_files = _parsed_args.pop(\"_output_paths\", [])\n\n_outputs =\
+            \ rf_inference(**_parsed_args)\n\n_outputs = [_outputs]\n\n_output_serializers\
+            \ = [\n    _serialize_str,\n\n]\n\nimport os\nfor idx, output_file in\
+            \ enumerate(_output_files):\n    try:\n        os.makedirs(os.path.dirname(output_file))\n\
+            \    except OSError:\n        pass\n    with open(output_file, 'w') as\
+            \ f:\n        f.write(_output_serializers[idx](_outputs[idx]))\n"
+          image: $(inputs.params.container_image)
+          resources:
+            requests:
+              memory: 20G
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+          - mountPath: /eval/
+            name: pvc-eval
+          - mountPath: /out_rf/
+            name: pvc-predictions
+        params:
+        - name: container_image
+        - name: load-data-scaler
+        - name: pvc-eval-name
+        - name: pvc-predictions-name
+        - name: pvc-train-name
+        - name: rf-train-Output
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-eval
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-eval-name)
+        - name: pvc-predictions
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-predictions-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Rf inference",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Rf inference@sha256=8e8a749d86456f34fa15f0a4db4ae0464c5a73d68d9c8a260475425221f3db51"}'
+      retries: 3
+    - name: rf-inference-6
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: load-data-scaler
+        value: $(tasks.load-data.results.scaler)
+      - name: pvc-eval-name
+        value: $(tasks.pvc-eval.results.name)
+      - name: pvc-predictions-name
+        value: $(tasks.pvc-predictions.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: rf-train-Output
+        value: $(tasks.rf-train.results.Output)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --model-path
+          - $(inputs.params.rf-train-Output)
+          - --scaler-path
+          - $(inputs.params.load-data-scaler)
+          - --eval-path
+          - /eval/eval_tile_0005.tif
+          - --out-dir
+          - /out_rf/rf/
+          - --predictions
+          - /out_rf/rf/eval_tile_0005.csv
+          - --band-names
+          - '["elevation", "aspect", "slope", "twi"]'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - "def rf_inference(model_path, scaler_path, eval_path, out_dir, predictions,\
+            \ band_names):\n    # Libraries\n    import numpy as np\n    import pandas\
+            \ as pd\n    import pickle\n    from osgeo import gdal, ogr  \n    import\
+            \ sklearn\n\n    def tif2df(raster_file, band_names) :\n        ds = gdal.Open(raster_file,\
+            \ 0)\n        xmin, res, _, ymax, _, _ = ds.GetGeoTransform()\n      \
+            \  xsize = ds.RasterXSize\n        ysize = ds.RasterYSize\n        xstart\
+            \ = xmin + res / 2\n        ystart = ymax - res / 2\n\n        x = np.arange(xstart,\
+            \ xstart + xsize * res, res)\n        y = np.arange(ystart, ystart - ysize\
+            \ * res, -res)\n        x = np.tile(x[:xsize], ysize)\n        y = np.repeat(y[:ysize],\
+            \ xsize)\n\n        n_bands = ds.RasterCount\n        bands = np.zeros((x.shape[0],\
+            \ n_bands))\n        for k in range(1, n_bands + 1):\n            band\
+            \ = ds.GetRasterBand(k)\n            data = band.ReadAsArray()\n     \
+            \       data = np.ma.array(data, mask=np.equal(data, band.GetNoDataValue()))\n\
+            \            data = data.filled(np.nan)\n            bands[:, k-1] = data.flatten()\n\
+            \n        column_names = ['x', 'y'] + band_names\n        stack = np.column_stack((x,\
+            \ y, bands))\n        df = pd.DataFrame(stack, columns=column_names)\n\
+            \        df.dropna(inplace=True)\n        print(df.info())\n        #df.to_csv(output_file,\
+            \ index=None)\n        return df\n\n    print(\"Reading evaluation data\
+            \ from\", eval_path)\n    evaluation_data = tif2df(eval_path, band_names)\n\
+            \    #evaluation_data = eval_path\n    # Load ss model\n    ss = pickle.load(open(scaler_path,\
+            \ 'rb'))\n    x_predict = ss.transform(evaluation_data)\n    # Load knn\
+            \ regressor\n    rf = pickle.load(open(model_path, 'rb'))\n    # Predict\
+            \ on evaluation data\n    y_predict = rf.predict(x_predict)\n    # Create\
+            \ dataframe with long, lat, soil moisture\n    out_df = pd.DataFrame(data={'x':evaluation_data['x'].round(decimals=9),\
+            \ 'y':evaluation_data['y'].round(decimals=9), 'sm':y_predict})\n    out_df\
+            \ = out_df.reindex(['x','y','sm'], axis=1)\n    # Print to file predictions\
+            \ \n    import os\n    if not os.path.exists(out_dir):\n        os.makedirs(out_dir)\n\
+            \    out_df.to_csv(predictions, index=False, header=False)\n    return\
+            \ predictions\n\ndef _serialize_str(str_value: str) -> str:\n    if not\
+            \ isinstance(str_value, str):\n        raise TypeError('Value \"{}\" has\
+            \ type \"{}\" instead of str.'.format(\n            str(str_value), str(type(str_value))))\n\
+            \    return str_value\n\nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Rf\
+            \ inference', description='')\n_parser.add_argument(\"--model-path\",\
+            \ dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--band-names\", dest=\"band_names\", type=json.loads,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
+            , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
+            _output_files = _parsed_args.pop(\"_output_paths\", [])\n\n_outputs =\
+            \ rf_inference(**_parsed_args)\n\n_outputs = [_outputs]\n\n_output_serializers\
+            \ = [\n    _serialize_str,\n\n]\n\nimport os\nfor idx, output_file in\
+            \ enumerate(_output_files):\n    try:\n        os.makedirs(os.path.dirname(output_file))\n\
+            \    except OSError:\n        pass\n    with open(output_file, 'w') as\
+            \ f:\n        f.write(_output_serializers[idx](_outputs[idx]))\n"
+          image: $(inputs.params.container_image)
+          resources:
+            requests:
+              memory: 20G
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+          - mountPath: /eval/
+            name: pvc-eval
+          - mountPath: /out_rf/
+            name: pvc-predictions
+        params:
+        - name: container_image
+        - name: load-data-scaler
+        - name: pvc-eval-name
+        - name: pvc-predictions-name
+        - name: pvc-train-name
+        - name: rf-train-Output
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-eval
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-eval-name)
+        - name: pvc-predictions
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-predictions-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Rf inference",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Rf inference@sha256=8e8a749d86456f34fa15f0a4db4ae0464c5a73d68d9c8a260475425221f3db51"}'
+      retries: 3
+    - name: rf-inference-7
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: load-data-scaler
+        value: $(tasks.load-data.results.scaler)
+      - name: pvc-eval-name
+        value: $(tasks.pvc-eval.results.name)
+      - name: pvc-predictions-name
+        value: $(tasks.pvc-predictions.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: rf-train-Output
+        value: $(tasks.rf-train.results.Output)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --model-path
+          - $(inputs.params.rf-train-Output)
+          - --scaler-path
+          - $(inputs.params.load-data-scaler)
+          - --eval-path
+          - /eval/eval_tile_0006.tif
+          - --out-dir
+          - /out_rf/rf/
+          - --predictions
+          - /out_rf/rf/eval_tile_0006.csv
+          - --band-names
+          - '["elevation", "aspect", "slope", "twi"]'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - "def rf_inference(model_path, scaler_path, eval_path, out_dir, predictions,\
+            \ band_names):\n    # Libraries\n    import numpy as np\n    import pandas\
+            \ as pd\n    import pickle\n    from osgeo import gdal, ogr  \n    import\
+            \ sklearn\n\n    def tif2df(raster_file, band_names) :\n        ds = gdal.Open(raster_file,\
+            \ 0)\n        xmin, res, _, ymax, _, _ = ds.GetGeoTransform()\n      \
+            \  xsize = ds.RasterXSize\n        ysize = ds.RasterYSize\n        xstart\
+            \ = xmin + res / 2\n        ystart = ymax - res / 2\n\n        x = np.arange(xstart,\
+            \ xstart + xsize * res, res)\n        y = np.arange(ystart, ystart - ysize\
+            \ * res, -res)\n        x = np.tile(x[:xsize], ysize)\n        y = np.repeat(y[:ysize],\
+            \ xsize)\n\n        n_bands = ds.RasterCount\n        bands = np.zeros((x.shape[0],\
+            \ n_bands))\n        for k in range(1, n_bands + 1):\n            band\
+            \ = ds.GetRasterBand(k)\n            data = band.ReadAsArray()\n     \
+            \       data = np.ma.array(data, mask=np.equal(data, band.GetNoDataValue()))\n\
+            \            data = data.filled(np.nan)\n            bands[:, k-1] = data.flatten()\n\
+            \n        column_names = ['x', 'y'] + band_names\n        stack = np.column_stack((x,\
+            \ y, bands))\n        df = pd.DataFrame(stack, columns=column_names)\n\
+            \        df.dropna(inplace=True)\n        print(df.info())\n        #df.to_csv(output_file,\
+            \ index=None)\n        return df\n\n    print(\"Reading evaluation data\
+            \ from\", eval_path)\n    evaluation_data = tif2df(eval_path, band_names)\n\
+            \    #evaluation_data = eval_path\n    # Load ss model\n    ss = pickle.load(open(scaler_path,\
+            \ 'rb'))\n    x_predict = ss.transform(evaluation_data)\n    # Load knn\
+            \ regressor\n    rf = pickle.load(open(model_path, 'rb'))\n    # Predict\
+            \ on evaluation data\n    y_predict = rf.predict(x_predict)\n    # Create\
+            \ dataframe with long, lat, soil moisture\n    out_df = pd.DataFrame(data={'x':evaluation_data['x'].round(decimals=9),\
+            \ 'y':evaluation_data['y'].round(decimals=9), 'sm':y_predict})\n    out_df\
+            \ = out_df.reindex(['x','y','sm'], axis=1)\n    # Print to file predictions\
+            \ \n    import os\n    if not os.path.exists(out_dir):\n        os.makedirs(out_dir)\n\
+            \    out_df.to_csv(predictions, index=False, header=False)\n    return\
+            \ predictions\n\ndef _serialize_str(str_value: str) -> str:\n    if not\
+            \ isinstance(str_value, str):\n        raise TypeError('Value \"{}\" has\
+            \ type \"{}\" instead of str.'.format(\n            str(str_value), str(type(str_value))))\n\
+            \    return str_value\n\nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Rf\
+            \ inference', description='')\n_parser.add_argument(\"--model-path\",\
+            \ dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--band-names\", dest=\"band_names\", type=json.loads,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
+            , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
+            _output_files = _parsed_args.pop(\"_output_paths\", [])\n\n_outputs =\
+            \ rf_inference(**_parsed_args)\n\n_outputs = [_outputs]\n\n_output_serializers\
+            \ = [\n    _serialize_str,\n\n]\n\nimport os\nfor idx, output_file in\
+            \ enumerate(_output_files):\n    try:\n        os.makedirs(os.path.dirname(output_file))\n\
+            \    except OSError:\n        pass\n    with open(output_file, 'w') as\
+            \ f:\n        f.write(_output_serializers[idx](_outputs[idx]))\n"
+          image: $(inputs.params.container_image)
+          resources:
+            requests:
+              memory: 20G
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+          - mountPath: /eval/
+            name: pvc-eval
+          - mountPath: /out_rf/
+            name: pvc-predictions
+        params:
+        - name: container_image
+        - name: load-data-scaler
+        - name: pvc-eval-name
+        - name: pvc-predictions-name
+        - name: pvc-train-name
+        - name: rf-train-Output
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-eval
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-eval-name)
+        - name: pvc-predictions
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-predictions-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Rf inference",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Rf inference@sha256=8e8a749d86456f34fa15f0a4db4ae0464c5a73d68d9c8a260475425221f3db51"}'
+      retries: 3
+    - name: rf-inference-8
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: load-data-scaler
+        value: $(tasks.load-data.results.scaler)
+      - name: pvc-eval-name
+        value: $(tasks.pvc-eval.results.name)
+      - name: pvc-predictions-name
+        value: $(tasks.pvc-predictions.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: rf-train-Output
+        value: $(tasks.rf-train.results.Output)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --model-path
+          - $(inputs.params.rf-train-Output)
+          - --scaler-path
+          - $(inputs.params.load-data-scaler)
+          - --eval-path
+          - /eval/eval_tile_0007.tif
+          - --out-dir
+          - /out_rf/rf/
+          - --predictions
+          - /out_rf/rf/eval_tile_0007.csv
+          - --band-names
+          - '["elevation", "aspect", "slope", "twi"]'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - "def rf_inference(model_path, scaler_path, eval_path, out_dir, predictions,\
+            \ band_names):\n    # Libraries\n    import numpy as np\n    import pandas\
+            \ as pd\n    import pickle\n    from osgeo import gdal, ogr  \n    import\
+            \ sklearn\n\n    def tif2df(raster_file, band_names) :\n        ds = gdal.Open(raster_file,\
+            \ 0)\n        xmin, res, _, ymax, _, _ = ds.GetGeoTransform()\n      \
+            \  xsize = ds.RasterXSize\n        ysize = ds.RasterYSize\n        xstart\
+            \ = xmin + res / 2\n        ystart = ymax - res / 2\n\n        x = np.arange(xstart,\
+            \ xstart + xsize * res, res)\n        y = np.arange(ystart, ystart - ysize\
+            \ * res, -res)\n        x = np.tile(x[:xsize], ysize)\n        y = np.repeat(y[:ysize],\
+            \ xsize)\n\n        n_bands = ds.RasterCount\n        bands = np.zeros((x.shape[0],\
+            \ n_bands))\n        for k in range(1, n_bands + 1):\n            band\
+            \ = ds.GetRasterBand(k)\n            data = band.ReadAsArray()\n     \
+            \       data = np.ma.array(data, mask=np.equal(data, band.GetNoDataValue()))\n\
+            \            data = data.filled(np.nan)\n            bands[:, k-1] = data.flatten()\n\
+            \n        column_names = ['x', 'y'] + band_names\n        stack = np.column_stack((x,\
+            \ y, bands))\n        df = pd.DataFrame(stack, columns=column_names)\n\
+            \        df.dropna(inplace=True)\n        print(df.info())\n        #df.to_csv(output_file,\
+            \ index=None)\n        return df\n\n    print(\"Reading evaluation data\
+            \ from\", eval_path)\n    evaluation_data = tif2df(eval_path, band_names)\n\
+            \    #evaluation_data = eval_path\n    # Load ss model\n    ss = pickle.load(open(scaler_path,\
+            \ 'rb'))\n    x_predict = ss.transform(evaluation_data)\n    # Load knn\
+            \ regressor\n    rf = pickle.load(open(model_path, 'rb'))\n    # Predict\
+            \ on evaluation data\n    y_predict = rf.predict(x_predict)\n    # Create\
+            \ dataframe with long, lat, soil moisture\n    out_df = pd.DataFrame(data={'x':evaluation_data['x'].round(decimals=9),\
+            \ 'y':evaluation_data['y'].round(decimals=9), 'sm':y_predict})\n    out_df\
+            \ = out_df.reindex(['x','y','sm'], axis=1)\n    # Print to file predictions\
+            \ \n    import os\n    if not os.path.exists(out_dir):\n        os.makedirs(out_dir)\n\
+            \    out_df.to_csv(predictions, index=False, header=False)\n    return\
+            \ predictions\n\ndef _serialize_str(str_value: str) -> str:\n    if not\
+            \ isinstance(str_value, str):\n        raise TypeError('Value \"{}\" has\
+            \ type \"{}\" instead of str.'.format(\n            str(str_value), str(type(str_value))))\n\
+            \    return str_value\n\nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Rf\
+            \ inference', description='')\n_parser.add_argument(\"--model-path\",\
+            \ dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--band-names\", dest=\"band_names\", type=json.loads,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
+            , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
+            _output_files = _parsed_args.pop(\"_output_paths\", [])\n\n_outputs =\
+            \ rf_inference(**_parsed_args)\n\n_outputs = [_outputs]\n\n_output_serializers\
+            \ = [\n    _serialize_str,\n\n]\n\nimport os\nfor idx, output_file in\
+            \ enumerate(_output_files):\n    try:\n        os.makedirs(os.path.dirname(output_file))\n\
+            \    except OSError:\n        pass\n    with open(output_file, 'w') as\
+            \ f:\n        f.write(_output_serializers[idx](_outputs[idx]))\n"
+          image: $(inputs.params.container_image)
+          resources:
+            requests:
+              memory: 20G
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+          - mountPath: /eval/
+            name: pvc-eval
+          - mountPath: /out_rf/
+            name: pvc-predictions
+        params:
+        - name: container_image
+        - name: load-data-scaler
+        - name: pvc-eval-name
+        - name: pvc-predictions-name
+        - name: pvc-train-name
+        - name: rf-train-Output
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-eval
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-eval-name)
+        - name: pvc-predictions
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-predictions-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Rf inference",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Rf inference@sha256=8e8a749d86456f34fa15f0a4db4ae0464c5a73d68d9c8a260475425221f3db51"}'
+      retries: 3
+    - name: rf-inference-9
+      params:
+      - name: container_image
+        value: $(params.container_image)
+      - name: load-data-scaler
+        value: $(tasks.load-data.results.scaler)
+      - name: pvc-eval-name
+        value: $(tasks.pvc-eval.results.name)
+      - name: pvc-predictions-name
+        value: $(tasks.pvc-predictions.results.name)
+      - name: pvc-train-name
+        value: $(tasks.pvc-train.results.name)
+      - name: rf-train-Output
+        value: $(tasks.rf-train.results.Output)
+      taskSpec:
+        steps:
+        - name: main
+          args:
+          - --model-path
+          - $(inputs.params.rf-train-Output)
+          - --scaler-path
+          - $(inputs.params.load-data-scaler)
+          - --eval-path
+          - /eval/eval_tile_0008.tif
+          - --out-dir
+          - /out_rf/rf/
+          - --predictions
+          - /out_rf/rf/eval_tile_0008.csv
+          - --band-names
+          - '["elevation", "aspect", "slope", "twi"]'
+          - '----output-paths'
+          - $(results.Output.path)
+          command:
+          - sh
+          - -ec
+          - |
+            program_path=$(mktemp)
+            printf "%s" "$0" > "$program_path"
+            python3 -u "$program_path" "$@"
+          - "def rf_inference(model_path, scaler_path, eval_path, out_dir, predictions,\
+            \ band_names):\n    # Libraries\n    import numpy as np\n    import pandas\
+            \ as pd\n    import pickle\n    from osgeo import gdal, ogr  \n    import\
+            \ sklearn\n\n    def tif2df(raster_file, band_names) :\n        ds = gdal.Open(raster_file,\
+            \ 0)\n        xmin, res, _, ymax, _, _ = ds.GetGeoTransform()\n      \
+            \  xsize = ds.RasterXSize\n        ysize = ds.RasterYSize\n        xstart\
+            \ = xmin + res / 2\n        ystart = ymax - res / 2\n\n        x = np.arange(xstart,\
+            \ xstart + xsize * res, res)\n        y = np.arange(ystart, ystart - ysize\
+            \ * res, -res)\n        x = np.tile(x[:xsize], ysize)\n        y = np.repeat(y[:ysize],\
+            \ xsize)\n\n        n_bands = ds.RasterCount\n        bands = np.zeros((x.shape[0],\
+            \ n_bands))\n        for k in range(1, n_bands + 1):\n            band\
+            \ = ds.GetRasterBand(k)\n            data = band.ReadAsArray()\n     \
+            \       data = np.ma.array(data, mask=np.equal(data, band.GetNoDataValue()))\n\
+            \            data = data.filled(np.nan)\n            bands[:, k-1] = data.flatten()\n\
+            \n        column_names = ['x', 'y'] + band_names\n        stack = np.column_stack((x,\
+            \ y, bands))\n        df = pd.DataFrame(stack, columns=column_names)\n\
+            \        df.dropna(inplace=True)\n        print(df.info())\n        #df.to_csv(output_file,\
+            \ index=None)\n        return df\n\n    print(\"Reading evaluation data\
+            \ from\", eval_path)\n    evaluation_data = tif2df(eval_path, band_names)\n\
+            \    #evaluation_data = eval_path\n    # Load ss model\n    ss = pickle.load(open(scaler_path,\
+            \ 'rb'))\n    x_predict = ss.transform(evaluation_data)\n    # Load knn\
+            \ regressor\n    rf = pickle.load(open(model_path, 'rb'))\n    # Predict\
+            \ on evaluation data\n    y_predict = rf.predict(x_predict)\n    # Create\
+            \ dataframe with long, lat, soil moisture\n    out_df = pd.DataFrame(data={'x':evaluation_data['x'].round(decimals=9),\
+            \ 'y':evaluation_data['y'].round(decimals=9), 'sm':y_predict})\n    out_df\
+            \ = out_df.reindex(['x','y','sm'], axis=1)\n    # Print to file predictions\
+            \ \n    import os\n    if not os.path.exists(out_dir):\n        os.makedirs(out_dir)\n\
+            \    out_df.to_csv(predictions, index=False, header=False)\n    return\
+            \ predictions\n\ndef _serialize_str(str_value: str) -> str:\n    if not\
+            \ isinstance(str_value, str):\n        raise TypeError('Value \"{}\" has\
+            \ type \"{}\" instead of str.'.format(\n            str(str_value), str(type(str_value))))\n\
+            \    return str_value\n\nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Rf\
+            \ inference', description='')\n_parser.add_argument(\"--model-path\",\
+            \ dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--band-names\", dest=\"band_names\", type=json.loads,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
+            , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
+            _output_files = _parsed_args.pop(\"_output_paths\", [])\n\n_outputs =\
+            \ rf_inference(**_parsed_args)\n\n_outputs = [_outputs]\n\n_output_serializers\
+            \ = [\n    _serialize_str,\n\n]\n\nimport os\nfor idx, output_file in\
+            \ enumerate(_output_files):\n    try:\n        os.makedirs(os.path.dirname(output_file))\n\
+            \    except OSError:\n        pass\n    with open(output_file, 'w') as\
+            \ f:\n        f.write(_output_serializers[idx](_outputs[idx]))\n"
+          image: $(inputs.params.container_image)
+          resources:
+            requests:
+              memory: 20G
+          volumeMounts:
+          - mountPath: /cos/
+            name: pvc-train
+          - mountPath: /eval/
+            name: pvc-eval
+          - mountPath: /out_rf/
+            name: pvc-predictions
+        params:
+        - name: container_image
+        - name: load-data-scaler
+        - name: pvc-eval-name
+        - name: pvc-predictions-name
+        - name: pvc-train-name
+        - name: rf-train-Output
+        results:
+        - name: Output
+          type: string
+          description: /tmp/outputs/Output/data
+        volumes:
+        - name: pvc-eval
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-eval-name)
+        - name: pvc-predictions
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-predictions-name)
+        - name: pvc-train
+          persistentVolumeClaim:
+            claimName: $(inputs.params.pvc-train-name)
+        metadata:
+          labels:
+            pipelines.kubeflow.org/cache_enabled: "true"
+          annotations:
+            pipelines.kubeflow.org/component_spec_digest: '{"name": "Rf inference",
+              "outputs": [{"name": "Output", "type": "String"}], "version": "Rf inference@sha256=8e8a749d86456f34fa15f0a4db4ae0464c5a73d68d9c8a260475425221f3db51"}'
+      retries: 3
+  taskRunSpecs:
+  - pipelineTaskName: rf-inference
+    taskPodTemplate:
+      nodeSelector:
+        ibm-cloud.kubernetes.io/worker-pool-name: inference
+  - pipelineTaskName: rf-inference-2
+    taskPodTemplate:
+      nodeSelector:
+        ibm-cloud.kubernetes.io/worker-pool-name: inference
+  - pipelineTaskName: rf-inference-3
+    taskPodTemplate:
+      nodeSelector:
+        ibm-cloud.kubernetes.io/worker-pool-name: inference
+  - pipelineTaskName: rf-inference-4
+    taskPodTemplate:
+      nodeSelector:
+        ibm-cloud.kubernetes.io/worker-pool-name: inference
+  - pipelineTaskName: rf-inference-5
+    taskPodTemplate:
+      nodeSelector:
+        ibm-cloud.kubernetes.io/worker-pool-name: inference
+  - pipelineTaskName: rf-inference-6
+    taskPodTemplate:
+      nodeSelector:
+        ibm-cloud.kubernetes.io/worker-pool-name: inference
+  - pipelineTaskName: rf-inference-7
+    taskPodTemplate:
+      nodeSelector:
+        ibm-cloud.kubernetes.io/worker-pool-name: inference
+  - pipelineTaskName: rf-inference-8
+    taskPodTemplate:
+      nodeSelector:
+        ibm-cloud.kubernetes.io/worker-pool-name: inference
+  - pipelineTaskName: rf-inference-9
+    taskPodTemplate:
+      nodeSelector:
+        ibm-cloud.kubernetes.io/worker-pool-name: inference

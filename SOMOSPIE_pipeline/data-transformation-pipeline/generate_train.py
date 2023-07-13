@@ -12,6 +12,10 @@ def build_stack(dir: str,satellite_file: str, input_files: list, output_file:str
     # Get target resolution from satellite file
     ds = gdal.Open(input_files[0], 0)
     xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+    for i in input_files:
+        rds=gdal.Open(i)
+        print(rds.GetMetadata())
+        print(rds.GetDescription())
 
     vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
     vrt_options = gdal.BuildVRTOptions(separate=True)

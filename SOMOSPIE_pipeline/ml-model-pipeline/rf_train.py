@@ -6,6 +6,7 @@ def rf_train(data_path: str, maxtree: int, seed: int, out_model:str)-> str:
     from sklearn.ensemble import RandomForestRegressor
     from sklearn.model_selection import RandomizedSearchCV
     from sklearn.metrics import mean_squared_error
+    import os
 
     # Functions 
     def random_parameter_search(rf, x_train, y_train, maxtree, seed):
@@ -48,30 +49,35 @@ def rf_train(data_path: str, maxtree: int, seed: int, out_model:str)-> str:
         #print("Original values of soil moisture:", y_test)
         print("The rmse for the validation is:", rmse)
 
-    # Start by reading the data
-    print("Reading training data from", data_path)
-    # Open and reads file "data"
-    with open(data_path) as data_file:
-        data = json.load(data_file)
+    print("Checking if model ", out_model, " exists")
+    if os.path.isfile(out_model):
+        print("The model ", out_model, " exists")
+        return out_model
+    else:
+        # Start by reading the data
+        print("Reading training data from", data_path)
+        # Open and reads file "data"
+        with open(data_path) as data_file:
+            data = json.load(data_file)
 
-    data = json.loads(data)
+        data = json.loads(data)
 
-    x_train = data['x_train']
-    y_train = data['y_train']
-    x_test = data['x_test']
-    y_test = data['y_test']
-    #print(training_data)
+        x_train = data['x_train']
+        y_train = data['y_train']
+        x_test = data['x_test']
+        y_test = data['y_test']
+        #print(training_data)
 
-    # Define initial model
-    rf = RandomForestRegressor()
-    # Random parameter search for rf
-    best_rf = random_parameter_search(rf, x_train, y_train, maxtree, seed)
-    best_rf.fit(x_train, y_train)
-    #Path(args.pathtomodel).parent.mkdir(parents=True, exist_ok=True)
-    pickle.dump(best_rf, open(out_model, 'wb'))
-    # Validate
-    validate_rf(best_rf, x_test, y_test)
-    return out_model
+        # Define initial model
+        rf = RandomForestRegressor()
+        # Random parameter search for rf
+        best_rf = random_parameter_search(rf, x_train, y_train, maxtree, seed)
+        best_rf.fit(x_train, y_train)
+        #Path(args.pathtomodel).parent.mkdir(parents=True, exist_ok=True)
+        pickle.dump(best_rf, open(out_model, 'wb'))
+        # Validate
+        validate_rf(best_rf, x_test, y_test)
+        return out_model
 
 
 

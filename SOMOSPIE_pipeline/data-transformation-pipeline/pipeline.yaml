@@ -2611,6 +2611,10 @@ spec:
                 # Get target resolution from satellite file
                 ds = gdal.Open(input_files[0], 0)
                 xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+                for i in input_files:
+                    rds=gdal.Open(i)
+                    print(rds.GetMetadata())
+                    print(rds.GetDescription())
 
                 vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
                 vrt_options = gdal.BuildVRTOptions(separate=True)
@@ -2692,7 +2696,7 @@ spec:
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
               "outputs": [{"name": "Output", "type": "String"}], "version": "Build
-              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+              stack@sha256=cbce04105306cdd32ae596de48f579db638d2922756a7582ef99cff5153d64a6"}'
       retries: 3
     - name: crop-region
       params:
@@ -2867,6 +2871,10 @@ spec:
                 # Get target resolution from satellite file
                 ds = gdal.Open(input_files[0], 0)
                 xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+                for i in input_files:
+                    rds=gdal.Open(i)
+                    print(rds.GetMetadata())
+                    print(rds.GetDescription())
 
                 vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
                 vrt_options = gdal.BuildVRTOptions(separate=True)
@@ -2948,7 +2956,7 @@ spec:
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
               "outputs": [{"name": "Output", "type": "String"}], "version": "Build
-              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+              stack@sha256=cbce04105306cdd32ae596de48f579db638d2922756a7582ef99cff5153d64a6"}'
       retries: 3
     - name: crop-region-2
       params:
@@ -3123,6 +3131,10 @@ spec:
                 # Get target resolution from satellite file
                 ds = gdal.Open(input_files[0], 0)
                 xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+                for i in input_files:
+                    rds=gdal.Open(i)
+                    print(rds.GetMetadata())
+                    print(rds.GetDescription())
 
                 vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
                 vrt_options = gdal.BuildVRTOptions(separate=True)
@@ -3204,7 +3216,7 @@ spec:
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
               "outputs": [{"name": "Output", "type": "String"}], "version": "Build
-              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+              stack@sha256=cbce04105306cdd32ae596de48f579db638d2922756a7582ef99cff5153d64a6"}'
       retries: 3
     - name: crop-region-3
       params:
@@ -3379,6 +3391,10 @@ spec:
                 # Get target resolution from satellite file
                 ds = gdal.Open(input_files[0], 0)
                 xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+                for i in input_files:
+                    rds=gdal.Open(i)
+                    print(rds.GetMetadata())
+                    print(rds.GetDescription())
 
                 vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
                 vrt_options = gdal.BuildVRTOptions(separate=True)
@@ -3460,7 +3476,7 @@ spec:
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
               "outputs": [{"name": "Output", "type": "String"}], "version": "Build
-              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+              stack@sha256=cbce04105306cdd32ae596de48f579db638d2922756a7582ef99cff5153d64a6"}'
       retries: 3
     - name: crop-region-4
       params:
@@ -3635,6 +3651,10 @@ spec:
                 # Get target resolution from satellite file
                 ds = gdal.Open(input_files[0], 0)
                 xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+                for i in input_files:
+                    rds=gdal.Open(i)
+                    print(rds.GetMetadata())
+                    print(rds.GetDescription())
 
                 vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
                 vrt_options = gdal.BuildVRTOptions(separate=True)
@@ -3716,7 +3736,7 @@ spec:
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
               "outputs": [{"name": "Output", "type": "String"}], "version": "Build
-              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+              stack@sha256=cbce04105306cdd32ae596de48f579db638d2922756a7582ef99cff5153d64a6"}'
       retries: 3
     - name: crop-region-5
       params:
@@ -3891,6 +3911,10 @@ spec:
                 # Get target resolution from satellite file
                 ds = gdal.Open(input_files[0], 0)
                 xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+                for i in input_files:
+                    rds=gdal.Open(i)
+                    print(rds.GetMetadata())
+                    print(rds.GetDescription())
 
                 vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
                 vrt_options = gdal.BuildVRTOptions(separate=True)
@@ -3972,7 +3996,7 @@ spec:
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
               "outputs": [{"name": "Output", "type": "String"}], "version": "Build
-              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+              stack@sha256=cbce04105306cdd32ae596de48f579db638d2922756a7582ef99cff5153d64a6"}'
       retries: 3
     - name: crop-region-6
       params:
@@ -4147,6 +4171,10 @@ spec:
                 # Get target resolution from satellite file
                 ds = gdal.Open(input_files[0], 0)
                 xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+                for i in input_files:
+                    rds=gdal.Open(i)
+                    print(rds.GetMetadata())
+                    print(rds.GetDescription())
 
                 vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
                 vrt_options = gdal.BuildVRTOptions(separate=True)
@@ -4228,7 +4256,7 @@ spec:
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
               "outputs": [{"name": "Output", "type": "String"}], "version": "Build
-              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+              stack@sha256=cbce04105306cdd32ae596de48f579db638d2922756a7582ef99cff5153d64a6"}'
       retries: 3
     - name: crop-region-7
       params:
@@ -4403,6 +4431,10 @@ spec:
                 # Get target resolution from satellite file
                 ds = gdal.Open(input_files[0], 0)
                 xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+                for i in input_files:
+                    rds=gdal.Open(i)
+                    print(rds.GetMetadata())
+                    print(rds.GetDescription())
 
                 vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
                 vrt_options = gdal.BuildVRTOptions(separate=True)
@@ -4484,7 +4516,7 @@ spec:
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
               "outputs": [{"name": "Output", "type": "String"}], "version": "Build
-              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+              stack@sha256=cbce04105306cdd32ae596de48f579db638d2922756a7582ef99cff5153d64a6"}'
       retries: 3
     - name: crop-region-8
       params:
@@ -4659,6 +4691,10 @@ spec:
                 # Get target resolution from satellite file
                 ds = gdal.Open(input_files[0], 0)
                 xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+                for i in input_files:
+                    rds=gdal.Open(i)
+                    print(rds.GetMetadata())
+                    print(rds.GetDescription())
 
                 vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
                 vrt_options = gdal.BuildVRTOptions(separate=True)
@@ -4740,7 +4776,7 @@ spec:
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
               "outputs": [{"name": "Output", "type": "String"}], "version": "Build
-              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+              stack@sha256=cbce04105306cdd32ae596de48f579db638d2922756a7582ef99cff5153d64a6"}'
       retries: 3
     - name: crop-region-9
       params:
@@ -4915,6 +4951,10 @@ spec:
                 # Get target resolution from satellite file
                 ds = gdal.Open(input_files[0], 0)
                 xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+                for i in input_files:
+                    rds=gdal.Open(i)
+                    print(rds.GetMetadata())
+                    print(rds.GetDescription())
 
                 vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
                 vrt_options = gdal.BuildVRTOptions(separate=True)
@@ -4996,7 +5036,7 @@ spec:
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
               "outputs": [{"name": "Output", "type": "String"}], "version": "Build
-              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+              stack@sha256=cbce04105306cdd32ae596de48f579db638d2922756a7582ef99cff5153d64a6"}'
       retries: 3
     - name: crop-region-10
       params:
@@ -5171,6 +5211,10 @@ spec:
                 # Get target resolution from satellite file
                 ds = gdal.Open(input_files[0], 0)
                 xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+                for i in input_files:
+                    rds=gdal.Open(i)
+                    print(rds.GetMetadata())
+                    print(rds.GetDescription())
 
                 vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
                 vrt_options = gdal.BuildVRTOptions(separate=True)
@@ -5252,7 +5296,7 @@ spec:
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
               "outputs": [{"name": "Output", "type": "String"}], "version": "Build
-              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+              stack@sha256=cbce04105306cdd32ae596de48f579db638d2922756a7582ef99cff5153d64a6"}'
       retries: 3
     - name: crop-region-11
       params:
@@ -5427,6 +5471,10 @@ spec:
                 # Get target resolution from satellite file
                 ds = gdal.Open(input_files[0], 0)
                 xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
+                for i in input_files:
+                    rds=gdal.Open(i)
+                    print(rds.GetMetadata())
+                    print(rds.GetDescription())
 
                 vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
                 vrt_options = gdal.BuildVRTOptions(separate=True)
@@ -5508,7 +5556,7 @@ spec:
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Build stack",
               "outputs": [{"name": "Output", "type": "String"}], "version": "Build
-              stack@sha256=b5db20c7b262b6af190bbf286e3471069d9a8a8301dac35f7276e930402ce72d"}'
+              stack@sha256=cbce04105306cdd32ae596de48f579db638d2922756a7582ef99cff5153d64a6"}'
       retries: 3
     - name: crop-region-12
       params:

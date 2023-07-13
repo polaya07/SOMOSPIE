@@ -5,6 +5,7 @@ def knn_train (data_path: str, k: int, seed: int, out_model:str)-> str:
     from sklearn.neighbors import KNeighborsRegressor
     from sklearn.model_selection import RandomizedSearchCV
     from sklearn.metrics import mean_squared_error
+    import os
 
     # Define functions for training
     def random_parameter_search(knn, x_train, y_train, maxK, seed):
@@ -40,33 +41,38 @@ def knn_train (data_path: str, k: int, seed: int, out_model:str)-> str:
         #print("Original values of soil moisture:", y_test)
         print("The rmse for the validation is:", rmse)
     
-    print("Reading training data from", data_path)
-        # Open and reads file "data"
-    with open(data_path) as data_file:
-        data = json.load(data_file)
+    print("Checking if model ", out_model, " exists")
+    if os.path.isfile(out_model):
+        print("The model ", out_model, " exists")
+        return out_model
+    else:
+        print("Reading training data from", data_path)
+            # Open and reads file "data"
+        with open(data_path) as data_file:
+            data = json.load(data_file)
 
-    data = json.loads(data)
+        data = json.loads(data)
 
-    x_train = data['x_train']
-    y_train = data['y_train']
-    x_test = data['x_test']
-    y_test = data['y_test']
-    #print(training_data)
-    maxK = int(k)
-    seed = int(seed)
+        x_train = data['x_train']
+        y_train = data['y_train']
+        x_test = data['x_test']
+        y_test = data['y_test']
+        #print(training_data)
+        maxK = int(k)
+        seed = int(seed)
 
-        # Define initial model
-    knn = KNeighborsRegressor()
-    # Random parameter search of n_neighbors, weigths and metric
-    best_params = random_parameter_search(knn, x_train, y_train, maxK, seed)
-    # Based on selection build the new regressor
-    knn = KNeighborsRegressor(n_neighbors=best_params['n_neighbors'], weights=best_params['weights'],
-    				metric=best_params['metric'], n_jobs=-1)
-    # Fit the new model to data
-    knn.fit(x_train, y_train)
-    # Save model
-    pickle.dump(knn, open(out_model, 'wb'))
+            # Define initial model
+        knn = KNeighborsRegressor(leaf_size=3000)
+        # Random parameter search of n_neighbors, weigths and metric
+        best_params = random_parameter_search(knn, x_train, y_train, maxK, seed)
+        # Based on selection build the new regressor
+        knn = KNeighborsRegressor(n_neighbors=best_params['n_neighbors'], weights=best_params['weights'],
+                        metric=best_params['metric'], n_jobs=-1)
+        # Fit the new model to data
+        knn.fit(x_train, y_train)
+        # Save model
+        pickle.dump(knn, open(out_model, 'wb'))
 
-    # Validate
-    validate_knn(knn, x_test, y_test)
-    return out_model
+        # Validate
+        validate_knn(knn, x_test, y_test)
+        return out_model
