@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-def build_stack(dir: str,satellite_file: str, input_files: list, output_file:str, year:int, month:int)->str:
+def build_stack_train(dir: str,satellite_file: str, input_files: list, output_file:str, year:int, month:int)->str:
 
     from osgeo import gdal
     import os
@@ -28,7 +28,7 @@ def build_stack(dir: str,satellite_file: str, input_files: list, output_file:str
     return output_file
 
 
-def crop_region(input_file:str, zip_file:str, dir: str, output_file:str, parameter_names:list, year:int, month:int):
+def crop_region_train(input_file:str, zip_file:str, dir: str, output_file:str, parameter_names:list, year:int, month:int):
     from osgeo import gdal
     from pathlib import Path
 
