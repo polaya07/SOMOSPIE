@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-def reproject(input_file: str, output_file:str, projection: str, nodata:str='n')->str:
+def reproject( input_file: str, output_file:str, projection: str, nodata:str='n', pipeline_flag: list=[])->str:
     # Packages
     import os
     from osgeo import gdal

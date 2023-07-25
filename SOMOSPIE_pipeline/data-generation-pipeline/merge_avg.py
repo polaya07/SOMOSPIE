@@ -59,5 +59,5 @@ def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, 
     bash(cmd)
     os.remove(dir+param+'merged.vrt')
 
-    reproject(output_file, output_file, 'EPSG:4326')
+    #reproject(output_file, output_file, 'EPSG:4326')
     return output_file
