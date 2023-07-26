@@ -1,11 +1,26 @@
 
-def knn_inference (model_path: str, scaler_path:str, eval_path:str,  out_dir:str, predictions:str, band_names:list)-> str:
+def knn_inference (model_path: str, scaler_path:str, eval_path:str,  out_dir:str, predictions:str, tmp_pred:str)-> str:
     import numpy as np
-    import pandas as pd
     import pickle  
     from osgeo import gdal, ogr  
     import sklearn
+    import os
 
+    def get_band_names(raster):
+        ds = gdal.Open(raster, 0)
+        names = []
+        for band in range(ds.RasterCount):
+            b = ds.GetRasterBand(band + 1)
+            names.append(b.GetDescription())
+        ds = None
+        return names
+
+    def load_ds(evaluation_file, scaler_file):
+        evaluation_data = tif2arr(evaluation_file) 
+        ss = pickle.load(open(scaler_file, 'rb'))
+        x_predict = ss.transform(evaluation_data)
+        evaluation_data = evaluation_data[:,0:2]
+        return x_predict, evaluation_data
 
     def tif2df(raster_file, band_names) :
         ds = gdal.Open(raster_file, 0)
@@ -15,47 +30,60 @@ def knn_inference (model_path: str, scaler_path:str, eval_path:str,  out_dir:str
         xstart = xmin + res / 2
         ystart = ymax - res / 2
 
-        x = np.arange(xstart, xstart + xsize * res, res)
-        y = np.arange(ystart, ystart - ysize * res, -res)
+        x = np.arange(xstart, xstart + xsize * res, res, dtype=np.single)
+        y = np.arange(ystart, ystart - ysize * res, -res,dtype=np.single)
         x = np.tile(x[:xsize], ysize)
         y = np.repeat(y[:ysize], xsize)
 
         n_bands = ds.RasterCount
-        bands = np.zeros((x.shape[0], n_bands))
+        data = np.zeros((x.shape[0], n_bands), dtype=np.single)
         for k in range(1, n_bands + 1):
             band = ds.GetRasterBand(k)
-            data = band.ReadAsArray()
-            data = np.ma.array(data, mask=np.equal(data, band.GetNoDataValue()))
-            data = data.filled(np.nan)
-            bands[:, k-1] = data.flatten()
+            data[:, k-1] = band.ReadAsArray().flatten().astype(np.single)
+            
+        data = np.column_stack((x, y, data))
+        del x, y
+        data = data[~np.isnan(data).any(axis=1)]
+        return data
 
-        column_names = ['x', 'y'] + band_names
-        stack = np.column_stack((x, y, bands))
-        df = pd.DataFrame(stack, columns=column_names)
-        df.dropna(inplace=True)
-        #print(df.describe(include='all'))
-        #print("5 ENTRIES\n",df.head())
-        #print("Size of the df\n",df.size)
-        print(df.info())
-        #df.to_csv(output_file, index=None)
-        return df
+    def rasterize(input_file, output_file, xres, yres):
+        # When there is not a regular grid (has missing values)
+        vrt_file = output_file[:-4] + '.vrt'
+        if os.path.exists(vrt_file):
+            os.remove(vrt_file)
+            
+        f = open(vrt_file, 'w')
+        f.write('<OGRVRTDataSource>\n \
+        <OGRVRTLayer name="{}">\n \
+            <SrcDataSource>{}</SrcDataSource>\n \
+            <GeometryType>wkbPoint</GeometryType>\n \
+            <GeometryField encoding="PointFromColumns" x="x" y="y" z="z"/>\n \
+        </OGRVRTLayer>\n \
+    </OGRVRTDataSource>'.format('predictions', input_file)) # https://gdal.org/programs/gdal_grid.html#gdal-grid
+        f.close()
+        
+        rasterize_options = gdal.RasterizeOptions(xRes=xres, yRes=yres, attribute='z', noData=np.nan, outputType=gdal.GDT_Float32, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'], callback=gdal.TermProgress_nocb)
+        r = gdal.Rasterize(output_file, vrt_file, options=rasterize_options)
+        r = None
+        os.remove(vrt_file)
+    
+    def predict(x_predict, evaluation_data, out_file, model_file):
+        model = pickle.load(open(model_file, 'rb'))
+        # Predict on evaluation data
+        y_predict = model.predict(x_predict)
+        
+        evaluation_data = np.column_stack((evaluation_data, y_predict))
+        print("DATA SHAPE: ", evaluation_data.shape)
+        np.savetxt(out_file, evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')
 
-    print("Reading evaluation data from", eval_path)
-    evaluation_data = tif2df(eval_path, band_names)
-    #evaluation_data = eval_path
-    # Load ss model
-    ss = pickle.load(open(scaler_path, 'rb'))
-    x_predict = ss.transform(evaluation_data)
-    # Load knn regressor
-    knn = pickle.load(open(model_path, 'rb'))
-    # Predict on evaluation data
-    y_predict = knn.predict(x_predict)
-    # Create dataframe with long, lat, soil moisture
-    out_df = pd.DataFrame(data={'x':evaluation_data['x'].round(decimals=9), 'y':evaluation_data['y'].round(decimals=9), 'sm':y_predict})
-    out_df = out_df.reindex(['x','y','sm'], axis=1)
-    #Print to file predictions 
-    import os
-    if not os.path.exists(out_dir):
-        os.makedirs(out_dir)
-    out_df.to_csv(predictions, index=False, header=False)
-    return predictions
+    x_predict, evaluation_data = load_ds(eval_path, scaler_file)
+    band_names = get_band_names(evaluation_file)
+    print("Band names: ", band_names)
+
+    print("Running model to get predictions...")
+    predict(x_predict, evaluation_data, out_dir+'predictions.csv', model_path)
+    ds = gdal.Open(evaluation_file)
+    gt = ds.GetGeoTransform()
+    print("Running rasterize...")
+    rasterize(out_dir+'predictions.csv', predictions, gt[1], gt[5])
+    os.remove(out_dir+'predictions.csv')
