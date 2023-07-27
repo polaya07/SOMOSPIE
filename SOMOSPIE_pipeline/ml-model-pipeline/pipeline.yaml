@@ -1023,25 +1023,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -1088,7 +1088,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-2
       params:
@@ -1172,25 +1172,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -1237,7 +1237,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-3
       params:
@@ -1321,25 +1321,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -1386,7 +1386,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-4
       params:
@@ -1470,25 +1470,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -1535,7 +1535,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-5
       params:
@@ -1619,25 +1619,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -1684,7 +1684,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-6
       params:
@@ -1768,25 +1768,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -1833,7 +1833,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-7
       params:
@@ -1917,25 +1917,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -1982,7 +1982,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-8
       params:
@@ -2066,25 +2066,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -2131,7 +2131,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: load-data-2
       params:
@@ -2620,25 +2620,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -2685,7 +2685,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-10
       params:
@@ -2769,25 +2769,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -2834,7 +2834,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-11
       params:
@@ -2918,25 +2918,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -2983,7 +2983,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-12
       params:
@@ -3067,25 +3067,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -3132,7 +3132,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-13
       params:
@@ -3216,25 +3216,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -3281,7 +3281,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-14
       params:
@@ -3365,25 +3365,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -3430,7 +3430,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-15
       params:
@@ -3514,25 +3514,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -3579,7 +3579,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-16
       params:
@@ -3663,25 +3663,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -3728,7 +3728,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: load-data-3
       params:
@@ -4217,25 +4217,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -4282,7 +4282,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-18
       params:
@@ -4366,25 +4366,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -4431,7 +4431,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-19
       params:
@@ -4515,25 +4515,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -4580,7 +4580,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-20
       params:
@@ -4664,25 +4664,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -4729,7 +4729,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-21
       params:
@@ -4813,25 +4813,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -4878,7 +4878,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-22
       params:
@@ -4962,25 +4962,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -5027,7 +5027,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-23
       params:
@@ -5111,25 +5111,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -5176,7 +5176,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
     - name: inference-24
       params:
@@ -5260,25 +5260,25 @@ spec:
             \n        evaluation_data = np.column_stack((evaluation_data, y_predict))\n\
             \        print(\"DATA SHAPE: \", evaluation_data.shape)\n        np.savetxt(out_file,\
             \ evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')\n\
-            \n    x_predict, evaluation_data = load_ds(eval_path, scaler_path)\n \
-            \   band_names = get_band_names(eval_path)\n    print(\"Band names: \"\
-            , band_names)\n\n    print(\"Running model to get predictions for \"+\
-            \ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
-            \    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)\n\
-            \    ds = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
-            Running rasterize...\")\n    rasterize(out_dir+tmp_pred, predictions,\
-            \ gt[1], gt[5])\n    os.remove(out_dir+tmp_pred)\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport argparse\n_parser = argparse.ArgumentParser(prog='Inference',\
-            \ description='')\n_parser.add_argument(\"--model-path\", dest=\"model_path\"\
-            , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --scaler-path\", dest=\"scaler_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
-            _parser.add_argument(\"--eval-path\", dest=\"eval_path\", type=str, required=True,\
-            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--out-dir\", dest=\"\
-            out_dir\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
-            --predictions\", dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            \n    #Load data and normalize it\n    x_predict, evaluation_data = load_ds(eval_path,\
+            \ scaler_path)\n    band_names = get_band_names(eval_path)\n    print(\"\
+            Band names: \", band_names)\n\n    print(\"Running model to get predictions\
+            \ for \"+ eval_path)\n    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)\n\
+            \    predict(x_predict, evaluation_data, tmp_pred, model_path)\n    ds\
+            \ = gdal.Open(eval_path)\n    gt = ds.GetGeoTransform()\n    print(\"\
+            Running rasterize...\")\n    rasterize(tmp_pred, predictions, gt[1], gt[5])\n\
+            \    os.remove(tmp_pred)\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Inference', description='')\n_parser.add_argument(\"\
+            --model-path\", dest=\"model_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--scaler-path\", dest=\"scaler_path\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--eval-path\"\
+            , dest=\"eval_path\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--out-dir\", dest=\"out_dir\", type=str, required=True,\
+            \ default=argparse.SUPPRESS)\n_parser.add_argument(\"--predictions\",\
+            \ dest=\"predictions\", type=str, required=True, default=argparse.SUPPRESS)\n\
             _parser.add_argument(\"--tmp-pred\", dest=\"tmp_pred\", type=str, required=True,\
             \ default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\"\
             , dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n\
@@ -5325,7 +5325,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Inference", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=6a76a62cb392159807c1e15b529746d37b0fe71807a44eac95369a237043dd11"}'
+              [{"name": "Output", "type": "String"}], "version": "Inference@sha256=3b9e891b9234b3bd0ced1f4a13720791fa88ce25210109a2ac9ee84cd94c4eac"}'
       retries: 3
   taskRunSpecs:
   - pipelineTaskName: inference

@@ -77,16 +77,17 @@ def inference(model_path: str, scaler_path: str, eval_path: str, out_dir:str, pr
         print("DATA SHAPE: ", evaluation_data.shape)
         np.savetxt(out_file, evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')
 
+    #Load data and normalize it
     x_predict, evaluation_data = load_ds(eval_path, scaler_path)
     band_names = get_band_names(eval_path)
     print("Band names: ", band_names)
 
     print("Running model to get predictions for "+ eval_path)
     pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)
-    predict(x_predict, evaluation_data, out_dir+tmp_pred, model_path)
+    predict(x_predict, evaluation_data, tmp_pred, model_path)
     ds = gdal.Open(eval_path)
     gt = ds.GetGeoTransform()
     print("Running rasterize...")
-    rasterize(out_dir+tmp_pred, predictions, gt[1], gt[5])
-    os.remove(out_dir+tmp_pred)
+    rasterize(tmp_pred, predictions, gt[1], gt[5])
+    os.remove(tmp_pred)
 
