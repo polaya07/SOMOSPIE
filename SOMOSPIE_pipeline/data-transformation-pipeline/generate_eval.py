@@ -33,17 +33,6 @@ def crop_tile(raster:str, out_file:str, n_tiles:int, idx_x:int, idx_y:int)->str:
         ncols = cols - idx_x
 
     translate_options = gdal.TranslateOptions(srcWin=[idx_x, idx_y, ncols, nrows], creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'], callback=gdal.TermProgress_nocb)
-    gdal.Translate(out_file, raster, options=translate_options)_size < rows:
-        nrows = y_win_size
-    else:
-        nrows = rows - idx_y
-
-    if idx_x + x_win_size < cols:
-        ncols = x_win_size
-    else:
-        ncols = cols - idx_x
-
-    translate_options = gdal.TranslateOptions(srcWin=[idx_x, idx_y, ncols, nrows], creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'], callback=gdal.TermProgress_nocb)
     gdal.Translate(out_file, raster, options=translate_options)
     return out_file
 
@@ -62,18 +51,19 @@ def build_stack_eval(input_files:list, vrt_file:str)->str:
 
 def write_stack(vrt_file:str, out_file:str)->str:
     from osgeo import gdal
+    import os
     
     translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'], callback=gdal.TermProgress_nocb)
     gdal.Translate(out_file, vrt_file, options=translate_options)
     return out_file
 
-def band_names(output_file:str, band_names:list, vrt_file:str):
-    
+def band_names(output_file:str, parameter_names:list):#, vrt_file:str):
+    from osgeo import gdal
     def get_band_names(raster):
         ds = gdal.Open(raster, 0)
         names = []
         for band in range(ds.RasterCount):
-            b = s.GetRasterBand(band + 1)
+            b = ds.GetRasterBand(band + 1)
             names.append(b.GetDescription())
         ds = None
         return names
@@ -87,7 +77,7 @@ def band_names(output_file:str, band_names:list, vrt_file:str):
         del ds
     
     set_band_names(output_file, parameter_names)
-    os.remove(vrt_file)
+    #os.remove(vrt_file)
     print("Band names:")
     print(get_band_names(output_file))
 

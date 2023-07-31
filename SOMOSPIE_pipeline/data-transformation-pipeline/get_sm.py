@@ -1,37 +1,44 @@
 #!/usr/bin/env python3
- 
-def download(year: int, dir:str)->str:
+
+def download_parallel(year:int,dir:str)->str:
     import calendar
     import subprocess
-    from pathlib import Path
     import shutil
-    import concurrent.futures
+    from pathlib import Path
+    import numpy as np
+    import os
+    import multiprocessing
+    import multiprocess as mp
 
-
-    def bash(argv):
+    def bash (argv):
         arg_seq = [str(arg) for arg in argv]
-        proc = subprocess.Popen(arg_seq)#, shell=True)
+        proc = subprocess.Popen(arg_seq, stdout=subprocess.PIPE, stderr=subprocess.PIPE)#, shell=True)
         proc.wait() #... unless intentionally asynchronous
+        stdout, stderr = proc.communicate()
 
-    version = 7.1 # ESA CCI version
-    year_folder = './{0:04d}'.format(year)
-    Path(dir+year_folder).mkdir(parents=True, exist_ok=True)
+        # Error catching: https://stackoverflow.com/questions/5826427/can-a-python-script-execute-a-function-inside-a-bash-script
+        if proc.returncode != 0:
+            raise RuntimeError("'%s' failed, error code: '%s', stdout: '%s', stderr: '%s'" % (
+                ' '.join(arg_seq), proc.returncode, stdout.rstrip(), stderr.rstrip()))
+            
+    def download(year, dir):
+        version = 7.1 # ESA CCI version
+        year_folder = './{0:04d}'.format(year)
+        Path(dir+year_folder).mkdir(parents=True, exist_ok=True)
 
-    commands=[]
-    for month in range(1, 13):
-        for day in range(1, calendar.monthrange(year, month)[1] + 1):
-            download_link = 'ftp://anon-ftp.ceda.ac.uk/neodc/esacci/soil_moisture/data/daily_files/COMBINED/v0{0:.1f}/{1:04d}/ESACCI-SOILMOISTURE-L3S-SSMV-COMBINED-{1:04d}{2:02d}{3:02d}000000-fv0{0:.1f}.nc'.format(version, year, month, day)
-            # command = ['curl', download_link, '-o', '{0}/{1:02d}_{2:02d}.nc'.format(year_folder, month, day)]
-            #command = ['wget', download_link, '-nc','-O', dir+'{0}/{1:02d}_{2:02d}.nc'.format(year_folder, month, day)]
-            # bash(command)
-            commands.append(['curl', '-C','-s', download_link, '-o', dir+'{0}/{1:02d}_{2:02d}.nc'.format(year_folder, month, day)])
+        commands = []
+        for month in range(1, 13):
+            for day in range(1, calendar.monthrange(year, month)[1] + 1):
+                download_link = 'ftp://anon-ftp.ceda.ac.uk/neodc/esacci/soil_moisture/data/daily_files/COMBINED/v0{0:.1f}/{1:04d}/ESACCI-SOILMOISTURE-L3S-SSMV-COMBINED-{1:04d}{2:02d}{3:02d}000000-fv0{0:.1f}.nc'.format(version, year, month, day)
+                #commands.append(['curl', '-C','-s', download_link, '-o', dir+'{0}/{1:02d}_{2:02d}.nc'.format(year_folder, month, day)])
+                commands.append(['wget', '-N','-c', download_link, '-O', dir+'{0}/{1:02d}_{2:02d}.nc'.format(year_folder, month, day)])
+                # bash(command)
 
-    with concurrent.futures.ProcessPoolExecutor(max_workers=20) as executor:
-        for command in commands:
-            executor.submit(bash, command)
+        pool=mp.Pool(multiprocessing.cpu_count())
+        pool.map(bash, commands)
 
+    download(year,dir)
     return dir
-
 
 def merge_avg(dir: str, year: int, month: int, output_file:str, projection: str)->str:
     from osgeo import gdal

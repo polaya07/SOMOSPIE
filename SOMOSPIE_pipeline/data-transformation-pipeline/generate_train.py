@@ -14,8 +14,6 @@ def build_stack_train(dir: str,satellite_file: str, input_files: list, output_fi
     xmin, xres, _, ymax, _, yres = ds.GetGeoTransform()
     for i in input_files:
         rds=gdal.Open(i)
-        print(rds.GetMetadata())
-        print(rds.GetDescription())
 
     vrt_file = dir+'{0:04d}_{1:02d}_stack.vrt'.format(year, month)
     vrt_options = gdal.BuildVRTOptions(separate=True)
@@ -27,8 +25,25 @@ def build_stack_train(dir: str,satellite_file: str, input_files: list, output_fi
     os.remove(vrt_file)
     return output_file
 
+def get_shp(zip_file: str, dir:str)->str:
+    import zipfile
+    import os
+    from pathlib import Path
 
-def crop_region_train(input_file:str, zip_file:str, dir: str, output_file:str, parameter_names:list, year:int, month:int):
+    Path(dir+'shp_file').mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(dir+zip_file, 'r') as zip_ref:
+        zip_ref.extractall(dir+'shp_file')
+
+    shp_files=[]
+    for root, dirs, files in os.walk(dir+'shp_file'):
+        for file in files:
+            if file.endswith(".shp"):
+                shp_files.append(os.path.join(root, file))
+    shp_file=shp_files[0]
+    print(shp_file)
+    return shp_file
+
+def crop_region_train(input_file:str, shp_file:str, output_file:str, parameter_names:list, year:int, month:int):
     from osgeo import gdal
     from pathlib import Path
 
@@ -47,28 +62,10 @@ def crop_region_train(input_file:str, zip_file:str, dir: str, output_file:str, p
             b = ds.GetRasterBand(i + 1)
             b.SetDescription(name)
         ds = None
-    
-    def get_shp(zip_file, dir):
-        import zipfile
-        import os
-
-        Path(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)).mkdir(parents=True, exist_ok=True)
-        with zipfile.ZipFile(dir+zip_file, 'r') as zip_ref:
-            zip_ref.extractall(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month))
-
-        shp_files=[]
-        for root, dirs, files in os.walk(dir+'{0:04d}_{1:02d}_shp_file'.format(year, month)):
-            for file in files:
-                if file.endswith(".shp"):
-                    shp_files.append(os.path.join(root, file))
-        shp_file=shp_files[0]
-        print(shp_file)
-        return shp_file
 
     parameter_names.insert(0, 'z')
     print(parameter_names)
 
-    shp_file=get_shp(zip_file, dir)
     warp_options = gdal.WarpOptions(cutlineDSName=shp_file, cropToCutline=True, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
                                     callback=gdal.TermProgress_nocb)
     warp = gdal.Warp(output_file, input_file, options=warp_options)
