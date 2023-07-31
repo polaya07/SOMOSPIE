@@ -262,4 +262,4 @@ RUN ldconfig
 RUN apt-get -y update
 RUN apt-get -y install curl wget
 RUN apt-get -y install python3-pip 
-RUN python3 -m pip install pandas scikit-learn 
+RUN python3 -m pip install pandas scikit-learn multiprocess
