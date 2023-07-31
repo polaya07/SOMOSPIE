@@ -16,10 +16,10 @@ from merge_avg import *
 @dsl.pipeline(name='somospie data generation pipeline', description='Pipeline for somospie data generation')
 def pipeline(
     container_image: str ="olayap/somospie-gdal", 
-    links_file: str ="/cos/TN_30m.txt", #"/cos/OK_30m.txt",
-    n_tiles: int = 2,
+    links_file: str ="/cos/OK_10m.txt", #"/cos/OK_30m.txt",
+    n_tiles: int = 3, #2 #3
     projection_file: str ="/cos/albers_conus_reference.wkt", 
-    cos_name: str = "tn-30m" #"oklahoma-30m"
+    cos_name: str = "ok-10m" #"ok-10m" #"tn-30m" #"oklahoma-30m"
     ): 
 
     #set_retry_op = dsl.set_retry(num_retries=3)
@@ -59,7 +59,7 @@ def pipeline(
     slope_tiles = []
     compute_task = []
     tile_count = 0
-    n_tiles=2
+    n_tiles=3
     #with dsl.ParallelFor(list(range(n_tiles))) as i:
     #    with dsl.ParallelFor(list(range(n_tiles))) as j:
     #print(container_image)
@@ -79,7 +79,7 @@ def pipeline(
             compute_task.append(compute_op("/cos/", tile_count, crop_task.output, "/cos/"+aspect_tiles[-1], "/cos/"+hillshading_tiles[-1], "/cos/"+slope_tiles[-1]).add_pvolumes({"/cos/": pvc_op.volume}).set_retry(3))
             tile_count += 1
 
-    reproject_task_elevation = reproject_op(merge_task.output, "/cos/elevation.tif", 'EPSG:4326', 'y', compute_task[0].outputs).add_pvolumes({"/cos/": pvc_op.volume}).set_retry(3)
+    reproject_task_elevation = reproject_op(merge_task.output, "/cos/elevation_reprojected.tif", 'EPSG:4326', 'y', compute_task[0].outputs).add_pvolumes({"/cos/": pvc_op.volume}).set_retry(3)
 
     # Merge all tiles for all terrain parameters
     merge_avg_task_aspect = merge_avg_op([compute_task[z].outputs['aspect'] for z in range(tile_count)],"/cos/", "/cos/aspect.tif", "aspect").add_pvolumes({"/cos/": pvc_op.volume}).set_memory_request('15G').set_retry(3)
