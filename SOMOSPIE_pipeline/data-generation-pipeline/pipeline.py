@@ -15,9 +15,9 @@ from merge_avg import *
 
 @dsl.pipeline(name='somospie data generation pipeline', description='Pipeline for somospie data generation')
 def pipeline(
-    container_image: str ="olayap/somospie-gdal", 
+    container_image: str ="icr.io/somospie/somospie-gdal-netcdf", #"olayap/somospie-gdal", 
     links_file: str ="/cos/OK_10m.txt", #"/cos/OK_30m.txt",
-    n_tiles: int = 3, #2 #3
+    n_tiles: int = 2, #2 #3
     projection_file: str ="/cos/albers_conus_reference.wkt", 
     cos_name: str = "ok-10m" #"ok-10m" #"tn-30m" #"oklahoma-30m"
     ): 
@@ -59,7 +59,7 @@ def pipeline(
     slope_tiles = []
     compute_task = []
     tile_count = 0
-    n_tiles=3
+    n_tiles=2
     #with dsl.ParallelFor(list(range(n_tiles))) as i:
     #    with dsl.ParallelFor(list(range(n_tiles))) as j:
     #print(container_image)
@@ -76,15 +76,16 @@ def pipeline(
             crop_task = crop_op(reproject_task.output, "/cos/"+tile, n_tiles, i, j).add_pvolumes({"/cos/": pvc_op.volume}).set_retry(3)
 
             # Compute tile
-            compute_task.append(compute_op("/cos/", tile_count, crop_task.output, "/cos/"+aspect_tiles[-1], "/cos/"+hillshading_tiles[-1], "/cos/"+slope_tiles[-1]).add_pvolumes({"/cos/": pvc_op.volume}).set_retry(3))
+            compute_task.append(compute_op("/cos/", tile_count, crop_task.output, "/cos/"+aspect_tiles[-1], "/cos/"+hillshading_tiles[-1], "/cos/"+slope_tiles[-1]).add_pvolumes({"/cos/": pvc_op.volume}).set_memory_request('20G').set_retry(3))
             tile_count += 1
 
-    reproject_task_elevation = reproject_op(merge_task.output, "/cos/elevation_reprojected.tif", 'EPSG:4326', 'y', compute_task[0].outputs).add_pvolumes({"/cos/": pvc_op.volume}).set_retry(3)
+    reproject_task_elevation = reproject_op(merge_task.output, "/cos/elevation_reprojected.tif", 'EPSG:4326', 'y', compute_task[0].outputs).add_pvolumes({"/cos/": pvc_op.volume}).set_memory_request('20G').set_retry(3)
 
     # Merge all tiles for all terrain parameters
-    merge_avg_task_aspect = merge_avg_op([compute_task[z].outputs['aspect'] for z in range(tile_count)],"/cos/", "/cos/aspect.tif", "aspect").add_pvolumes({"/cos/": pvc_op.volume}).set_memory_request('15G').set_retry(3)
-    merge_avg_task_hill = merge_avg_op([compute_task[z].outputs['hill'] for z in range(tile_count)],"/cos/", "/cos/hillshading.tif", "hillshading").add_pvolumes({"/cos/": pvc_op.volume}).set_memory_request('15G').set_retry(3)
-    merge_avg_task_slope = merge_avg_op([compute_task[z].outputs['slope'] for z in range(tile_count)], "/cos/","/cos/slope.tif", "slope").add_pvolumes({"/cos/": pvc_op.volume}).set_memory_request('15G').set_retry(3)
+    # 15GB of memory for smalles cases 
+    merge_avg_task_aspect = merge_avg_op([compute_task[z].outputs['aspect'] for z in range(tile_count)],"/cos/", "/cos/aspect.tif", "aspect").add_pvolumes({"/cos/": pvc_op.volume}).set_memory_request('20G').set_retry(3).set_timeout(15000)
+    merge_avg_task_hill = merge_avg_op([compute_task[z].outputs['hill'] for z in range(tile_count)],"/cos/", "/cos/hillshading.tif", "hillshading").add_pvolumes({"/cos/": pvc_op.volume}).set_memory_request('20G').set_retry(3).set_timeout(15000)
+    merge_avg_task_slope = merge_avg_op([compute_task[z].outputs['slope'] for z in range(tile_count)], "/cos/","/cos/slope.tif", "slope").add_pvolumes({"/cos/": pvc_op.volume}).set_memory_request('20G').set_retry(3).set_timeout(15000)
     
     # Reproject 
     reproject_task_aspect = reproject_op(merge_avg_task_aspect.output, "/cos/aspect_reprojected.tif", 'EPSG:4326', 'n').add_pvolumes({"/cos/": pvc_op.volume}).set_retry(3)

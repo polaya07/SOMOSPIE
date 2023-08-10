@@ -1,11 +1,12 @@
 
-def inference(model_path: str, scaler_path: str, eval_path: str, out_dir:str, predictions:str, tmp_pred:str) -> str:
+def inference(model_path: str, scaler_path: str, eval_path: str, out_dir:str, predictions:str)->str:
     import numpy as np
     import pickle  
     from osgeo import gdal, ogr  
     import sklearn
     import os
     import pathlib
+    import pandas as pd
 
     def get_band_names(raster):
         ds = gdal.Open(raster, 0)
@@ -43,9 +44,12 @@ def inference(model_path: str, scaler_path: str, eval_path: str, out_dir:str, pr
     
         evaluation_data = tif2arr(evaluation_file) 
         ss = pickle.load(open(scaler_file, 'rb'))
-        x_predict = ss.transform(evaluation_data)
-        evaluation_data = evaluation_data[:,0:2]
-        return x_predict, evaluation_data
+        if np.any(evaluation_data):
+            return 0,0
+        else:
+            x_predict = ss.transform(evaluation_data)
+            evaluation_data = evaluation_data[:,0:2]
+            return x_predict, evaluation_data
 
     def rasterize(input_file, output_file, xres, yres):
         # When there is not a regular grid (has missing values)
@@ -60,7 +64,7 @@ def inference(model_path: str, scaler_path: str, eval_path: str, out_dir:str, pr
             <GeometryType>wkbPoint</GeometryType>\n \
             <GeometryField encoding="PointFromColumns" x="x" y="y" z="z"/>\n \
         </OGRVRTLayer>\n \
-    </OGRVRTDataSource>'.format('predictions', input_file)) # https://gdal.org/programs/gdal_grid.html#gdal-grid
+    </OGRVRTDataSource>'.format('z', input_file)) # https://gdal.org/programs/gdal_grid.html#gdal-grid
         f.close()
         
         rasterize_options = gdal.RasterizeOptions(xRes=xres, yRes=yres, attribute='z', noData=np.nan, outputType=gdal.GDT_Float32, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'], callback=gdal.TermProgress_nocb)
@@ -72,22 +76,27 @@ def inference(model_path: str, scaler_path: str, eval_path: str, out_dir:str, pr
         model = pickle.load(open(model_file, 'rb'))
         # Predict on evaluation data
         y_predict = model.predict(x_predict)
-        
-        evaluation_data = np.column_stack((evaluation_data, y_predict))
-        print("DATA SHAPE: ", evaluation_data.shape)
+        predictions_data = np.column_stack((evaluation_data, y_predict))
+        print("DATA SHAPE: ", predictions_data.shape)
         np.savetxt(out_file, evaluation_data, fmt='%.7f', header='x,y,z', delimiter=',', comments='')
 
     #Load data and normalize it
     x_predict, evaluation_data = load_ds(eval_path, scaler_path)
-    band_names = get_band_names(eval_path)
-    print("Band names: ", band_names)
+    if x_predict == 0 and evaluation_data == 0:
+        print("Removing empty tile: ", eval_path)
+        os.remove(eval_path)
+        return ""
+    else:
+        band_names = get_band_names(eval_path)
+        print("Band names: ", band_names)
 
-    print("Running model to get predictions for "+ eval_path)
-    pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)
-    predict(x_predict, evaluation_data, tmp_pred, model_path)
-    ds = gdal.Open(eval_path)
-    gt = ds.GetGeoTransform()
-    print("Running rasterize...")
-    rasterize(tmp_pred, predictions, gt[1], gt[5])
-    os.remove(tmp_pred)
+        print("Running model to get predictions for "+ eval_path)
+        pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)
+        predict(x_predict, evaluation_data, predictions, model_path)
+        return predictions
+    #ds = gdal.Open(eval_path)
+    #gt = ds.GetGeoTransform()
+    #print("Running rasterize...")
+    #rasterize(tmp_pred, predictions, gt[1], gt[5])
+    #os.remove(tmp_pred)
 

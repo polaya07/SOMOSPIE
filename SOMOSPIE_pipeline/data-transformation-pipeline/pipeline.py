@@ -152,7 +152,7 @@ def pipeline(
         cropped_terrain="/terrain/"+param_names[i]+"_cropped.tif"
         cropped_files.append(crop_region_eval_op(f, get_shape_task.output, cropped_terrain).add_pvolumes({"/terrain/": terrain_pvc_op.volume}).add_pvolumes({"/shape/": shape_pvc_op.volume}).set_retry(3))   
 
-    build_stack_eval_task=build_stack_eval_op([cropped.output for cropped in cropped_files], "/terrain/stack.vrt").add_pvolumes({"/terrain/": terrain_pvc_op.volume}).set_memory_request('1G').set_retry(3)
+    build_stack_eval_task=build_stack_eval_op([cropped.output for cropped in cropped_files], "/terrain/stack.vrt").add_pvolumes({"/terrain/": terrain_pvc_op.volume}).set_memory_request('10G').set_retry(3)
 
     n_tiles = 6 #2 #6 
     tile_count = 0 
@@ -166,8 +166,8 @@ def pipeline(
         for i in range(n_tiles):
             for j in range(n_tiles):
                 eval_file = '/eval/'+region_res+'_eval_{0:04d}.tif'.format(tile_count)
-                crop_tile_task=crop_tile_op(build_stack_eval_task.output, eval_file, n_tiles, i, j).add_pvolumes({"/eval/": eval_pvc_op.volume}).add_pvolumes({"/terrain/": terrain_pvc_op.volume}).set_memory_request('1G').set_retry(3)
-                band_names_op(crop_tile_task.output,param_names).add_pvolumes({"/eval/": eval_pvc_op.volume}).set_memory_request('1G').set_retry(3)
+                crop_tile_task=crop_tile_op(build_stack_eval_task.output, eval_file, n_tiles, i, j).add_pvolumes({"/eval/": eval_pvc_op.volume}).add_pvolumes({"/terrain/": terrain_pvc_op.volume}).set_memory_request('10G').set_retry(3)
+                band_names_op(crop_tile_task.output,param_names).add_pvolumes({"/eval/": eval_pvc_op.volume}).set_memory_request('10G').set_retry(3)
                 tile_count += 1
     #clean to delete "/terrain/stack.vrt" ...        
 

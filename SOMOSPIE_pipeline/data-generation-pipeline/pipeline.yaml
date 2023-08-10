@@ -21,42 +21,12 @@ metadata:
       "path": "/tmp/outputs/aspect/data"}, {"key": "artifacts/$PIPELINERUN/compute-geotiled-4/hill.tgz",
       "name": "compute-geotiled-4-hill", "path": "/tmp/outputs/hill/data"}, {"key":
       "artifacts/$PIPELINERUN/compute-geotiled-4/slope.tgz", "name": "compute-geotiled-4-slope",
-      "path": "/tmp/outputs/slope/data"}], "compute-geotiled-5": [{"key": "artifacts/$PIPELINERUN/compute-geotiled-5/aspect.tgz",
-      "name": "compute-geotiled-5-aspect", "path": "/tmp/outputs/aspect/data"}, {"key":
-      "artifacts/$PIPELINERUN/compute-geotiled-5/hill.tgz", "name": "compute-geotiled-5-hill",
-      "path": "/tmp/outputs/hill/data"}, {"key": "artifacts/$PIPELINERUN/compute-geotiled-5/slope.tgz",
-      "name": "compute-geotiled-5-slope", "path": "/tmp/outputs/slope/data"}], "compute-geotiled-6":
-      [{"key": "artifacts/$PIPELINERUN/compute-geotiled-6/aspect.tgz", "name": "compute-geotiled-6-aspect",
-      "path": "/tmp/outputs/aspect/data"}, {"key": "artifacts/$PIPELINERUN/compute-geotiled-6/hill.tgz",
-      "name": "compute-geotiled-6-hill", "path": "/tmp/outputs/hill/data"}, {"key":
-      "artifacts/$PIPELINERUN/compute-geotiled-6/slope.tgz", "name": "compute-geotiled-6-slope",
-      "path": "/tmp/outputs/slope/data"}], "compute-geotiled-7": [{"key": "artifacts/$PIPELINERUN/compute-geotiled-7/aspect.tgz",
-      "name": "compute-geotiled-7-aspect", "path": "/tmp/outputs/aspect/data"}, {"key":
-      "artifacts/$PIPELINERUN/compute-geotiled-7/hill.tgz", "name": "compute-geotiled-7-hill",
-      "path": "/tmp/outputs/hill/data"}, {"key": "artifacts/$PIPELINERUN/compute-geotiled-7/slope.tgz",
-      "name": "compute-geotiled-7-slope", "path": "/tmp/outputs/slope/data"}], "compute-geotiled-8":
-      [{"key": "artifacts/$PIPELINERUN/compute-geotiled-8/aspect.tgz", "name": "compute-geotiled-8-aspect",
-      "path": "/tmp/outputs/aspect/data"}, {"key": "artifacts/$PIPELINERUN/compute-geotiled-8/hill.tgz",
-      "name": "compute-geotiled-8-hill", "path": "/tmp/outputs/hill/data"}, {"key":
-      "artifacts/$PIPELINERUN/compute-geotiled-8/slope.tgz", "name": "compute-geotiled-8-slope",
-      "path": "/tmp/outputs/slope/data"}], "compute-geotiled-9": [{"key": "artifacts/$PIPELINERUN/compute-geotiled-9/aspect.tgz",
-      "name": "compute-geotiled-9-aspect", "path": "/tmp/outputs/aspect/data"}, {"key":
-      "artifacts/$PIPELINERUN/compute-geotiled-9/hill.tgz", "name": "compute-geotiled-9-hill",
-      "path": "/tmp/outputs/hill/data"}, {"key": "artifacts/$PIPELINERUN/compute-geotiled-9/slope.tgz",
-      "name": "compute-geotiled-9-slope", "path": "/tmp/outputs/slope/data"}], "crop-into-tiles":
-      [{"key": "artifacts/$PIPELINERUN/crop-into-tiles/Output.tgz", "name": "crop-into-tiles-Output",
-      "path": "/tmp/outputs/Output/data"}], "crop-into-tiles-2": [{"key": "artifacts/$PIPELINERUN/crop-into-tiles-2/Output.tgz",
-      "name": "crop-into-tiles-2-Output", "path": "/tmp/outputs/Output/data"}], "crop-into-tiles-3":
-      [{"key": "artifacts/$PIPELINERUN/crop-into-tiles-3/Output.tgz", "name": "crop-into-tiles-3-Output",
-      "path": "/tmp/outputs/Output/data"}], "crop-into-tiles-4": [{"key": "artifacts/$PIPELINERUN/crop-into-tiles-4/Output.tgz",
-      "name": "crop-into-tiles-4-Output", "path": "/tmp/outputs/Output/data"}], "crop-into-tiles-5":
-      [{"key": "artifacts/$PIPELINERUN/crop-into-tiles-5/Output.tgz", "name": "crop-into-tiles-5-Output",
-      "path": "/tmp/outputs/Output/data"}], "crop-into-tiles-6": [{"key": "artifacts/$PIPELINERUN/crop-into-tiles-6/Output.tgz",
-      "name": "crop-into-tiles-6-Output", "path": "/tmp/outputs/Output/data"}], "crop-into-tiles-7":
-      [{"key": "artifacts/$PIPELINERUN/crop-into-tiles-7/Output.tgz", "name": "crop-into-tiles-7-Output",
-      "path": "/tmp/outputs/Output/data"}], "crop-into-tiles-8": [{"key": "artifacts/$PIPELINERUN/crop-into-tiles-8/Output.tgz",
-      "name": "crop-into-tiles-8-Output", "path": "/tmp/outputs/Output/data"}], "crop-into-tiles-9":
-      [{"key": "artifacts/$PIPELINERUN/crop-into-tiles-9/Output.tgz", "name": "crop-into-tiles-9-Output",
+      "path": "/tmp/outputs/slope/data"}], "crop-into-tiles": [{"key": "artifacts/$PIPELINERUN/crop-into-tiles/Output.tgz",
+      "name": "crop-into-tiles-Output", "path": "/tmp/outputs/Output/data"}], "crop-into-tiles-2":
+      [{"key": "artifacts/$PIPELINERUN/crop-into-tiles-2/Output.tgz", "name": "crop-into-tiles-2-Output",
+      "path": "/tmp/outputs/Output/data"}], "crop-into-tiles-3": [{"key": "artifacts/$PIPELINERUN/crop-into-tiles-3/Output.tgz",
+      "name": "crop-into-tiles-3-Output", "path": "/tmp/outputs/Output/data"}], "crop-into-tiles-4":
+      [{"key": "artifacts/$PIPELINERUN/crop-into-tiles-4/Output.tgz", "name": "crop-into-tiles-4-Output",
       "path": "/tmp/outputs/Output/data"}], "load-data": [{"key": "artifacts/$PIPELINERUN/load-data/Output.tgz",
       "name": "load-data-Output", "path": "/tmp/outputs/Output/data"}], "merge-avg":
       [{"key": "artifacts/$PIPELINERUN/merge-avg/Output.tgz", "name": "merge-avg-Output",
@@ -81,16 +51,6 @@ metadata:
       "parent_task": "crop-into-tiles-3"}, {"name": "pvc-geotiled-name", "parent_task":
       "pvc-geotiled"}], "compute-geotiled-4": [{"name": "crop-into-tiles-4-Output",
       "parent_task": "crop-into-tiles-4"}, {"name": "pvc-geotiled-name", "parent_task":
-      "pvc-geotiled"}], "compute-geotiled-5": [{"name": "crop-into-tiles-5-Output",
-      "parent_task": "crop-into-tiles-5"}, {"name": "pvc-geotiled-name", "parent_task":
-      "pvc-geotiled"}], "compute-geotiled-6": [{"name": "crop-into-tiles-6-Output",
-      "parent_task": "crop-into-tiles-6"}, {"name": "pvc-geotiled-name", "parent_task":
-      "pvc-geotiled"}], "compute-geotiled-7": [{"name": "crop-into-tiles-7-Output",
-      "parent_task": "crop-into-tiles-7"}, {"name": "pvc-geotiled-name", "parent_task":
-      "pvc-geotiled"}], "compute-geotiled-8": [{"name": "crop-into-tiles-8-Output",
-      "parent_task": "crop-into-tiles-8"}, {"name": "pvc-geotiled-name", "parent_task":
-      "pvc-geotiled"}], "compute-geotiled-9": [{"name": "crop-into-tiles-9-Output",
-      "parent_task": "crop-into-tiles-9"}, {"name": "pvc-geotiled-name", "parent_task":
       "pvc-geotiled"}], "crop-into-tiles": [{"name": "pvc-geotiled-name", "parent_task":
       "pvc-geotiled"}, {"name": "reproject-Output", "parent_task": "reproject"}],
       "crop-into-tiles-2": [{"name": "pvc-geotiled-name", "parent_task": "pvc-geotiled"},
@@ -98,41 +58,19 @@ metadata:
       [{"name": "pvc-geotiled-name", "parent_task": "pvc-geotiled"}, {"name": "reproject-Output",
       "parent_task": "reproject"}], "crop-into-tiles-4": [{"name": "pvc-geotiled-name",
       "parent_task": "pvc-geotiled"}, {"name": "reproject-Output", "parent_task":
-      "reproject"}], "crop-into-tiles-5": [{"name": "pvc-geotiled-name", "parent_task":
-      "pvc-geotiled"}, {"name": "reproject-Output", "parent_task": "reproject"}],
-      "crop-into-tiles-6": [{"name": "pvc-geotiled-name", "parent_task": "pvc-geotiled"},
-      {"name": "reproject-Output", "parent_task": "reproject"}], "crop-into-tiles-7":
-      [{"name": "pvc-geotiled-name", "parent_task": "pvc-geotiled"}, {"name": "reproject-Output",
-      "parent_task": "reproject"}], "crop-into-tiles-8": [{"name": "pvc-geotiled-name",
-      "parent_task": "pvc-geotiled"}, {"name": "reproject-Output", "parent_task":
-      "reproject"}], "crop-into-tiles-9": [{"name": "pvc-geotiled-name", "parent_task":
-      "pvc-geotiled"}, {"name": "reproject-Output", "parent_task": "reproject"}],
-      "load-data": [{"name": "pvc-geotiled-name", "parent_task": "pvc-geotiled"}],
+      "reproject"}], "load-data": [{"name": "pvc-geotiled-name", "parent_task": "pvc-geotiled"}],
       "merge-avg": [{"name": "compute-geotiled-2-aspect", "parent_task": "compute-geotiled-2"},
       {"name": "compute-geotiled-3-aspect", "parent_task": "compute-geotiled-3"},
       {"name": "compute-geotiled-4-aspect", "parent_task": "compute-geotiled-4"},
-      {"name": "compute-geotiled-5-aspect", "parent_task": "compute-geotiled-5"},
-      {"name": "compute-geotiled-6-aspect", "parent_task": "compute-geotiled-6"},
-      {"name": "compute-geotiled-7-aspect", "parent_task": "compute-geotiled-7"},
-      {"name": "compute-geotiled-8-aspect", "parent_task": "compute-geotiled-8"},
-      {"name": "compute-geotiled-9-aspect", "parent_task": "compute-geotiled-9"},
       {"name": "compute-geotiled-aspect", "parent_task": "compute-geotiled"}, {"name":
       "pvc-geotiled-name", "parent_task": "pvc-geotiled"}], "merge-avg-2": [{"name":
       "compute-geotiled-2-hill", "parent_task": "compute-geotiled-2"}, {"name": "compute-geotiled-3-hill",
       "parent_task": "compute-geotiled-3"}, {"name": "compute-geotiled-4-hill", "parent_task":
-      "compute-geotiled-4"}, {"name": "compute-geotiled-5-hill", "parent_task": "compute-geotiled-5"},
-      {"name": "compute-geotiled-6-hill", "parent_task": "compute-geotiled-6"}, {"name":
-      "compute-geotiled-7-hill", "parent_task": "compute-geotiled-7"}, {"name": "compute-geotiled-8-hill",
-      "parent_task": "compute-geotiled-8"}, {"name": "compute-geotiled-9-hill", "parent_task":
-      "compute-geotiled-9"}, {"name": "compute-geotiled-hill", "parent_task": "compute-geotiled"},
+      "compute-geotiled-4"}, {"name": "compute-geotiled-hill", "parent_task": "compute-geotiled"},
       {"name": "pvc-geotiled-name", "parent_task": "pvc-geotiled"}], "merge-avg-3":
       [{"name": "compute-geotiled-2-slope", "parent_task": "compute-geotiled-2"},
       {"name": "compute-geotiled-3-slope", "parent_task": "compute-geotiled-3"}, {"name":
-      "compute-geotiled-4-slope", "parent_task": "compute-geotiled-4"}, {"name": "compute-geotiled-5-slope",
-      "parent_task": "compute-geotiled-5"}, {"name": "compute-geotiled-6-slope", "parent_task":
-      "compute-geotiled-6"}, {"name": "compute-geotiled-7-slope", "parent_task": "compute-geotiled-7"},
-      {"name": "compute-geotiled-8-slope", "parent_task": "compute-geotiled-8"}, {"name":
-      "compute-geotiled-9-slope", "parent_task": "compute-geotiled-9"}, {"name": "compute-geotiled-slope",
+      "compute-geotiled-4-slope", "parent_task": "compute-geotiled-4"}, {"name": "compute-geotiled-slope",
       "parent_task": "compute-geotiled"}, {"name": "pvc-geotiled-name", "parent_task":
       "pvc-geotiled"}], "merge-tiles": [{"name": "load-data-Output", "parent_task":
       "load-data"}, {"name": "pvc-geotiled-name", "parent_task": "pvc-geotiled"}],
@@ -157,63 +95,52 @@ metadata:
       "$(results.slope.path)"]], "compute-geotiled-3": [["aspect", "$(results.aspect.path)"],
       ["hill", "$(results.hill.path)"], ["slope", "$(results.slope.path)"]], "compute-geotiled-4":
       [["aspect", "$(results.aspect.path)"], ["hill", "$(results.hill.path)"], ["slope",
-      "$(results.slope.path)"]], "compute-geotiled-5": [["aspect", "$(results.aspect.path)"],
-      ["hill", "$(results.hill.path)"], ["slope", "$(results.slope.path)"]], "compute-geotiled-6":
-      [["aspect", "$(results.aspect.path)"], ["hill", "$(results.hill.path)"], ["slope",
-      "$(results.slope.path)"]], "compute-geotiled-7": [["aspect", "$(results.aspect.path)"],
-      ["hill", "$(results.hill.path)"], ["slope", "$(results.slope.path)"]], "compute-geotiled-8":
-      [["aspect", "$(results.aspect.path)"], ["hill", "$(results.hill.path)"], ["slope",
-      "$(results.slope.path)"]], "compute-geotiled-9": [["aspect", "$(results.aspect.path)"],
-      ["hill", "$(results.hill.path)"], ["slope", "$(results.slope.path)"]], "crop-into-tiles":
-      [["Output", "$(results.Output.path)"]], "crop-into-tiles-2": [["Output", "$(results.Output.path)"]],
-      "crop-into-tiles-3": [["Output", "$(results.Output.path)"]], "crop-into-tiles-4":
-      [["Output", "$(results.Output.path)"]], "crop-into-tiles-5": [["Output", "$(results.Output.path)"]],
-      "crop-into-tiles-6": [["Output", "$(results.Output.path)"]], "crop-into-tiles-7":
-      [["Output", "$(results.Output.path)"]], "crop-into-tiles-8": [["Output", "$(results.Output.path)"]],
-      "crop-into-tiles-9": [["Output", "$(results.Output.path)"]], "load-data": [["Output",
-      "$(results.Output.path)"]], "merge-avg": [["Output", "$(results.Output.path)"]],
-      "merge-avg-2": [["Output", "$(results.Output.path)"]], "merge-avg-3": [["Output",
-      "$(results.Output.path)"]], "merge-tiles": [["Output", "$(results.Output.path)"]],
-      "pvc-geotiled": [], "reproject": [["Output", "$(results.Output.path)"]], "reproject-2":
-      [["Output", "$(results.Output.path)"]], "reproject-3": [["Output", "$(results.Output.path)"]],
-      "reproject-4": [["Output", "$(results.Output.path)"]], "reproject-5": [["Output",
-      "$(results.Output.path)"]]}'
+      "$(results.slope.path)"]], "crop-into-tiles": [["Output", "$(results.Output.path)"]],
+      "crop-into-tiles-2": [["Output", "$(results.Output.path)"]], "crop-into-tiles-3":
+      [["Output", "$(results.Output.path)"]], "crop-into-tiles-4": [["Output", "$(results.Output.path)"]],
+      "load-data": [["Output", "$(results.Output.path)"]], "merge-avg": [["Output",
+      "$(results.Output.path)"]], "merge-avg-2": [["Output", "$(results.Output.path)"]],
+      "merge-avg-3": [["Output", "$(results.Output.path)"]], "merge-tiles": [["Output",
+      "$(results.Output.path)"]], "pvc-geotiled": [], "reproject": [["Output", "$(results.Output.path)"]],
+      "reproject-2": [["Output", "$(results.Output.path)"]], "reproject-3": [["Output",
+      "$(results.Output.path)"]], "reproject-4": [["Output", "$(results.Output.path)"]],
+      "reproject-5": [["Output", "$(results.Output.path)"]]}'
     sidecar.istio.io/inject: "false"
     tekton.dev/template: ''
     pipelines.kubeflow.org/big_data_passing_format: $(workspaces.$TASK_NAME.path)/artifacts/$ORIG_PR_NAME/$TASKRUN_NAME/$TASK_PARAM_NAME
     pipelines.kubeflow.org/pipeline_spec: '{"description": "Pipeline for somospie
-      data generation", "inputs": [{"default": "olayap/somospie-gdal", "name": "container_image",
-      "optional": true, "type": "String"}, {"default": "/cos/OK_10m.txt", "name":
-      "links_file", "optional": true, "type": "String"}, {"default": "3", "name":
-      "n_tiles", "optional": true, "type": "Integer"}, {"default": "/cos/albers_conus_reference.wkt",
-      "name": "projection_file", "optional": true, "type": "String"}, {"default":
-      "ok-10m", "name": "cos_name", "optional": true, "type": "String"}], "name":
-      "somospie data generation pipeline"}'
+      data generation", "inputs": [{"default": "icr.io/somospie/somospie-gdal-netcdf",
+      "name": "container_image", "optional": true, "type": "String"}, {"default":
+      "/cos/OK_10m.txt", "name": "links_file", "optional": true, "type": "String"},
+      {"default": "2", "name": "n_tiles", "optional": true, "type": "Integer"}, {"default":
+      "/cos/albers_conus_reference.wkt", "name": "projection_file", "optional": true,
+      "type": "String"}, {"default": "ok-10m", "name": "cos_name", "optional": true,
+      "type": "String"}], "name": "somospie data generation pipeline"}'
   labels:
     pipelines.kubeflow.org/pipelinename: ''
     pipelines.kubeflow.org/generation: ''
 spec:
   params:
   - name: container_image
-    value: olayap/somospie-gdal
+    value: icr.io/somospie/somospie-gdal-netcdf
   - name: cos_name
     value: ok-10m
   - name: links_file
     value: /cos/OK_10m.txt
   - name: n_tiles
-    value: '3'
+    value: '2'
   - name: projection_file
     value: /cos/albers_conus_reference.wkt
   pipelineSpec:
     params:
     - name: container_image
-      default: olayap/somospie-gdal
+      default: icr.io/somospie/somospie-gdal-netcdf
     - name: cos_name
       default: ok-10m
     - name: links_file
       default: /cos/OK_10m.txt
     - name: n_tiles
-      default: '3'
+      default: '2'
     - name: projection_file
       default: /cos/albers_conus_reference.wkt
     tasks:
@@ -345,7 +272,8 @@ spec:
                     os.makedirs(out_dir)
                 with open(file,'r') as text:
                     for line in text:
-                        urllib.request.urlretrieve(line, out_dir+line.split("/")[-1])
+                        if not os.path.exists(out_dir+line.split("/")[-1]):
+                            urllib.request.urlretrieve(line, out_dir+line.split("/")[-1])
                 return out_dir
 
             def _serialize_str(str_value: str) -> str:
@@ -400,7 +328,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Load data", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Load data@sha256=d322c2b9edcd20a4b5d3f824f945cac09d03a5113fd3e3e0e84bf51860e553a4"}'
+              [{"name": "Output", "type": "String"}], "version": "Load data@sha256=45202746bb887291cdc053c3a7e8f98067ce4a4fbf5627231625fdaf1017a0e6"}'
     - name: merge-tiles
       params:
       - name: container_image
@@ -428,59 +356,36 @@ spec:
             program_path=$(mktemp)
             printf "%s" "$0" > "$program_path"
             python3 -u "$program_path" "$@"
-          - |
-            def merge_tiles(input_dir, output_file, cos):
-                # Packages
-                import os
-                import glob
-                from osgeo import gdal
-                input_files=[]
-                # get all files from dems directory
-                for root, dirs, files in os.walk(os.path.abspath(input_dir)):
-                    for file in files:
-                        input_files.append(os.path.join(root, file))
-                #input_files=os.listdir(input_dir)
-                print("Reading TIFFs from: ", input_files)
-                # input_files: list of .tif files to merge
-                vrt = gdal.BuildVRT(cos+'merged.vrt', input_files)
-                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], callback=gdal.TermProgress_nocb)
-                gdal.Translate(output_file, vrt, options=translate_options)
-                vrt = None  # closes file
-                os.remove(cos+'merged.vrt')
-                return output_file
-
-            def _serialize_str(str_value: str) -> str:
-                if not isinstance(str_value, str):
-                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
-                        str(str_value), str(type(str_value))))
-                return str_value
-
-            import argparse
-            _parser = argparse.ArgumentParser(prog='Merge tiles', description='')
-            _parser.add_argument("--input-dir", dest="input_dir", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--output-file", dest="output_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--cos", dest="cos", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
-            _parsed_args = vars(_parser.parse_args())
-            _output_files = _parsed_args.pop("_output_paths", [])
-
-            _outputs = merge_tiles(**_parsed_args)
-
-            _outputs = [_outputs]
-
-            _output_serializers = [
-                _serialize_str,
-
-            ]
-
-            import os
-            for idx, output_file in enumerate(_output_files):
-                try:
-                    os.makedirs(os.path.dirname(output_file))
-                except OSError:
-                    pass
-                with open(output_file, 'w') as f:
-                    f.write(_output_serializers[idx](_outputs[idx]))
+          - "def merge_tiles(input_dir, output_file, cos):\n    # Packages\n    import\
+            \ os\n    import glob\n    from osgeo import gdal\n    input_files=[]\n\
+            \    if os.path.isfile(output_file):\n        return output_file\n   \
+            \ else: \n        # get all files from dems directory\n        for root,\
+            \ dirs, files in os.walk(os.path.abspath(input_dir)):\n            for\
+            \ file in files:\n                input_files.append(os.path.join(root,\
+            \ file))\n        #input_files=os.listdir(input_dir)\n        print(\"\
+            Reading TIFFs from: \", input_files)\n        # input_files: list of .tif\
+            \ files to merge\n        vrt = gdal.BuildVRT(cos+'merged.vrt', input_files)\n\
+            \        translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW',\
+            \ 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], callback=gdal.TermProgress_nocb)\n\
+            \        gdal.Translate(output_file, vrt, options=translate_options)\n\
+            \        vrt = None  # closes file\n        os.remove(cos+'merged.vrt')\n\
+            \        return output_file\n\ndef _serialize_str(str_value: str) -> str:\n\
+            \    if not isinstance(str_value, str):\n        raise TypeError('Value\
+            \ \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value),\
+            \ str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser\
+            \ = argparse.ArgumentParser(prog='Merge tiles', description='')\n_parser.add_argument(\"\
+            --input-dir\", dest=\"input_dir\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"--output-file\", dest=\"output_file\", type=str,\
+            \ required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--cos\"\
+            , dest=\"cos\", type=str, required=True, default=argparse.SUPPRESS)\n\
+            _parser.add_argument(\"----output-paths\", dest=\"_output_paths\", type=str,\
+            \ nargs=1)\n_parsed_args = vars(_parser.parse_args())\n_output_files =\
+            \ _parsed_args.pop(\"_output_paths\", [])\n\n_outputs = merge_tiles(**_parsed_args)\n\
+            \n_outputs = [_outputs]\n\n_output_serializers = [\n    _serialize_str,\n\
+            \n]\n\nimport os\nfor idx, output_file in enumerate(_output_files):\n\
+            \    try:\n        os.makedirs(os.path.dirname(output_file))\n    except\
+            \ OSError:\n        pass\n    with open(output_file, 'w') as f:\n    \
+            \    f.write(_output_serializers[idx](_outputs[idx]))\n"
           image: $(inputs.params.container_image)
           volumeMounts:
           - mountPath: /cos/
@@ -503,7 +408,7 @@ spec:
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge tiles",
               "outputs": [{"name": "Output", "type": "String"}], "version": "Merge
-              tiles@sha256=1657fd9d546fe287be3ab78fedd41c93f194e6a7e2b8b96620f9afad3a21e6ea"}'
+              tiles@sha256=69bf6da1332888b472d05ee5d5888583c2836d2a17b58bb5fea5ff0878b2d0b5"}'
     - name: reproject
       params:
       - name: container_image
@@ -539,20 +444,21 @@ spec:
             python3 -u "$program_path" "$@"
           - "def reproject( input_file, output_file, projection, nodata='n', pipeline_flag=[]):\n\
             \    # Packages\n    import os\n    from osgeo import gdal\n    import\
-            \ numpy as np \n\n    # Projection can be EPSG:4326, .... or the path\
-            \ to a wkt file\n    if nodata == 'y':\n        warp_options = gdal.WarpOptions(dstSRS=projection,\
-            \ dstNodata=np.nan, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES',\
-            \ 'NUM_THREADS=ALL_CPUS'], multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'],\
-            \ callback=gdal.TermProgress_nocb)\n    else:\n        warp_options =\
-            \ gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW',\
-            \ 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], callback=gdal.TermProgress_nocb,\
-            \ multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'])\n    warp =\
-            \ gdal.Warp(output_file, input_file, options=warp_options)\n    warp =\
-            \ None  # Closes the files\n    return output_file\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Reproject',\
+            \ numpy as np \n\n    if os.path.isfile(output_file):\n        return\
+            \ output_file\n    else:  \n        # Projection can be EPSG:4326, ....\
+            \ or the path to a wkt file\n        if nodata == 'y':\n            warp_options\
+            \ = gdal.WarpOptions(dstSRS=projection, dstNodata=np.nan, creationOptions=['COMPRESS=LZW',\
+            \ 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], multithread=True,\
+            \ warpOptions=['NUM_THREADS=ALL_CPUS'], callback=gdal.TermProgress_nocb)\n\
+            \        else:\n            warp_options = gdal.WarpOptions(dstSRS=projection,\
+            \ creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'],\
+            \ callback=gdal.TermProgress_nocb, multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'])\n\
+            \        warp = gdal.Warp(output_file, input_file, options=warp_options)\n\
+            \        warp = None  # Closes the files\n        return output_file\n\
+            \ndef _serialize_str(str_value: str) -> str:\n    if not isinstance(str_value,\
+            \ str):\n        raise TypeError('Value \"{}\" has type \"{}\" instead\
+            \ of str.'.format(\n            str(str_value), str(type(str_value))))\n\
+            \    return str_value\n\nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Reproject',\
             \ description='')\n_parser.add_argument(\"--input-file\", dest=\"input_file\"\
             , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
             --output-file\", dest=\"output_file\", type=str, required=True, default=argparse.SUPPRESS)\n\
@@ -590,7 +496,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Reproject", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Reproject@sha256=d6da68ec6b6c1706a4b9f2b42664eb84f361aea1e264a32c5c1af4fa070125d1"}'
+              [{"name": "Output", "type": "String"}], "version": "Reproject@sha256=794a67f1a2236001f488a2c36b42845a3a268ecce9a022edaff7c0612aaeb12e"}'
     - name: crop-into-tiles
       params:
       - name: container_image
@@ -608,7 +514,7 @@ spec:
           - --out-file
           - /cos/tile_0000.tif
           - --n-tiles
-          - '3'
+          - '2'
           - --idx-x
           - '0'
           - --idx-y
@@ -778,16 +684,20 @@ spec:
                 # Slope
                 dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
                 gdal.DEMProcessing(slope_file, input_file, processing='slope', options=dem_options)
+                print("Slope done")
                 # Aspect
                 dem_options = gdal.DEMProcessingOptions(zeroForFlat=True, format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
                 gdal.DEMProcessing(aspect_file, input_file, processing='aspect', options=dem_options)
+                print("Aspect done")
                 # Hillshading
                 dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
                 gdal.DEMProcessing(dir+str(tile_count)+'hill.tif', input_file, processing='hillshade', options=dem_options)
+                print("Hillshading done")
 
                 # Change datatype of hillshading to the same as the other parameters
                 translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], outputType=gdal.GDT_Float32, callback=gdal.TermProgress_nocb)
                 gdal.Translate(hillshading_file, dir+str(tile_count)+'hill.tif', options=translate_options)
+                print("Hillshading datatype change")
                 os.remove(dir+str(tile_count)+'hill.tif')
 
                 return(aspect_file,hillshading_file,slope_file)
@@ -828,6 +738,9 @@ spec:
                 with open(output_file, 'w') as f:
                     f.write(_output_serializers[idx](_outputs[idx]))
           image: $(inputs.params.container_image)
+          resources:
+            requests:
+              memory: 20G
           volumeMounts:
           - mountPath: /cos/
             name: pvc-geotiled
@@ -856,7 +769,7 @@ spec:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Compute geotiled",
               "outputs": [{"name": "aspect", "type": "String"}, {"name": "hill", "type":
               "String"}, {"name": "slope", "type": "String"}], "version": "Compute
-              geotiled@sha256=a21a9008c60e92887548b4b28b2dba9a5d5a205dcbd3c7b2859d8ed5cf4cd4e1"}'
+              geotiled@sha256=0cdba78982e8807af04283745524fa255d9b032fa71329b8e6d18705dbe6a90c"}'
       retries: 3
     - name: crop-into-tiles-2
       params:
@@ -875,7 +788,7 @@ spec:
           - --out-file
           - /cos/tile_0001.tif
           - --n-tiles
-          - '3'
+          - '2'
           - --idx-x
           - '0'
           - --idx-y
@@ -1045,16 +958,20 @@ spec:
                 # Slope
                 dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
                 gdal.DEMProcessing(slope_file, input_file, processing='slope', options=dem_options)
+                print("Slope done")
                 # Aspect
                 dem_options = gdal.DEMProcessingOptions(zeroForFlat=True, format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
                 gdal.DEMProcessing(aspect_file, input_file, processing='aspect', options=dem_options)
+                print("Aspect done")
                 # Hillshading
                 dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
                 gdal.DEMProcessing(dir+str(tile_count)+'hill.tif', input_file, processing='hillshade', options=dem_options)
+                print("Hillshading done")
 
                 # Change datatype of hillshading to the same as the other parameters
                 translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], outputType=gdal.GDT_Float32, callback=gdal.TermProgress_nocb)
                 gdal.Translate(hillshading_file, dir+str(tile_count)+'hill.tif', options=translate_options)
+                print("Hillshading datatype change")
                 os.remove(dir+str(tile_count)+'hill.tif')
 
                 return(aspect_file,hillshading_file,slope_file)
@@ -1095,6 +1012,9 @@ spec:
                 with open(output_file, 'w') as f:
                     f.write(_output_serializers[idx](_outputs[idx]))
           image: $(inputs.params.container_image)
+          resources:
+            requests:
+              memory: 20G
           volumeMounts:
           - mountPath: /cos/
             name: pvc-geotiled
@@ -1123,7 +1043,7 @@ spec:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Compute geotiled",
               "outputs": [{"name": "aspect", "type": "String"}, {"name": "hill", "type":
               "String"}, {"name": "slope", "type": "String"}], "version": "Compute
-              geotiled@sha256=a21a9008c60e92887548b4b28b2dba9a5d5a205dcbd3c7b2859d8ed5cf4cd4e1"}'
+              geotiled@sha256=0cdba78982e8807af04283745524fa255d9b032fa71329b8e6d18705dbe6a90c"}'
       retries: 3
     - name: crop-into-tiles-3
       params:
@@ -1142,11 +1062,11 @@ spec:
           - --out-file
           - /cos/tile_0002.tif
           - --n-tiles
-          - '3'
-          - --idx-x
-          - '0'
-          - --idx-y
           - '2'
+          - --idx-x
+          - '1'
+          - --idx-y
+          - '0'
           - '----output-paths'
           - $(results.Output.path)
           command:
@@ -1312,16 +1232,20 @@ spec:
                 # Slope
                 dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
                 gdal.DEMProcessing(slope_file, input_file, processing='slope', options=dem_options)
+                print("Slope done")
                 # Aspect
                 dem_options = gdal.DEMProcessingOptions(zeroForFlat=True, format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
                 gdal.DEMProcessing(aspect_file, input_file, processing='aspect', options=dem_options)
+                print("Aspect done")
                 # Hillshading
                 dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
                 gdal.DEMProcessing(dir+str(tile_count)+'hill.tif', input_file, processing='hillshade', options=dem_options)
+                print("Hillshading done")
 
                 # Change datatype of hillshading to the same as the other parameters
                 translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], outputType=gdal.GDT_Float32, callback=gdal.TermProgress_nocb)
                 gdal.Translate(hillshading_file, dir+str(tile_count)+'hill.tif', options=translate_options)
+                print("Hillshading datatype change")
                 os.remove(dir+str(tile_count)+'hill.tif')
 
                 return(aspect_file,hillshading_file,slope_file)
@@ -1362,6 +1286,9 @@ spec:
                 with open(output_file, 'w') as f:
                     f.write(_output_serializers[idx](_outputs[idx]))
           image: $(inputs.params.container_image)
+          resources:
+            requests:
+              memory: 20G
           volumeMounts:
           - mountPath: /cos/
             name: pvc-geotiled
@@ -1390,7 +1317,7 @@ spec:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Compute geotiled",
               "outputs": [{"name": "aspect", "type": "String"}, {"name": "hill", "type":
               "String"}, {"name": "slope", "type": "String"}], "version": "Compute
-              geotiled@sha256=a21a9008c60e92887548b4b28b2dba9a5d5a205dcbd3c7b2859d8ed5cf4cd4e1"}'
+              geotiled@sha256=0cdba78982e8807af04283745524fa255d9b032fa71329b8e6d18705dbe6a90c"}'
       retries: 3
     - name: crop-into-tiles-4
       params:
@@ -1409,11 +1336,11 @@ spec:
           - --out-file
           - /cos/tile_0003.tif
           - --n-tiles
-          - '3'
+          - '2'
           - --idx-x
           - '1'
           - --idx-y
-          - '0'
+          - '1'
           - '----output-paths'
           - $(results.Output.path)
           command:
@@ -1579,16 +1506,20 @@ spec:
                 # Slope
                 dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
                 gdal.DEMProcessing(slope_file, input_file, processing='slope', options=dem_options)
+                print("Slope done")
                 # Aspect
                 dem_options = gdal.DEMProcessingOptions(zeroForFlat=True, format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
                 gdal.DEMProcessing(aspect_file, input_file, processing='aspect', options=dem_options)
+                print("Aspect done")
                 # Hillshading
                 dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
                 gdal.DEMProcessing(dir+str(tile_count)+'hill.tif', input_file, processing='hillshade', options=dem_options)
+                print("Hillshading done")
 
                 # Change datatype of hillshading to the same as the other parameters
                 translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], outputType=gdal.GDT_Float32, callback=gdal.TermProgress_nocb)
                 gdal.Translate(hillshading_file, dir+str(tile_count)+'hill.tif', options=translate_options)
+                print("Hillshading datatype change")
                 os.remove(dir+str(tile_count)+'hill.tif')
 
                 return(aspect_file,hillshading_file,slope_file)
@@ -1629,6 +1560,9 @@ spec:
                 with open(output_file, 'w') as f:
                     f.write(_output_serializers[idx](_outputs[idx]))
           image: $(inputs.params.container_image)
+          resources:
+            requests:
+              memory: 20G
           volumeMounts:
           - mountPath: /cos/
             name: pvc-geotiled
@@ -1657,1342 +1591,7 @@ spec:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Compute geotiled",
               "outputs": [{"name": "aspect", "type": "String"}, {"name": "hill", "type":
               "String"}, {"name": "slope", "type": "String"}], "version": "Compute
-              geotiled@sha256=a21a9008c60e92887548b4b28b2dba9a5d5a205dcbd3c7b2859d8ed5cf4cd4e1"}'
-      retries: 3
-    - name: crop-into-tiles-5
-      params:
-      - name: container_image
-        value: $(params.container_image)
-      - name: pvc-geotiled-name
-        value: $(tasks.pvc-geotiled.results.name)
-      - name: reproject-Output
-        value: $(tasks.reproject.results.Output)
-      taskSpec:
-        steps:
-        - name: main
-          args:
-          - --mosaic
-          - $(inputs.params.reproject-Output)
-          - --out-file
-          - /cos/tile_0004.tif
-          - --n-tiles
-          - '3'
-          - --idx-x
-          - '1'
-          - --idx-y
-          - '1'
-          - '----output-paths'
-          - $(results.Output.path)
-          command:
-          - sh
-          - -ec
-          - |
-            program_path=$(mktemp)
-            printf "%s" "$0" > "$program_path"
-            python3 -u "$program_path" "$@"
-          - |
-            def crop_into_tiles(mosaic, out_file, n_tiles, idx_x, idx_y):
-                import os
-                import math
-                from osgeo import gdal
-
-                # Functions
-                def crop_pixels(input_file, output_file, window):
-                    # Window to crop by [left_x, top_y, width, height]
-                    translate_options = gdal.TranslateOptions(srcWin=window,
-                                                            creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
-                                                            callback=gdal.TermProgress_nocb)
-                    gdal.Translate(output_file, input_file, options=translate_options)
-
-                # idx_x number of the tile in the x dimension
-
-                ds = gdal.Open(mosaic, 0)
-                cols = ds.RasterXSize
-                rows = ds.RasterYSize
-                x_win_size = int(math.ceil(cols / n_tiles))
-                y_win_size = int(math.ceil(rows / n_tiles))
-
-                buffer = 10 # 10 pixels
-                tile_count = 0
-
-                idx_x = range(0, cols, x_win_size)[idx_x]
-                idx_y = range(0, rows, y_win_size)[idx_y]
-
-                if idx_y + y_win_size < rows:
-                    nrows = y_win_size
-                else:
-                    nrows = rows - idx_y
-
-                if idx_x + x_win_size < cols:
-                    ncols = x_win_size
-                else:
-                    ncols = cols - idx_x
-
-                win = [idx_x, idx_y, ncols, nrows]
-
-                # Upper left corner
-                win[0] = max(0, win[0] - buffer)
-                win[1] = max(0, win[1] - buffer)
-
-                w = win[2] + 2*buffer
-                win[2] = w if win[0] + w < cols else cols - win[0]
-
-                h = win[3] + 2*buffer
-                win[3] = h if win[1] + h < cols else cols - win[1]
-
-                crop_pixels(mosaic, out_file, win)
-                tile_count += 1
-                return out_file
-
-            def _serialize_str(str_value: str) -> str:
-                if not isinstance(str_value, str):
-                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
-                        str(str_value), str(type(str_value))))
-                return str_value
-
-            import argparse
-            _parser = argparse.ArgumentParser(prog='Crop into tiles', description='')
-            _parser.add_argument("--mosaic", dest="mosaic", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--out-file", dest="out_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--n-tiles", dest="n_tiles", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--idx-x", dest="idx_x", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--idx-y", dest="idx_y", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
-            _parsed_args = vars(_parser.parse_args())
-            _output_files = _parsed_args.pop("_output_paths", [])
-
-            _outputs = crop_into_tiles(**_parsed_args)
-
-            _outputs = [_outputs]
-
-            _output_serializers = [
-                _serialize_str,
-
-            ]
-
-            import os
-            for idx, output_file in enumerate(_output_files):
-                try:
-                    os.makedirs(os.path.dirname(output_file))
-                except OSError:
-                    pass
-                with open(output_file, 'w') as f:
-                    f.write(_output_serializers[idx](_outputs[idx]))
-          image: $(inputs.params.container_image)
-          volumeMounts:
-          - mountPath: /cos/
-            name: pvc-geotiled
-        params:
-        - name: container_image
-        - name: pvc-geotiled-name
-        - name: reproject-Output
-        results:
-        - name: Output
-          type: string
-          description: /tmp/outputs/Output/data
-        volumes:
-        - name: pvc-geotiled
-          persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-geotiled-name)
-        metadata:
-          labels:
-            pipelines.kubeflow.org/cache_enabled: "true"
-          annotations:
-            pipelines.kubeflow.org/component_spec_digest: '{"name": "Crop into tiles",
-              "outputs": [{"name": "Output", "type": "String"}], "version": "Crop
-              into tiles@sha256=edfe18cb96fd40fa1443fd1f6cc9c4b320660514a87638d9756614730de0240c"}'
-      retries: 3
-    - name: compute-geotiled-5
-      params:
-      - name: container_image
-        value: $(params.container_image)
-      - name: crop-into-tiles-5-Output
-        value: $(tasks.crop-into-tiles-5.results.Output)
-      - name: pvc-geotiled-name
-        value: $(tasks.pvc-geotiled.results.name)
-      taskSpec:
-        steps:
-        - name: main
-          args:
-          - --dir
-          - /cos/
-          - --tile-count
-          - '4'
-          - --input-file
-          - $(inputs.params.crop-into-tiles-5-Output)
-          - --aspect-file
-          - /cos/aspect_tile_0004.tif
-          - --hillshading-file
-          - /cos/hillshading_tile_0004.tif
-          - --slope-file
-          - /cos/slope_tile_0004.tif
-          - '----output-paths'
-          - $(results.aspect.path)
-          - $(results.hill.path)
-          - $(results.slope.path)
-          command:
-          - sh
-          - -ec
-          - |
-            program_path=$(mktemp)
-            printf "%s" "$0" > "$program_path"
-            python3 -u "$program_path" "$@"
-          - |
-            def compute_geotiled(dir, tile_count, input_file, aspect_file, hillshading_file, slope_file):
-                ## Packages
-                import os
-                from osgeo import gdal
-
-                # Slope
-                dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-                gdal.DEMProcessing(slope_file, input_file, processing='slope', options=dem_options)
-                # Aspect
-                dem_options = gdal.DEMProcessingOptions(zeroForFlat=True, format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-                gdal.DEMProcessing(aspect_file, input_file, processing='aspect', options=dem_options)
-                # Hillshading
-                dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-                gdal.DEMProcessing(dir+str(tile_count)+'hill.tif', input_file, processing='hillshade', options=dem_options)
-
-                # Change datatype of hillshading to the same as the other parameters
-                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], outputType=gdal.GDT_Float32, callback=gdal.TermProgress_nocb)
-                gdal.Translate(hillshading_file, dir+str(tile_count)+'hill.tif', options=translate_options)
-                os.remove(dir+str(tile_count)+'hill.tif')
-
-                return(aspect_file,hillshading_file,slope_file)
-
-            def _serialize_str(str_value: str) -> str:
-                if not isinstance(str_value, str):
-                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
-                        str(str_value), str(type(str_value))))
-                return str_value
-
-            import argparse
-            _parser = argparse.ArgumentParser(prog='Compute geotiled', description='')
-            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--tile-count", dest="tile_count", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--input-file", dest="input_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--aspect-file", dest="aspect_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--hillshading-file", dest="hillshading_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--slope-file", dest="slope_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=3)
-            _parsed_args = vars(_parser.parse_args())
-            _output_files = _parsed_args.pop("_output_paths", [])
-
-            _outputs = compute_geotiled(**_parsed_args)
-
-            _output_serializers = [
-                _serialize_str,
-                _serialize_str,
-                _serialize_str,
-
-            ]
-
-            import os
-            for idx, output_file in enumerate(_output_files):
-                try:
-                    os.makedirs(os.path.dirname(output_file))
-                except OSError:
-                    pass
-                with open(output_file, 'w') as f:
-                    f.write(_output_serializers[idx](_outputs[idx]))
-          image: $(inputs.params.container_image)
-          volumeMounts:
-          - mountPath: /cos/
-            name: pvc-geotiled
-        params:
-        - name: container_image
-        - name: crop-into-tiles-5-Output
-        - name: pvc-geotiled-name
-        results:
-        - name: aspect
-          type: string
-          description: /tmp/outputs/aspect/data
-        - name: hill
-          type: string
-          description: /tmp/outputs/hill/data
-        - name: slope
-          type: string
-          description: /tmp/outputs/slope/data
-        volumes:
-        - name: pvc-geotiled
-          persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-geotiled-name)
-        metadata:
-          labels:
-            pipelines.kubeflow.org/cache_enabled: "true"
-          annotations:
-            pipelines.kubeflow.org/component_spec_digest: '{"name": "Compute geotiled",
-              "outputs": [{"name": "aspect", "type": "String"}, {"name": "hill", "type":
-              "String"}, {"name": "slope", "type": "String"}], "version": "Compute
-              geotiled@sha256=a21a9008c60e92887548b4b28b2dba9a5d5a205dcbd3c7b2859d8ed5cf4cd4e1"}'
-      retries: 3
-    - name: crop-into-tiles-6
-      params:
-      - name: container_image
-        value: $(params.container_image)
-      - name: pvc-geotiled-name
-        value: $(tasks.pvc-geotiled.results.name)
-      - name: reproject-Output
-        value: $(tasks.reproject.results.Output)
-      taskSpec:
-        steps:
-        - name: main
-          args:
-          - --mosaic
-          - $(inputs.params.reproject-Output)
-          - --out-file
-          - /cos/tile_0005.tif
-          - --n-tiles
-          - '3'
-          - --idx-x
-          - '1'
-          - --idx-y
-          - '2'
-          - '----output-paths'
-          - $(results.Output.path)
-          command:
-          - sh
-          - -ec
-          - |
-            program_path=$(mktemp)
-            printf "%s" "$0" > "$program_path"
-            python3 -u "$program_path" "$@"
-          - |
-            def crop_into_tiles(mosaic, out_file, n_tiles, idx_x, idx_y):
-                import os
-                import math
-                from osgeo import gdal
-
-                # Functions
-                def crop_pixels(input_file, output_file, window):
-                    # Window to crop by [left_x, top_y, width, height]
-                    translate_options = gdal.TranslateOptions(srcWin=window,
-                                                            creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
-                                                            callback=gdal.TermProgress_nocb)
-                    gdal.Translate(output_file, input_file, options=translate_options)
-
-                # idx_x number of the tile in the x dimension
-
-                ds = gdal.Open(mosaic, 0)
-                cols = ds.RasterXSize
-                rows = ds.RasterYSize
-                x_win_size = int(math.ceil(cols / n_tiles))
-                y_win_size = int(math.ceil(rows / n_tiles))
-
-                buffer = 10 # 10 pixels
-                tile_count = 0
-
-                idx_x = range(0, cols, x_win_size)[idx_x]
-                idx_y = range(0, rows, y_win_size)[idx_y]
-
-                if idx_y + y_win_size < rows:
-                    nrows = y_win_size
-                else:
-                    nrows = rows - idx_y
-
-                if idx_x + x_win_size < cols:
-                    ncols = x_win_size
-                else:
-                    ncols = cols - idx_x
-
-                win = [idx_x, idx_y, ncols, nrows]
-
-                # Upper left corner
-                win[0] = max(0, win[0] - buffer)
-                win[1] = max(0, win[1] - buffer)
-
-                w = win[2] + 2*buffer
-                win[2] = w if win[0] + w < cols else cols - win[0]
-
-                h = win[3] + 2*buffer
-                win[3] = h if win[1] + h < cols else cols - win[1]
-
-                crop_pixels(mosaic, out_file, win)
-                tile_count += 1
-                return out_file
-
-            def _serialize_str(str_value: str) -> str:
-                if not isinstance(str_value, str):
-                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
-                        str(str_value), str(type(str_value))))
-                return str_value
-
-            import argparse
-            _parser = argparse.ArgumentParser(prog='Crop into tiles', description='')
-            _parser.add_argument("--mosaic", dest="mosaic", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--out-file", dest="out_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--n-tiles", dest="n_tiles", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--idx-x", dest="idx_x", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--idx-y", dest="idx_y", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
-            _parsed_args = vars(_parser.parse_args())
-            _output_files = _parsed_args.pop("_output_paths", [])
-
-            _outputs = crop_into_tiles(**_parsed_args)
-
-            _outputs = [_outputs]
-
-            _output_serializers = [
-                _serialize_str,
-
-            ]
-
-            import os
-            for idx, output_file in enumerate(_output_files):
-                try:
-                    os.makedirs(os.path.dirname(output_file))
-                except OSError:
-                    pass
-                with open(output_file, 'w') as f:
-                    f.write(_output_serializers[idx](_outputs[idx]))
-          image: $(inputs.params.container_image)
-          volumeMounts:
-          - mountPath: /cos/
-            name: pvc-geotiled
-        params:
-        - name: container_image
-        - name: pvc-geotiled-name
-        - name: reproject-Output
-        results:
-        - name: Output
-          type: string
-          description: /tmp/outputs/Output/data
-        volumes:
-        - name: pvc-geotiled
-          persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-geotiled-name)
-        metadata:
-          labels:
-            pipelines.kubeflow.org/cache_enabled: "true"
-          annotations:
-            pipelines.kubeflow.org/component_spec_digest: '{"name": "Crop into tiles",
-              "outputs": [{"name": "Output", "type": "String"}], "version": "Crop
-              into tiles@sha256=edfe18cb96fd40fa1443fd1f6cc9c4b320660514a87638d9756614730de0240c"}'
-      retries: 3
-    - name: compute-geotiled-6
-      params:
-      - name: container_image
-        value: $(params.container_image)
-      - name: crop-into-tiles-6-Output
-        value: $(tasks.crop-into-tiles-6.results.Output)
-      - name: pvc-geotiled-name
-        value: $(tasks.pvc-geotiled.results.name)
-      taskSpec:
-        steps:
-        - name: main
-          args:
-          - --dir
-          - /cos/
-          - --tile-count
-          - '5'
-          - --input-file
-          - $(inputs.params.crop-into-tiles-6-Output)
-          - --aspect-file
-          - /cos/aspect_tile_0005.tif
-          - --hillshading-file
-          - /cos/hillshading_tile_0005.tif
-          - --slope-file
-          - /cos/slope_tile_0005.tif
-          - '----output-paths'
-          - $(results.aspect.path)
-          - $(results.hill.path)
-          - $(results.slope.path)
-          command:
-          - sh
-          - -ec
-          - |
-            program_path=$(mktemp)
-            printf "%s" "$0" > "$program_path"
-            python3 -u "$program_path" "$@"
-          - |
-            def compute_geotiled(dir, tile_count, input_file, aspect_file, hillshading_file, slope_file):
-                ## Packages
-                import os
-                from osgeo import gdal
-
-                # Slope
-                dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-                gdal.DEMProcessing(slope_file, input_file, processing='slope', options=dem_options)
-                # Aspect
-                dem_options = gdal.DEMProcessingOptions(zeroForFlat=True, format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-                gdal.DEMProcessing(aspect_file, input_file, processing='aspect', options=dem_options)
-                # Hillshading
-                dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-                gdal.DEMProcessing(dir+str(tile_count)+'hill.tif', input_file, processing='hillshade', options=dem_options)
-
-                # Change datatype of hillshading to the same as the other parameters
-                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], outputType=gdal.GDT_Float32, callback=gdal.TermProgress_nocb)
-                gdal.Translate(hillshading_file, dir+str(tile_count)+'hill.tif', options=translate_options)
-                os.remove(dir+str(tile_count)+'hill.tif')
-
-                return(aspect_file,hillshading_file,slope_file)
-
-            def _serialize_str(str_value: str) -> str:
-                if not isinstance(str_value, str):
-                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
-                        str(str_value), str(type(str_value))))
-                return str_value
-
-            import argparse
-            _parser = argparse.ArgumentParser(prog='Compute geotiled', description='')
-            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--tile-count", dest="tile_count", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--input-file", dest="input_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--aspect-file", dest="aspect_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--hillshading-file", dest="hillshading_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--slope-file", dest="slope_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=3)
-            _parsed_args = vars(_parser.parse_args())
-            _output_files = _parsed_args.pop("_output_paths", [])
-
-            _outputs = compute_geotiled(**_parsed_args)
-
-            _output_serializers = [
-                _serialize_str,
-                _serialize_str,
-                _serialize_str,
-
-            ]
-
-            import os
-            for idx, output_file in enumerate(_output_files):
-                try:
-                    os.makedirs(os.path.dirname(output_file))
-                except OSError:
-                    pass
-                with open(output_file, 'w') as f:
-                    f.write(_output_serializers[idx](_outputs[idx]))
-          image: $(inputs.params.container_image)
-          volumeMounts:
-          - mountPath: /cos/
-            name: pvc-geotiled
-        params:
-        - name: container_image
-        - name: crop-into-tiles-6-Output
-        - name: pvc-geotiled-name
-        results:
-        - name: aspect
-          type: string
-          description: /tmp/outputs/aspect/data
-        - name: hill
-          type: string
-          description: /tmp/outputs/hill/data
-        - name: slope
-          type: string
-          description: /tmp/outputs/slope/data
-        volumes:
-        - name: pvc-geotiled
-          persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-geotiled-name)
-        metadata:
-          labels:
-            pipelines.kubeflow.org/cache_enabled: "true"
-          annotations:
-            pipelines.kubeflow.org/component_spec_digest: '{"name": "Compute geotiled",
-              "outputs": [{"name": "aspect", "type": "String"}, {"name": "hill", "type":
-              "String"}, {"name": "slope", "type": "String"}], "version": "Compute
-              geotiled@sha256=a21a9008c60e92887548b4b28b2dba9a5d5a205dcbd3c7b2859d8ed5cf4cd4e1"}'
-      retries: 3
-    - name: crop-into-tiles-7
-      params:
-      - name: container_image
-        value: $(params.container_image)
-      - name: pvc-geotiled-name
-        value: $(tasks.pvc-geotiled.results.name)
-      - name: reproject-Output
-        value: $(tasks.reproject.results.Output)
-      taskSpec:
-        steps:
-        - name: main
-          args:
-          - --mosaic
-          - $(inputs.params.reproject-Output)
-          - --out-file
-          - /cos/tile_0006.tif
-          - --n-tiles
-          - '3'
-          - --idx-x
-          - '2'
-          - --idx-y
-          - '0'
-          - '----output-paths'
-          - $(results.Output.path)
-          command:
-          - sh
-          - -ec
-          - |
-            program_path=$(mktemp)
-            printf "%s" "$0" > "$program_path"
-            python3 -u "$program_path" "$@"
-          - |
-            def crop_into_tiles(mosaic, out_file, n_tiles, idx_x, idx_y):
-                import os
-                import math
-                from osgeo import gdal
-
-                # Functions
-                def crop_pixels(input_file, output_file, window):
-                    # Window to crop by [left_x, top_y, width, height]
-                    translate_options = gdal.TranslateOptions(srcWin=window,
-                                                            creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
-                                                            callback=gdal.TermProgress_nocb)
-                    gdal.Translate(output_file, input_file, options=translate_options)
-
-                # idx_x number of the tile in the x dimension
-
-                ds = gdal.Open(mosaic, 0)
-                cols = ds.RasterXSize
-                rows = ds.RasterYSize
-                x_win_size = int(math.ceil(cols / n_tiles))
-                y_win_size = int(math.ceil(rows / n_tiles))
-
-                buffer = 10 # 10 pixels
-                tile_count = 0
-
-                idx_x = range(0, cols, x_win_size)[idx_x]
-                idx_y = range(0, rows, y_win_size)[idx_y]
-
-                if idx_y + y_win_size < rows:
-                    nrows = y_win_size
-                else:
-                    nrows = rows - idx_y
-
-                if idx_x + x_win_size < cols:
-                    ncols = x_win_size
-                else:
-                    ncols = cols - idx_x
-
-                win = [idx_x, idx_y, ncols, nrows]
-
-                # Upper left corner
-                win[0] = max(0, win[0] - buffer)
-                win[1] = max(0, win[1] - buffer)
-
-                w = win[2] + 2*buffer
-                win[2] = w if win[0] + w < cols else cols - win[0]
-
-                h = win[3] + 2*buffer
-                win[3] = h if win[1] + h < cols else cols - win[1]
-
-                crop_pixels(mosaic, out_file, win)
-                tile_count += 1
-                return out_file
-
-            def _serialize_str(str_value: str) -> str:
-                if not isinstance(str_value, str):
-                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
-                        str(str_value), str(type(str_value))))
-                return str_value
-
-            import argparse
-            _parser = argparse.ArgumentParser(prog='Crop into tiles', description='')
-            _parser.add_argument("--mosaic", dest="mosaic", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--out-file", dest="out_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--n-tiles", dest="n_tiles", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--idx-x", dest="idx_x", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--idx-y", dest="idx_y", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
-            _parsed_args = vars(_parser.parse_args())
-            _output_files = _parsed_args.pop("_output_paths", [])
-
-            _outputs = crop_into_tiles(**_parsed_args)
-
-            _outputs = [_outputs]
-
-            _output_serializers = [
-                _serialize_str,
-
-            ]
-
-            import os
-            for idx, output_file in enumerate(_output_files):
-                try:
-                    os.makedirs(os.path.dirname(output_file))
-                except OSError:
-                    pass
-                with open(output_file, 'w') as f:
-                    f.write(_output_serializers[idx](_outputs[idx]))
-          image: $(inputs.params.container_image)
-          volumeMounts:
-          - mountPath: /cos/
-            name: pvc-geotiled
-        params:
-        - name: container_image
-        - name: pvc-geotiled-name
-        - name: reproject-Output
-        results:
-        - name: Output
-          type: string
-          description: /tmp/outputs/Output/data
-        volumes:
-        - name: pvc-geotiled
-          persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-geotiled-name)
-        metadata:
-          labels:
-            pipelines.kubeflow.org/cache_enabled: "true"
-          annotations:
-            pipelines.kubeflow.org/component_spec_digest: '{"name": "Crop into tiles",
-              "outputs": [{"name": "Output", "type": "String"}], "version": "Crop
-              into tiles@sha256=edfe18cb96fd40fa1443fd1f6cc9c4b320660514a87638d9756614730de0240c"}'
-      retries: 3
-    - name: compute-geotiled-7
-      params:
-      - name: container_image
-        value: $(params.container_image)
-      - name: crop-into-tiles-7-Output
-        value: $(tasks.crop-into-tiles-7.results.Output)
-      - name: pvc-geotiled-name
-        value: $(tasks.pvc-geotiled.results.name)
-      taskSpec:
-        steps:
-        - name: main
-          args:
-          - --dir
-          - /cos/
-          - --tile-count
-          - '6'
-          - --input-file
-          - $(inputs.params.crop-into-tiles-7-Output)
-          - --aspect-file
-          - /cos/aspect_tile_0006.tif
-          - --hillshading-file
-          - /cos/hillshading_tile_0006.tif
-          - --slope-file
-          - /cos/slope_tile_0006.tif
-          - '----output-paths'
-          - $(results.aspect.path)
-          - $(results.hill.path)
-          - $(results.slope.path)
-          command:
-          - sh
-          - -ec
-          - |
-            program_path=$(mktemp)
-            printf "%s" "$0" > "$program_path"
-            python3 -u "$program_path" "$@"
-          - |
-            def compute_geotiled(dir, tile_count, input_file, aspect_file, hillshading_file, slope_file):
-                ## Packages
-                import os
-                from osgeo import gdal
-
-                # Slope
-                dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-                gdal.DEMProcessing(slope_file, input_file, processing='slope', options=dem_options)
-                # Aspect
-                dem_options = gdal.DEMProcessingOptions(zeroForFlat=True, format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-                gdal.DEMProcessing(aspect_file, input_file, processing='aspect', options=dem_options)
-                # Hillshading
-                dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-                gdal.DEMProcessing(dir+str(tile_count)+'hill.tif', input_file, processing='hillshade', options=dem_options)
-
-                # Change datatype of hillshading to the same as the other parameters
-                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], outputType=gdal.GDT_Float32, callback=gdal.TermProgress_nocb)
-                gdal.Translate(hillshading_file, dir+str(tile_count)+'hill.tif', options=translate_options)
-                os.remove(dir+str(tile_count)+'hill.tif')
-
-                return(aspect_file,hillshading_file,slope_file)
-
-            def _serialize_str(str_value: str) -> str:
-                if not isinstance(str_value, str):
-                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
-                        str(str_value), str(type(str_value))))
-                return str_value
-
-            import argparse
-            _parser = argparse.ArgumentParser(prog='Compute geotiled', description='')
-            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--tile-count", dest="tile_count", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--input-file", dest="input_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--aspect-file", dest="aspect_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--hillshading-file", dest="hillshading_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--slope-file", dest="slope_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=3)
-            _parsed_args = vars(_parser.parse_args())
-            _output_files = _parsed_args.pop("_output_paths", [])
-
-            _outputs = compute_geotiled(**_parsed_args)
-
-            _output_serializers = [
-                _serialize_str,
-                _serialize_str,
-                _serialize_str,
-
-            ]
-
-            import os
-            for idx, output_file in enumerate(_output_files):
-                try:
-                    os.makedirs(os.path.dirname(output_file))
-                except OSError:
-                    pass
-                with open(output_file, 'w') as f:
-                    f.write(_output_serializers[idx](_outputs[idx]))
-          image: $(inputs.params.container_image)
-          volumeMounts:
-          - mountPath: /cos/
-            name: pvc-geotiled
-        params:
-        - name: container_image
-        - name: crop-into-tiles-7-Output
-        - name: pvc-geotiled-name
-        results:
-        - name: aspect
-          type: string
-          description: /tmp/outputs/aspect/data
-        - name: hill
-          type: string
-          description: /tmp/outputs/hill/data
-        - name: slope
-          type: string
-          description: /tmp/outputs/slope/data
-        volumes:
-        - name: pvc-geotiled
-          persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-geotiled-name)
-        metadata:
-          labels:
-            pipelines.kubeflow.org/cache_enabled: "true"
-          annotations:
-            pipelines.kubeflow.org/component_spec_digest: '{"name": "Compute geotiled",
-              "outputs": [{"name": "aspect", "type": "String"}, {"name": "hill", "type":
-              "String"}, {"name": "slope", "type": "String"}], "version": "Compute
-              geotiled@sha256=a21a9008c60e92887548b4b28b2dba9a5d5a205dcbd3c7b2859d8ed5cf4cd4e1"}'
-      retries: 3
-    - name: crop-into-tiles-8
-      params:
-      - name: container_image
-        value: $(params.container_image)
-      - name: pvc-geotiled-name
-        value: $(tasks.pvc-geotiled.results.name)
-      - name: reproject-Output
-        value: $(tasks.reproject.results.Output)
-      taskSpec:
-        steps:
-        - name: main
-          args:
-          - --mosaic
-          - $(inputs.params.reproject-Output)
-          - --out-file
-          - /cos/tile_0007.tif
-          - --n-tiles
-          - '3'
-          - --idx-x
-          - '2'
-          - --idx-y
-          - '1'
-          - '----output-paths'
-          - $(results.Output.path)
-          command:
-          - sh
-          - -ec
-          - |
-            program_path=$(mktemp)
-            printf "%s" "$0" > "$program_path"
-            python3 -u "$program_path" "$@"
-          - |
-            def crop_into_tiles(mosaic, out_file, n_tiles, idx_x, idx_y):
-                import os
-                import math
-                from osgeo import gdal
-
-                # Functions
-                def crop_pixels(input_file, output_file, window):
-                    # Window to crop by [left_x, top_y, width, height]
-                    translate_options = gdal.TranslateOptions(srcWin=window,
-                                                            creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
-                                                            callback=gdal.TermProgress_nocb)
-                    gdal.Translate(output_file, input_file, options=translate_options)
-
-                # idx_x number of the tile in the x dimension
-
-                ds = gdal.Open(mosaic, 0)
-                cols = ds.RasterXSize
-                rows = ds.RasterYSize
-                x_win_size = int(math.ceil(cols / n_tiles))
-                y_win_size = int(math.ceil(rows / n_tiles))
-
-                buffer = 10 # 10 pixels
-                tile_count = 0
-
-                idx_x = range(0, cols, x_win_size)[idx_x]
-                idx_y = range(0, rows, y_win_size)[idx_y]
-
-                if idx_y + y_win_size < rows:
-                    nrows = y_win_size
-                else:
-                    nrows = rows - idx_y
-
-                if idx_x + x_win_size < cols:
-                    ncols = x_win_size
-                else:
-                    ncols = cols - idx_x
-
-                win = [idx_x, idx_y, ncols, nrows]
-
-                # Upper left corner
-                win[0] = max(0, win[0] - buffer)
-                win[1] = max(0, win[1] - buffer)
-
-                w = win[2] + 2*buffer
-                win[2] = w if win[0] + w < cols else cols - win[0]
-
-                h = win[3] + 2*buffer
-                win[3] = h if win[1] + h < cols else cols - win[1]
-
-                crop_pixels(mosaic, out_file, win)
-                tile_count += 1
-                return out_file
-
-            def _serialize_str(str_value: str) -> str:
-                if not isinstance(str_value, str):
-                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
-                        str(str_value), str(type(str_value))))
-                return str_value
-
-            import argparse
-            _parser = argparse.ArgumentParser(prog='Crop into tiles', description='')
-            _parser.add_argument("--mosaic", dest="mosaic", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--out-file", dest="out_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--n-tiles", dest="n_tiles", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--idx-x", dest="idx_x", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--idx-y", dest="idx_y", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
-            _parsed_args = vars(_parser.parse_args())
-            _output_files = _parsed_args.pop("_output_paths", [])
-
-            _outputs = crop_into_tiles(**_parsed_args)
-
-            _outputs = [_outputs]
-
-            _output_serializers = [
-                _serialize_str,
-
-            ]
-
-            import os
-            for idx, output_file in enumerate(_output_files):
-                try:
-                    os.makedirs(os.path.dirname(output_file))
-                except OSError:
-                    pass
-                with open(output_file, 'w') as f:
-                    f.write(_output_serializers[idx](_outputs[idx]))
-          image: $(inputs.params.container_image)
-          volumeMounts:
-          - mountPath: /cos/
-            name: pvc-geotiled
-        params:
-        - name: container_image
-        - name: pvc-geotiled-name
-        - name: reproject-Output
-        results:
-        - name: Output
-          type: string
-          description: /tmp/outputs/Output/data
-        volumes:
-        - name: pvc-geotiled
-          persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-geotiled-name)
-        metadata:
-          labels:
-            pipelines.kubeflow.org/cache_enabled: "true"
-          annotations:
-            pipelines.kubeflow.org/component_spec_digest: '{"name": "Crop into tiles",
-              "outputs": [{"name": "Output", "type": "String"}], "version": "Crop
-              into tiles@sha256=edfe18cb96fd40fa1443fd1f6cc9c4b320660514a87638d9756614730de0240c"}'
-      retries: 3
-    - name: compute-geotiled-8
-      params:
-      - name: container_image
-        value: $(params.container_image)
-      - name: crop-into-tiles-8-Output
-        value: $(tasks.crop-into-tiles-8.results.Output)
-      - name: pvc-geotiled-name
-        value: $(tasks.pvc-geotiled.results.name)
-      taskSpec:
-        steps:
-        - name: main
-          args:
-          - --dir
-          - /cos/
-          - --tile-count
-          - '7'
-          - --input-file
-          - $(inputs.params.crop-into-tiles-8-Output)
-          - --aspect-file
-          - /cos/aspect_tile_0007.tif
-          - --hillshading-file
-          - /cos/hillshading_tile_0007.tif
-          - --slope-file
-          - /cos/slope_tile_0007.tif
-          - '----output-paths'
-          - $(results.aspect.path)
-          - $(results.hill.path)
-          - $(results.slope.path)
-          command:
-          - sh
-          - -ec
-          - |
-            program_path=$(mktemp)
-            printf "%s" "$0" > "$program_path"
-            python3 -u "$program_path" "$@"
-          - |
-            def compute_geotiled(dir, tile_count, input_file, aspect_file, hillshading_file, slope_file):
-                ## Packages
-                import os
-                from osgeo import gdal
-
-                # Slope
-                dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-                gdal.DEMProcessing(slope_file, input_file, processing='slope', options=dem_options)
-                # Aspect
-                dem_options = gdal.DEMProcessingOptions(zeroForFlat=True, format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-                gdal.DEMProcessing(aspect_file, input_file, processing='aspect', options=dem_options)
-                # Hillshading
-                dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-                gdal.DEMProcessing(dir+str(tile_count)+'hill.tif', input_file, processing='hillshade', options=dem_options)
-
-                # Change datatype of hillshading to the same as the other parameters
-                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], outputType=gdal.GDT_Float32, callback=gdal.TermProgress_nocb)
-                gdal.Translate(hillshading_file, dir+str(tile_count)+'hill.tif', options=translate_options)
-                os.remove(dir+str(tile_count)+'hill.tif')
-
-                return(aspect_file,hillshading_file,slope_file)
-
-            def _serialize_str(str_value: str) -> str:
-                if not isinstance(str_value, str):
-                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
-                        str(str_value), str(type(str_value))))
-                return str_value
-
-            import argparse
-            _parser = argparse.ArgumentParser(prog='Compute geotiled', description='')
-            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--tile-count", dest="tile_count", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--input-file", dest="input_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--aspect-file", dest="aspect_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--hillshading-file", dest="hillshading_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--slope-file", dest="slope_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=3)
-            _parsed_args = vars(_parser.parse_args())
-            _output_files = _parsed_args.pop("_output_paths", [])
-
-            _outputs = compute_geotiled(**_parsed_args)
-
-            _output_serializers = [
-                _serialize_str,
-                _serialize_str,
-                _serialize_str,
-
-            ]
-
-            import os
-            for idx, output_file in enumerate(_output_files):
-                try:
-                    os.makedirs(os.path.dirname(output_file))
-                except OSError:
-                    pass
-                with open(output_file, 'w') as f:
-                    f.write(_output_serializers[idx](_outputs[idx]))
-          image: $(inputs.params.container_image)
-          volumeMounts:
-          - mountPath: /cos/
-            name: pvc-geotiled
-        params:
-        - name: container_image
-        - name: crop-into-tiles-8-Output
-        - name: pvc-geotiled-name
-        results:
-        - name: aspect
-          type: string
-          description: /tmp/outputs/aspect/data
-        - name: hill
-          type: string
-          description: /tmp/outputs/hill/data
-        - name: slope
-          type: string
-          description: /tmp/outputs/slope/data
-        volumes:
-        - name: pvc-geotiled
-          persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-geotiled-name)
-        metadata:
-          labels:
-            pipelines.kubeflow.org/cache_enabled: "true"
-          annotations:
-            pipelines.kubeflow.org/component_spec_digest: '{"name": "Compute geotiled",
-              "outputs": [{"name": "aspect", "type": "String"}, {"name": "hill", "type":
-              "String"}, {"name": "slope", "type": "String"}], "version": "Compute
-              geotiled@sha256=a21a9008c60e92887548b4b28b2dba9a5d5a205dcbd3c7b2859d8ed5cf4cd4e1"}'
-      retries: 3
-    - name: crop-into-tiles-9
-      params:
-      - name: container_image
-        value: $(params.container_image)
-      - name: pvc-geotiled-name
-        value: $(tasks.pvc-geotiled.results.name)
-      - name: reproject-Output
-        value: $(tasks.reproject.results.Output)
-      taskSpec:
-        steps:
-        - name: main
-          args:
-          - --mosaic
-          - $(inputs.params.reproject-Output)
-          - --out-file
-          - /cos/tile_0008.tif
-          - --n-tiles
-          - '3'
-          - --idx-x
-          - '2'
-          - --idx-y
-          - '2'
-          - '----output-paths'
-          - $(results.Output.path)
-          command:
-          - sh
-          - -ec
-          - |
-            program_path=$(mktemp)
-            printf "%s" "$0" > "$program_path"
-            python3 -u "$program_path" "$@"
-          - |
-            def crop_into_tiles(mosaic, out_file, n_tiles, idx_x, idx_y):
-                import os
-                import math
-                from osgeo import gdal
-
-                # Functions
-                def crop_pixels(input_file, output_file, window):
-                    # Window to crop by [left_x, top_y, width, height]
-                    translate_options = gdal.TranslateOptions(srcWin=window,
-                                                            creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'],
-                                                            callback=gdal.TermProgress_nocb)
-                    gdal.Translate(output_file, input_file, options=translate_options)
-
-                # idx_x number of the tile in the x dimension
-
-                ds = gdal.Open(mosaic, 0)
-                cols = ds.RasterXSize
-                rows = ds.RasterYSize
-                x_win_size = int(math.ceil(cols / n_tiles))
-                y_win_size = int(math.ceil(rows / n_tiles))
-
-                buffer = 10 # 10 pixels
-                tile_count = 0
-
-                idx_x = range(0, cols, x_win_size)[idx_x]
-                idx_y = range(0, rows, y_win_size)[idx_y]
-
-                if idx_y + y_win_size < rows:
-                    nrows = y_win_size
-                else:
-                    nrows = rows - idx_y
-
-                if idx_x + x_win_size < cols:
-                    ncols = x_win_size
-                else:
-                    ncols = cols - idx_x
-
-                win = [idx_x, idx_y, ncols, nrows]
-
-                # Upper left corner
-                win[0] = max(0, win[0] - buffer)
-                win[1] = max(0, win[1] - buffer)
-
-                w = win[2] + 2*buffer
-                win[2] = w if win[0] + w < cols else cols - win[0]
-
-                h = win[3] + 2*buffer
-                win[3] = h if win[1] + h < cols else cols - win[1]
-
-                crop_pixels(mosaic, out_file, win)
-                tile_count += 1
-                return out_file
-
-            def _serialize_str(str_value: str) -> str:
-                if not isinstance(str_value, str):
-                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
-                        str(str_value), str(type(str_value))))
-                return str_value
-
-            import argparse
-            _parser = argparse.ArgumentParser(prog='Crop into tiles', description='')
-            _parser.add_argument("--mosaic", dest="mosaic", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--out-file", dest="out_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--n-tiles", dest="n_tiles", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--idx-x", dest="idx_x", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--idx-y", dest="idx_y", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=1)
-            _parsed_args = vars(_parser.parse_args())
-            _output_files = _parsed_args.pop("_output_paths", [])
-
-            _outputs = crop_into_tiles(**_parsed_args)
-
-            _outputs = [_outputs]
-
-            _output_serializers = [
-                _serialize_str,
-
-            ]
-
-            import os
-            for idx, output_file in enumerate(_output_files):
-                try:
-                    os.makedirs(os.path.dirname(output_file))
-                except OSError:
-                    pass
-                with open(output_file, 'w') as f:
-                    f.write(_output_serializers[idx](_outputs[idx]))
-          image: $(inputs.params.container_image)
-          volumeMounts:
-          - mountPath: /cos/
-            name: pvc-geotiled
-        params:
-        - name: container_image
-        - name: pvc-geotiled-name
-        - name: reproject-Output
-        results:
-        - name: Output
-          type: string
-          description: /tmp/outputs/Output/data
-        volumes:
-        - name: pvc-geotiled
-          persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-geotiled-name)
-        metadata:
-          labels:
-            pipelines.kubeflow.org/cache_enabled: "true"
-          annotations:
-            pipelines.kubeflow.org/component_spec_digest: '{"name": "Crop into tiles",
-              "outputs": [{"name": "Output", "type": "String"}], "version": "Crop
-              into tiles@sha256=edfe18cb96fd40fa1443fd1f6cc9c4b320660514a87638d9756614730de0240c"}'
-      retries: 3
-    - name: compute-geotiled-9
-      params:
-      - name: container_image
-        value: $(params.container_image)
-      - name: crop-into-tiles-9-Output
-        value: $(tasks.crop-into-tiles-9.results.Output)
-      - name: pvc-geotiled-name
-        value: $(tasks.pvc-geotiled.results.name)
-      taskSpec:
-        steps:
-        - name: main
-          args:
-          - --dir
-          - /cos/
-          - --tile-count
-          - '8'
-          - --input-file
-          - $(inputs.params.crop-into-tiles-9-Output)
-          - --aspect-file
-          - /cos/aspect_tile_0008.tif
-          - --hillshading-file
-          - /cos/hillshading_tile_0008.tif
-          - --slope-file
-          - /cos/slope_tile_0008.tif
-          - '----output-paths'
-          - $(results.aspect.path)
-          - $(results.hill.path)
-          - $(results.slope.path)
-          command:
-          - sh
-          - -ec
-          - |
-            program_path=$(mktemp)
-            printf "%s" "$0" > "$program_path"
-            python3 -u "$program_path" "$@"
-          - |
-            def compute_geotiled(dir, tile_count, input_file, aspect_file, hillshading_file, slope_file):
-                ## Packages
-                import os
-                from osgeo import gdal
-
-                # Slope
-                dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-                gdal.DEMProcessing(slope_file, input_file, processing='slope', options=dem_options)
-                # Aspect
-                dem_options = gdal.DEMProcessingOptions(zeroForFlat=True, format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-                gdal.DEMProcessing(aspect_file, input_file, processing='aspect', options=dem_options)
-                # Hillshading
-                dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-                gdal.DEMProcessing(dir+str(tile_count)+'hill.tif', input_file, processing='hillshade', options=dem_options)
-
-                # Change datatype of hillshading to the same as the other parameters
-                translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], outputType=gdal.GDT_Float32, callback=gdal.TermProgress_nocb)
-                gdal.Translate(hillshading_file, dir+str(tile_count)+'hill.tif', options=translate_options)
-                os.remove(dir+str(tile_count)+'hill.tif')
-
-                return(aspect_file,hillshading_file,slope_file)
-
-            def _serialize_str(str_value: str) -> str:
-                if not isinstance(str_value, str):
-                    raise TypeError('Value "{}" has type "{}" instead of str.'.format(
-                        str(str_value), str(type(str_value))))
-                return str_value
-
-            import argparse
-            _parser = argparse.ArgumentParser(prog='Compute geotiled', description='')
-            _parser.add_argument("--dir", dest="dir", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--tile-count", dest="tile_count", type=int, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--input-file", dest="input_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--aspect-file", dest="aspect_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--hillshading-file", dest="hillshading_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("--slope-file", dest="slope_file", type=str, required=True, default=argparse.SUPPRESS)
-            _parser.add_argument("----output-paths", dest="_output_paths", type=str, nargs=3)
-            _parsed_args = vars(_parser.parse_args())
-            _output_files = _parsed_args.pop("_output_paths", [])
-
-            _outputs = compute_geotiled(**_parsed_args)
-
-            _output_serializers = [
-                _serialize_str,
-                _serialize_str,
-                _serialize_str,
-
-            ]
-
-            import os
-            for idx, output_file in enumerate(_output_files):
-                try:
-                    os.makedirs(os.path.dirname(output_file))
-                except OSError:
-                    pass
-                with open(output_file, 'w') as f:
-                    f.write(_output_serializers[idx](_outputs[idx]))
-          image: $(inputs.params.container_image)
-          volumeMounts:
-          - mountPath: /cos/
-            name: pvc-geotiled
-        params:
-        - name: container_image
-        - name: crop-into-tiles-9-Output
-        - name: pvc-geotiled-name
-        results:
-        - name: aspect
-          type: string
-          description: /tmp/outputs/aspect/data
-        - name: hill
-          type: string
-          description: /tmp/outputs/hill/data
-        - name: slope
-          type: string
-          description: /tmp/outputs/slope/data
-        volumes:
-        - name: pvc-geotiled
-          persistentVolumeClaim:
-            claimName: $(inputs.params.pvc-geotiled-name)
-        metadata:
-          labels:
-            pipelines.kubeflow.org/cache_enabled: "true"
-          annotations:
-            pipelines.kubeflow.org/component_spec_digest: '{"name": "Compute geotiled",
-              "outputs": [{"name": "aspect", "type": "String"}, {"name": "hill", "type":
-              "String"}, {"name": "slope", "type": "String"}], "version": "Compute
-              geotiled@sha256=a21a9008c60e92887548b4b28b2dba9a5d5a205dcbd3c7b2859d8ed5cf4cd4e1"}'
+              geotiled@sha256=0cdba78982e8807af04283745524fa255d9b032fa71329b8e6d18705dbe6a90c"}'
       retries: 3
     - name: reproject-2
       params:
@@ -3034,20 +1633,21 @@ spec:
             python3 -u "$program_path" "$@"
           - "def reproject( input_file, output_file, projection, nodata='n', pipeline_flag=[]):\n\
             \    # Packages\n    import os\n    from osgeo import gdal\n    import\
-            \ numpy as np \n\n    # Projection can be EPSG:4326, .... or the path\
-            \ to a wkt file\n    if nodata == 'y':\n        warp_options = gdal.WarpOptions(dstSRS=projection,\
-            \ dstNodata=np.nan, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES',\
-            \ 'NUM_THREADS=ALL_CPUS'], multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'],\
-            \ callback=gdal.TermProgress_nocb)\n    else:\n        warp_options =\
-            \ gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW',\
-            \ 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], callback=gdal.TermProgress_nocb,\
-            \ multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'])\n    warp =\
-            \ gdal.Warp(output_file, input_file, options=warp_options)\n    warp =\
-            \ None  # Closes the files\n    return output_file\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Reproject',\
+            \ numpy as np \n\n    if os.path.isfile(output_file):\n        return\
+            \ output_file\n    else:  \n        # Projection can be EPSG:4326, ....\
+            \ or the path to a wkt file\n        if nodata == 'y':\n            warp_options\
+            \ = gdal.WarpOptions(dstSRS=projection, dstNodata=np.nan, creationOptions=['COMPRESS=LZW',\
+            \ 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], multithread=True,\
+            \ warpOptions=['NUM_THREADS=ALL_CPUS'], callback=gdal.TermProgress_nocb)\n\
+            \        else:\n            warp_options = gdal.WarpOptions(dstSRS=projection,\
+            \ creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'],\
+            \ callback=gdal.TermProgress_nocb, multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'])\n\
+            \        warp = gdal.Warp(output_file, input_file, options=warp_options)\n\
+            \        warp = None  # Closes the files\n        return output_file\n\
+            \ndef _serialize_str(str_value: str) -> str:\n    if not isinstance(str_value,\
+            \ str):\n        raise TypeError('Value \"{}\" has type \"{}\" instead\
+            \ of str.'.format(\n            str(str_value), str(type(str_value))))\n\
+            \    return str_value\n\nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Reproject',\
             \ description='')\n_parser.add_argument(\"--input-file\", dest=\"input_file\"\
             , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
             --output-file\", dest=\"output_file\", type=str, required=True, default=argparse.SUPPRESS)\n\
@@ -3064,6 +1664,9 @@ spec:
             \    except OSError:\n        pass\n    with open(output_file, 'w') as\
             \ f:\n        f.write(_output_serializers[idx](_outputs[idx]))\n"
           image: $(inputs.params.container_image)
+          resources:
+            requests:
+              memory: 20G
           volumeMounts:
           - mountPath: /cos/
             name: pvc-geotiled
@@ -3087,7 +1690,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Reproject", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Reproject@sha256=d6da68ec6b6c1706a4b9f2b42664eb84f361aea1e264a32c5c1af4fa070125d1"}'
+              [{"name": "Output", "type": "String"}], "version": "Reproject@sha256=794a67f1a2236001f488a2c36b42845a3a268ecce9a022edaff7c0612aaeb12e"}'
       retries: 3
     - name: merge-avg
       params:
@@ -3097,16 +1700,6 @@ spec:
         value: $(tasks.compute-geotiled-3.results.aspect)
       - name: compute-geotiled-4-aspect
         value: $(tasks.compute-geotiled-4.results.aspect)
-      - name: compute-geotiled-5-aspect
-        value: $(tasks.compute-geotiled-5.results.aspect)
-      - name: compute-geotiled-6-aspect
-        value: $(tasks.compute-geotiled-6.results.aspect)
-      - name: compute-geotiled-7-aspect
-        value: $(tasks.compute-geotiled-7.results.aspect)
-      - name: compute-geotiled-8-aspect
-        value: $(tasks.compute-geotiled-8.results.aspect)
-      - name: compute-geotiled-9-aspect
-        value: $(tasks.compute-geotiled-9.results.aspect)
       - name: compute-geotiled-aspect
         value: $(tasks.compute-geotiled.results.aspect)
       - name: container_image
@@ -3119,10 +1712,7 @@ spec:
           args:
           - --input-files
           - '["$(inputs.params.compute-geotiled-aspect)", "$(inputs.params.compute-geotiled-2-aspect)",
-            "$(inputs.params.compute-geotiled-3-aspect)", "$(inputs.params.compute-geotiled-4-aspect)",
-            "$(inputs.params.compute-geotiled-5-aspect)", "$(inputs.params.compute-geotiled-6-aspect)",
-            "$(inputs.params.compute-geotiled-7-aspect)", "$(inputs.params.compute-geotiled-8-aspect)",
-            "$(inputs.params.compute-geotiled-9-aspect)"]'
+            "$(inputs.params.compute-geotiled-3-aspect)", "$(inputs.params.compute-geotiled-4-aspect)"]'
           - --dir
           - /cos/
           - --output-file
@@ -3164,9 +1754,10 @@ spec:
                     warp = gdal.Warp(output_file, input_file, options=warp_options)
                     warp = None  # Closes the files
 
+                print("Merging all tiles per each terrain")
                 vrt = gdal.BuildVRT(dir+param+'merged.vrt', input_files)
                 vrt = None  # closes file
-
+                print("Open all tiles per each terrain")
                 with open(dir+param+'merged.vrt', 'r') as f:
                     contents = f.read()
 
@@ -3191,15 +1782,19 @@ spec:
 
                 sub1, sub2 = contents.split('band="1">', 1)
                 contents = sub1 + code + sub2
-
+                print("Format - sub band...")
                 with open(dir+param+'merged.vrt', 'w') as f:
                     f.write(contents)
 
+                print("Translate command")
                 cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+param+'merged.vrt', output_file]
+                print("Bash command")
                 bash(cmd)
+                print("Remove merged file")
                 os.remove(dir+param+'merged.vrt')
 
                 #reproject(output_file, output_file, 'EPSG:4326')
+                print("Return output file", output_file)
                 return output_file
 
             def _serialize_str(str_value: str) -> str:
@@ -3239,7 +1834,7 @@ spec:
           image: $(inputs.params.container_image)
           resources:
             requests:
-              memory: 15G
+              memory: 20G
           volumeMounts:
           - mountPath: /cos/
             name: pvc-geotiled
@@ -3247,11 +1842,6 @@ spec:
         - name: compute-geotiled-2-aspect
         - name: compute-geotiled-3-aspect
         - name: compute-geotiled-4-aspect
-        - name: compute-geotiled-5-aspect
-        - name: compute-geotiled-6-aspect
-        - name: compute-geotiled-7-aspect
-        - name: compute-geotiled-8-aspect
-        - name: compute-geotiled-9-aspect
         - name: compute-geotiled-aspect
         - name: container_image
         - name: pvc-geotiled-name
@@ -3268,8 +1858,9 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=792badd7715f2f037e75c2e06784aff837448147be7ab9e733906281073fcdec"}'
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=a23b10eef336b8f2c2104ac0e4f07dd6be624b5999be65af22e65f6f939dd066"}'
       retries: 3
+      timeout: 15000s
     - name: merge-avg-2
       params:
       - name: compute-geotiled-2-hill
@@ -3278,16 +1869,6 @@ spec:
         value: $(tasks.compute-geotiled-3.results.hill)
       - name: compute-geotiled-4-hill
         value: $(tasks.compute-geotiled-4.results.hill)
-      - name: compute-geotiled-5-hill
-        value: $(tasks.compute-geotiled-5.results.hill)
-      - name: compute-geotiled-6-hill
-        value: $(tasks.compute-geotiled-6.results.hill)
-      - name: compute-geotiled-7-hill
-        value: $(tasks.compute-geotiled-7.results.hill)
-      - name: compute-geotiled-8-hill
-        value: $(tasks.compute-geotiled-8.results.hill)
-      - name: compute-geotiled-9-hill
-        value: $(tasks.compute-geotiled-9.results.hill)
       - name: compute-geotiled-hill
         value: $(tasks.compute-geotiled.results.hill)
       - name: container_image
@@ -3300,10 +1881,7 @@ spec:
           args:
           - --input-files
           - '["$(inputs.params.compute-geotiled-hill)", "$(inputs.params.compute-geotiled-2-hill)",
-            "$(inputs.params.compute-geotiled-3-hill)", "$(inputs.params.compute-geotiled-4-hill)",
-            "$(inputs.params.compute-geotiled-5-hill)", "$(inputs.params.compute-geotiled-6-hill)",
-            "$(inputs.params.compute-geotiled-7-hill)", "$(inputs.params.compute-geotiled-8-hill)",
-            "$(inputs.params.compute-geotiled-9-hill)"]'
+            "$(inputs.params.compute-geotiled-3-hill)", "$(inputs.params.compute-geotiled-4-hill)"]'
           - --dir
           - /cos/
           - --output-file
@@ -3345,9 +1923,10 @@ spec:
                     warp = gdal.Warp(output_file, input_file, options=warp_options)
                     warp = None  # Closes the files
 
+                print("Merging all tiles per each terrain")
                 vrt = gdal.BuildVRT(dir+param+'merged.vrt', input_files)
                 vrt = None  # closes file
-
+                print("Open all tiles per each terrain")
                 with open(dir+param+'merged.vrt', 'r') as f:
                     contents = f.read()
 
@@ -3372,15 +1951,19 @@ spec:
 
                 sub1, sub2 = contents.split('band="1">', 1)
                 contents = sub1 + code + sub2
-
+                print("Format - sub band...")
                 with open(dir+param+'merged.vrt', 'w') as f:
                     f.write(contents)
 
+                print("Translate command")
                 cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+param+'merged.vrt', output_file]
+                print("Bash command")
                 bash(cmd)
+                print("Remove merged file")
                 os.remove(dir+param+'merged.vrt')
 
                 #reproject(output_file, output_file, 'EPSG:4326')
+                print("Return output file", output_file)
                 return output_file
 
             def _serialize_str(str_value: str) -> str:
@@ -3420,7 +2003,7 @@ spec:
           image: $(inputs.params.container_image)
           resources:
             requests:
-              memory: 15G
+              memory: 20G
           volumeMounts:
           - mountPath: /cos/
             name: pvc-geotiled
@@ -3428,11 +2011,6 @@ spec:
         - name: compute-geotiled-2-hill
         - name: compute-geotiled-3-hill
         - name: compute-geotiled-4-hill
-        - name: compute-geotiled-5-hill
-        - name: compute-geotiled-6-hill
-        - name: compute-geotiled-7-hill
-        - name: compute-geotiled-8-hill
-        - name: compute-geotiled-9-hill
         - name: compute-geotiled-hill
         - name: container_image
         - name: pvc-geotiled-name
@@ -3449,8 +2027,9 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=792badd7715f2f037e75c2e06784aff837448147be7ab9e733906281073fcdec"}'
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=a23b10eef336b8f2c2104ac0e4f07dd6be624b5999be65af22e65f6f939dd066"}'
       retries: 3
+      timeout: 15000s
     - name: merge-avg-3
       params:
       - name: compute-geotiled-2-slope
@@ -3459,16 +2038,6 @@ spec:
         value: $(tasks.compute-geotiled-3.results.slope)
       - name: compute-geotiled-4-slope
         value: $(tasks.compute-geotiled-4.results.slope)
-      - name: compute-geotiled-5-slope
-        value: $(tasks.compute-geotiled-5.results.slope)
-      - name: compute-geotiled-6-slope
-        value: $(tasks.compute-geotiled-6.results.slope)
-      - name: compute-geotiled-7-slope
-        value: $(tasks.compute-geotiled-7.results.slope)
-      - name: compute-geotiled-8-slope
-        value: $(tasks.compute-geotiled-8.results.slope)
-      - name: compute-geotiled-9-slope
-        value: $(tasks.compute-geotiled-9.results.slope)
       - name: compute-geotiled-slope
         value: $(tasks.compute-geotiled.results.slope)
       - name: container_image
@@ -3481,10 +2050,7 @@ spec:
           args:
           - --input-files
           - '["$(inputs.params.compute-geotiled-slope)", "$(inputs.params.compute-geotiled-2-slope)",
-            "$(inputs.params.compute-geotiled-3-slope)", "$(inputs.params.compute-geotiled-4-slope)",
-            "$(inputs.params.compute-geotiled-5-slope)", "$(inputs.params.compute-geotiled-6-slope)",
-            "$(inputs.params.compute-geotiled-7-slope)", "$(inputs.params.compute-geotiled-8-slope)",
-            "$(inputs.params.compute-geotiled-9-slope)"]'
+            "$(inputs.params.compute-geotiled-3-slope)", "$(inputs.params.compute-geotiled-4-slope)"]'
           - --dir
           - /cos/
           - --output-file
@@ -3526,9 +2092,10 @@ spec:
                     warp = gdal.Warp(output_file, input_file, options=warp_options)
                     warp = None  # Closes the files
 
+                print("Merging all tiles per each terrain")
                 vrt = gdal.BuildVRT(dir+param+'merged.vrt', input_files)
                 vrt = None  # closes file
-
+                print("Open all tiles per each terrain")
                 with open(dir+param+'merged.vrt', 'r') as f:
                     contents = f.read()
 
@@ -3553,15 +2120,19 @@ spec:
 
                 sub1, sub2 = contents.split('band="1">', 1)
                 contents = sub1 + code + sub2
-
+                print("Format - sub band...")
                 with open(dir+param+'merged.vrt', 'w') as f:
                     f.write(contents)
 
+                print("Translate command")
                 cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+param+'merged.vrt', output_file]
+                print("Bash command")
                 bash(cmd)
+                print("Remove merged file")
                 os.remove(dir+param+'merged.vrt')
 
                 #reproject(output_file, output_file, 'EPSG:4326')
+                print("Return output file", output_file)
                 return output_file
 
             def _serialize_str(str_value: str) -> str:
@@ -3601,7 +2172,7 @@ spec:
           image: $(inputs.params.container_image)
           resources:
             requests:
-              memory: 15G
+              memory: 20G
           volumeMounts:
           - mountPath: /cos/
             name: pvc-geotiled
@@ -3609,11 +2180,6 @@ spec:
         - name: compute-geotiled-2-slope
         - name: compute-geotiled-3-slope
         - name: compute-geotiled-4-slope
-        - name: compute-geotiled-5-slope
-        - name: compute-geotiled-6-slope
-        - name: compute-geotiled-7-slope
-        - name: compute-geotiled-8-slope
-        - name: compute-geotiled-9-slope
         - name: compute-geotiled-slope
         - name: container_image
         - name: pvc-geotiled-name
@@ -3630,8 +2196,9 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Merge avg", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=792badd7715f2f037e75c2e06784aff837448147be7ab9e733906281073fcdec"}'
+              [{"name": "Output", "type": "String"}], "version": "Merge avg@sha256=a23b10eef336b8f2c2104ac0e4f07dd6be624b5999be65af22e65f6f939dd066"}'
       retries: 3
+      timeout: 15000s
     - name: reproject-3
       params:
       - name: container_image
@@ -3665,20 +2232,21 @@ spec:
             python3 -u "$program_path" "$@"
           - "def reproject( input_file, output_file, projection, nodata='n', pipeline_flag=[]):\n\
             \    # Packages\n    import os\n    from osgeo import gdal\n    import\
-            \ numpy as np \n\n    # Projection can be EPSG:4326, .... or the path\
-            \ to a wkt file\n    if nodata == 'y':\n        warp_options = gdal.WarpOptions(dstSRS=projection,\
-            \ dstNodata=np.nan, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES',\
-            \ 'NUM_THREADS=ALL_CPUS'], multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'],\
-            \ callback=gdal.TermProgress_nocb)\n    else:\n        warp_options =\
-            \ gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW',\
-            \ 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], callback=gdal.TermProgress_nocb,\
-            \ multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'])\n    warp =\
-            \ gdal.Warp(output_file, input_file, options=warp_options)\n    warp =\
-            \ None  # Closes the files\n    return output_file\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Reproject',\
+            \ numpy as np \n\n    if os.path.isfile(output_file):\n        return\
+            \ output_file\n    else:  \n        # Projection can be EPSG:4326, ....\
+            \ or the path to a wkt file\n        if nodata == 'y':\n            warp_options\
+            \ = gdal.WarpOptions(dstSRS=projection, dstNodata=np.nan, creationOptions=['COMPRESS=LZW',\
+            \ 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], multithread=True,\
+            \ warpOptions=['NUM_THREADS=ALL_CPUS'], callback=gdal.TermProgress_nocb)\n\
+            \        else:\n            warp_options = gdal.WarpOptions(dstSRS=projection,\
+            \ creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'],\
+            \ callback=gdal.TermProgress_nocb, multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'])\n\
+            \        warp = gdal.Warp(output_file, input_file, options=warp_options)\n\
+            \        warp = None  # Closes the files\n        return output_file\n\
+            \ndef _serialize_str(str_value: str) -> str:\n    if not isinstance(str_value,\
+            \ str):\n        raise TypeError('Value \"{}\" has type \"{}\" instead\
+            \ of str.'.format(\n            str(str_value), str(type(str_value))))\n\
+            \    return str_value\n\nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Reproject',\
             \ description='')\n_parser.add_argument(\"--input-file\", dest=\"input_file\"\
             , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
             --output-file\", dest=\"output_file\", type=str, required=True, default=argparse.SUPPRESS)\n\
@@ -3715,7 +2283,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Reproject", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Reproject@sha256=d6da68ec6b6c1706a4b9f2b42664eb84f361aea1e264a32c5c1af4fa070125d1"}'
+              [{"name": "Output", "type": "String"}], "version": "Reproject@sha256=794a67f1a2236001f488a2c36b42845a3a268ecce9a022edaff7c0612aaeb12e"}'
       retries: 3
     - name: reproject-4
       params:
@@ -3750,20 +2318,21 @@ spec:
             python3 -u "$program_path" "$@"
           - "def reproject( input_file, output_file, projection, nodata='n', pipeline_flag=[]):\n\
             \    # Packages\n    import os\n    from osgeo import gdal\n    import\
-            \ numpy as np \n\n    # Projection can be EPSG:4326, .... or the path\
-            \ to a wkt file\n    if nodata == 'y':\n        warp_options = gdal.WarpOptions(dstSRS=projection,\
-            \ dstNodata=np.nan, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES',\
-            \ 'NUM_THREADS=ALL_CPUS'], multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'],\
-            \ callback=gdal.TermProgress_nocb)\n    else:\n        warp_options =\
-            \ gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW',\
-            \ 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], callback=gdal.TermProgress_nocb,\
-            \ multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'])\n    warp =\
-            \ gdal.Warp(output_file, input_file, options=warp_options)\n    warp =\
-            \ None  # Closes the files\n    return output_file\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Reproject',\
+            \ numpy as np \n\n    if os.path.isfile(output_file):\n        return\
+            \ output_file\n    else:  \n        # Projection can be EPSG:4326, ....\
+            \ or the path to a wkt file\n        if nodata == 'y':\n            warp_options\
+            \ = gdal.WarpOptions(dstSRS=projection, dstNodata=np.nan, creationOptions=['COMPRESS=LZW',\
+            \ 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], multithread=True,\
+            \ warpOptions=['NUM_THREADS=ALL_CPUS'], callback=gdal.TermProgress_nocb)\n\
+            \        else:\n            warp_options = gdal.WarpOptions(dstSRS=projection,\
+            \ creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'],\
+            \ callback=gdal.TermProgress_nocb, multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'])\n\
+            \        warp = gdal.Warp(output_file, input_file, options=warp_options)\n\
+            \        warp = None  # Closes the files\n        return output_file\n\
+            \ndef _serialize_str(str_value: str) -> str:\n    if not isinstance(str_value,\
+            \ str):\n        raise TypeError('Value \"{}\" has type \"{}\" instead\
+            \ of str.'.format(\n            str(str_value), str(type(str_value))))\n\
+            \    return str_value\n\nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Reproject',\
             \ description='')\n_parser.add_argument(\"--input-file\", dest=\"input_file\"\
             , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
             --output-file\", dest=\"output_file\", type=str, required=True, default=argparse.SUPPRESS)\n\
@@ -3800,7 +2369,7 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Reproject", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Reproject@sha256=d6da68ec6b6c1706a4b9f2b42664eb84f361aea1e264a32c5c1af4fa070125d1"}'
+              [{"name": "Output", "type": "String"}], "version": "Reproject@sha256=794a67f1a2236001f488a2c36b42845a3a268ecce9a022edaff7c0612aaeb12e"}'
       retries: 3
     - name: reproject-5
       params:
@@ -3835,20 +2404,21 @@ spec:
             python3 -u "$program_path" "$@"
           - "def reproject( input_file, output_file, projection, nodata='n', pipeline_flag=[]):\n\
             \    # Packages\n    import os\n    from osgeo import gdal\n    import\
-            \ numpy as np \n\n    # Projection can be EPSG:4326, .... or the path\
-            \ to a wkt file\n    if nodata == 'y':\n        warp_options = gdal.WarpOptions(dstSRS=projection,\
-            \ dstNodata=np.nan, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES',\
-            \ 'NUM_THREADS=ALL_CPUS'], multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'],\
-            \ callback=gdal.TermProgress_nocb)\n    else:\n        warp_options =\
-            \ gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW',\
-            \ 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], callback=gdal.TermProgress_nocb,\
-            \ multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'])\n    warp =\
-            \ gdal.Warp(output_file, input_file, options=warp_options)\n    warp =\
-            \ None  # Closes the files\n    return output_file\n\ndef _serialize_str(str_value:\
-            \ str) -> str:\n    if not isinstance(str_value, str):\n        raise\
-            \ TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n \
-            \           str(str_value), str(type(str_value))))\n    return str_value\n\
-            \nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Reproject',\
+            \ numpy as np \n\n    if os.path.isfile(output_file):\n        return\
+            \ output_file\n    else:  \n        # Projection can be EPSG:4326, ....\
+            \ or the path to a wkt file\n        if nodata == 'y':\n            warp_options\
+            \ = gdal.WarpOptions(dstSRS=projection, dstNodata=np.nan, creationOptions=['COMPRESS=LZW',\
+            \ 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'], multithread=True,\
+            \ warpOptions=['NUM_THREADS=ALL_CPUS'], callback=gdal.TermProgress_nocb)\n\
+            \        else:\n            warp_options = gdal.WarpOptions(dstSRS=projection,\
+            \ creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'],\
+            \ callback=gdal.TermProgress_nocb, multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'])\n\
+            \        warp = gdal.Warp(output_file, input_file, options=warp_options)\n\
+            \        warp = None  # Closes the files\n        return output_file\n\
+            \ndef _serialize_str(str_value: str) -> str:\n    if not isinstance(str_value,\
+            \ str):\n        raise TypeError('Value \"{}\" has type \"{}\" instead\
+            \ of str.'.format(\n            str(str_value), str(type(str_value))))\n\
+            \    return str_value\n\nimport json\nimport argparse\n_parser = argparse.ArgumentParser(prog='Reproject',\
             \ description='')\n_parser.add_argument(\"--input-file\", dest=\"input_file\"\
             , type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"\
             --output-file\", dest=\"output_file\", type=str, required=True, default=argparse.SUPPRESS)\n\
@@ -3885,5 +2455,5 @@ spec:
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Reproject", "outputs":
-              [{"name": "Output", "type": "String"}], "version": "Reproject@sha256=d6da68ec6b6c1706a4b9f2b42664eb84f361aea1e264a32c5c1af4fa070125d1"}'
+              [{"name": "Output", "type": "String"}], "version": "Reproject@sha256=794a67f1a2236001f488a2c36b42845a3a268ecce9a022edaff7c0612aaeb12e"}'
       retries: 3

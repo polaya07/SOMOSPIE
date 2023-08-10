@@ -23,10 +23,10 @@ def merge_avg(input_files: list, dir: str, output_file:str, param:str)->str:
         warp = gdal.Warp(output_file, input_file, options=warp_options)
         warp = None  # Closes the files
 
-
+    print("Merging all tiles per each terrain")
     vrt = gdal.BuildVRT(dir+param+'merged.vrt', input_files)
     vrt = None  # closes file
-
+    print("Open all tiles per each terrain")
     with open(dir+param+'merged.vrt', 'r') as f:
         contents = f.read()
 
@@ -51,13 +51,17 @@ def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, 
 
     sub1, sub2 = contents.split('band="1">', 1)
     contents = sub1 + code + sub2
-
+    print("Format - sub band...")
     with open(dir+param+'merged.vrt', 'w') as f:
         f.write(contents)
 
+    print("Translate command")
     cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', dir+param+'merged.vrt', output_file]
+    print("Bash command")
     bash(cmd)
+    print("Remove merged file")
     os.remove(dir+param+'merged.vrt')
 
     #reproject(output_file, output_file, 'EPSG:4326')
+    print("Return output file", output_file)
     return output_file
